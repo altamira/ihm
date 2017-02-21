@@ -1,13 +1,14 @@
+import React, { Component } from 'react';
+
 import './App.css';
 
-//import { assign } from 'lodash';
+import { LoadingCircular } from './components';
 //import mqtt from 'mqtt/lib/connect';
 
 import api from './api';
 import Login from './login';
 //import Error from './Error';
 
-import React, { Component } from 'react';
 
 import { 
   Col
@@ -52,14 +53,12 @@ export default class App extends Component {
     )
 
     const login = (<Login onLogin={this.handleLogin} />);
-    
-    const loading = (<div><span>Carregando configuracoes, aguarde...</span></div>)
+
+    const load =(<LoadingCircular/>);
 
     return(
       <div className="App">
-
-          {this.state.config ? (this.state.usuario ? main : login) : loading}
-
+          {this.state.config ? (this.state.usuario ? main : login) : load}
       </div>
     )
 
