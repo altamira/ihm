@@ -67,7 +67,7 @@ export default class App extends Component {
         </Row>
         <Row>
           <Col  xs={2} xsOffset={5} md={2} mdOffset={5} lg={2} lgOffset={5}> <LoadingEllipse/>                        </Col>
-          <Col  xs={5}    md={5}              lg={5}             >{}                                                  </Col>
+          <Col  xs={5}    md={5}              lg={5}             ><img alt="Logo" src={require('./images/reset.png')} />         </Col>
         </Row>  
       </Grid>
     );
