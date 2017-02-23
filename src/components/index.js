@@ -1,7 +1,7 @@
 //import Button from './Button'
-import Loading_circular from './Loading_circular'
+import LoadingCircular from './LoadingCircular'
 
 export default { 
 	//Button: Button,
-	Loading_circular: Loading_circular 
+	LoadingCircular: LoadingCircular 
 }
