@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 import Title from './components/Title'
+import Background from './images/bg01.png';
 //import LoadingCircular from './components/LoadingCircular'
 import LoadingEllipse from './components/LoadingEllipse'
 //import { LoadingCircular } from './components';
@@ -18,6 +19,17 @@ import {
   Row,
   Grid
 } from 'react-bootstrap';
+
+var sectionStyle = {
+  width: "100%",
+  height: "600px",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+  backgroundSize: "cover",
+  backgroundColor:'transparent',
+  backgroundImage: `url(${Background})`
+};
+
 
 export default class App extends Component {
   constructor(props) {
@@ -60,7 +72,10 @@ export default class App extends Component {
     const login = (<Login onLogin={this.handleLogin} />);
 
     const load =(
+      <section style={ sectionStyle } >
       <Grid>
+        
+     
         <Row>
           <Col  xs={12}   md={8} mdOffset={2} lg={8} lgOffset={2}> <Title title={'Esperando conexão com NODE-RED'} /> </Col>
           <Col  xsHidden  md={2}              lg={2}             >                                                    </Col>
@@ -70,13 +85,15 @@ export default class App extends Component {
           <Col  xs={5}    md={5}              lg={5}             ><img alt="Logo" src={require('./images/reset.png')} />         </Col>
         </Row>  
       </Grid>
+ </section>
+
     );
 
     return(
       <div className="App">
           {this.state.config ? (this.state.usuario ? main : login) : load}
       </div>
-    )
+    );
 
   }
 
