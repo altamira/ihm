@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 import Title from './components/Title'
-import Background from './images/bg01.png';
+
 //import LoadingCircular from './components/LoadingCircular'
 import LoadingEllipse from './components/LoadingEllipse'
 //import { LoadingCircular } from './components';
@@ -20,15 +20,6 @@ import {
   Grid
 } from 'react-bootstrap';
 
-var sectionStyle = {
-  width: "100%",
-  height: "600px",
-  backgroundPosition: "center",
-  backgroundRepeat: "no-repeat",
-  backgroundSize: "cover",
-  backgroundColor:'transparent',
-  backgroundImage: `url(${Background})`
-};
 
 
 export default class App extends Component {
@@ -62,31 +53,25 @@ export default class App extends Component {
   render() {
 
     const main = ( 
-
-      <Col md={12} >
-        {this.props.children}
-      </Col>
+        <Col md={12} >
+          {this.props.children}
+        </Col>
 
     )
 
     const login = (<Login onLogin={this.handleLogin} />);
 
     const load =(
-      <section style={ sectionStyle } >
-      <Grid>
-        
-     
-        <Row>
-          <Col  xs={12}   md={8} mdOffset={2} lg={8} lgOffset={2}> <Title title={'Esperando conexão com NODE-RED'} /> </Col>
-          <Col  xsHidden  md={2}              lg={2}             >                                                    </Col>
-        </Row>
-        <Row>
-          <Col  xs={2} xsOffset={5} md={2} mdOffset={5} lg={2} lgOffset={5}> <LoadingEllipse/>                        </Col>
-          <Col  xs={5}    md={5}              lg={5}             ><img alt="Logo" src={require('./images/reset.png')} />         </Col>
-        </Row>  
-      </Grid>
- </section>
-
+        <Grid>
+          <Row>
+            <Col  xs={12}   md={8} mdOffset={2} lg={8} lgOffset={2}> <Title title={'Esperando conexão com NODE-RED'} /> </Col>
+            <Col  xsHidden  md={2}              lg={2}             >                                                    </Col>
+          </Row>
+          <Row>
+            <Col  xs={2} xsOffset={5} md={2} mdOffset={5} lg={2} lgOffset={5}> <LoadingEllipse/>                        </Col>
+            <Col  xs={5}    md={5}              lg={5}             >                                                    </Col>
+          </Row>  
+        </Grid>
     );
 
     return(

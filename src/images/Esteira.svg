@@ -1,0 +1,48 @@
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="1px" y="43px" width="98px" height="16px" viewBox="1 43 98 16" enable-background="1 43 98 16" xml:space="preserve"><desc>Copyright Opto 22</desc> <p id="title">Conveyor</p><desc>Created with Snap</desc><defs/><g transform="matrix(1,0,0,1,0,0)" xmlns="http://www.w3.org/2000/svg">
+<g id="shape">
+	<path fill="#0080d5" d="M91,59H9.5c-4.411,0-8-3.589-8-8s3.589-8,8-8H91c4.411,0,8,3.589,8,8S95.411,59,91,59z M9.5,45
+		c-3.309,0-6,2.691-6,6s2.691,6,6,6H91c3.309,0,6-2.691,6-6s-2.691-6-6-6H9.5z" style=""></path>
+</g>
+<g id="dark">
+	<circle cx="9.5" cy="51" r="5.775" style="" fill="#005f9c"></circle>
+	<circle cx="91" cy="51" r="5.775" style="" fill="#005f9c"></circle>
+</g>
+<g id="light">
+	<circle fill="#2098e8" cx="9.5" cy="51" r="3.675" style=""></circle>
+	<circle fill="#2098e8" cx="91" cy="51" r="3.675" style=""></circle>
+	<circle fill="#2098e8" cx="81.75" cy="48.125" r="2.375" style=""></circle>
+	<circle fill="#2098e8" cx="73.844" cy="48.125" r="2.375" style=""></circle>
+	<circle fill="#2098e8" cx="65.938" cy="48.125" r="2.375" style=""></circle>
+	<circle fill="#2098e8" cx="58.031" cy="48.125" r="2.375" style=""></circle>
+	<circle fill="#2098e8" cx="50.125" cy="48.125" r="2.375" style=""></circle>
+	<circle fill="#2098e8" cx="42.219" cy="48.125" r="2.375" style=""></circle>
+	<circle fill="#2098e8" cx="34.313" cy="48.125" r="2.375" style=""></circle>
+	<circle fill="#2098e8" cx="26.406" cy="48.125" r="2.375" style=""></circle>
+	<circle fill="#2098e8" cx="18.5" cy="48.125" r="2.375" style=""></circle>
+	<circle fill="#2098e8" cx="81.75" cy="48.125" r="2.375" style=""></circle>
+	<circle fill="#2098e8" cx="73.844" cy="48.125" r="2.375" style=""></circle>
+	<circle fill="#2098e8" cx="65.938" cy="48.125" r="2.375" style=""></circle>
+	<circle fill="#2098e8" cx="58.031" cy="48.125" r="2.375" style=""></circle>
+	<circle fill="#2098e8" cx="50.125" cy="48.125" r="2.375" style=""></circle>
+	<circle fill="#2098e8" cx="42.219" cy="48.125" r="2.375" style=""></circle>
+	<circle fill="#2098e8" cx="34.313" cy="48.125" r="2.375" style=""></circle>
+	<circle fill="#2098e8" cx="26.406" cy="48.125" r="2.375" style=""></circle>
+	<circle fill="#2098e8" cx="18.5" cy="48.125" r="2.375" style=""></circle>
+	<rect x="1.5" y="50.25" fill="#2098e8" width="2" height="1.375" style=""></rect>
+	<rect x="97" y="50.25" fill="#2098e8" width="2" height="1.375" style=""></rect>
+
+	<rect x="9.5" y="43" fill="#2098e8" width="1.375" height="2" style=""></rect>
+	<rect x="25.575" y="43" fill="#2098e8" width="1.375" height="2" style=""></rect>
+	<rect x="41.65" y="43" fill="#2098e8" width="1.375" height="2" style=""></rect>
+	<rect x="57.725" y="43" fill="#2098e8" width="1.375" height="2" style=""></rect>
+	<rect x="73.8" y="43" fill="#2098e8" width="1.375" height="2" style=""></rect>
+	<rect x="89.875" y="43" fill="#2098e8" width="1.375" height="2" style=""></rect>
+
+	<rect x="9.5" y="57" fill="#2098e8" width="1.375" height="2" style=""></rect>
+	<rect x="25.575" y="57" fill="#2098e8" width="1.375" height="2" style=""></rect>
+	<rect x="41.65" y="57" fill="#2098e8" width="1.375" height="2" style=""></rect>
+	<rect x="57.725" y="57" fill="#2098e8" width="1.375" height="2" style=""></rect>
+	<rect x="73.8" y="57" fill="#2098e8" width="1.375" height="2" style=""></rect>
+	<rect x="89.875" y="57" fill="#2098e8" width="1.375" height="2" style=""></rect>
+</g>
+</g></svg>

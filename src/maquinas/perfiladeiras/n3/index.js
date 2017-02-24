@@ -5,6 +5,10 @@ import Workspace from './../../../containers/Workspace'
 import Command from './../../../containers/Command'
 
 //import reset_button from './../../../images/reset.png'
+//import reset_button from './../../../images/reset.png'
+//<img alt="Logo" src={require('./images/reset.png')} />
+
+import Background from './../../../images/reset.png';
 
 export default class IHM extends Component {
 	constructor(props) {
@@ -42,7 +46,7 @@ export default class IHM extends Component {
 					onClick={[
 						{ label: 'Menu Principal', onclick: this.handleMenuPrincipal, icon: 'ok' },
 						{ label: 'Modo Automatico', onclick: this.handleAutomatico, icon: 'plus' },
-						{ label: 'Modo Manual', onclick: this.handleManual, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Reset_button.svg/188px-Reset_button.svg.png' },
+						{ label: 'Modo Manual', onclick: this.handleManual, image: Background },
 						{ label: 'Config', onclick: this.handleMenuPrincipal },
 						{ label: 'Sair', onclick: this.handleAutomatico },
 						{ label: '...', onclick: this.handleManual }
@@ -54,3 +58,4 @@ export default class IHM extends Component {
 
 	}
 }
+//<img alt="Logo" src={require('./images/reset.png')} />

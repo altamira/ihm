@@ -16,7 +16,7 @@ export default class Command extends Component {
 
 		return(
 
-			<Row style={{height: '150px'}}>
+			<Row style={{height: '150px', padding: "5px"}}>
 
 				{this.props.onClick.map( (button, index) => 
 					<Col style={{height: '100%'}} key={index} md={col_width}>
@@ -40,3 +40,4 @@ export default class Command extends Component {
 	}
 	
 } 
+//<img alt="Logo" src={require('./images/reset.png')} />

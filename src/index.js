@@ -27,6 +27,12 @@ render((
         <Route path="automatico" component={IHM_N3_AUTOMATICO}/>
         <Route path="manual" component={IHM_N3_MANUAL}/>
     	</Route>
+      {/*perfiladeira reforço*/}
+      <Route path="maquinas/perfiladeiras/reforco" component={IHM_N3}>
+        <Route path="main" component={IHM_N3_MAIN}/>
+        <Route path="automatico" component={IHM_N3_AUTOMATICO}/>
+        <Route path="manual" component={IHM_N3_MANUAL}/>
+      </Route>
     	{/*fim*/}
 
       <Route path="*" component={NoMatch}/>

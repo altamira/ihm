@@ -10,12 +10,14 @@ export default class Workspace extends Component {
 
 		return(
 
-			<Row style={{height: '400px', border: 'solid 1px', background: 'lightgray', margin: '2px'}}>
+			<Row style={{height: '400px', border: 'solid 1px', background: 'lightgray', margin: '0px'}}>
 
-				{this.props.children}
-
+					{this.props.children}
+	    	
 			</Row>
+
 		)
 	}
 	
 } 
+ 
