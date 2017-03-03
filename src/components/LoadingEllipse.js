@@ -1,11 +1,13 @@
 //Loading_Ellipse
 
-import React from 'react';
+import React, { Component } from 'react'
 
 import './css/LoadingEllipse.css';
 
-const LoadingEllipse = props => (
-	
-      	<div className="loader"></div>
-)
-export default LoadingEllipse;
+export default class LoadingEllipse extends Component {
+	render() {
+		return(
+	   		<div className="loader"></div>
+	   	)
+	}
+}

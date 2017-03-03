@@ -15,8 +15,8 @@ export default class IHM extends Component {
 	    super(props);
 
 	    this.handleMenuPrincipal = this.handleMenuPrincipal.bind(this);
-	    this.handleAutomatico = this.handleAutomatico.bind(this);
-	    this.handleManual = this.handleManual.bind(this);
+	    this.handleAutomatico 	 = this.handleAutomatico.bind(this);
+	    this.handleManual 		 = this.handleManual.bind(this);
 	  }
 
 	handleMenuPrincipal() {

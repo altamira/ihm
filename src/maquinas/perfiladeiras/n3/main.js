@@ -25,4 +25,4 @@ export default class IHM extends Component {
 
 	}
 }
-//<img alt="Logo" src={require('./images/reset.png')} />
+//<img alt="Logo" src={require('./images/reset.png')}/>

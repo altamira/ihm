@@ -2,6 +2,23 @@ import axios from 'axios';
 
 let host = 'http://' + window.location.hostname + ':80/api/'
 
+function get(host_custom, url, callback, error) {
+	if (!callback) {
+		window.errHandler && window.errHandler({mensagem: 'API: função de callback não foi definida !'})
+		return;	
+	} 
+
+	axios
+	.get(host_custom + url)
+	.then( response => {
+		callback ? callback(response.data) : window.errHandler && window.errHandler({mensagem: 'API: função de callback não foi definida !'})
+	})
+	.catch( err => {
+		console.log('Error: ' + JSON.stringify(err, null, 2))
+		error ? error(err) : window.errHandler && window.errHandler(err)
+	})
+}
+
 function fetch(url, callback, error) {
 	if (!callback) {
 		window.errHandler && window.errHandler({mensagem: 'API: função de callback não foi definida !'})
@@ -68,6 +85,7 @@ function del(url, callback, error) {
 }
 
 export default {
+	get:get,
 	fetch: fetch,
 	post: post,
 	put: put,

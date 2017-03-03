@@ -2,17 +2,10 @@ import React, { Component } from 'react';
 
 import './App.css';
 
-import Title from './components/Title'
-
-//import LoadingCircular from './components/LoadingCircular'
-import LoadingEllipse from './components/LoadingEllipse'
-//import { LoadingCircular } from './components';
-//import mqtt from 'mqtt/lib/connect';
-
-import api from './api';
-import Login from './login';
-//import Error from './Error';
-
+import { 
+  LoadingEllipse, 
+  Title
+} from './components';
 
 import { 
   Col,
@@ -20,7 +13,11 @@ import {
   Grid
 } from 'react-bootstrap';
 
+//import mqtt from 'mqtt/lib/connect';
 
+import api from './api';
+import Login from './login';
+//import Error from './Error';
 
 export default class App extends Component {
   constructor(props) {

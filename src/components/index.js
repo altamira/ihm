@@ -1,7 +1,15 @@
-//import Button from './Button'
-import LoadingCircular from './LoadingCircular'
+import Title 			from './Title'
+import LoadingCircular 	from './LoadingCircular'
+import LoadingEllipse 	from './LoadingEllipse'
+
+export { LoadingEllipse }
+export { LoadingCircular }
+export { Title }
 
 export default { 
-	//Button: Button,
-	LoadingCircular: LoadingCircular 
+	LoadingCircular: LoadingCircular, 
+	LoadingEllipse: LoadingEllipse,
+	Title: Title
 }
+
+
