@@ -6,7 +6,9 @@ import {
   Col,
   FormGroup,
   FormControl,
-  Button
+  Button,
+  Tabs,
+  Tab
 } from 'react-bootstrap';
 
 import md5 from 'md5';
@@ -55,41 +57,53 @@ export default class Login extends Component {
 
     return(
       <div className="static-modal">
-        <Modal.Dialog>
+        
           <Modal.Header>
             <Modal.Title>Qual a configuração desse dispositivo?</Modal.Title>
           </Modal.Header>
 
           <Modal.Body>
-            <Row>
-              <Col md={4}>Usuario</Col>
-              <Col md={8}>
-                <FormGroup validationState="success">
-
-                  <FormControl type="text" name="usuario" value={this.state.usuario} onChange={this.handleChange} />
-                  <FormControl.Feedback />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row>
-              <Col md={4}>Senha</Col>
-              <Col md={8}>
-                <FormGroup validationState="success">
-
-                  <FormControl type="password" name="senha" value={this.state.senha} onChange={this.handleChange} />
-                  <FormControl.Feedback />
-                </FormGroup>
-              </Col>
-            </Row>
+          <Row>
+            <Tabs activeKey={this.state.key} onSelect={this.handleSelect} id="controlled-tab-example">
+                <Tab eventKey={1} title="Alimentador">
+                  <Modal.Body>
+                    <Row>
+                        <Col md={4}>Usuario</Col>
+                        <Col md={8}>
+                          <FormGroup validationState="success">
+                            <FormControl type="text" name="usuario" value={this.state.usuario} onChange={this.handleChange} />
+                            <FormControl.Feedback/>
+                          </FormGroup>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md={4}>Senha</Col>
+                        <Col md={8}>
+                          <FormGroup validationState="success">
+                            <FormControl type="password" name="senha" value={this.state.senha} onChange={this.handleChange} />
+                            <FormControl.Feedback/>
+                          </FormGroup>
+                        </Col>
+                    </Row>
+                  </Modal.Body>
+                </Tab>
+                <Tab eventKey={2} title="Perfiladira">
+                  Tab 2 content
+                </Tab>
+                <Tab eventKey={3} title="Banho">
+                  Tab 3 content
+                </Tab>
+            </Tabs>
+          </Row>
+            
           </Modal.Body>
 
           <Modal.Footer>
-            <Button bsStyle="primary" onClick={this.handleLogin} >Acessar</Button>
+            <Button bsStyle="primary" onClick={this.handleLogin} >Gravar</Button>
           </Modal.Footer>
 
           {this.state.dialog}
           
-        </Modal.Dialog>
       </div>
     );
   }
