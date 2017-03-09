@@ -1,3 +1,9 @@
+import Form from './form';
+import Tabela from './tabela';
+
+export { Form }
+export { Tabela }
+
 import Title 			from './Title'
 import LoadingCircular 	from './LoadingCircular'
 import LoadingEllipse 	from './LoadingEllipse'

@@ -1,19 +1,22 @@
 import Shell 		from './Shell'
 import Login 		from './Login'
-import Load  		from './Load'
 import Command 		from './Command'
 import Workspace 	from './Workspace'
+import ViewConfig 	from './ViewConfig'
+import SelectConfig from './SelectConfig'
 
 export { Shell }
 export { Login }
-export { Load }
 export { Command }
 export { Workspace }
+export { ViewConfig }
+export { SelectConfig }
 
 export default {
 	Shell: Shell,
 	Login: Login,
-	Load : Load,
 	Command: Command,
-	Workspace: Workspace
+	Workspace: Workspace,
+	ViewConfig: ViewConfig,
+	SelectConfig: SelectConfig,
 }

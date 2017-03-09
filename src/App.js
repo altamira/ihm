@@ -9,7 +9,7 @@ import './App.css';
 
 import { 
   Login,
-  Load
+  SelectConfig
 } from './containers';
 
 import { 
@@ -31,6 +31,8 @@ export default class App extends Component {
     }
     this.handleLoadConfig = this.handleLoadConfig.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
+
+    this.handleSelect = this.handleSelect.bind(this);
   }
 
   componentWillMount() {
@@ -43,6 +45,10 @@ export default class App extends Component {
 
   handleLogin(usuario) {
     this.setState({usuario: usuario}, this.props.router.push.bind(null, this.state.config.path))
+  }
+
+  handleSelect() {
+    api.maquina.config.get(this.handleLoadConfig.bind(this))
   }
 
   render() {
@@ -58,8 +64,7 @@ export default class App extends Component {
     );
 
     const load =(
-        <Load/>
-
+        <SelectConfig onSelect={this.handleSelect} />
     );
 
     return(

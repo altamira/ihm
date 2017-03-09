@@ -12,6 +12,7 @@
     "lodash": "^4.17.4",
     "md5": "^2.2.1",
     "mqtt": "^2.4.0",
+    "number-format.js": "^1.1.11",
     "react": "^15.4.2",
     "react-bootstrap": "^0.30.7",
     "react-bootstrap-date-picker": "^4.0.0",
