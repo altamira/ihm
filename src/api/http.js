@@ -1,16 +1,15 @@
 import axios from 'axios';
 
-let host = 'http://' + window.location.hostname + ':1880/api/'
+const host = 'http://' + window.location.hostname + ':1880/api/'
 
-/*eslint no-use-before-define: [1, 'nofunc'] */
-function get(host = host, url, callback, error) {
+function get(h = host, url, callback, error) {
 	if (!callback) {
 		window.errHandler && window.errHandler({mensagem: 'API: função de callback não foi definida !'})
 		return;	
 	} 
 
 	axios
-	.get(host + url)
+	.get(h + url)
 	.then( response => {
 		callback ? callback(response.data) : window.errHandler && window.errHandler({mensagem: 'API: função de callback não foi definida !'})
 	})
