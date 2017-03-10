@@ -1,86 +1,84 @@
 import axios from 'axios';
 
-const host = 'http://' + window.location.hostname + ':1880/api/'
-
-function get(h = host, url, callback, error) {
+function get(h = window.ihm.config.local.host + ':' + window.ihm.config.local.port + window.ihm.config.local.api_root, url, callback, error) {
 	if (!callback) {
-		window.errHandler && window.errHandler({mensagem: 'API: função de callback não foi definida !'})
+		window.ihm.handlers.onError && window.ihm.handlers.onError({mensagem: 'API: função de callback não foi definida !'})
 		return;	
 	} 
 
 	axios
 	.get(h + url)
 	.then( response => {
-		callback ? callback(response.data) : window.errHandler && window.errHandler({mensagem: 'API: função de callback não foi definida !'})
+		callback ? callback(response.data) : window.ihm.handlers.onError && window.ihm.handlers.onError({mensagem: 'API: função de callback não foi definida !'})
 	})
 	.catch( err => {
 		console.log('Error: ' + JSON.stringify(err, null, 2))
-		error ? error(err) : window.errHandler && window.errHandler(err)
+		error ? error(err) : window.ihm.handlers.onError && window.ihm.handlers.onError(err)
 	})
 }
 
 function fetch(url, callback, error) {
 	if (!callback) {
-		window.errHandler && window.errHandler({mensagem: 'API: função de callback não foi definida !'})
+		window.ihm.handlers.onError && window.ihm.handlers.onError({mensagem: 'API: função de callback não foi definida !'})
 		return;	
 	} 
 
 	axios
-	.get(host + url)
+	.get(window.ihm.config.local.host + ':' + window.ihm.config.local.port + window.ihm.config.local.api_root + url)
 	.then( response => {
-		callback ? callback(response.data) : window.errHandler && window.errHandler({mensagem: 'API: função de callback não foi definida !'})
+		callback ? callback(response.data) : window.ihm.handlers.onError && window.ihm.handlers.onError({mensagem: 'API: função de callback não foi definida !'})
 	})
 	.catch( err => {
 		console.log('Error: ' + JSON.stringify(err, null, 2))
-		error ? error(err) : window.errHandler && window.errHandler(err)
+		error ? error(err) : window.ihm.handlers.onError && window.ihm.handlers.onError(err)
 	})
 }
 
 function post(url, data, callback, error) {
 	axios
-	.post(host + url, data)
+	.post(window.ihm.config.local.host + ':' + window.ihm.config.local.port + window.ihm.config.local.api_root + url, data)
 	.then( response => {
-		callback ? callback(response.data) : window.errHandler && window.errHandler({mensagem: 'API: função de callback não foi definida !'})
+		callback ? callback(response.data) : window.ihm.handlers.onError && window.ihm.handlers.onError({mensagem: 'API: função de callback não foi definida !'})
 	})
 	.catch( err => {
 		console.log('Error: ' + JSON.stringify(err, null, 2))
-		error ? error(err) : window.errHandler && window.errHandler(err)
+		error ? error(err) : window.ihm.handlers.onError && window.ihm.handlers.onError(err)
 	})
 }
 
 function put(url, data, callback, error) {
 	axios
-	.put(host + url, data)
+	.put(window.ihm.config.local.host + ':' + window.ihm.config.local.port + window.ihm.config.local.api_root + url, data)
 	.then( response => {
-		callback ? callback(response.data) : window.errHandler && window.errHandler({mensagem: 'API: função de callback não foi definida !'})
+		callback ? callback(response.data) : window.ihm.handlers.onError && window.ihm.handlers.onError({mensagem: 'API: função de callback não foi definida !'})
 	})
 	.catch( err => {
 		console.log('Error: ' + JSON.stringify(err, null, 2))
-		error ? error(err) : window.errHandler && window.errHandler(err)
+		error ? error(err) : window.ihm.handlers.onError && window.ihm.handlers.onError(err)
 	})
 }
 
 function patch(url, data, callback, error) {
 	axios
-	.patch(host + url, data)
+	.patch(window.ihm.config.local.host + ':' + window.ihm.config.local.port + window.ihm.config.local.api_root + url, data)
 	.then( response => {
-		callback ? callback(response.data) : window.errHandler && window.errHandler({mensagem: 'API: função de callback não foi definida !'})
+		callback ? callback(response.data) : window.ihm.handlers.onError && window.ihm.handlers.onError({mensagem: 'API: função de callback não foi definida !'})
 	})
 	.catch( err => {
 		console.log('Error: ' + JSON.stringify(err, null, 2))
-		error ? error(err) : window.errHandler && window.errHandler(err)
+		error ? error(err) : window.ihm.handlers.onError && window.ihm.handlers.onError(err)
 	})
 }
 
 function del(url, callback, error) {
 	axios
-	.delete(host + url)
+	.delete(window.ihm.config.local.host + ':' + window.ihm.config.local.port + window.ihm.config.local.api_root + url)
 	.then( response => {
-		callback ? callback(response.data) : window.errHandler && window.errHandler({mensagem: 'API: função de callback não foi definida !'})
+		callback ? callback(response.data) : window.ihm.handlers.onError && window.ihm.handlers.onError({mensagem: 'API: função de callback não foi definida !'})
 	})
 	.catch( err => {
 		console.log('Error: ' + JSON.stringify(err, null, 2))
-		error ? error(err) : window.errHandler && window.errHandler(err)
+		error ? error(err) : window.ihm.handlers.onError && window.ihm.handlers.onError(err)
 	})
 }
 

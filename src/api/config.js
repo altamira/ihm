@@ -1,5 +1,5 @@
 function setErrorCallback(callback) {
-	window.errHandler = callback;
+	window.ihm.handlers.onError = callback;
 }
 
 export default {

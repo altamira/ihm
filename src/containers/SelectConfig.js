@@ -27,7 +27,7 @@ export default class SelectConfig extends Component {
   }
 
   componentWillMount() {
-    api.maquina.config.list(this.handleList)
+    api.maquina.config.list(this.handleList/*, http://192.168.0.1:1880/api/ */)
   }
 
   handleList(list) {

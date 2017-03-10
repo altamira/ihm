@@ -8,8 +8,8 @@ function save(config, callback) {
 	http.post('maquina/config/', config, callback);
 }
 
-function list(callback) {
-	http.get('http://192.168.0.1:1880/api/', 'maquinas/', callback);
+function list(callback, host = (window.ihm.config.local.host + ':' + window.ihm.config.local.port + window.ihm.config.local.api_root)) {
+	http.get(host, 'maquina/', callback);
 }
 
 export default {

@@ -19,7 +19,8 @@ import {
 //import mqtt from 'mqtt/lib/connect';
 
 import api from './api';
-//import Error from './Error';
+import Error from './Error';
+import config from './config';
 
 export default class App extends Component {
   constructor(props) {
@@ -33,10 +34,23 @@ export default class App extends Component {
     this.handleLogin = this.handleLogin.bind(this);
 
     this.handleSelect = this.handleSelect.bind(this);
+
+    this.handleCloseDialog = this.handleCloseDialog.bind(this);
   }
 
   componentWillMount() {
+    config.setConfiguration();
+    api.config.setErrorHandler(this.handleError.bind(this));
     api.maquina.config.get(this.handleLoadConfig.bind(this))
+  }
+
+  handleError(err) {
+    let props = {...err, message: err.message, stack: err.stack}
+    this.setState({dialog: <Error {...props} onClose={this.handleCloseDialog.bind(this)} />})
+  }
+
+  handleCloseDialog() {
+    this.setState({ dialog: undefined })
   }
 
   handleLoadConfig(config) {
