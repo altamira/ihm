@@ -67,11 +67,11 @@ export default class SelectConfig extends Component {
           }]}
 
           header={[
-            { label: 'Maquina' },
+            { label: 'Maquina', align: 'center' },
             { label: 'IP IHM', align: 'center' },
             { label: 'IP POP7', align: 'center' },
             { label: 'IP ESP8266', align: 'center' },
-            { label: 'Última Atualização', align: 'center' },
+            { label: 'Última Atualizacao', align: 'center' },
             { label: '' }
           ]}
 
@@ -83,13 +83,14 @@ export default class SelectConfig extends Component {
 
               key={uuid.v4()}
 
+
               columns={
                 [
                   { content: (<span>{item.codigo}</span>) },
-                  { content: (<span>{item.nome}</span>) },
-                  { content: (<span>{item.linha}</span>) },
-                  { content: (<span>{item.parametros && ((item.parametros.Encoder && item.parametros.Encoder) || '')}</span>) },
-                  { content: (<span></span>) },
+                  { content: (<span>{item.IPIHM}</span>) },
+                  { content: (<span>{item.IPPOP7}</span>) },
+                  { content: (<span>{item.IPESP8266}</span>) },
+                  { content: (<span>{item.Atualizacao}</span>) },
                   {
                     content: (
                       <Table.Command
