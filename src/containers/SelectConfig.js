@@ -5,7 +5,7 @@ import api from './../api';
 
 //import Form from './../components/Form';
 import Table from './../components/Table';
-//import Label from './../components/Label';
+import Label from './../components/Label';
 
 import { ViewConfig } from './';
 //import Error from './../Error';
@@ -86,11 +86,11 @@ export default class SelectConfig extends Component {
 
               columns={
                 [
-                  { content: (<span>{item.codigo}</span>) },
-                  { content: (<span>{item.IPIHM}</span>) },
-                  { content: (<span>{item.IPPOP7}</span>) },
-                  { content: (<span>{item.IPESP8266}</span>) },
-                  { content: (<span>{item.Atualizacao}</span>) },
+                  { content: (<span>{item.codigo || '-'}</span>) },
+                  { content: (<span>{item.rede.filter( rede => rede.nome === 'IHM').ip || '-'}</span>) },
+                  { content: (<span>{item.IPPOP7 || '-'}</span>) },
+                  { content: (<span>{item.IPESP8266 || '-'}</span>) },
+                  { content: (<Label.Calendar date={item.Atualizacao} />) },
                   {
                     content: (
                       <Table.Command

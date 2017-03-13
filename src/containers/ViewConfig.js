@@ -14,7 +14,6 @@ import DatePicker from 'react-bootstrap-date-picker';
 const BrazilianDayLabels = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'];
 const BrazilianMonthLabels = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Octubro', 'Novembro', 'Dezembro'];
 
-
 const ViewConfig = (props) =>
     <div className="static-modal">
         <Modal.Dialog>
