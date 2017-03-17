@@ -41,7 +41,7 @@ export default class SelectConfig extends Component {
 
   handleView(item) {
     console.log(JSON.stringify(item, null, 2))
-    this.setState({dialog: <ViewConfig {...item} onClose={this.handleCloseDialog} />})
+    this.setState({dialog: <ViewConfig {...item} onClose={this.handleCloseDialog} />}) //aponta para ViewConfig.js
   }
 
   handleCloseDialog() {
@@ -87,10 +87,14 @@ export default class SelectConfig extends Component {
               columns={
                 [
                   { content: (<span>{item.codigo || '-'}</span>) },
-                  { content: (<span>{item.rede.filter( rede => rede.nome === 'IHM').ip || '-'}</span>) },
-                  { content: (<span>{item.IPPOP7 || '-'}</span>) },
-                  { content: (<span>{item.IPESP8266 || '-'}</span>) },
-                  { content: (<Label.Calendar date={item.Atualizacao} />) },
+                  { content: (<span>{item.rede.filter( r => {/* console.log('rede: ' + r.nome + ', ' + r.ip + ' -> ' + (r.nome === 'IHM'))*/
+                      return r.nome === 'IHM'; } ).reduce( (ip, r) => ip + (ip ? ', ' : '') + r.ip, '' ) || '-'}</span>) },
+
+                  { content: (<span>{item.rede.filter( r => { return r.nome === 'POP7'; } ).reduce( (ip, r) => ip + (ip ? ', ' : '') + r.ip, '' ) || '-'}</span>) },
+
+                  { content: (<span>{item.rede.filter( r => { return r.nome === 'ESP8266'; } ).reduce( (ip, r) => ip + (ip ? ', ' : '') + r.ip, '' ) || '-'}</span>) },
+
+                  { content: (<Label.Calendar date={item.atualizacao} />) },
                   {
                     content: (
                       <Table.Command
