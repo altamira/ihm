@@ -9,111 +9,111 @@ import {
     Button
 } from 'react-bootstrap';
 
-import DatePicker from 'react-bootstrap-date-picker';
-
-const BrazilianDayLabels = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'];
-const BrazilianMonthLabels = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Octubro', 'Novembro', 'Dezembro'];
-
 const ViewConfig = (props) =>
     <div className="static-modal">
         <Modal.Dialog>
             <Modal.Header>
-                <Modal.Title>Parametros da Maquina</Modal.Title>
+                <Modal.Title>Parametros da {props.nome}</Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
                 <Row>
-                    <Col md={4}>Origem do Recebível</Col>
+                    <Col md={4}>Encoder</Col>
                     <Col md={8}>
-                        <FormGroup validationState={'success'} >
-                            <FormControl name="origem" componentClass="select" placeholder="Origem do Recebível" value={props.nome} readOnly >
-                                <option value="VENDA">Venda de Produto</option>
-                                <option value="DIFAL">Diferencial de ICMS</option>
-                                <option value="SUCATA">Venda de Sucata</option>
+                        <FormGroup validationState={'warning'} >
+                            <FormControl name="encoder" componentClass="select" placeholder="Parametros do Encoder" value="Encoder" readOnly >
+                                <option value="FATOR"> FATOR = {props.parametros.encoder.fator}</option>
+                                <option value="RESOL"> RESOLUÇÃO = {props.parametros.encoder.resolucao}</option>
+                                <option value="PERIM"> PERIMETRO = {props.parametros.encoder.perimetro} mm</option>
                             </FormControl>
                         </FormGroup>
                     </Col>
                 </Row>
                 <Row>
-                    <Col md={4}>Forma de Pagamento</Col>
+                    <Col md={4}>Veloc Manual</Col>
                     <Col md={8}>
-                        <FormGroup validationState={'success'} >
-                            <FormControl name="forma_pagto" componentClass="select" placeholder="Forma de Pagamento" value={props.forma_pagto} readOnly >
-                                <option value="COBRANCA">Cobrança Bancária</option>
-                                <option value="DEPOSITO">Depósito Bancário</option>
-                                <option value="BNDES">Cartão BNDES</option>
-                                <option value="CHEQUE">Cheque</option>
-                                <option value="DINHEIRO">Dinheiro</option>
-                                <option value="A_FATURAR">Faturar na Entrega</option>
+                        <FormGroup validationState={'warning'} >
+                            <FormControl name="velocidade_manual" componentClass="select" placeholder="Parametros aceleracao Manual" value="Manual" readOnly >
+                                <option value="FATOR"> ACELERAÇÃO = {props.parametros.manual.aceleracao} s</option>
+                                <option value="RESOL"> DESACELERAÇÃO = {props.parametros.manual.desaceleracao} s</option>
+                                <option value="PERIM"> VELECIDADE = {props.parametros.manual.velocidade} %</option>
                             </FormControl>
                         </FormGroup>
                     </Col>
                 </Row>
                 <Row>
-                    <Col md={4}>Tipo de Vencto</Col>
+                    <Col md={4}>Veloc Auto</Col>
                     <Col md={8}>
-                        <FormGroup validationState={'success'} >
-                            <FormControl name="tipo_vencto" componentClass="select" placeholder="Tipo de Vencimento" value={props.tipo_vencto} readOnly >
-                                <option value="DDP">Dias do Pedido (DDP)</option>
-                                <option value="DDL">Dias da Entrega (DDL)</option>
-                                <option value="DDM">Dias da Montagem (DDM)</option>
+                        <FormGroup validationState={'warning'} >
+                            <FormControl name="velocidade_auto" componentClass="select" placeholder="Parametros aceleracao Automatica" value="Auto" readOnly >
+                                <option value="FATOR"> ACELERAÇÃO = {props.parametros.automatico.aceleracao} s</option>
+                                <option value="RESOL"> DESACELERAÇÃO = {props.parametros.automatico.desaceleracao} s</option>
+                                <option value="PERIM"> VELECIDADE = {props.parametros.automatico.velocidade}%</option>
+                                <option value="PARAD"> PARADA ENTRA PÇS = {props.parametros.automatico.paradaEntrePecasProduzidas} pçs</option>
+                                <option value="TEMPO"> TEMPO DAS PARADAS = {props.parametros.automatico.tempoParada} s</option>
                             </FormControl>
                         </FormGroup>
                     </Col>
                 </Row>
                 <Row>
-                    <Col md={4}>Data Base</Col>
+                    <Col md={4}>Transmissão</Col>
                     <Col md={8}>
-                        <FormGroup validationState={'success'} >
-                            {/*<ControlLabel>Input with success and feedback icon</ControlLabel>*/}
-                            {/*<FormControl type="text" defaultValue="10/10/2016" />*/}
-                            {/*<FormControl.Feedback />*/}
-                            <DatePicker name="data_base" value={props.data_base} readOnly dayLabels={BrazilianDayLabels} monthLabels={BrazilianMonthLabels} />
+                        <FormGroup validationState={'warning'} >
+                            <FormControl name="transmissao" componentClass="select" placeholder="Transmissao" value="Transmissao" readOnly >
+                                <option value="REDU"> REDUÇÃO = {props.parametros.transmissao.reducao}s</option>
+                                <option value="DIAMETRO"> DESACELERAÇÃO = {props.parametros.transmissao.diametrorolo}s</option>
+                                <option value="AVANCO"> AVANCO = {props.parametros.transmissao.avancoMilimetrosPorRotacao} mm</option>
+                            </FormControl>
                         </FormGroup>
                     </Col>
                 </Row>
 
                 <Row>
-                    <Col md={4}>Codigo</Col>
+                    <Col md={4}>Corte</Col>
                     <Col md={8}>
-                        <FormGroup validationState={'success'} >
-                            {/*<ControlLabel>Input with success and feedback icon</ControlLabel>*/}
-                            <FormControl type="text" name="prazo" value={props.codigo} readOnly />
-                            <FormControl.Feedback />
+                        <FormGroup validationState={'warning'} >
+                            <FormControl name="corte" componentClass="select" placeholder="Corte" value="Corte" readOnly >
+                                <option value="ESPESSURA"> ESPESSURA = {props.parametros.corte.espessura} mm</option>
+                                <option value="TEMPO"> TEMPO = {props.parametros.corte.tempo}s</option>
+                            </FormControl>
                         </FormGroup>
                     </Col>
                 </Row>
 
                 <Row>
-                    <Col md={4}>Nome</Col>
+                    <Col md={4}>Ferramenta</Col>
                     <Col md={8}>
-                        <FormGroup validationState={'success'} >
-                            {/*<ControlLabel>Input with success and feedback icon</ControlLabel>*/}
-                            <FormControl type="text" name="prazo" value={props.nome} readOnly />
-                            <FormControl.Feedback />
+                        <FormGroup validationState={'warning'} >
+                            <FormControl name="ferramenta" componentClass="select" placeholder="Ferramenta" readOnly >
+                            {Object.keys(props.parametros.ferramenta).map( (key, index) => 
+                                <option key={'ferramentas-' + index}> {key.toUpperCase()} = {props.parametros.ferramenta[key]} mm</option>
+                            )}
+                            </FormControl>
                         </FormGroup>
                     </Col>
                 </Row>
 
                 <Row>
-                    <Col md={4}>Vencto</Col>
+                    <Col md={4}>Lubrificação</Col>
                     <Col md={8}>
-                        <FormGroup validationState={'success'} >
-                            {/*<ControlLabel>Input with success and feedback icon</ControlLabel>*/}
-                            {/*<FormControl type="text" defaultValue="10/10/2016" />*/}
-                            {/*<FormControl.Feedback />*/}
-                            <DatePicker name="vencto" value={props.vencto} readOnly dayLabels={BrazilianDayLabels} monthLabels={BrazilianMonthLabels} />
+                        <FormGroup validationState={'warning'} >
+                            <FormControl name="lubrificação" componentClass="select" placeholder="Lubrificação" value="Lubrificação" readOnly >
+                                <option value="PRESET"> PRESET = {props.parametros.lubrificacao.preset.MbNovoCiclos} ciclos</option>
+                                <option value="CICLOS"> PRESET 2 = {props.parametros.lubrificacao.ciclos.PrsCiclos} ciclos</option>
+                            </FormControl>
                         </FormGroup>
                     </Col>
                 </Row>
 
                 <Row>
-                    <Col md={4}>Valor da Parcela</Col>
+                    <Col md={4}>Operadores</Col>
                     <Col md={8}>
-                        <FormGroup validationState={'success'} >
-                            {/*<ControlLabel>Input with success and feedback icon</ControlLabel>*/}
-                            <FormControl type="text" name="valor" value={props.valor} readOnly />
-                            <FormControl.Feedback />
+                        <FormGroup validationState={'warning'} >
+                            <FormControl name="operadores" componentClass="select" placeholder="Operadores" value="Operadores" readOnly >
+                            {props.operadores.map( (operador, index) => 
+                                <option key={'operadores-' + index}> {operador.nome}</option>
+                            )}
+                            </FormControl>
                         </FormGroup>
                     </Col>
                 </Row>
