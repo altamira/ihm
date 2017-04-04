@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { Router, Route, browserHistory } from 'react-router'
+import { HashRouter as Router, Route } from 'react-router-dom'
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
@@ -18,8 +18,8 @@ const NoMatch = props => (
 )
 
 render((
-  <Router history={browserHistory}>
-    <Route path="/" component={App} >
+  <Router>
+    <Route exact={true} path="/" component={App} >
 
     	{/* incluir novas maquinas aqui*/}
     	<Route path="maquinas/perfiladeiras/n3" component={IHM_N3}>
@@ -35,7 +35,7 @@ render((
       </Route>
     	{/*fim*/}
 
-      <Route path="*" component={NoMatch}/>
+      <Route exact path="*" component={NoMatch}/>
     </Route>
   </Router>
 ), document.getElementById('root'))	
