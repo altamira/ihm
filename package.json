@@ -1,6 +1,6 @@
 {
   "name": "IHM_REACT-ROUTER",
-  "version": "17.03",
+  "version": "0.17.03",
   "private": true,
   "devDependencies": {
     "react-scripts": "0.9.0"
