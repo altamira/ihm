@@ -9,7 +9,7 @@ import {
   Button
 } from 'react-bootstrap';
 
-import md5 from 'md5';
+//import md5 from 'md5';
 
 import api from './../api';
 
@@ -39,7 +39,7 @@ export default class Login extends Component {
   }
 
   handleLogin() {
-    api.usuario.login(this.state.usuario, md5(this.state.senha), this.handleAuthenticate.bind(this))
+    api.usuario.login(this.state.usuario, this.state.senha, this.handleAuthenticate.bind(this))
   }
 
   handleAuthenticate(user) {

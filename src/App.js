@@ -67,23 +67,32 @@ export default class App extends Component {
 
   render() {
 
+    // state.config = null
+    const waiting = (
+        <span>Aguarde, carregando...</span>
+    );
+
+    // state.config = {} // nao encontrou a conf para esta maquina no mongoDB
+    const load =(
+        <SelectConfig onSelect={this.handleSelect} />
+    );
+
+    // state.config = { ... } // encontrou a conf da maquina no mongoDB
+    const login = (
+        <Login onLogin={this.handleLogin} />
+    );
+
+    // state.config = { ... } && this.state.usuario !== null
     const main = ( 
         <Col md={12} >
           {this.props.children}
         </Col>
     )
 
-    const login = (
-        <Login onLogin={this.handleLogin} />
-    );
-
-    const load =(
-        <SelectConfig onSelect={this.handleSelect} />
-    );
-
+    // maquina de estado
     return(
       <div className="App">
-          {this.state.config ? (this.state.usuario ? main : login) : load}
+          {this.state.config ? (this.state.config._id ? (this.state.usuario ? main : login) : load) : waiting }
       </div>
     );
   }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { HashRouter as Router, Route } from 'react-router-dom'
+import { Router, Route, hashHistory } from 'react-router'
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
@@ -17,8 +17,8 @@ const NoMatch = props => (
 	<div><h1>Rota não encontrada !</h1></div>
 )
 
-render((
-  <Router>
+render(( 
+  <Router history={hashHistory}>
     <Route exact={true} path="/" component={App} >
 
     	{/* incluir novas maquinas aqui*/}
