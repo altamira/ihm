@@ -8,7 +8,10 @@ function save(config, callback) {
 	http.post('maquina/config/', config, callback);
 }
 
-function list(callback, host = (window.ihm.config.local.host + ':' + window.ihm.config.local.port + window.ihm.config.local.api_root)) {
+// Pegar a lista de um servidor:
+//local --> window.ihm.config.local.host
+//remote--> window.ihm.config.remote.host
+function list(callback, host = (window.ihm.config.remote.host + ':' + window.ihm.config.remote.port + window.ihm.config.remote.api_root)) {
 	http.get(host, 'maquina/', callback);
 }
 

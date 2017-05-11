@@ -104,19 +104,6 @@ const ViewConfig = (props) =>
                         </FormGroup>
                     </Col>
                 </Row>
-
-                <Row>
-                    <Col md={4}>Operadores</Col>
-                    <Col md={8}>
-                        <FormGroup validationState={'warning'} >
-                            <FormControl name="operadores" componentClass="select" placeholder="Operadores" value="Operadores" readOnly >
-                            {props.operadores.map( (operador, index) => 
-                                <option key={'operadores-' + index}> {operador.nome}</option>
-                            )}
-                            </FormControl>
-                        </FormGroup>
-                    </Col>
-                </Row>
             </Modal.Body>
 
             <Modal.Footer>

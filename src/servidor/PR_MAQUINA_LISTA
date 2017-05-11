@@ -1,0 +1,23 @@
+USE [MAQUINAS]
+GO
+/****** Object:  StoredProcedure [dbo].[PR_MAQUINA_LISTA]    Script Date: 11/05/2017 17:25:49 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+ALTER PROCEDURE [dbo].[PR_MAQUINA_LISTA] AS
+BEGIN
+
+
+	SELECT DISTINCT 
+		*
+	FROM
+		MAQUINA
+	ORDER BY
+		nome
+
+END
+
+

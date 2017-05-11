@@ -1,0 +1,33 @@
+USE [MAQUINAS]
+GO
+
+/****** Object:  Table [dbo].[MAQUINA]    Script Date: 11/05/2017 17:19:57 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[MAQUINA](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[codigo] [varchar](20) NOT NULL,
+	[nome] [varchar](50) NOT NULL,
+	[path] [varchar](50) NOT NULL,
+	[rede] [varchar](max) NOT NULL,
+	[atualizacao] [datetime2](7) NOT NULL,
+	[parametros] [varchar](max) NOT NULL,
+	[estado] [varchar](max) NOT NULL,
+ CONSTRAINT [PK_MAQUINA] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+

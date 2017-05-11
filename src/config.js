@@ -2,8 +2,9 @@ const LOCAL_HOST = 'http://localhost'
 const LOCAL_PORT = '80'; 
 const LOCAL_API_ROOT = '/api/';
 
-const REMOTE_HOST = 'http://localhost';
-const REMOTE_PORT = '80';
+//Servidor remoto
+const REMOTE_HOST = 'http://192.168.0.1';
+const REMOTE_PORT = '1880';
 const REMOTE_API_ROOT = '/api/';
 
 function setConfiguration(callback) {

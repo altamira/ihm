@@ -1,0 +1,39 @@
+USE [MAQUINAS]
+GO
+/****** Object:  StoredProcedure [dbo].[PR_MAQUINA_ATUALIZA]    Script Date: 11/05/2017 17:23:44 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+ALTER PROCEDURE [dbo].[PR_MAQUINA_ATUALIZA] 
+	@ID INT,
+	@CODIGO VARCHAR(20),
+	@NOME VARCHAR(50),	
+	@PATH VARCHAR(50),
+	@REDE VARCHAR(MAX),
+	@ATUALIZACAO DATETIME2(7),
+	@PARAMETROS VARCHAR(MAX),
+	@ESTADO  VARCHAR(MAX)
+AS
+BEGIN
+
+	UPDATE MAQUINA
+		SET
+			codigo = @CODIGO, 
+			nome = @NOME,
+			path = @PATH,
+			rede = @REDE,
+			atualizacao = @ATUALIZACAO,
+			parametros = @PARAMETROS,
+			estado = @ESTADO
+	WHERE 
+		id = @ID
+
+	SELECT * FROM MAQUINA WHERE id = @ID
+
+END
+
+
+

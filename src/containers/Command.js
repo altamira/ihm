@@ -33,8 +33,6 @@ export default class Command extends Component {
 						<Button disabled={true} style={{width: '100%', height: '100%', magin: '0'}} ></Button>
 					</Col>) : null
 				}
-
-
 			</Row>
 		)
 	}
