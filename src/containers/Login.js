@@ -43,7 +43,8 @@ export default class Login extends Component {
   }
 
   handleAuthenticate(user) {
-    if (user.nome) {
+    console.log(JSON.stringify(user, null, 2));
+    if (user.usuario) {
       this.props.onLogin && this.props.onLogin(user);
     } else {
       let err = {mensagem: 'Usuário e senha não encontrado. Verifique se digitou a senha corretamente.'}
