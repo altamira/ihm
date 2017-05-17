@@ -37,6 +37,7 @@ export default class IHM extends Component {
 			
 			<Shell
 				title={"Coluna N3"}
+				user={this.props.user}
 			>
 				<Workspace>
 					{this.props.children}
