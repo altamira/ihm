@@ -86,7 +86,7 @@ export default class App extends Component {
     const main = ( 
         <Col md={12} >
           {
-            this.props && this.props.children && (React.cloneElement(this.props.children, { user: this.state.usuario }))
+            this.props && this.props.children && (React.cloneElement(this.props.children, { user: this.state.usuario }) )
           }
         </Col>
     )
