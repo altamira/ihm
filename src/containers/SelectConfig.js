@@ -31,12 +31,12 @@ export default class SelectConfig extends Component {
   }
 
   handleList(list) {
-    this.setState({ list: list })
+    this.setState( list );
   }
 
   handleSelect(item) {
     console.log(JSON.stringify(item, null, 2))
-    api.maquina.config.save(item, this.handleClose)
+    api.maquina.config.save({usuarios: this.state.usuarios, maquina: item }, this.handleClose)
   }
 
   handleView(item) {
@@ -77,7 +77,7 @@ export default class SelectConfig extends Component {
 
         >
 
-          {this.state.list && Array.isArray(this.state.list) && this.state.list.map((item, index) =>
+          {this.state.maquinas && Array.isArray(this.state.maquinas) && this.state.maquinas.map((item, index) =>
 
             <Table.Column
 
