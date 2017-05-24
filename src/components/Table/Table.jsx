@@ -47,7 +47,7 @@ const Table = props => (
 Table.propTypes = {
     command: React.PropTypes.array,
     header: React.PropTypes.array.isRequired,
-    children: React.PropTypes.node.isRequired
+  //  children: React.PropTypes.node.isRequired
 };
 
 Table.defaultProps = {
