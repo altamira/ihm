@@ -32,7 +32,7 @@ export default class App extends Component {
     }
     this.handleLoadConfig = this.handleLoadConfig.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
-
+    this.handleLogout = this.handleLogout.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
 
     this.handleCloseDialog = this.handleCloseDialog.bind(this);
@@ -61,6 +61,10 @@ export default class App extends Component {
     this.setState({usuario: usuario}, this.props.router.push.bind(null, this.state.config.path))
   }
 
+  handleLogout() {
+    this.setState({usuario: undefined});//, this.unsubscribe);
+  }
+
   handleSelect() {
     api.maquina.config.get(this.handleLoadConfig.bind(this))
   }
@@ -86,7 +90,7 @@ export default class App extends Component {
     const main = ( 
         <Col md={12} >
           {
-            this.props && this.props.children && (React.cloneElement(this.props.children, { user: this.state.usuario })   )
+            this.props && this.props.children && (React.cloneElement(this.props.children, { user: this.state.usuario, handleLogout: this.handleLogout })   )
           }
         </Col>
     )

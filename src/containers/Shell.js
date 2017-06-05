@@ -8,7 +8,7 @@ export default class Shell extends Component {
 		return(
 
 			<div>
-				<Title title={this.props.title} user={this.props.user} />
+				<Title title={this.props.title} user={this.props.user} handleLogout={this.props.handleLogout} />
 
 				{this.props.children}
 				
