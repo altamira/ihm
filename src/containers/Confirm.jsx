@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 import {
   Modal,
-  Button
+  Button,
+  Glyphicon
 } from 'react-bootstrap';
 
 export default class Confirm extends Component {
@@ -40,8 +41,9 @@ export default class Confirm extends Component {
 		          </Modal.Body>
 
 		          <Modal.Footer>
-		            <Button bsStyle={'danger'} onClick={this.props.onClose} >Não</Button>
-		          	<Button bsStyle={'success'} onClick={this.props.onConfirm} >Sim</Button>
+		            <Button bsStyle={'primary'} onClick={this.props.onClose} >Cancelar</Button>
+		          	<Button bsStyle={'success'} onClick={this.props.onConfirm} >Trocar usuario? <Glyphicon glyph="user" /></Button>
+		          	<Button bsStyle={'danger'} onClick={this.props.onConfirm} >Desligar <Glyphicon glyph="off" /></Button>
 		          </Modal.Footer>
 
 		        </Modal.Dialog>

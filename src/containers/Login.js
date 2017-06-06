@@ -27,7 +27,8 @@ export default class Login extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleCloseDialog = this.handleCloseDialog.bind(this);
-
+    this.onValidateNotEmpty = this.onValidateNotEmpty.bind(this);
+    
     this.handleLogin = this.handleLogin.bind(this);
   }
 
@@ -53,6 +54,10 @@ export default class Login extends Component {
     }
   }
 
+  onValidateNotEmpty(propriedade, maxLength) {
+    return this.state[propriedade] !== null && this.state[propriedade].trim().length > 2 && this.state[propriedade].length <= maxLength;
+  }
+
   render() {
 
     return(
@@ -66,9 +71,15 @@ export default class Login extends Component {
             <Row>
               <Col md={4}>Usuario</Col>
               <Col md={8}>
-                <FormGroup validationState="success">
+                <FormGroup validationState={this.onValidateNotEmpty('usuario', 12) ? 'success' : 'error'} >
                   {/*<ControlLabel>Input with success and feedback icon</ControlLabel>*/}
-                  <FormControl type="text" name="usuario" value={this.state.usuario} onChange={this.handleChange} onKeyPress={ e => e.key === 'Enter' && ReactDOM.findDOMNode(this.refs.senha).focus()} />
+                  <FormControl 
+                    type="text" name="usuario" 
+                    value={this.state.usuario} 
+                    onChange={this.handleChange} 
+                    onKeyPress={ e => e.key === 'Enter' && ReactDOM.findDOMNode(this.refs.senha).focus()} 
+                    placeholder="Digite aqui seu nome de usuario"
+                  />
                   <FormControl.Feedback />
                 </FormGroup>
               </Col>
@@ -76,9 +87,16 @@ export default class Login extends Component {
             <Row>
               <Col md={4}>Senha</Col>
               <Col md={8}>
-                <FormGroup validationState="success">
+                <FormGroup validationState={this.onValidateNotEmpty('senha', 12) ? 'success' : 'error'} >
                   {/*<ControlLabel>Input with success and feedback icon</ControlLabel>*/}
-                  <FormControl type="password" ref="senha" name="senha" value={this.state.senha} onChange={this.handleChange} onKeyPress={ e => e.key === 'Enter' && this.handleLogin() } />
+                  <FormControl 
+                    type="password" 
+                    ref="senha" 
+                    name="senha" 
+                    value={this.state.senha} 
+                    onChange={this.handleChange} onKeyPress={ e => e.key === 'Enter' && this.handleLogin()} 
+                    placeholder="Digite aqui a senha"
+                  />
                   <FormControl.Feedback />
                 </FormGroup>
               </Col>
@@ -86,7 +104,7 @@ export default class Login extends Component {
           </Modal.Body>
 
           <Modal.Footer>
-            <Button ref="acessar" bsStyle="primary" onClick={this.handleLogin} >Acessar</Button>
+            <Button ref="acessar" bsStyle="primary" onClick={this.handleLogin} disabled={this.onValidateNotEmpty('senha', 12) ? false : true }>Acessar</Button>
           </Modal.Footer>
 
           {this.state.dialog}

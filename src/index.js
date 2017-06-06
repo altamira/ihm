@@ -38,6 +38,6 @@ render((
       <Route exact path="*" component={NoMatch}/>
     </Route>
   </Router>
-), document.getElementById('root'))	
+), document.getElementById('root'))
 
 /*sudo nmap --min-parallelism 100 -sT -sU 192.168.0.1*/

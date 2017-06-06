@@ -65,7 +65,7 @@ export default class App extends Component {
 
   handleConfirmLogout() {
     //this.setState({usuario: undefined});//, this.unsubscribe);
-    this.setState({dialog: <Confirm message={'Confirma logout ?'} onClose={this.handleCloseDialog.bind(this)} onConfirm={this.handleLogout.bind(this)} />})
+    this.setState({dialog: <Confirm message={'O que você quer fazer ?'} onClose={this.handleCloseDialog.bind(this)} onConfirm={this.handleLogout.bind(this)} />})
   }
 
   handleLogout() {
