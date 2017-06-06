@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 
 import { 
   Modal,
@@ -13,7 +14,7 @@ import {
 
 import api from './../api';
 
-import Error from './../Error';
+import Error from './Error';
 
 export default class Login extends Component {
   constructor(props) {
@@ -67,7 +68,7 @@ export default class Login extends Component {
               <Col md={8}>
                 <FormGroup validationState="success">
                   {/*<ControlLabel>Input with success and feedback icon</ControlLabel>*/}
-                  <FormControl type="text" name="usuario" value={this.state.usuario} onChange={this.handleChange} />
+                  <FormControl type="text" name="usuario" value={this.state.usuario} onChange={this.handleChange} onKeyPress={ e => e.key === 'Enter' && ReactDOM.findDOMNode(this.refs.senha).focus()} />
                   <FormControl.Feedback />
                 </FormGroup>
               </Col>
@@ -77,7 +78,7 @@ export default class Login extends Component {
               <Col md={8}>
                 <FormGroup validationState="success">
                   {/*<ControlLabel>Input with success and feedback icon</ControlLabel>*/}
-                  <FormControl type="password" name="senha" value={this.state.senha} onChange={this.handleChange} />
+                  <FormControl type="password" ref="senha" name="senha" value={this.state.senha} onChange={this.handleChange} onKeyPress={ e => e.key === 'Enter' && this.handleLogin() } />
                   <FormControl.Feedback />
                 </FormGroup>
               </Col>
@@ -85,7 +86,7 @@ export default class Login extends Component {
           </Modal.Body>
 
           <Modal.Footer>
-            <Button bsStyle="primary" onClick={this.handleLogin} >Acessar</Button>
+            <Button ref="acessar" bsStyle="primary" onClick={this.handleLogin} >Acessar</Button>
           </Modal.Footer>
 
           {this.state.dialog}

@@ -19,7 +19,8 @@ import {
 //import mqtt from 'mqtt/lib/connect';
 
 import api from './api';
-import Error from './Error';
+import Error from './containers/Error.jsx';
+import Confirm from './containers/Confirm.jsx';
 import config from './config';
 
 export default class App extends Component {
@@ -32,6 +33,7 @@ export default class App extends Component {
     }
     this.handleLoadConfig = this.handleLoadConfig.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
+    this.handleConfirmLogout = this.handleConfirmLogout.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
 
@@ -61,8 +63,13 @@ export default class App extends Component {
     this.setState({usuario: usuario}, this.props.router.push.bind(null, this.state.config.path))
   }
 
+  handleConfirmLogout() {
+    //this.setState({usuario: undefined});//, this.unsubscribe);
+    this.setState({dialog: <Confirm message={'Confirma logout ?'} onClose={this.handleCloseDialog.bind(this)} onConfirm={this.handleLogout.bind(this)} />})
+  }
+
   handleLogout() {
-    this.setState({usuario: undefined});//, this.unsubscribe);
+    this.setState({usuario: undefined, dialog: undefined});//, this.unsubscribe);
   }
 
   handleSelect() {
@@ -90,7 +97,7 @@ export default class App extends Component {
     const main = ( 
         <Col md={12} >
           {
-            this.props && this.props.children && (React.cloneElement(this.props.children, { user: this.state.usuario, handleLogout: this.handleLogout })   )
+            this.props && this.props.children && (React.cloneElement(this.props.children, { user: this.state.usuario, handleLogout: this.handleConfirmLogout })   )
           }
         </Col>
     )
@@ -99,6 +106,7 @@ export default class App extends Component {
     return(
       <div className="App">
           {this.state.config ? (this.state.config._id ? (this.state.usuario ? main : login) : load) : waiting }
+          {this.state.dialog}
       </div>
     );
   }

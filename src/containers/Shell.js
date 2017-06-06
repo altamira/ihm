@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import Title from './../components/Title'
+import Title from './../containers/Title'
 
 export default class Shell extends Component {
 
