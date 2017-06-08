@@ -20,8 +20,12 @@ import {
 
 import api from './api';
 import Error from './containers/Error.jsx';
+import ConfigError from './containers/ConfigError.jsx';
 import Confirm from './containers/Confirm.jsx';
 import config from './config';
+//import mqtt from 'mqtt/lib/connect';
+
+//var clientId = 'mqtt_' + (1 + Math.random() * 4294967295).toString(16);
 
 export default class App extends Component {
   constructor(props) {
@@ -42,10 +46,21 @@ export default class App extends Component {
 
   componentWillMount() {
     config.setConfiguration();
-    api.config.setErrorHandler(this.handleError.bind(this));
-    api.maquina.config.get(this.handleLoadConfig.bind(this))
+    api.config.setErrorHandler(this.handleErrorConfig.bind(this));
+    api.maquina.config.get(this.handleLoadConfig.bind(this));
+  }
+  
+  //Erro carregando a configuração da maquina por falha no node-red e chama handleCloseDialogOnConfigError
+  handleErrorConfig(err) {
+    let props = {...err, message: err.message, stack: err.stack}
+    this.setState({dialog: <ConfigError {...props} onClose={this.handleCloseDialogOnConfigError.bind(this)} />})
   }
 
+  handleCloseDialogOnConfigError() {
+    this.setState(api.maquina.config.get(this.handleLoadConfig.bind(this)) )
+  }
+
+  //Erro padrão da maquina que chama handleCloseDialog
   handleError(err) {
     let props = {...err, message: err.message, stack: err.stack}
     this.setState({dialog: <Error {...props} onClose={this.handleCloseDialog.bind(this)} />})
@@ -56,7 +71,8 @@ export default class App extends Component {
   }
 
   handleLoadConfig(config) {
-    this.setState({config: config})
+    api.config.setErrorHandler(this.handleError.bind(this));
+    this.setState({ dialog: undefined, config: config })
   }
 
   handleLogin(usuario) {
@@ -102,7 +118,7 @@ export default class App extends Component {
         </Col>
     )
 
-    // maquina de estado
+    // maquina de estado mudando this.state muda o render da pagina
     return(
       <div className="App">
           {this.state.config ? (this.state.config._id ? (this.state.usuario ? main : login) : load) : waiting }
