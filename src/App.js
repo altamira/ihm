@@ -23,16 +23,14 @@ import Error from './containers/Error.jsx';
 import ConfigError from './containers/ConfigError.jsx';
 import Confirm from './containers/Confirm.jsx';
 import config from './config';
-//import mqtt from 'mqtt/lib/connect';
 
-//var clientId = 'mqtt_' + (1 + Math.random() * 4294967295).toString(16);
 
 export default class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      config: null, 
+      config: {codigo: null}, 
       usuario: null
     }
     this.handleLoadConfig = this.handleLoadConfig.bind(this);
@@ -113,7 +111,7 @@ export default class App extends Component {
     const main = ( 
         <Col md={12} >
           {
-            this.props && this.props.children && (React.cloneElement(this.props.children, { user: this.state.usuario, handleLogout: this.handleConfirmLogout })   )
+            this.props && this.props.children && (React.cloneElement(this.props.children, { user: this.state.usuario, config: this.state.config, handleLogout: this.handleConfirmLogout })   )
           }
         </Col>
     )

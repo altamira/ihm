@@ -4,6 +4,8 @@ import Shell from './../../../containers/Shell'
 import Workspace from './../../../containers/Workspace'
 import Command from './../../../containers/Command'
 
+//import mqtt from 'mqtt/lib/connect';
+
 //import reset_button from './../../../images/reset.png'
 //import reset_button from './../../../images/reset.png'
 //<img alt="Logo" src={require('./images/reset.png')} />
@@ -13,6 +15,16 @@ import Background from './../../../images/reset.png';
 export default class IHM extends Component {
 	constructor(props) {
 	    super(props);
+
+	    this.state = {
+	      clientId: this.props.config.codigo + (1 + Math.random() * 4294967295).toString(16),
+	      form: null,
+	      config: {
+	        host: '192.168.0.169',
+	        port: 61614,
+	        protocol: 'ws'
+	      }
+	    }
 
 	    this.handleMenuPrincipal = this.handleMenuPrincipal.bind(this);
 	    this.handleAutomatico 	 = this.handleAutomatico.bind(this);
@@ -32,12 +44,15 @@ export default class IHM extends Component {
 	}
 
 	render() {
+		let x = this.state.clientId;
+		console.log('clientId = ' + x);
 
 		return(
 			
 			<Shell
-				title={"Coluna N3"}
+				title={this.props.config.nome}
 				user={this.props.user}
+				config={this.props.config}
 				handleLogout={this.props.handleLogout}
 			>
 				<Workspace>
