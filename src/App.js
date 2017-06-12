@@ -70,7 +70,20 @@ export default class App extends Component {
 
   handleLoadConfig(config) {
     api.config.setErrorHandler(this.handleError.bind(this));
-    this.setState({ dialog: undefined, config: config })
+    this.setState({ dialog: undefined, config: config }, this.mqttconnect.bind(this))
+  }
+
+  mqttconnect(){
+        let pts = {
+          clientId: this.state.config.codigo + (1 + Math.random() * 4294967295).toString(16),
+          host: 'locahost',
+          port: 61614,
+          protocol: 'ws',
+          qos: 0,
+          retain: false,
+          clean: true,
+          keepAlive: 30
+        };
   }
 
   handleLogin(usuario) {

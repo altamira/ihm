@@ -11,7 +11,7 @@ export default class Shell extends Component {
 
 			<div>
 				<Title title={this.props.title} user={this.props.user} handleLogout={this.props.handleLogout} />
-
+				
 				{this.props.children}
 				
 			</div>

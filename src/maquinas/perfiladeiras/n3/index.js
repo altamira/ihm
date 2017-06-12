@@ -16,16 +16,6 @@ export default class IHM extends Component {
 	constructor(props) {
 	    super(props);
 
-	    this.state = {
-	      clientId: this.props.config.codigo + (1 + Math.random() * 4294967295).toString(16),
-	      form: null,
-	      config: {
-	        host: '192.168.0.169',
-	        port: 61614,
-	        protocol: 'ws'
-	      }
-	    }
-
 	    this.handleMenuPrincipal = this.handleMenuPrincipal.bind(this);
 	    this.handleAutomatico 	 = this.handleAutomatico.bind(this);
 	    this.handleManual 		 = this.handleManual.bind(this);
@@ -44,9 +34,6 @@ export default class IHM extends Component {
 	}
 
 	render() {
-		let x = this.state.clientId;
-		console.log('clientId = ' + x);
-
 		return(
 			
 			<Shell
@@ -55,8 +42,12 @@ export default class IHM extends Component {
 				config={this.props.config}
 				handleLogout={this.props.handleLogout}
 			>
-				<Workspace>
-					{this.props.children}
+				<Workspace
+					config={this.props.config}
+				>
+					{
+						this.props && this.props.children && (React.cloneElement(this.props.children, { user: this.props.user, config: this.props.config })   )
+					}
 				</Workspace>
 
 				<Command 
