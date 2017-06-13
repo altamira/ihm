@@ -10,7 +10,12 @@ import Command from './../../../containers/Command'
 //import reset_button from './../../../images/reset.png'
 //<img alt="Logo" src={require('./images/reset.png')} />
 
-import Background from './../../../images/reset.png';
+import Home from './../../../images/home.svg';
+import Tasks from './../../../images/tasks.svg';
+import Wrench from './../../../images/wrench.svg';
+import Report from './../../../images/report.svg';
+import Config from './../../../images/config.svg';
+import Manutencao from './../../../images/manutencao.svg';
 
 export default class IHM extends Component {
 	constructor(props) {
@@ -52,12 +57,12 @@ export default class IHM extends Component {
 
 				<Command 
 					onClick={[
-						{ label: 'Menu Principal', onclick: this.handleMenuPrincipal, icon: 'ok' },
-						{ label: 'Modo Automatico', onclick: this.handleAutomatico, icon: 'plus' },
-						{ label: 'Modo Manual', onclick: this.handleManual, image: Background },
-						{ label: 'Config', onclick: this.handleMenuPrincipal },
-						{ label: 'Sair', onclick: this.handleAutomatico },
-						{ label: '...', onclick: this.handleManual }
+						{ label: 'Principal', onclick: this.handleMenuPrincipal, image: Home },
+						{ label: 'Tarefas', onclick: this.handleAutomatico, 	image: Tasks},
+						{ label: 'Modo Manual', onclick: this.handleManual, 	image: Wrench},
+						{ label: 'Relatorios', onclick: this.handleMenuPrincipal,image: Report},
+						{ label: 'Config', onclick: this.handleAutomatico, 		image: Config},
+						{ label: 'Manutenção', onclick: this.handleManual, 		image: Manutencao }
 					]}
 				/>
 
