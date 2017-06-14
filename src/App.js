@@ -16,7 +16,8 @@ import {
   Col,
 } from 'react-bootstrap';
 
-//import mqtt from 'mqtt/lib/connect';
+import mqtt from 'mqtt/lib/connect';
+import { assign} from 'lodash';
 
 import api from './api';
 import Error from './containers/Error.jsx';
@@ -31,13 +32,18 @@ export default class App extends Component {
 
     this.state = {
       config: {codigo: null}, 
-      usuario: null
+      usuario: null,
+      topics: {}
     }
     this.handleLoadConfig = this.handleLoadConfig.bind(this);
-    this.handleLogin = this.handleLogin.bind(this);
+    this.handleLogin =      this.handleLogin.bind(this);
     this.handleConfirmLogout = this.handleConfirmLogout.bind(this);
-    this.handleLogout = this.handleLogout.bind(this);
-    this.handleSelect = this.handleSelect.bind(this);
+    this.handleLogout =     this.handleLogout.bind(this);
+    this.handleSelect =     this.handleSelect.bind(this);
+
+    this.handleErros    =   this.handleErros.bind(this);
+    this.handleDebug    =   this.handleDebug.bind(this);
+    this.handleEstado   =   this.handleEstado.bind(this);
 
     this.handleCloseDialog = this.handleCloseDialog.bind(this);
   }
@@ -72,19 +78,93 @@ export default class App extends Component {
     api.config.setErrorHandler(this.handleError.bind(this));
     this.setState({ dialog: undefined, config: config }, this.mqttconnect.bind(this))
   }
+  
+  carregaLista() {
+    // enviar dados para fila
+    this.client.publish('fabrica/ihm/debug/',JSON.stringify('Carregar lista '));
+  }
 
   mqttconnect(){
-        let pts = {
-          clientId: this.state.config.codigo + (1 + Math.random() * 4294967295).toString(16),
-          host: 'locahost',
-          port: 61614,
-          protocol: 'ws',
-          qos: 0,
-          retain: false,
-          clean: true,
-          keepAlive: 30
-        };
+
+    const codigo = this.state.config.codigo;
+    const clientId = codigo + (1 + Math.random() * 4294967295).toString(16);
+
+    console.log('Config: ' + JSON.stringify(this.state.config,null,2));
+
+    var opts = {
+      host: 'localhost',
+      port: 61614,
+      protocol: 'ws',
+      qos: 0,
+      retain: false,
+      clean: true,
+      keepAlive: 30,
+      clientId: clientId
+    }
+
+    this.client = mqtt.connect(opts);
+
+    this.client.on('connect', function() {
+
+      this.client.subscribe(
+        ['fabrica/ihm/erros/'   + clientId, 
+         'fabrica/ihm/debug/'   + clientId,
+         'fabrica/ihm/estado/'  + clientId], 
+         function(err, granted) { 
+          !err ? 
+            this.setState(
+              {
+                topics: assign(
+                          this.state.topics, 
+                          {
+                            [granted[0].topic]: this.handleErros,   
+                            [granted[1].topic]: this.handleDebug,  
+                            [granted[2].topic]: this.handleEstado
+                          }
+                        )
+              },
+              this.carregaLista
+            ) 
+          : 
+            alert('Erro ao se inscrever no topico: ' + err);
+        }.bind(this)
+      );  
+    }.bind(this));
+    
+    this.client.on('message', function (topic, message) {
+      // message is Buffer
+      console.log(message.toString())
+      
+      // this.state.topics[topic] && this.handleError(message.toString());
+      this.state.topics[topic] && this.state.topics[topic](message.toString()); 
+
+    }.bind(this))
+    console.log('ClientID dessa maquina = ' + clientId );
   }
+  
+  componentWillUnmount() {
+    this.state.topics && Object.keys(this.state.topics).forEach( (topic) =>
+      this.client.unsubscribe(topic, function(err) 
+        { 
+          err && console.log('Erro ao retirar a inscrição ao topico: ' + topic)
+        }
+      )
+    )
+    this.client.end();
+  }
+
+  handleErros(msg) {
+    alert('Erros: ' + msg);
+  }
+
+  handleDebug(msg) {
+    alert('Debug: ' + msg);
+  }
+
+  handleEstado(msg) {
+    alert('Estado: ' + msg);
+  }
+
 
   handleLogin(usuario) {
     this.setState({usuario: usuario}, this.props.router.push.bind(null, this.state.config.path))
