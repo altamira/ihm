@@ -92,7 +92,7 @@ export default class App extends Component {
     console.log('Config: ' + JSON.stringify(this.state.config,null,2));
 
     var opts = {
-      host: 'localhost',
+      host: '192.168.0.169',
       port: 61614,
       protocol: 'ws',
       qos: 0,

@@ -61,7 +61,7 @@ export default class IHM extends Component {
 						{ label: 'Tarefas', onclick: this.handleAutomatico, 	image: Tasks},
 						{ label: 'Modo Manual', onclick: this.handleManual, 	image: Wrench},
 						{ label: 'Relatorios', onclick: this.handleMenuPrincipal,image: Report},
-						{ label: 'Config', onclick: this.handleAutomatico, 		image: Config},
+						{ label: 'Programação', onclick: this.handleAutomatico,	image: Config},
 						{ label: 'Manutenção', onclick: this.handleManual, 		image: Manutencao }
 					]}
 				/>
