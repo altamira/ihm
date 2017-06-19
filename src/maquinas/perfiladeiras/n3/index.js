@@ -4,12 +4,6 @@ import Shell from './../../../containers/Shell'
 import Workspace from './../../../containers/Workspace'
 import Command from './../../../containers/Command'
 
-//import mqtt from 'mqtt/lib/connect';
-
-//import reset_button from './../../../images/reset.png'
-//import reset_button from './../../../images/reset.png'
-//<img alt="Logo" src={require('./images/reset.png')} />
-
 import Home from './../../../images/home.svg';
 import Tasks from './../../../images/tasks.svg';
 import Wrench from './../../../images/wrench.svg';

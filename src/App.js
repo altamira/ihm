@@ -79,20 +79,14 @@ export default class App extends Component {
     this.setState({ dialog: undefined, config: config }, this.mqttconnect.bind(this))
   }
   
-  carregaLista() {
-    // enviar dados para fila
-    this.client.publish('fabrica/ihm/debug/',JSON.stringify('Carregar lista '));
-  }
-
   mqttconnect(){
 
-    const codigo = this.state.config.codigo;
-    const clientId = codigo + (1 + Math.random() * 4294967295).toString(16);
+    const clientId = this.state.config.codigo.toString() + (1 + Math.random() * 4294967295).toString(16);
 
     console.log('Config: ' + JSON.stringify(this.state.config,null,2));
 
     var opts = {
-      host: '192.168.0.169',
+      host: 'localhost',
       port: 61614,
       protocol: 'ws',
       qos: 0,
@@ -153,6 +147,11 @@ export default class App extends Component {
     this.client.end();
   }
 
+  carregaLista() {
+    // enviar dados para fila
+    this.client.publish('fabrica/ihm/debug/',JSON.stringify('Funcionou...'));
+  }
+  
   handleErros(msg) {
     alert('Erros: ' + msg);
   }
