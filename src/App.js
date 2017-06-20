@@ -26,7 +26,9 @@ import Confirm from './containers/Confirm.jsx';
 import config from './config';
 
 
+
 export default class App extends Component {
+
   constructor(props) {
     super(props);
 
@@ -39,11 +41,13 @@ export default class App extends Component {
     this.handleLogin =      this.handleLogin.bind(this);
     this.handleConfirmLogout = this.handleConfirmLogout.bind(this);
     this.handleLogout =     this.handleLogout.bind(this);
+    this.handleDesligar =   this.handleDesligar.bind(this);
     this.handleSelect =     this.handleSelect.bind(this);
 
     this.handleErros    =   this.handleErros.bind(this);
     this.handleDebug    =   this.handleDebug.bind(this);
     this.handleEstado   =   this.handleEstado.bind(this);
+    this.handleTimer    =   this.handleTimer.bind(this);
 
     this.handleCloseDialog = this.handleCloseDialog.bind(this);
   }
@@ -81,12 +85,12 @@ export default class App extends Component {
   
   mqttconnect(){
 
-    const clientId = this.state.config.codigo.toString() + (1 + Math.random() * 4294967295).toString(16);
+  const clientId = this.state.config.codigo.toString();// + (1 + Math.random() * 4294967295).toString(16);  
 
-    console.log('Config: ' + JSON.stringify(this.state.config,null,2));
+  console.log('Config: ' + JSON.stringify(this.state.config,null,2));
 
-    var opts = {
-      host: 'localhost',
+    let opts = {
+      host: window.location.hostname,
       port: 61614,
       protocol: 'ws',
       qos: 0,
@@ -103,7 +107,9 @@ export default class App extends Component {
       this.client.subscribe(
         ['fabrica/ihm/erros/'   + clientId, 
          'fabrica/ihm/debug/'   + clientId,
-         'fabrica/ihm/estado/'  + clientId], 
+         'fabrica/ihm/estado/'  + clientId,
+         'fabrica/ihm/comandos/'+ clientId,
+         'fabrica/ihm/timer/'   + clientId], 
          function(err, granted) { 
           !err ? 
             this.setState(
@@ -113,7 +119,9 @@ export default class App extends Component {
                           {
                             [granted[0].topic]: this.handleErros,   
                             [granted[1].topic]: this.handleDebug,  
-                            [granted[2].topic]: this.handleEstado
+                            [granted[2].topic]: this.handleEstado,
+                            [granted[3].topic]: this.handleComandos,
+                            [granted[4].topic]: this.handleTmier,
                           }
                         )
               },
@@ -149,19 +157,27 @@ export default class App extends Component {
 
   carregaLista() {
     // enviar dados para fila
-    this.client.publish('fabrica/ihm/debug/',JSON.stringify('Funcionou...'));
+    this.client.publish('fabrica/ihm/debug/' + this.state.config.codigo.toString(),JSON.stringify('Alessandro!'));
   }
-  
+
   handleErros(msg) {
-    alert('Erros: ' + msg);
+    alert('Erros: ' + msg); //Mostra o que recebeu da fila erros
   }
 
   handleDebug(msg) {
-    alert('Debug: ' + msg);
+    alert('Debug: ' + msg);  //Mostra o que recebeu da fila Debug
   }
 
   handleEstado(msg) {
-    alert('Estado: ' + msg);
+    alert('Estado: ' + msg); //Mostra o que recebeu da fila Estado
+  }
+
+  handleComandos(msg) {
+    alert('Comandos: ' + msg); //Mostra o que recebeu da fila Comandos
+  }
+
+  handleTimer(msg) {
+    alert('Timer: ' + msg); //Mostra o que recebeu da fila Timer
   }
 
 
@@ -170,12 +186,42 @@ export default class App extends Component {
   }
 
   handleConfirmLogout() {
-    //this.setState({usuario: undefined});//, this.unsubscribe);
-    this.setState({dialog: <Confirm message={'O que você quer fazer ?'} onClose={this.handleCloseDialog.bind(this)} onConfirm={this.handleLogout.bind(this)} />})
+    this.setState({dialog: <Confirm message={'O que você quer fazer ?'} onClose={this.handleCloseDialog.bind(this)} onConfirm={this.handleLogout.bind(this)} onDesligar={this.handleDesligar.bind(this)} />})
   }
 
   handleLogout() {
+
+    console.log('Logout')
     this.setState({usuario: undefined, dialog: undefined});//, this.unsubscribe);
+
+    this.state.topics && Object.keys(this.state.topics).forEach( (topic) =>
+      this.client.unsubscribe(topic, function(err) 
+        { 
+          err && console.log('Erro ao retirar a inscrição ao topico: ' + topic)
+        }
+      )
+    )
+    this.client.end();
+    this.props.router.push('/')
+  }
+
+  handleDesligar() {
+
+    console.log('Desligou')
+    this.setState({usuario: undefined, dialog: undefined});//, this.unsubscribe);
+
+    this.state.topics && Object.keys(this.state.topics).forEach( (topic) =>
+      this.client.unsubscribe(topic, function(err) 
+        { 
+          err && console.log('Erro ao retirar a inscrição ao topico: ' + topic)
+        }
+      )
+    )
+    this.client.end();
+
+    window.userAuthenticated = undefined;
+    
+    this.props.router.push('/');
   }
 
   handleSelect() {

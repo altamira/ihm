@@ -26,7 +26,7 @@ export default class SelectConfig extends Component {
     this.handleClose = this.handleClose.bind(this);
   }
 
-  componentWillMount() {
+  componentDidUpdate () {
     api.maquina.config.list(this.handleList/*, http://192.168.0.1:1880/api/ */)
   }
 

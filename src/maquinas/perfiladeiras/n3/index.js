@@ -39,7 +39,8 @@ export default class IHM extends Component {
 				title={this.props.config.nome}
 				user={this.props.user}
 				config={this.props.config}
-				handleLogout={this.props.handleLogout}
+				handleLogout={this.props.handleLogout} 
+				handleDesligar={this.props.handleDesligar} 
 			>
 				<Workspace
 					config={this.props.config}

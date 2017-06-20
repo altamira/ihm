@@ -43,7 +43,7 @@ export default class Confirm extends Component {
 		          <Modal.Footer>
 		            <Button bsStyle={'primary'} onClick={this.props.onClose} >Cancelar</Button>
 		          	<Button bsStyle={'success'} onClick={this.props.onConfirm} >Trocar usuario? <Glyphicon glyph="user" /></Button>
-		          	<Button bsStyle={'danger'} onClick={this.props.onConfirm} >Desligar <Glyphicon glyph="off" /></Button>
+		          	<Button bsStyle={'danger'} onClick={this.props.onDesligar} >Desligar <Glyphicon glyph="off" /></Button>
 		          </Modal.Footer>
 
 		        </Modal.Dialog>
