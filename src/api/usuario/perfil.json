@@ -1,0 +1,9 @@
+{
+	"ADMINISTRADOR" : 6,
+	"MANUTENCAO" : 5,
+	"SUPERVISOR" : 4,
+	"LIDER_PRODUCAO" : 3,
+	"OPERADOR" : 2,
+	"AJUDANTE" : 1
+}
+

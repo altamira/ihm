@@ -20,9 +20,13 @@ export default class Command extends Component {
 
 				{this.props.onClick.map( (button, index) => 
 					<Col style={{height: '100%'}} key={index} md={col_width}>
-						<Button style={{width: '100%', height: '100%', magin: '0'}} onClick={button.onclick.bind(this)} >
+						<Button 
+							style={{width: '100%', height: '100%', magin: '0'}} 
+							onClick={button.onclick.bind(this)} 
+							disabled={button.disabled}
+						>
 							{button.icon && (<Glyphicon glyph={button.icon || ''} />) }
-							{button.image && <Image style={{height: '100px', width: '100px'}} src={button.image} rounded />}
+							{button.image && <Image style={{height: '100px', width: '100px'}} src={button.image} rounded />} 
                     		<div><span>{button.label}</span></div>							
 						</Button>
 					</Col>

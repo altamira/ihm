@@ -11,6 +11,8 @@ import Report from './../../../images/report.svg';
 import Config from './../../../images/config.svg';
 import Manutencao from './../../../images/manutencao.svg';
 
+import PERFIL from './../../../api/usuario/perfil.json';
+
 export default class IHM extends Component {
 	constructor(props) {
 	    super(props);
@@ -57,7 +59,7 @@ export default class IHM extends Component {
 						{ label: 'Modo Manual', onclick: this.handleManual, 	image: Wrench},
 						{ label: 'Relatorios', onclick: this.handleMenuPrincipal,image: Report},
 						{ label: 'Programação', onclick: this.handleAutomatico,	image: Config},
-						{ label: 'Manutenção', onclick: this.handleManual, 		image: Manutencao }
+						{ label: 'Manutenção', onclick: this.handleManual, 		image: Manutencao, disabled: 1 < PERFIL.OPERADOR}//this.props.user.perfil.nivel < OPERADOR }
 					]}
 				/>
 
