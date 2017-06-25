@@ -6,8 +6,8 @@ echo "========================================"
 echo "INSTALL IHM ENVIRONMENT FOR UBUNTU 16.04"
 echo "========================================"
 echo " "
-echo "1-) default-jdk <-JAVA "
-echo "2-) build-essential "
+echo "1-) JAVA DEFAULT-JDK"
+echo "2-) Build-Essential + htop + gimp + git + dialog + pyrenamer + ipscan"
 echo "3-) PYTHON "
 echo "4-) NODE-JS 8.x"
 echo "5-) ACTIVEMQ 5.14.5 "
@@ -18,13 +18,14 @@ echo "9-) Mongobooster"
 echo "10) Download GitHub IHM "
 echo "11) CHROME "
 echo "12) GIMP"
+echo "13) Sublime txt
 echo " "
 read -n1 -r -p "Click to start!!!" key
-sudo add-apt-repository ppa:otto-kesselgulasch/gimp -y && sudo apt-get update
+sudo add-apt-repository ppa:otto-kesselgulasch/gimp -y && sudo add-apt-repository ppa:upubuntu-com/network -y &&sudo apt-get update
 
 echo " "
 #read -n1 -r -p "JAVA + build-essential" key
-sudo apt-get install -yy default-jdk build-essential libssl-dev curl gdebi python-software-properties htop gimp git dialog
+sudo apt-get install -yy default-jdk build-essential libssl-dev curl gdebi python-software-properties htop gimp git dialog pyrenamer ipscan arp-scan nmap
 
 echo " "
 #read -n1 -r -p "NODE-JS 8.x" key
@@ -52,6 +53,17 @@ sudo npm install -g --unsafe-perm node-red
 sudo npm install -g node-red-node-mongodb
 sudo npm install -g node-red-contrib-modbustcp-no-pooling
 sudo npm install -g node-red-dashboard
+sudo npm install -g node-red-contrib-google-firebase
+sudo npm install -g node-red-contrib-mail-parse
+sudo npm install -g node-red-contrib-email-out
+sudo npm install -g node-red-contrib-md5
+sudo npm install -g node-red-node-wol
+read -n1 -r -p "Node-red settings" key
+cd .node-red/
+rm settings.js
+wget https://github.com/altamira/ihm/edit/master/docs/localhost/settings.js 
+cd ~
+read -n1 -r -p "veja se funciona" key
 
 echo " "
 echo "MongoDB 3.2.14"
@@ -72,6 +84,8 @@ cd ~
 sudo chown -R marcelo:marcelo git
 sudo chown -R marcelo:marcelo .npm
 sudo chown -R marcelo:marcelo .node-gyp
+sudo chown -R marcelo:marcelo .config
+sudo chown marcelo:marcelo mongobooster-3.5.6-x86_64.AppImage
 cd git/ihm/docs/localhost/
 
 read -n1 -r -p "mongo service" key
@@ -86,6 +100,7 @@ echo " "
 read -n1 -r -p "CHROME" key
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo gdebi -n google-chrome-stable_current_amd64.deb
+sudo rm -rf google-chrome-stable_current_amd64.deb
 
 echo " "
 sudo ufw allow 1880
