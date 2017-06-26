@@ -80,7 +80,7 @@ export default class App extends Component {
 
   handleLoadConfig(config) {
     api.config.setErrorHandler(this.handleError.bind(this));
-    this.setState({ dialog: undefined, config: config }, this.mqttconnect.bind(this))
+    this.setState({ dialog: undefined, config: config }, this.state.config.codigo && this.mqttconnect.bind(this))
   }
   
   mqttconnect(){

@@ -4,14 +4,14 @@ import Shell from './../../../containers/Shell'
 import Workspace from './../../../containers/Workspace'
 import Command from './../../../containers/Command'
 
+import PERFIL from './../../../api/usuario/perfil.json';
+
 import Home from './../../../images/home.svg';
 import Tasks from './../../../images/tasks.svg';
 import Wrench from './../../../images/wrench.svg';
 import Report from './../../../images/report.svg';
 import Config from './../../../images/config.svg';
 import Manutencao from './../../../images/manutencao.svg';
-
-import PERFIL from './../../../api/usuario/perfil.json';
 
 export default class IHM extends Component {
 	constructor(props) {
@@ -62,7 +62,6 @@ export default class IHM extends Component {
 						{ label: 'Manutenção', onclick: this.handleManual, 		image: Manutencao, disabled: 1 < PERFIL.OPERADOR}//this.props.user.perfil.nivel < OPERADOR }
 					]}
 				/>
-
 			</Shell>
 		)
 
