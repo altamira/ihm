@@ -18,14 +18,14 @@ echo "9-) Mongobooster"
 echo "10) Download GitHub IHM "
 echo "11) CHROME "
 echo "12) GIMP"
-echo "13) Sublime txt
+echo "13) Sublime txt"
 echo " "
 read -n1 -r -p "Click to start!!!" key
 sudo add-apt-repository ppa:otto-kesselgulasch/gimp -y && sudo add-apt-repository ppa:upubuntu-com/network -y &&sudo apt-get update
 
 echo " "
 #read -n1 -r -p "JAVA + build-essential" key
-sudo apt-get install -yy default-jdk build-essential libssl-dev curl gdebi python-software-properties htop gimp git dialog pyrenamer ipscan arp-scan nmap
+sudo apt-get install -yy default-jdk build-essential libssl-dev curl gdebi python-software-properties htop gimp git dialog pyrenamer arp-scan nmap
 
 echo " "
 #read -n1 -r -p "NODE-JS 8.x" key
@@ -58,12 +58,6 @@ sudo npm install -g node-red-contrib-mail-parse
 sudo npm install -g node-red-contrib-email-out
 sudo npm install -g node-red-contrib-md5
 sudo npm install -g node-red-node-wol
-read -n1 -r -p "Node-red settings" key
-cd .node-red/
-rm settings.js
-wget https://github.com/altamira/ihm/edit/master/docs/localhost/settings.js 
-cd ~
-read -n1 -r -p "veja se funciona" key
 
 echo " "
 echo "MongoDB 3.2.14"
@@ -95,6 +89,13 @@ sudo systemctl enable mongodb
 cd ~
 read -n1 -r -p "MongoBooster" key
 ./mongobooster-3.5.6-x86_64.AppImage
+
+read -n1 -r -p "Node-red settings" key
+cd .node-red/
+rm settings.js
+cp ../git/ihm/docs/localhost/settings.js .
+cd ~
+read -n1 -r -p "veja se funciona" key
 
 echo " "
 read -n1 -r -p "CHROME" key
