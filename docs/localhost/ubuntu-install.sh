@@ -29,11 +29,8 @@ sudo apt-get install -yy default-jdk build-essential libssl-dev curl gdebi pytho
 
 echo " "
 #read -n1 -r -p "NODE-JS 8.x" key
-curl -sL https://deb.nodesource.com/setup_8.x -o nodesource_setup.sh
-chmod +x nodesource_setup.sh
-sudo sh ./nodesource_setup.sh
-sudo apt-get install -yy nodejs
-rm nodesource_setup.sh 
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+sudo apt-get install -y nodejs
 
 echo " "
 read -n1 -r -p "ACTIVEMQ" key
