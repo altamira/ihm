@@ -231,33 +231,37 @@ export default class App extends Component {
   render() {
 
     // state.config = null
-    const waiting = (
+    /*const waiting = (
         <span>Aguarde, carregando...</span>
-    );
+    );*/
 
     // state.config = {} // nao encontrou a conf para esta maquina no mongoDB
-    const load =(
+    /*const load =(
         <SelectConfig onSelect={this.handleSelect} />
-    );
+    );*/
 
     // state.config = { ... } // encontrou a conf da maquina no mongoDB
-    const login = (
+    /*const login = (
         <Login onLogin={this.handleLogin} />
-    );
+    );*/
 
     // state.config = { ... } && this.state.usuario !== null
-    const main = ( 
+    /*const main = ( 
         <Col md={12} >
           {
             this.props && this.props.children && (React.cloneElement(this.props.children, { user: this.state.usuario, config: this.state.config, handleLogout: this.handleConfirmLogout })   )
           }
         </Col>
-    )
+    )*/
 
     // maquina de estado mudando this.state muda o render da pagina
     return(
       <div className="App">
-          {this.state.config ? (this.state.config._id ? (this.state.usuario ? main : login) : load) : waiting }
+          {this.state.config ? (this.state.config._id ? (this.state.usuario ? <Col md={12} >
+          {
+            this.props && this.props.children && (React.cloneElement(this.props.children, { user: this.state.usuario, config: this.state.config, handleLogout: this.handleConfirmLogout })   )
+          }
+        </Col> : <Login onLogin={this.handleLogin} />) : <SelectConfig onSelect={this.handleSelect} />) : <span>Aguarde, carregando...</span> }
           {this.state.dialog}
       </div>
     );
