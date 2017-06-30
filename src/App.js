@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 
 import './App.css';
 
-/*import { 
-  LoadingEllipse, 
-  Title
-} from './components';*/
-
 import { 
   Login,
   SelectConfig

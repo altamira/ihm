@@ -34,6 +34,11 @@ export default class IHM extends Component {
 		this.props.router.push('/maquinas/perfiladeiras/n3/manual')
 	}
 
+	handlePerfil(){
+		console.log('Igual a = ' + this.props.config.nome);
+		return (1 < PERFIL.OPERADOR)
+	}
+
 	render() {
 		return(
 			
@@ -59,7 +64,7 @@ export default class IHM extends Component {
 						{ label: 'Modo Manual', onclick: this.handleManual, 	image: Wrench},
 						{ label: 'Relatorios', onclick: this.handleMenuPrincipal,image: Report},
 						{ label: 'Programação', onclick: this.handleAutomatico,	image: Config},
-						{ label: 'Manutenção', onclick: this.handleManual, 		image: Manutencao, disabled: 1 < PERFIL.OPERADOR}//this.props.user.perfil.nivel < OPERADOR }
+						{ label: 'Manutenção', onclick: this.handleManual, 		image: Manutencao, disabled: this.handlePerfil()}//this.props.user.perfil.nivel < OPERADOR }
 					]}
 				/>
 			</Shell>
