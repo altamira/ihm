@@ -19,7 +19,7 @@ const NoMatch = props => (
 
 render(( 
   <Router history={hashHistory}>
-    <Route exact={true} path="/" component={App} >
+    <Route path="/" component={App} >
 
     	{/* incluir novas maquinas aqui*/}
     	<Route path="maquinas/perfiladeiras/n3" component={IHM_N3}>
@@ -35,7 +35,7 @@ render((
       </Route>
     	{/*fim*/}
 
-      <Route exact path="*" component={NoMatch}/>
+      <Route path="*" component={NoMatch}/>
     </Route>
   </Router>
 ), document.getElementById('root'))

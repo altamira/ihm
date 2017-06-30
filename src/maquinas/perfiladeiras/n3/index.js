@@ -20,6 +20,7 @@ export default class IHM extends Component {
 	    this.handleMenuPrincipal = this.handleMenuPrincipal.bind(this);
 	    this.handleAutomatico 	 = this.handleAutomatico.bind(this);
 	    this.handleManual 		 = this.handleManual.bind(this);
+	    this.handlePerfil 		 = this.handlePerfil.bind(this);
 	  }
 
 	handleMenuPrincipal() {
@@ -35,8 +36,8 @@ export default class IHM extends Component {
 	}
 
 	handlePerfil(){
-		console.log('Igual a = ' + this.props.config.nome);
-		return (1 < PERFIL.OPERADOR)
+		console.log('ISSO NÃO APARECE!!!!');
+		//return (1 < PERFIL.OPERADOR) // <--- mas isso esta funcionando!!! Porque?
 	}
 
 	render() {
