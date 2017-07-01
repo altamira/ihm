@@ -36,11 +36,13 @@ export default class IHM extends Component {
 	}
 
 	handlePerfil(){
-		console.log('ISSO NÃO APARECE!!!!');
-		//return (1 < PERFIL.OPERADOR) // <--- mas isso esta funcionando!!! Porque?
+		//console.log(JSON.stringify(this.props.user,null,2));
+		console.log ("PERFIL = " + this.props.user.perfil)
+		return (1 < PERFIL.OPERADOR) 
 	}
 
 	render() {
+
 		return(
 			
 			<Shell
