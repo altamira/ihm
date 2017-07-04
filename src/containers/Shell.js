@@ -5,7 +5,7 @@ import Title from './../containers/Title'
 export default class Shell extends Component {
 
 	render() {
-		let x = this.props.config.perfil;
+		let x = this.props.config.codigo;
 		console.log('Igual a = ' + x);
 		return(
 

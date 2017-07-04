@@ -33,11 +33,13 @@ export default class App extends Component {
       topics: {}
     }
     this.handleLoadConfig = this.handleLoadConfig.bind(this);
-    this.handleLogin =      this.handleLogin.bind(this);
+    this.handleLogin    =   this.handleLogin.bind(this);
     this.handleConfirmLogout = this.handleConfirmLogout.bind(this);
-    this.handleLogout =     this.handleLogout.bind(this);
+    this.handleLogout   =   this.handleLogout.bind(this);
     this.handleDesligar =   this.handleDesligar.bind(this);
-    this.handleSelect =     this.handleSelect.bind(this);
+    this.handleSelect   =   this.handleSelect.bind(this);
+    this.mqttConnect    =   this.mqttConnect.bind(this);
+    this.mqttUnconnect  =   this.mqttUnconnect.bind(this);
 
     this.handleErros    =   this.handleErros.bind(this);
     this.handleDebug    =   this.handleDebug.bind(this);
@@ -52,15 +54,9 @@ export default class App extends Component {
     api.config.setErrorHandler(this.handleErrorConfig.bind(this));
     api.maquina.config.get(this.handleLoadConfig.bind(this));
   }
-  
-  //Erro carregando a configuração da maquina por falha no node-red e chama handleCloseDialogOnConfigError
-  handleErrorConfig(err) {
-    let props = {...err, message: err.message, stack: err.stack}
-    this.setState({dialog: <ConfigError {...props} onClose={this.handleCloseDialogOnConfigError.bind(this)} />})
-  }
-
-  handleCloseDialogOnConfigError() {
-    this.setState(api.maquina.config.get(this.handleLoadConfig.bind(this)) )
+    
+  componentWillUnmount() {
+    this.mqttUnconnect()
   }
 
   //Erro padrão da maquina que chama handleCloseDialog
@@ -69,90 +65,107 @@ export default class App extends Component {
     this.setState({dialog: <Error {...props} onClose={this.handleCloseDialog.bind(this)} />})
   }
 
+  //Erro carregando a configuração da maquina por falha no node-red e chama handleCloseDialogOnConfigError
+  handleErrorConfig(err) {
+    let props = {...err, message: err.message, stack: err.stack}
+    this.setState({dialog: <ConfigError {...props} onClose={this.handleCloseDialogOnConfigError.bind(this)} />})
+  }
+
   handleCloseDialog() {
     this.setState({ dialog: undefined })
   }
 
+  handleCloseDialogOnConfigError() {
+    this.setState(api.maquina.config.get(this.handleLoadConfig.bind(this)) )
+  }
+
   handleLoadConfig(config) {
     api.config.setErrorHandler(this.handleError.bind(this));
-    this.setState({ dialog: undefined, config: config }, this.state.config.codigo && this.mqttconnect.bind(this))
+    let mqttConnect = !!config.codigo ? this.mqttConnect.bind(this) : null
+    this.setState({ dialog: undefined, config: config }, mqttConnect)
   }
   
-  mqttconnect(){
+  mqttConnect(){
 
   const clientId = this.state.config.codigo.toString();// + (1 + Math.random() * 4294967295).toString(16);  
 
   console.log('Config: ' + JSON.stringify(this.state.config,null,2));
 
-    let opts = {
-      host: window.location.hostname,
-      port: 61614,
-      protocol: 'ws',
-      qos: 0,
-      retain: false,
-      clean: true,
-      keepAlive: 30,
-      clientId: clientId
-    }
+  const opts = {
+    host: window.location.hostname,
+    port: 61614,
+    protocol: 'ws',
+    qos: 0,
+    retain: false,
+    clean: true,
+    keepAlive: 30,
+    clientId: clientId
+  }
 
-    this.client = mqtt.connect(opts);
+  this.client = mqtt.connect(opts);
 
-    this.client.on('connect', function() {
+  this.client.on('connect', function() {
 
-      this.client.subscribe(
-        ['fabrica/ihm/erros/'   + clientId, 
-         'fabrica/ihm/debug/'   + clientId,
-         'fabrica/ihm/estado/'  + clientId,
-         'fabrica/ihm/comandos/'+ clientId,
-         'fabrica/ihm/timer/'   + clientId], 
-         function(err, granted) { 
-          !err ? 
-            this.setState(
-              {
-                topics: assign(
-                          this.state.topics, 
-                          {
-                            [granted[0].topic]: this.handleErros,   
-                            [granted[1].topic]: this.handleDebug,  
-                            [granted[2].topic]: this.handleEstado,
-                            [granted[3].topic]: this.handleComandos,
-                            [granted[4].topic]: this.handleTmier,
-                          }
-                        )
-              },
-              this.carregaLista
-            ) 
-          : 
-            alert('Erro ao se inscrever no topico: ' + err);
-        }.bind(this)
-      );  
-    }.bind(this));
+    this.client.subscribe(
+      ['fabrica/ihm/erros/'   + clientId, 
+       'fabrica/ihm/debug/'   + clientId,
+       'fabrica/ihm/estado/'  + clientId,
+       'fabrica/ihm/comandos/'+ clientId,
+       'fabrica/ihm/timer/'   + clientId], 
+       function(err, granted) { 
+        !err ? 
+          this.setState(
+            {
+              topics: assign(
+                        this.state.topics, 
+                        {
+                          [granted[0].topic]: this.handleErros,   
+                          [granted[1].topic]: this.handleDebug,  
+                          [granted[2].topic]: this.handleEstado,
+                          [granted[3].topic]: this.handleComandos,
+                          [granted[4].topic]: this.handleTmier,
+                        }
+                      )
+            },
+            this.carregaLista
+          ) 
+        : 
+          alert('Erro ao se inscrever no topico: ' + err);
+      }.bind(this)
+    );  
+  }.bind(this));
     
-    this.client.on('message', function (topic, message) {
-      // message is Buffer
-      console.log(message.toString())
-      
-      // this.state.topics[topic] && this.handleError(message.toString());
-      this.state.topics[topic] && this.state.topics[topic](message.toString()); 
+  this.client.on('message', function (topic, message) {
+    // message is Buffer
+    console.log(message.toString())
+    
+    // this.state.topics[topic] && this.handleError(message.toString());
+    this.state.topics[topic] && this.state.topics[topic](message.toString()); 
 
-    }.bind(this))
+  }.bind(this))
     console.log('ClientID dessa maquina = ' + clientId );
   }
-  
-  componentWillUnmount() {
-    this.state.topics && Object.keys(this.state.topics).forEach( (topic) =>
-      this.client.unsubscribe(topic, function(err) 
-        { 
-          err && console.log('Erro ao retirar a inscrição ao topico: ' + topic)
-        }
-      )
+
+  mqttUnconnect() {
+    this.state.topicos && Object.keys(this.state.topicos).forEach( (topic) =>
+      {
+        console.log('Excluido do topico: ' + topic)
+        this.client.mqttUnconnect(
+          topic, 
+          function(err) { 
+            err && console.log('Erro ao retirar a inscrição ao topico: ' + topic)
+          }
+        )
+      }
     )
-    this.client.end();
+    window.userAuthenticated = undefined;
+    this.props.router.push('/');  
   }
+  
 
   carregaLista() {
     // enviar dados para fila
-    this.client.publish('fabrica/ihm/debug/' + this.state.config.codigo.toString(),JSON.stringify('Alessandro!'));
+    this.client.publish('fabrica/ihm/debug/' + this.state.config.codigo,JSON.stringify('Alessandro!'));
   }
 
   handleErros(msg) {
@@ -185,38 +198,17 @@ export default class App extends Component {
   }
 
   handleLogout() {
-
     console.log('Logout')
-    this.setState({usuario: undefined, dialog: undefined});//, this.unsubscribe);
-
-    this.state.topics && Object.keys(this.state.topics).forEach( (topic) =>
-      this.client.unsubscribe(topic, function(err) 
-        { 
-          err && console.log('Erro ao retirar a inscrição ao topico: ' + topic)
-        }
-      )
-    )
-    this.client.end();
-    this.props.router.push('/')
+    this.mqttUnconnect()
+    this.setState({usuario: undefined, dialog: undefined});//, this.mqttUnconnect);
   }
 
   handleDesligar() {
 
     console.log('Desligou')
-    this.setState({usuario: undefined, dialog: undefined});//, this.unsubscribe);
-
-    this.state.topics && Object.keys(this.state.topics).forEach( (topic) =>
-      this.client.unsubscribe(topic, function(err) 
-        { 
-          err && console.log('Erro ao retirar a inscrição ao topico: ' + topic)
-        }
-      )
-    )
-    this.client.end();
-
-    window.userAuthenticated = undefined;
+    this.mqttUnconnect()
+    this.setState({usuario: undefined, dialog: undefined});//, this.mqttUnconnect);
     
-    this.props.router.push('/');
   }
 
   handleSelect() {
