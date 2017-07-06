@@ -41,13 +41,15 @@ export default class App extends Component {
     this.mqttConnect    =   this.mqttConnect.bind(this);
     this.mqttUnconnect  =   this.mqttUnconnect.bind(this);
 
-    this.mqttCommand   =   this.mqttCommand.bind(this);
+    this.mqttCommand    =   this.mqttCommand.bind(this);
 
     this.handleErros    =   this.handleErros.bind(this);
     this.handleDebug    =   this.handleDebug.bind(this);
     this.handleEstado   =   this.handleEstado.bind(this);
     this.handleTimer    =   this.handleTimer.bind(this);
     this.handleUser     =   this.handleUser.bind(this);
+
+    //this.writeUser      =   this.writeUser.bind(this);
 
     this.handleCloseDialog = this.handleCloseDialog.bind(this);
   }
@@ -188,15 +190,13 @@ export default class App extends Component {
   }
 
   handleUser(msg) {
-    alert('User: ' +  msg); //Mostra o que recebeu da fila Timer
+    alert('User: ' +  msg); 
   }
 
-  mqttCommand() {
+  mqttCommand(caminho, mensagem) {
     // enviar dados para fila
-    //console.log('Carrega lista')
-    this.client.publish('fabrica/ihm/user/' + this.state.config.codigo,JSON.stringify('mqttCommand'));
+    this.client.publish(caminho,mensagem);
   }
-
 
   handleLogin(usuario) {
     this.setState({usuario: usuario}, this.props.router.push.bind(null, this.state.config.path))

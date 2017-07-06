@@ -37,15 +37,22 @@ export default class IHM extends Component  {
 
   constructor(props) {
     super(props);
-
     
     this.AplanDescer  =   this.AplanDescer.bind(this);
+    this.AplanSubir   =   this.AplanSubir.bind(this);
 
   }
 
   AplanDescer() {
-    console.log("AplanDescer");
-    this.props.mqttCommand();
+    //console.log("AplanDescer");
+    let caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
+    this.props.mqttCommand(caminho, "aplanDescer");
+  }
+
+  AplanSubir() {
+    //console.log("AplanDescer");
+    let caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
+    this.props.mqttCommand(caminho, "aplanSubir");
   }
 
 	render() {
@@ -57,7 +64,7 @@ export default class IHM extends Component  {
               </Col>
               <Col xs={12} md={12}>
                 <Button onClick={this.AplanDescer}><Image style={{height: '50px', width: '60px'}} src={AplanDescer} rounded /> {"Aplanadora desce"}</Button>
-                <Button onClick={this.AplanDescer}><Image style={{height: '50px', width: '60px'}} src={AplanSubir} rounded /> {"Aplanadora Subir"}</Button>
+                <Button onClick={this.AplanSubir}> <Image style={{height: '50px', width: '60px'}} src={AplanSubir} rounded /> {"Aplanadora Subir"}</Button>
                 <Button onClick={this.AplanDescer}><Image style={{height: '50px', width: '60px'}} src={AplanTampaAbrir} rounded /> {"Aplanadora Abre "}</Button>
                 <Button onClick={this.AplanDescer}><Image style={{height: '50px', width: '60px'}} src={AplanTampaFechar} rounded /> {"Aplanadora Fecha"}</Button>
               </Col>
