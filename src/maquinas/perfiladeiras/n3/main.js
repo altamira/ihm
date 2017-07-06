@@ -45,7 +45,7 @@ export default class IHM extends Component  {
 
   AplanDescer() {
     console.log("AplanDescer");
-    this.props.carregaLista();
+    this.props.mqttCommand();
   }
 
 	render() {

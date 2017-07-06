@@ -41,12 +41,13 @@ export default class App extends Component {
     this.mqttConnect    =   this.mqttConnect.bind(this);
     this.mqttUnconnect  =   this.mqttUnconnect.bind(this);
 
-    this.carregaLista  =   this.carregaLista.bind(this);
+    this.mqttCommand   =   this.mqttCommand.bind(this);
 
     this.handleErros    =   this.handleErros.bind(this);
     this.handleDebug    =   this.handleDebug.bind(this);
     this.handleEstado   =   this.handleEstado.bind(this);
     this.handleTimer    =   this.handleTimer.bind(this);
+    this.handleUser     =   this.handleUser.bind(this);
 
     this.handleCloseDialog = this.handleCloseDialog.bind(this);
   }
@@ -113,7 +114,8 @@ export default class App extends Component {
        'fabrica/ihm/debug/'   + clientId,
        'fabrica/ihm/estado/'  + clientId,
        'fabrica/ihm/comandos/'+ clientId,
-       'fabrica/ihm/timer/'   + clientId], 
+       'fabrica/ihm/timer/'   + clientId,
+       'fabrica/ihm/user/'    + clientId], 
        function(err, granted) { 
         !err ? 
           this.setState(
@@ -125,11 +127,12 @@ export default class App extends Component {
                           [granted[1].topic]: this.handleDebug,  
                           [granted[2].topic]: this.handleEstado,
                           [granted[3].topic]: this.handleComandos,
-                          [granted[4].topic]: this.handleTmier,
+                          [granted[4].topic]: this.handleTimer,
+                          [granted[5].topic]: this.handleUser,
                         }
                       )
             },
-            //this.carregaLista
+            //this.mqttCommand
           ) 
         : 
           alert('Erro ao se inscrever no topico: ' + err);
@@ -164,13 +167,6 @@ export default class App extends Component {
     this.props.router.push('/');  
   }
   
-
-  carregaLista() {
-    // enviar dados para fila
-    console.log('Carrega lista')
-    this.client.publish('fabrica/ihm/debug/' + this.state.config.codigo,JSON.stringify('U E!'));
-  }
-
   handleErros(msg) {
     alert('Erros: ' + msg); //Mostra o que recebeu da fila erros
   }
@@ -189,6 +185,16 @@ export default class App extends Component {
 
   handleTimer(msg) {
     alert('Timer: ' + msg); //Mostra o que recebeu da fila Timer
+  }
+
+  handleUser(msg) {
+    alert('User: ' +  msg); //Mostra o que recebeu da fila Timer
+  }
+
+  mqttCommand() {
+    // enviar dados para fila
+    //console.log('Carrega lista')
+    this.client.publish('fabrica/ihm/user/' + this.state.config.codigo,JSON.stringify('mqttCommand'));
   }
 
 
@@ -247,11 +253,14 @@ export default class App extends Component {
     // maquina de estado mudando this.state muda o render da pagina
     return(
       <div className="App">
-          {this.state.config ? (this.state.config._id ? (this.state.usuario ? <Col md={12} >
-          {
-            this.props && this.props.children && (React.cloneElement(this.props.children, { user: this.state.usuario, config: this.state.config, handleLogout: this.handleConfirmLogout, carregaLista: this.carregaLista})   )
-          }
-        </Col> : <Login onLogin={this.handleLogin} />) : <SelectConfig onSelect={this.handleSelect} />) : <span>Aguarde, carregando...</span> }
+          {this.state.config ? (this.state.config._id ? (this.state.usuario ? 
+            //const main 
+            <Col md={12} >
+            {
+              this.props && this.props.children && (React.cloneElement(this.props.children, { user: this.state.usuario, config: this.state.config, handleLogout: this.handleConfirmLogout, mqttCommand: this.mqttCommand})   )
+            }
+            </Col> : 
+              <Login onLogin={this.handleLogin} />) : <SelectConfig onSelect={this.handleSelect} />) : <span>Aguarde, carregando...</span> }
           {this.state.dialog}
       </div>
     );

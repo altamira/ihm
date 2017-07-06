@@ -66,10 +66,10 @@ export default class IHM extends Component {
 				<Workspace
 					config={this.props.config}
 					user={this.props.user}
-					carregaLista={this.props.carregaLista}
+					mqttCommand={this.props.mqttCommand}
 				>
 					{
-						React.cloneElement(this.props.children, { user: this.props.user, config: this.props.config, carregaLista: this.carregaLista })   
+						React.cloneElement(this.props.children, { user: this.props.user, config: this.props.config, mqttCommand: this.mqttCommand })   
 					}
 				</Workspace>
 

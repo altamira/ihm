@@ -14,7 +14,7 @@ export default class Shell extends Component {
 						user={this.props.user} 
 				    	handleLogout={this.props.handleLogout}
 			  			handleDesligar={this.props.handleDesligar} 
-			    		carregaLista={this.carregaLista} 
+			    		mqttCommand={this.mqttCommand} 
 			    />
 				
 				{this.props.children}
