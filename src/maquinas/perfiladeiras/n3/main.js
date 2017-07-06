@@ -35,9 +35,17 @@ var sectionStyle = {
 
 export default class IHM extends Component  {
 
+  constructor(props) {
+    super(props);
+
+    
+    this.AplanDescer  =   this.AplanDescer.bind(this);
+
+  }
+
   AplanDescer() {
     console.log("AplanDescer");
-    
+    this.props.carregaLista();
   }
 
 	render() {

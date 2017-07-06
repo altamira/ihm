@@ -12,7 +12,7 @@ const Title = props => (
 	<Row>
 		<Col md={10}><h1>{props.title}</h1></Col>
 		<Col md={2}>{
-			props.user && props.user.usuario && (<Button
+			      props.user && props.user.usuario && (<Button
             onClick={ e => props.handleLogout() }
             style={{width: 120}}
             bsStyle="info"

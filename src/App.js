@@ -41,6 +41,8 @@ export default class App extends Component {
     this.mqttConnect    =   this.mqttConnect.bind(this);
     this.mqttUnconnect  =   this.mqttUnconnect.bind(this);
 
+    this.carregaLista  =   this.carregaLista.bind(this);
+
     this.handleErros    =   this.handleErros.bind(this);
     this.handleDebug    =   this.handleDebug.bind(this);
     this.handleEstado   =   this.handleEstado.bind(this);
@@ -127,7 +129,7 @@ export default class App extends Component {
                         }
                       )
             },
-            this.carregaLista
+            //this.carregaLista
           ) 
         : 
           alert('Erro ao se inscrever no topico: ' + err);
@@ -165,7 +167,8 @@ export default class App extends Component {
 
   carregaLista() {
     // enviar dados para fila
-    this.client.publish('fabrica/ihm/debug/' + this.state.config.codigo,JSON.stringify('Alessandro!'));
+    console.log('Carrega lista')
+    this.client.publish('fabrica/ihm/debug/' + this.state.config.codigo,JSON.stringify('U E!'));
   }
 
   handleErros(msg) {
@@ -246,7 +249,7 @@ export default class App extends Component {
       <div className="App">
           {this.state.config ? (this.state.config._id ? (this.state.usuario ? <Col md={12} >
           {
-            this.props && this.props.children && (React.cloneElement(this.props.children, { user: this.state.usuario, config: this.state.config, handleLogout: this.handleConfirmLogout })   )
+            this.props && this.props.children && (React.cloneElement(this.props.children, { user: this.state.usuario, config: this.state.config, handleLogout: this.handleConfirmLogout, carregaLista: this.carregaLista})   )
           }
         </Col> : <Login onLogin={this.handleLogin} />) : <SelectConfig onSelect={this.handleSelect} />) : <span>Aguarde, carregando...</span> }
           {this.state.dialog}

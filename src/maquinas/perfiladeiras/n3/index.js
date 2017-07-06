@@ -65,9 +65,11 @@ export default class IHM extends Component {
 			>
 				<Workspace
 					config={this.props.config}
+					user={this.props.user}
+					carregaLista={this.props.carregaLista}
 				>
 					{
-						this.props && this.props.children && (React.cloneElement(this.props.children, { user: this.props.user, config: this.props.config })   )
+						React.cloneElement(this.props.children, { user: this.props.user, config: this.props.config, carregaLista: this.carregaLista })   
 					}
 				</Workspace>
 
