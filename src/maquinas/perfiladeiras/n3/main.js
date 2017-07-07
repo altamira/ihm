@@ -54,74 +54,74 @@ export default class IHM extends Component  {
 
   aplanDescer() {
     //console.log("AplanDescer");
-    let caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
+    const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
     this.props.mqttCommand(caminho, "aplanDescer");
   }
 
   aplanSubir() {
     //console.log("AplanDescer");
-    let caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
+    const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
     this.props.mqttCommand(caminho, "aplanSubir");
   }
   
   aplanAbrir() {
     //console.log("AplanDescer");
-    let caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
+    const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
     this.props.mqttCommand(caminho, "aplanAbrir");
   }
   
   aplanFechar() {
     //console.log("AplanDescer");
-    let caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
+    const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
     this.props.mqttCommand(caminho, "aplanFechar");
   }
 
   perfilAvanca() {
     //console.log("AplanDescer");
-    let caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
+    const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
     this.props.mqttCommand(caminho, "perfilAvanca");
   }
   
   perfilRecua() {
     //console.log("AplanDescer");
-    let caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
+    const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
     this.props.mqttCommand(caminho, "perfilRecua");
   }
 
 
   plataformaSobe() {
     //console.log("AplanDescer");
-    let caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
+    const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
     this.props.mqttCommand(caminho, "plataformaSobe");
   } 
 
   plataformaDesce() {
     //console.log("AplanDescer");
-    let caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
+    const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
     this.props.mqttCommand(caminho, "plataformaDesce");
   }  
 
   prensaLigar() {
     //console.log("AplanDescer");
-    let caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
+    const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
     this.props.mqttCommand(caminho, "prensaLigar");
   }  
 
   prensaDesligar() {
     //console.log("AplanDescer");
-    let caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
+    const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
     this.props.mqttCommand(caminho, "prensaDesligar");
   }
 
   desbobinadorLigar() {
     //console.log("AplanDescer");
-    let caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
+    const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
     this.props.mqttCommand(caminho, "desbobinadorLigar");
   }  
   
   desbobinadorDesligar() {
     //console.log("AplanDescer");
-    let caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
+    const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
     this.props.mqttCommand(caminho, "desbobinadorDesligar");
   }
 

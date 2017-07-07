@@ -92,9 +92,12 @@ export default class App extends Component {
   
   mqttConnect(){
 
-  const clientId = this.state.config.codigo.toString();// + (1 + Math.random() * 4294967295).toString(16);  
+  const clientId = this.state.config.codigo.toString();
 
-  console.log('Config: ' + JSON.stringify(this.state.config,null,2));
+  // + (1 + Math.random() * 4294967295).toString(16);  
+  const caminho = ('fabrica/ihm/estado/' + clientId)
+   
+  //console.log('Config: ' + JSON.stringify(this.state.config,null,2));
 
   const opts = {
     host: window.location.hostname,
@@ -150,7 +153,7 @@ export default class App extends Component {
     this.state.topics[topic] && this.state.topics[topic](message.toString()); 
 
   }.bind(this))
-    console.log('ClientID dessa maquina = ' + clientId );
+    this.mqttCommand(caminho,  clientId + ' = ON'); //Enviar mensagem de maquina ON
   }
 
   mqttUnconnect() {
@@ -257,10 +260,11 @@ export default class App extends Component {
             //const main 
             <Col md={12} >
             {
-              this.props && this.props.children && (React.cloneElement(this.props.children, { user: this.state.usuario, config: this.state.config, handleLogout: this.handleConfirmLogout, mqttCommand: this.mqttCommand})   )
+              this.props && this.props.children && (React.cloneElement(this.props.children, { user: this.state.usuario, config: this.state.config, handleLogout: this.handleConfirmLogout, mqttCommand: this.mqttCommand}))
             }
             </Col> : 
               <Login onLogin={this.handleLogin} />) : <SelectConfig onSelect={this.handleSelect} />) : <span>Aguarde, carregando...</span> }
+          
           {this.state.dialog}
       </div>
     );
