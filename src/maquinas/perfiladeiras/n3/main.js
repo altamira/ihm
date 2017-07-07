@@ -38,22 +38,93 @@ export default class IHM extends Component  {
   constructor(props) {
     super(props);
     
-    this.AplanDescer  =   this.AplanDescer.bind(this);
-    this.AplanSubir   =   this.AplanSubir.bind(this);
-
+    this.aplanDescer      =   this.aplanDescer.bind(this);
+    this.aplanSubir       =   this.aplanSubir.bind(this);
+    this.aplanAbrir       =   this.aplanAbrir.bind(this);
+    this.aplanFechar      =   this.aplanFechar.bind(this);
+    this.perfilAvanca     =   this.perfilAvanca.bind(this);
+    this.perfilRecua      =   this.perfilRecua.bind(this);
+    this.plataformaSobe   =   this.plataformaSobe.bind(this);
+    this.plataformaDesce  =   this.plataformaDesce.bind(this);
+    this.prensaLigar      =   this.prensaLigar.bind(this);
+    this.prensaDesligar   =   this.prensaDesligar.bind(this);
+    this.desbobinadorLigar=   this.desbobinadorLigar.bind(this);
+    this.desbobinadorDesligar=this.desbobinadorDesligar.bind(this);
   }
 
-  AplanDescer() {
+  aplanDescer() {
     //console.log("AplanDescer");
     let caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
     this.props.mqttCommand(caminho, "aplanDescer");
   }
 
-  AplanSubir() {
+  aplanSubir() {
     //console.log("AplanDescer");
     let caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
     this.props.mqttCommand(caminho, "aplanSubir");
   }
+  
+  aplanAbrir() {
+    //console.log("AplanDescer");
+    let caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
+    this.props.mqttCommand(caminho, "aplanAbrir");
+  }
+  
+  aplanFechar() {
+    //console.log("AplanDescer");
+    let caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
+    this.props.mqttCommand(caminho, "aplanFechar");
+  }
+
+  perfilAvanca() {
+    //console.log("AplanDescer");
+    let caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
+    this.props.mqttCommand(caminho, "perfilAvanca");
+  }
+  
+  perfilRecua() {
+    //console.log("AplanDescer");
+    let caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
+    this.props.mqttCommand(caminho, "perfilRecua");
+  }
+
+
+  plataformaSobe() {
+    //console.log("AplanDescer");
+    let caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
+    this.props.mqttCommand(caminho, "plataformaSobe");
+  } 
+
+  plataformaDesce() {
+    //console.log("AplanDescer");
+    let caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
+    this.props.mqttCommand(caminho, "plataformaDesce");
+  }  
+
+  prensaLigar() {
+    //console.log("AplanDescer");
+    let caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
+    this.props.mqttCommand(caminho, "prensaLigar");
+  }  
+
+  prensaDesligar() {
+    //console.log("AplanDescer");
+    let caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
+    this.props.mqttCommand(caminho, "prensaDesligar");
+  }
+
+  desbobinadorLigar() {
+    //console.log("AplanDescer");
+    let caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
+    this.props.mqttCommand(caminho, "desbobinadorLigar");
+  }  
+  
+  desbobinadorDesligar() {
+    //console.log("AplanDescer");
+    let caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo)
+    this.props.mqttCommand(caminho, "desbobinadorDesligar");
+  }
+
 
 	render() {
 		return(
@@ -63,21 +134,22 @@ export default class IHM extends Component  {
                 <h1>{this.props.config.nome}</h1>
               </Col>
               <Col xs={12} md={12}>
-                <Button onClick={this.AplanDescer}><Image style={{height: '50px', width: '60px'}} src={AplanDescer} rounded /> {"Aplanadora desce"}</Button>
-                <Button onClick={this.AplanSubir}> <Image style={{height: '50px', width: '60px'}} src={AplanSubir} rounded /> {"Aplanadora Subir"}</Button>
-                <Button onClick={this.AplanDescer}><Image style={{height: '50px', width: '60px'}} src={AplanTampaAbrir} rounded /> {"Aplanadora Abre "}</Button>
-                <Button onClick={this.AplanDescer}><Image style={{height: '50px', width: '60px'}} src={AplanTampaFechar} rounded /> {"Aplanadora Fecha"}</Button>
+                <Button onClick={this.aplanDescer}><Image style={{height: '50px', width: '60px'}} src={AplanDescer} rounded     /> {"Aplanadora desce"}</Button>
+                <Button onClick={this.aplanSubir}> <Image style={{height: '50px', width: '60px'}} src={AplanSubir} rounded      /> {"Aplanadora Subir"}</Button>
+                <Button onClick={this.aplanAbrir}> <Image style={{height: '50px', width: '60px'}} src={AplanTampaAbrir} rounded /> {"Aplanadora Abrir "}</Button>
+                <Button onClick={this.aplanFechar}><Image style={{height: '50px', width: '60px'}} src={AplanTampaFechar} rounded /> {"Aplanadora Fecha"}</Button>
               </Col>
               <Col xs={12} md={12}>
-                <Button onClick={this.AplanDescer}><Image style={{height: '50px', width: '60px'}} src={AplanPerfilAvanca} rounded /> {"Chapa Avança"}</Button>
-                <Button onClick={this.AplanDescer}><Image style={{height: '50px', width: '60px'}} src={AplanPerfilRecua} rounded /> {"Chapa Recua"}</Button>
-                <Button onClick={this.AplanDescer}><Image style={{height: '50px', width: '60px'}} src={AplanExtSubir} rounded /> {"Plataforma Sobe"}</Button>
-                <Button onClick={this.AplanDescer}><Image style={{height: '50px', width: '60px'}} src={AplanExtDescer} rounded /> {"Plataforma Desce"}</Button>
+                <Button onClick={this.perfilAvanca}>  <Image style={{height: '50px', width: '60px'}} src={AplanPerfilAvanca} rounded /> {"Chapa Avança"}</Button>
+                <Button onClick={this.perfilRecua}>   <Image style={{height: '50px', width: '60px'}} src={AplanPerfilRecua} rounded /> {"Chapa Recua"}</Button>
+                <Button onClick={this.plataformaSobe}><Image style={{height: '50px', width: '60px'}} src={AplanExtSubir} rounded    /> {"Plataforma Sobe"}</Button>
+                <Button onClick={this.plataformaDesce}><Image style={{height: '50px', width: '60px'}} src={AplanExtDescer} rounded  /> {"Plataforma Desce"}</Button>
               </Col>
               <Col xs={12} md={12}>
-                <Button onClick={this.AplanDescer}><Image style={{height: '50px', width: '60px'}} src={Prensa} rounded /> {"Presa liga"}</Button>
-                <Button onClick={this.AplanDescer}><Image style={{height: '50px', width: '60px'}} src={DesbobOff} rounded /> {"Desbobinador Liga"}</Button>
-                <Button onClick={this.AplanDescer}><Image style={{height: '50px', width: '60px'}} src={DesbobOn} rounded /> {"Desbobinador Desliga"}</Button>
+                <Button onClick={this.prensaLigar}>   <Image style={{height: '50px', width: '60px'}} src={Prensa} rounded          /> {"Presa ligar"}</Button>
+                <Button onClick={this.prensaDesligar}><Image style={{height: '50px', width: '60px'}} src={Prensa} rounded          /> {"Presa desligar"}</Button>
+                <Button onClick={this.desbobinadorLigar}>   <Image style={{height: '50px', width: '60px'}} src={DesbobOff} rounded /> {"Desbobinador Ligar"}</Button>
+                <Button onClick={this.desbobinadorDesligar}><Image style={{height: '50px', width: '60px'}} src={DesbobOn} rounded /> {"Desbobinador Desligar"}</Button>
               </Col>  
             </Row>
           </section>
