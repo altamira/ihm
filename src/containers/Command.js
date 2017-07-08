@@ -12,14 +12,12 @@ export default class Command extends Component {
 
 	render() {
 
-		const col_width = Math.floor(12 / this.props.onClick.length);
-
 		return(
 
 			<Row style={{height: '150px', padding: "5px"}}>
 
 				{this.props.onClick.map( (button, index) => 
-					<Col style={{height: '100%'}} key={index} md={col_width}>
+					<Col style={{height: '100%'}} key={index} xs={6} sm={4} md={2}>
 						<Button 
 							style={{width: '100%', height: '100%', magin: '0'}} 
 							onClick={button.onclick.bind(this)} 
@@ -31,15 +29,14 @@ export default class Command extends Component {
 						</Button>
 					</Col>
 				)}
-
-				{Array.isArray(this.props.onClick) && 12 % this.props.onClick.length ? 
-					(<Col style={{height: '100%'}} key={this.props.onClick.length} md={12 % this.props.onClick.length}>
-						<Button disabled={true} style={{width: '100%', height: '100%', magin: '0'}} ></Button>
-					</Col>) : null
-				}
 			</Row>
 		)
 	}
 	
 } 
+/*Array.isArray(this.props.onClick) && 12 % this.props.onClick.length ? 
+					(<Col style={{height: '100%'}} key={this.props.onClick.length} md={12 % this.props.onClick.length}>
+						<Button disabled={true} style={{width: '100%', height: '100%', magin: '0'}} ></Button>
+					</Col>) : null*/
+//Image load
 //<img alt="Logo" src={require('./images/reset.png')} />
