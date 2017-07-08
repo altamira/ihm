@@ -92,11 +92,8 @@ export default class App extends Component {
   
   mqttConnect(){
 
-  const clientId = this.state.config.codigo.toString();
-
-  // + (1 + Math.random() * 4294967295).toString(16);  
+  const clientId = this.state.config.codigo.toString(); 
   const caminho = ('fabrica/ihm/estado/' + clientId)
-   
   //console.log('Config: ' + JSON.stringify(this.state.config,null,2));
 
   const opts = {
@@ -216,9 +213,11 @@ export default class App extends Component {
   }
 
   handleDesligar() {
-
-    console.log('Desligou')
-    this.mqttUnconnect()
+    const clientId = this.state.config.codigo.toString();
+    const caminho = ('fabrica/ihm/estado/' + clientId); 
+    this.mqttCommand(caminho,  clientId + ' = OFF'); //Enviar mensagem de maquina OFF
+    console.log('Desligou');
+    this.mqttUnconnect();
     this.setState({usuario: undefined, dialog: undefined});//, this.mqttUnconnect);
     
   }
@@ -229,41 +228,22 @@ export default class App extends Component {
 
   render() {
 
-    // state.config = null
-    /*const waiting = (
-        <span>Aguarde, carregando...</span>
-    );*/
-
-    // state.config = {} // nao encontrou a conf para esta maquina no mongoDB
-    /*const load =(
-        <SelectConfig onSelect={this.handleSelect} />
-    );*/
-
-    // state.config = { ... } // encontrou a conf da maquina no mongoDB
-    /*const login = (
-        <Login onLogin={this.handleLogin} />
-    );*/
-
-    // state.config = { ... } && this.state.usuario !== null
-    /*const main = ( 
-        <Col md={12} >
-          {
-            this.props && this.props.children && (React.cloneElement(this.props.children, { user: this.state.usuario, config: this.state.config, handleLogout: this.handleConfirmLogout })   )
-          }
-        </Col>
-    )*/
-
     // maquina de estado mudando this.state muda o render da pagina
     return(
       <div className="App">
-          {this.state.config ? (this.state.config._id ? (this.state.usuario ? 
-            //const main 
-            <Col md={12} >
-            {
-              this.props && this.props.children && (React.cloneElement(this.props.children, { user: this.state.usuario, config: this.state.config, handleLogout: this.handleConfirmLogout, mqttCommand: this.mqttCommand}))
-            }
-            </Col> : 
-              <Login onLogin={this.handleLogin} />) : <SelectConfig onSelect={this.handleSelect} />) : <span>Aguarde, carregando...</span> }
+          {
+            this.state.config ?         // state.config = null ?
+              (this.state.config._id ?  // state.config = {} empty ?
+                (this.state.usuario ?   // this.state.usuario !== null ?
+                  <Col md={12} >        {/*Go to machine main.js !*/}
+                   {
+                    this.props && this.props.children && (React.cloneElement(this.props.children, { user: this.state.usuario, config: this.state.config, handleLogout: this.handleConfirmLogout, mqttCommand: this.mqttCommand}))
+                   }
+                  </Col> 
+                : <Login onLogin={this.handleLogin} />)         //Go to handleLogin !
+              : <SelectConfig onSelect={this.handleSelect} />)  //Go to handleSelect !
+            : <span>Aguarde, carregando...</span>               //Wait for the HTTP response from the server with the machine settings!
+          }
           
           {this.state.dialog}
       </div>
