@@ -203,6 +203,8 @@ export default class App extends Component {
   }
 
   handleDesligar() {
+    const caminho2 = ('fabrica/ihm/user/' + this.state.config.codigo.toString()); 
+    this.mqttCommand(caminho2, this.state.usuario.usuario.toString() + ' = Logout'); //Send user name + Logout
     const caminho = ('fabrica/ihm/estado/' + this.state.config.codigo.toString()); 
     this.mqttCommand(caminho, this.state.config.codigo.toString() + ' = OFF');  //Send message machine code + = OFF
     this.mqttUnconnect();                                                       //Unconnect MQTT topics
