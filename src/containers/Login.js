@@ -45,14 +45,12 @@ export default class Login extends Component {
   }
 
   handleAuthenticate(user) {
-    //Sconsole.log(JSON.stringify(config, null, 2));
-    //const caminho = ('fabrica/ihm/estado/' + clientId)
-    console.log(JSON.stringify(user, null, 2)); //usuario logado
+    //<div className="display-linebreak"> 
+    //console.log(JSON.stringify(user, null, 2)); //usuario logado
     if (user.usuario) {
       this.props.onLogin && this.props.onLogin(user);
-      //this.mqttCommand(caminho, user.usuario); //Enviar mensagem de maquina ON
     } else {
-      let err = {mensagem: 'Usuário e senha não encontrado. Verifique se digitou a senha corretamente.'}
+      let err = {mensagem:   <span> {'Usuário e senha não encontrado.'} <br/> {'Verifique se digitou a senha corretamente.'} </span>}
       this.setState({dialog: <Error {...err} onClose={this.handleCloseDialog.bind(this)} />})
     }
   }

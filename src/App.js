@@ -150,7 +150,7 @@ export default class App extends Component {
     this.state.topics[topic] && this.state.topics[topic](message.toString()); 
 
   }.bind(this))
-    this.mqttCommand(caminho,  clientId + ' = ON'); //Enviar mensagem de maquina ON
+    this.mqttCommand(caminho,  clientId + ' = ON'); //Send message machine code + = ON
   }
 
   mqttUnconnect() {
@@ -198,28 +198,29 @@ export default class App extends Component {
     this.client.publish(caminho,mensagem);
   }
 
-  handleLogin(usuario) {
-    this.setState({usuario: usuario}, this.props.router.push.bind(null, this.state.config.path))
-  }
-
   handleConfirmLogout() {
     this.setState({dialog: <Confirm message={'O que você quer fazer ?'} onClose={this.handleCloseDialog.bind(this)} onConfirm={this.handleLogout.bind(this)} onDesligar={this.handleDesligar.bind(this)} />})
   }
 
-  handleLogout() {
-    console.log('Logout')
-    this.mqttUnconnect()
-    this.setState({usuario: undefined, dialog: undefined});//, this.mqttUnconnect);
+  handleDesligar() {
+    const caminho = ('fabrica/ihm/estado/' + this.state.config.codigo.toString()); 
+    this.mqttCommand(caminho, this.state.config.codigo.toString() + ' = OFF');  //Send message machine code + = OFF
+    this.mqttUnconnect();                                                       //Unconnect MQTT topics
+    this.setState({usuario: undefined, dialog: undefined});    
   }
 
-  handleDesligar() {
-    const clientId = this.state.config.codigo.toString();
-    const caminho = ('fabrica/ihm/estado/' + clientId); 
-    this.mqttCommand(caminho,  clientId + ' = OFF'); //Enviar mensagem de maquina OFF
-    console.log('Desligou');
-    this.mqttUnconnect();
-    this.setState({usuario: undefined, dialog: undefined});//, this.mqttUnconnect);
-    
+  handleLogout() {
+    const caminho = ('fabrica/ihm/user/' + this.state.config.codigo.toString()); 
+    this.mqttCommand(caminho, this.state.usuario.usuario.toString() + ' = Logout'); //Send user name + Logout
+    this.mqttUnconnect() //Unconnect MQTT topics
+    this.setState({usuario: undefined, dialog: undefined});
+  }
+
+  handleLogin(usuario) {
+    const caminho = ('fabrica/ihm/user/' + this.state.config.codigo.toString()); 
+    this.mqttCommand(caminho, usuario.usuario + ' = Login');                        //Send user name + Login
+    this.setState({usuario: usuario}, 
+    this.props.router.push.bind(null, this.state.config.path))
   }
 
   handleSelect() {
@@ -235,7 +236,7 @@ export default class App extends Component {
             this.state.config ?         // state.config = null ?
               (this.state.config._id ?  // state.config = {} empty ?
                 (this.state.usuario ?   // this.state.usuario !== null ?
-                  <Col md={12} >        {/*Go to machine main.js !*/}
+                  <Col md={12} >                                {/*Go to machine main.js !*/}
                    {
                     this.props && this.props.children && (React.cloneElement(this.props.children, { user: this.state.usuario, config: this.state.config, handleLogout: this.handleConfirmLogout, mqttCommand: this.mqttCommand}))
                    }
@@ -250,4 +251,3 @@ export default class App extends Component {
     );
   }
 }
-
