@@ -27,9 +27,14 @@ export default class App extends Component {
   constructor(props) {
     super(props);
 
+    let today = new Date(),
+        date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
+    let hora = new Date().toLocaleTimeString().slice(0,5);
+
     this.state = {
       config: {codigo: null}, 
       usuario: null,
+      timer: {"date":date,"hours":hora},
       topics: {}
     }
     this.handleLoadConfig = this.handleLoadConfig.bind(this);
@@ -96,7 +101,7 @@ export default class App extends Component {
   const caminho = ('fabrica/ihm/estado/' + clientId)
   //console.log('Config: ' + JSON.stringify(this.state.config,null,2));
 
-  const opts = {
+  const settings = {
     host: window.location.hostname,
     port: 61614,
     protocol: 'ws',
@@ -107,7 +112,7 @@ export default class App extends Component {
     clientId: clientId
   }
 
-  this.client = mqtt.connect(opts);
+  this.client = mqtt.connect(settings);
 
   this.client.on('connect', function() {
 
@@ -116,7 +121,7 @@ export default class App extends Component {
        'fabrica/ihm/debug/'   + clientId,
        'fabrica/ihm/estado/'  + clientId,
        'fabrica/ihm/comandos/'+ clientId,
-       'fabrica/ihm/timer/'   + clientId,
+       'fabrica/ihm/timer/'             ,
        'fabrica/ihm/user/'    + clientId], 
        function(err, granted) { 
         !err ? 
@@ -186,7 +191,7 @@ export default class App extends Component {
   }
 
   handleTimer(msg) {
-    alert('Timer: ' + msg); //Mostra o que recebeu da fila Timer
+    this.setState({ timer: JSON.parse(msg) }); // Updade node-red timer to this.state.timer
   }
 
   handleUser(msg) {
@@ -240,7 +245,7 @@ export default class App extends Component {
                 (this.state.usuario ?   // this.state.usuario !== null ?
                   <Col md={12} >                                {/*Go to machine main.js !*/}
                    {
-                    this.props && this.props.children && (React.cloneElement(this.props.children, { user: this.state.usuario, config: this.state.config, handleLogout: this.handleConfirmLogout, mqttCommand: this.mqttCommand}))
+                    this.props && this.props.children && (React.cloneElement(this.props.children, { user: this.state.usuario, config: this.state.config, timer: this.state.timer, handleLogout: this.handleConfirmLogout, mqttCommand: this.mqttCommand}))
                    }
                   </Col> 
                 : <Login onLogin={this.handleLogin} />)         //Go to handleLogin !

@@ -5,13 +5,15 @@ import Title from './../containers/Title'
 export default class Shell extends Component {
 
 	render() {
-		let x = this.props.config.codigo;
-		console.log('Igual a = ' + x);
+	//	let x = JSON.stringify(this.props.timer,null,2);
+	//	console.log('timer = ' + x);
+
 		return(
 
 			<div>
-				<Title  title={this.props.title} 
-						user={this.props.user} 
+				<Title  user={this.props.user} 
+						config={this.props.config}
+						timer={this.props.timer}
 				    	handleLogout={this.props.handleLogout}
 			  			handleDesligar={this.props.handleDesligar} 
 			    		mqttCommand={this.mqttCommand} 
@@ -26,3 +28,5 @@ export default class Shell extends Component {
 	}
 
 }
+//console.log(JSON.stringify(this.props.timer,null,2));
+//console.log(JSON.stringify(this.props.user,null,2));

@@ -57,9 +57,9 @@ export default class IHM extends Component {
 		return(
 			
 			<Shell
-				title={this.props.config.nome}
 				user={this.props.user}
 				config={this.props.config}
+				timer={this.props.timer}
 				handleLogout={this.props.handleLogout} 
 				handleDesligar={this.props.handleDesligar} 
 			>
