@@ -10,18 +10,41 @@ import {
 const Title = props => (
 
 	<Row>
-    <Col md={2}><h1>{props.timer.hours}</h1></Col>
-		<Col md={8}><h1>{props.config.nome}</h1></Col>
-		<Col md={2}>{
-			      props.user && props.user.usuario && (<Button
-            onClick={ e => props.handleLogout() }
-            style={{width: 120}}
-            bsStyle="info"
+    <Col xs={3} sm={3} md={2}>
+          <Button
+            style={{margin: '0 0 10px'}}
+            bsStyle="primary"
+            bsSize="large" block
           >
-            <Glyphicon glyph="user" />
-            <div>{props.user && props.user.usuario}</div>
-          	</Button>)} 
-        </Col>
+            {props.timer.hours}
+          </Button>
+    </Col>
+		<Col xs={6} sm={6} md={8}>
+          <style type="text/css">{`
+           .btn-custom {
+            background-color: purple;
+             color: white;
+          }`}</style>
+          <Button
+            bsStyle="custom"
+            style={{margin: '0 0 10px'}}
+            bsSize="large" block
+          >
+            {props.config.nome}
+          </Button>
+    </Col>
+		<Col xs={3} sm={3} md={2}>{
+			    <Button
+            onClick={ e => props.handleLogout() }
+            style={{margin: '0 0 10px'}}
+            bsStyle="info" 
+            bsSize="large" block
+          >
+          <Glyphicon glyph="user" />
+            - {props.user.usuario}
+          </Button>
+        } 
+    </Col>
 	</Row>
 
 )
