@@ -54,8 +54,6 @@ export default class App extends Component {
     this.handleTimer    =   this.handleTimer.bind(this);
     this.handleUser     =   this.handleUser.bind(this);
 
-    //this.writeUser      =   this.writeUser.bind(this);
-
     this.handleCloseDialog = this.handleCloseDialog.bind(this);
   }
 
@@ -252,7 +250,6 @@ export default class App extends Component {
               : <SelectConfig onSelect={this.handleSelect} />)  //Go to handleSelect !
             : <span>Aguarde, carregando...</span>               //Wait for the HTTP response from the server with the machine settings!
           }
-          
           {this.state.dialog}
       </div>
     );

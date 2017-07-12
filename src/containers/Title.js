@@ -11,14 +11,30 @@ import { bootstrapUtils } from 'react-bootstrap/lib/utils';
 bootstrapUtils.addStyle(Button, 'custom');
 
 export default class Title extends Component {
+  constructor(props) {
+    super(props);
+
+    this.timerHours = this.timerHours.bind(this);
+  }
+
+  timerHours() {
+    let hora = new Date().toLocaleTimeString();
+    alert(hora + ' horas' + ' -- ' + this.props.timer.date); 
+  }
+
+
   render() {
+
+
     return(
     	<Row>
         <Col xs={3} sm={3} md={2}>
               <Button
+                onClick={e => this.timerHours()}
                 style={{margin: '0 0 10px'}}
                 bsStyle="primary"
-                bsSize="large" block
+                bsSize="large" 
+                block
               >
                 {this.props.timer.hours}
               </Button>
@@ -32,7 +48,8 @@ export default class Title extends Component {
               <Button
                 bsStyle="custom"
                 style={{margin: '0 0 10px'}}
-                bsSize="large" block
+                bsSize="large" 
+                block
               >
                 {this.props.config.nome}
               </Button>
@@ -42,7 +59,8 @@ export default class Title extends Component {
                 onClick={ e => this.props.handleLogout() }
                 style={{margin: '0 0 10px'}}
                 bsStyle="info" 
-                bsSize="large" block
+                bsSize="large" 
+                block
               >
               <Glyphicon glyph="user" />
                 - {this.props.user.usuario}
