@@ -19,7 +19,7 @@ export default class Title extends Component {
 
   timerHours() {
     let hora = new Date().toLocaleTimeString();
-    alert(hora + ' horas' + ' -- ' + this.props.timer.date); 
+    alert(hora + ' horas - ' + this.props.timer.date); 
   }
 
 

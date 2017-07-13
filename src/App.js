@@ -233,25 +233,44 @@ export default class App extends Component {
   }
 
   render() {
+    // change this.state change page render.
 
-    // maquina de estado mudando this.state muda o render da pagina
-    return(
-      <div className="App">
-          {
-            this.state.config ?         // state.config = null ?
-              (this.state.config._id ?  // state.config = {} empty ?
-                (this.state.usuario ?   // this.state.usuario !== null ?
-                  <Col md={12} >                                {/*Go to machine main.js !*/}
-                   {
-                    this.props && this.props.children && (React.cloneElement(this.props.children, { user: this.state.usuario, config: this.state.config, timer: this.state.timer, handleLogout: this.handleConfirmLogout, mqttCommand: this.mqttCommand}))
-                   }
-                  </Col> 
-                : <Login onLogin={this.handleLogin} />)         //Go to handleLogin !
-              : <SelectConfig onSelect={this.handleSelect} />)  //Go to handleSelect !
-            : <span>Aguarde, carregando...</span>               //Wait for the HTTP response from the server with the machine settings!
-          }
-          {this.state.dialog}
-      </div>
-    );
+    if(this.state.config._id !== undefined) { // state.config._id = null ?
+        if(this.state.usuario !== null){      // this.state.usuario !== null ?
+          return(
+            <div className="App">
+                {  
+                        <Col md={12} >        {/*Go to machine main.js "router" */}
+                         {
+                          this.props && this.props.children && (React.cloneElement(this.props.children, { user: this.state.usuario, config: this.state.config, timer: this.state.timer, handleLogout: this.handleConfirmLogout, mqttCommand: this.mqttCommand}))
+                         }
+                        </Col> 
+                }
+                {this.state.dialog}
+            </div>
+          );
+        }
+        else {
+          return(
+            <div className="App">
+                {  
+                  <Login onLogin={this.handleLogin} />         //Go to handleLogin !
+                }
+                {this.state.dialog}
+            </div>
+          );
+        }
+    }
+    else {
+      return(
+        <div className="App">
+            {
+              <SelectConfig onSelect={this.handleSelect} />  //Wait for the HTTP response from the server with the machine settings!
+            }
+            {this.state.dialog}
+        </div>
+      );
+    } 
   }
 }
+
