@@ -33,6 +33,12 @@ render((
         <Route path="automatico" component={IHM_N3_AUTOMATICO}/>
         <Route path="manual" component={IHM_N3_MANUAL}/>
       </Route>
+      {/*perfiladeira Sigma 120mm*/}
+      <Route path="maquinas/perfiladeiras/sigma120" component={IHM_N3}>
+        <Route path="main" component={IHM_N3_MAIN}/>
+        <Route path="automatico" component={IHM_N3_AUTOMATICO}/>
+        <Route path="manual" component={IHM_N3_MANUAL}/>
+      </Route>
     	{/*fim*/}
 
       <Route path="*" component={NoMatch}/>

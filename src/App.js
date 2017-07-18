@@ -211,14 +211,14 @@ export default class App extends Component {
     const caminho = ('fabrica/ihm/estado/' + this.state.config.codigo.toString()); 
     this.mqttCommand(caminho, this.state.config.codigo.toString() + ' = OFF');  //Send message machine code + = OFF
     this.mqttUnconnect();                                                       //Unconnect MQTT topics
-    this.setState({usuario: undefined, dialog: undefined});    
+    this.setState({usuario: null, dialog: undefined});    
   }
 
   handleLogout() {
     const caminho = ('fabrica/ihm/user/' + this.state.config.codigo.toString()); 
     this.mqttCommand(caminho, this.state.usuario.usuario.toString() + ' = Logout'); //Send user name + Logout
     this.mqttUnconnect() //Unconnect MQTT topics
-    this.setState({usuario: undefined, dialog: undefined});
+    this.setState({usuario: null, dialog: undefined});
   }
 
   handleLogin(usuario) {
@@ -235,8 +235,8 @@ export default class App extends Component {
   render() {
     // change this.state change page render.
 
-    if(this.state.config._id !== undefined) { // state.config._id = null ?
-        if(this.state.usuario !== null){      // this.state.usuario !== null ?
+    if(this.state.config._id !== undefined) { 
+        if(this.state.usuario !== null) {     
           return(
             <div className="App">
                 {  
@@ -262,14 +262,21 @@ export default class App extends Component {
         }
     }
     else {
-      return(
-        <div className="App">
-            {
-              <SelectConfig onSelect={this.handleSelect} />  //Wait for the HTTP response from the server with the machine settings!
-            }
-            {this.state.dialog}
-        </div>
-      );
+      if (this.state.config.codigo == null){
+        return(
+          <div className="App">
+              {
+                <SelectConfig onSelect={this.handleSelect} />  //Wait for the HTTP response from the server with the machine settings!
+              }
+              {this.state.dialog}
+          </div>
+        );
+      }
+      else {
+        return (
+          <span>Aguarde, carregando... Verfique a rede</span>
+        );
+      }
     } 
   }
 }
