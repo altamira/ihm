@@ -103,11 +103,8 @@ export default class App extends Component {
     host: window.location.hostname,
     port: 61614,
     protocol: 'ws',
-    qos: 0,
-    retain: false,
-    clean: true,
-    keepAlive: 30,
-    clientId: clientId
+    qos: 0
+
   }
 
   this.client = mqtt.connect(settings);
