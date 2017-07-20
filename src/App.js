@@ -17,10 +17,10 @@ import {assign} from 'lodash';
 import api from './api';
 import Error from './containers/Error.jsx';
 import ConfigError from './containers/ConfigError.jsx';
-import Confirm from './containers/Confirm.jsx';
+import ConfirmLogout from './containers/dialogConfirmLogout.jsx';
 import config from './config';
 
-//Hours
+// eslint-disable-next-line
 Date.prototype.fromUTC = function() {
   let date = this.toISOString();
   if (!this.getUTCHours() && !this.getUTCMinutes() && !this.getUTCSeconds() && !this.getUTCMilliseconds()) {
@@ -30,7 +30,7 @@ Date.prototype.fromUTC = function() {
   return this;
 }
 
-//convert to isoDate in 0:0:000
+// eslint-disable-next-line
 Date.prototype.toUTC = function() {
   let date = this.toISOString();
   if (this.getUTCHours() || this.getUTCMinutes() || this.getUTCSeconds() || this.getUTCMilliseconds()) {
@@ -219,7 +219,7 @@ export default class App extends Component {
   }
 
   handleConfirmLogout() {
-    this.setState({dialog: <Confirm message={'O que você quer fazer ?'} onClose={this.handleCloseDialog.bind(this)} onConfirm={this.handleLogout.bind(this)} onDesligar={this.handleDesligar.bind(this)} />})
+    this.setState({dialog: <ConfirmLogout message={'O que você quer fazer ?'} onClose={this.handleCloseDialog.bind(this)} onConfirm={this.handleLogout.bind(this)} onDesligar={this.handleDesligar.bind(this)} />})
   }
 
   handleDesligar() {

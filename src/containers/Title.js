@@ -17,8 +17,11 @@ export default class Title extends Component {
     this.timerHours = this.timerHours.bind(this);
   }
 
+
+
   timerHours() {
     let hora = new Date().toLocaleTimeString();
+    //this.setState({dialog: <Confirm message={'O que você quer fazer ?'} onClose={() => this.setState({ dialog: undefined}) } />})
     alert(hora + ' horas - ' + this.props.timer.date); 
   }
 
