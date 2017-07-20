@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import uuid from 'uuid';
 
@@ -45,9 +46,9 @@ const Table = props => (
 );
 
 Table.propTypes = {
-    command: React.PropTypes.array,
-    header: React.PropTypes.array.isRequired,
-  //  children: React.PropTypes.node.isRequired
+    command: PropTypes.array,
+    header: PropTypes.array.isRequired,
+  //  children: PropTypes.node.isRequired
 };
 
 Table.defaultProps = {

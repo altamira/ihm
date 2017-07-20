@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const Command = props => {
     return (
@@ -7,7 +8,7 @@ const Command = props => {
     );
 };
 
-Command.propTypes = {
+Command.PropTypes = {
     
 };
 

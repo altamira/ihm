@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Origem = (props) => {
 
@@ -13,8 +14,8 @@ const Origem = (props) => {
     );
 };
 
-Origem.propTypes = {
-    origem: React.PropTypes.string.isRequired
+Origem.PropTypes = {
+    origem: PropTypes.string.isRequired
 }
 
 export default Origem;

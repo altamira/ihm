@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import {
     OverlayTrigger,
@@ -16,11 +17,11 @@ const SmallButton = (props) =>
         </Button>
     </OverlayTrigger>
 
-SmallButton.propTypes = {
-    tooltip: React.PropTypes.string,
-    icon: React.PropTypes.string.isRequired,
-    style: React.PropTypes.string,
-    onClick: React.PropTypes.func.isRequired
+SmallButton.PropTypes = {
+    tooltip: PropTypes.string,
+    icon: PropTypes.string.isRequired,
+    style: PropTypes.string,
+    onClick: PropTypes.func.isRequired
 }
 
 export default SmallButton;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Image } from 'react-bootstrap';
 
@@ -8,8 +9,8 @@ const Process = props => {
     );
 };
 
-Process.propTypes = {
-    src: React.PropTypes.string.isRequired
+Process.PropTypes = {
+    src: PropTypes.string.isRequired
 };
 
 export default Process;

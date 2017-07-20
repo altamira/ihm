@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import {
     Row,
@@ -20,11 +21,11 @@ const Column = (props) =>
     </Row>
 
 
-Column.propTypes = {
-    columns: React.PropTypes.arrayOf(React.PropTypes.shape({
-        label: React.PropTypes.string.isRequired,
-        width: React.PropTypes.arrayOf(React.PropTypes.number),
-        field: React.PropTypes.node
+Column.PropTypes = {
+    columns: PropTypes.arrayOf(PropTypes.shape({
+        label: PropTypes.string.isRequired,
+        width: PropTypes.arrayOf(PropTypes.number),
+        field: PropTypes.node
     }))
 }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Calendar = (props) => {
     return (
@@ -7,7 +8,7 @@ const Calendar = (props) => {
 };
 
 Calendar.propTypes = {
-    date: React.PropTypes.string.isRequired
+    date: PropTypes.string.isRequired
 };
 
 Calendar.defaultProps = {

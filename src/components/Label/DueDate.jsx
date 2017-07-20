@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const DueDate = (props) => {
     return (
@@ -7,7 +8,7 @@ const DueDate = (props) => {
 };
 
 DueDate.propTypes = {
-    date: React.PropTypes.string.isRequired
+    date: PropTypes.string.isRequired
 };
 
 DueDate.defaultProps = {

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const TipoVencto = (props) => {
 
@@ -14,10 +15,10 @@ const TipoVencto = (props) => {
     );
 };
 
-TipoVencto.propTypes = {
-    parcela: React.PropTypes.number.isRequired,
-    prazo: React.PropTypes.number.isRequired,
-    tipo_vencto: React.PropTypes.string.isRequired
+TipoVencto.PropTypes = {
+    parcela: PropTypes.number.isRequired,
+    prazo: PropTypes.number.isRequired,
+    tipo_vencto: PropTypes.string.isRequired
 }
 
 export default TipoVencto;

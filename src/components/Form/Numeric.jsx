@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import {
   FormGroup,
@@ -21,10 +22,10 @@ const Numeric = (props) => (
 );
 
 Numeric.propTypes = {
-    label: React.PropTypes.string,
-    name: React.PropTypes.string,
-    value: React.PropTypes.number.isRequired,
-    onChange: React.PropTypes.func
+    label: PropTypes.string,
+    name: PropTypes.string,
+    value: PropTypes.number.isRequired,
+    onChange: PropTypes.func
 };
 
 export default Numeric;

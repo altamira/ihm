@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import format from 'number-format.js';
 
@@ -9,7 +10,7 @@ const Money = (props) => {
 };
 
 Money.propTypes = {
-    value: React.PropTypes.number.isRequired
+    value: PropTypes.number.isRequired
 };
 
 Money.defaultProps = {

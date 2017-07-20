@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const FormaPagto = (props) => {
 
@@ -17,8 +18,8 @@ const FormaPagto = (props) => {
     );
 };
 
-FormaPagto.propTypes = {
-    forma_pagto: React.PropTypes.string.isRequired
+FormaPagto.PropTypes = {
+    forma_pagto: PropTypes.string.isRequired
 }
 
 export default FormaPagto;

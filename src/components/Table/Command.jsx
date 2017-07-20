@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { SmallButton } from './../Form';
 
@@ -12,10 +13,10 @@ const Command = (props) =>
     </div>
 
 Command.propTypes = {
-    command: React.PropTypes.arrayOf(React.PropTypes.shape({
-        tooltip: React.PropTypes.string,
-        icon: React.PropTypes.string.isRequired,
-        onClick: React.PropTypes.func.isRequired
+    command: PropTypes.arrayOf(PropTypes.shape({
+        tooltip: PropTypes.string,
+        icon: PropTypes.string.isRequired,
+        onClick: PropTypes.func.isRequired
     }))
 }
 

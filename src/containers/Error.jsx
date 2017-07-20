@@ -17,10 +17,12 @@ export default class Error extends Component {
 		if (this.props.response && this.props.response.data) {
 			erro = this.props.response.data.erro || erro;
 			mensagem = this.props.response.data.mensagem || mensagem;
-		} else if (this.props.message) {
+		} 
+		else if (this.props.message) {
 			erro = this.props.error || erro;
 			mensagem = this.props.message || mensagem;
-		} else if (this.props.mensagem) {
+		} 
+		else if (this.props.mensagem) {
 			erro = this.props.erro || erro;
 			mensagem = this.props.mensagem || mensagem;
 		}

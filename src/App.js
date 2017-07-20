@@ -12,7 +12,7 @@ import {
 } from 'react-bootstrap';
 
 import mqtt from 'mqtt/lib/connect';
-import { assign} from 'lodash';
+import {assign} from 'lodash';
 
 import api from './api';
 import Error from './containers/Error.jsx';
@@ -20,16 +20,36 @@ import ConfigError from './containers/ConfigError.jsx';
 import Confirm from './containers/Confirm.jsx';
 import config from './config';
 
+//Hours
+Date.prototype.fromUTC = function() {
+  let date = this.toISOString();
+  if (!this.getUTCHours() && !this.getUTCMinutes() && !this.getUTCSeconds() && !this.getUTCMilliseconds()) {
+    this.setTime(this.getTime() + (this.getTimezoneOffset() * 60 * 1000))
+  } 
+  console.log(`from UTC: ${date}, to locale: ${this.toISOString()}`)
+  return this;
+}
 
+//convert to isoDate in 0:0:000
+Date.prototype.toUTC = function() {
+  let date = this.toISOString();
+  if (this.getUTCHours() || this.getUTCMinutes() || this.getUTCSeconds() || this.getUTCMilliseconds()) {
+    this.setTime(this.getTime() - ((this.getHours() * 60 * 60 * 1000) + (this.getMinutes() * 60 * 1000) + (this.getSeconds() * 1000) + this.getMilliseconds() + (this.getTimezoneOffset() * 60 * 1000)) )
+  }
+  console.log(`from locale: ${date}, to UTC: ${this.toISOString()}`)
+  return this;
+}
 
 export default class App extends Component {
 
   constructor(props) {
     super(props);
 
-    let today = new Date(),
-        date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
-    let hora = new Date().toLocaleTimeString().slice(0,5);
+    let date = new Date().fromUTC().toLocaleDateString('pt-BR');
+    let hora = new Date().fromUTC().toLocaleTimeString('pt-BR').slice(0,5);;
+
+    console.log('data = ' + date)
+    console.log('hora = ' + hora)
 
     this.state = {
       config: {codigo: null}, 

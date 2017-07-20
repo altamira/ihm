@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import uuid from 'uuid';
 
@@ -56,13 +57,13 @@ const Page = (props) => (
 );
 
 Page.propTypes = {
-    command: React.PropTypes.arrayOf(React.PropTypes.shape({
-        title: React.PropTypes.string,
-        tooltip: React.PropTypes.string,
-        onClick: React.PropTypes.func.isRequired,
-        icon: React.PropTypes.string,
-        label: React.PropTypes.string.isRequired,
-        style: React.PropTypes.string
+    command: PropTypes.arrayOf(PropTypes.shape({
+        title: PropTypes.string,
+        tooltip: PropTypes.string,
+        onClick: PropTypes.func.isRequired,
+        icon: PropTypes.string,
+        label: PropTypes.string.isRequired,
+        style: PropTypes.string
     }))
 }
 

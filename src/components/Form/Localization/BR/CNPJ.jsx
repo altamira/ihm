@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import {
   FormGroup,
@@ -16,11 +17,11 @@ const CNPJ = (props) => (
     </FormGroup>
 );
 
-CNPJ.propTypes = {
-    label: React.PropTypes.string,
-    name: React.PropTypes.string,
-    value: React.PropTypes.string.isRequired,
-    onChange: React.PropTypes.func
+CNPJ.PropTypes = {
+    label: PropTypes.string,
+    name: PropTypes.string,
+    value: PropTypes.string.isRequired,
+    onChange: PropTypes.func
 };
 
 CNPJ.defaultProps = {

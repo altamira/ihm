@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Description = (props) => {
     return (
@@ -7,7 +8,7 @@ const Description = (props) => {
 };
 
 Description.propTypes = {
-    text: React.PropTypes.string.isRequired
+    text: PropTypes.string.isRequired
 };
 
 Description.defaultProps = {

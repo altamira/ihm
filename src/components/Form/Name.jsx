@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import {
   FormGroup,
@@ -15,9 +16,9 @@ const Name = (props) => (
 );
 
 Name.propTypes = {
-    label: React.PropTypes.string,
-    name: React.PropTypes.string,
-    value: React.PropTypes.string.isRequired
+    label: PropTypes.string,
+    name: PropTypes.string,
+    value: PropTypes.string.isRequired
 };
 
 Name.defaultProps = {

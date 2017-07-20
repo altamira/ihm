@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import uuid from 'uuid';
 
@@ -24,9 +25,9 @@ const Header = (props) => {
 };
 
 Header.propTypes = {
-    header: React.PropTypes.arrayOf(React.PropTypes.shape({
-        align: React.PropTypes.string,
-        label: React.PropTypes.string.isRequired
+    header: PropTypes.arrayOf(PropTypes.shape({
+        align: PropTypes.string,
+        label: PropTypes.string.isRequired
     })).isRequired,
 };
 

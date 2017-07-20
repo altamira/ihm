@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import {
   FormGroup,
@@ -24,10 +25,10 @@ const DueDate = (props) => (
 );
 
 DueDate.propTypes = {
-    label: React.PropTypes.string,
-    name: React.PropTypes.string,
-    date: React.PropTypes.string.isRequired,
-    onChange: React.PropTypes.func
+    label: PropTypes.string,
+    name: PropTypes.string,
+    date: PropTypes.string.isRequired,
+    onChange: PropTypes.func
 };
 
 DueDate.defaultProps = {

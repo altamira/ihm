@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Tabs as BTabs, Tab as BTab } from 'react-bootstrap';
 
@@ -18,9 +19,9 @@ const Tabs = props =>
     </BTabs>
 
 Tabs.propTypes = {
-    tabs: React.PropTypes.arrayOf(React.PropTypes.shape({
-        title: React.PropTypes.string.isRequired,
-        content: React.PropTypes.node.isRequired
+    tabs: PropTypes.arrayOf(PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        content: PropTypes.node.isRequired
     }))
 }
 

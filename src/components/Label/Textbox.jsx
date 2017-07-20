@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Textbox = (props) => {
     return (
@@ -7,7 +8,7 @@ const Textbox = (props) => {
 };
 
 Textbox.propTypes = {
-    text: React.PropTypes.string.isRequired
+    text: PropTypes.string.isRequired
 };
 
 Textbox.defaultProps = {

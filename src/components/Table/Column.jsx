@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import uuid from 'uuid';
 
@@ -12,11 +13,11 @@ const Column = (props) =>
     </tr>
 
 
-Column.propTypes = {
-    columns: React.PropTypes.arrayOf(React.PropTypes.shape({
-        content: React.PropTypes.node,
-        align: React.PropTypes.string,
-        span: React.PropTypes.number
+Column.PropTypes = {
+    columns: PropTypes.arrayOf(PropTypes.shape({
+        content: PropTypes.node,
+        align: PropTypes.string,
+        span: PropTypes.number
     }))
 }
 
