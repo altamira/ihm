@@ -22,21 +22,21 @@ import config from './config';
 
 // eslint-disable-next-line
 Date.prototype.fromUTC = function() {
-  let date = this.toISOString();
+  //let date = this.toISOString();
   if (!this.getUTCHours() && !this.getUTCMinutes() && !this.getUTCSeconds() && !this.getUTCMilliseconds()) {
     this.setTime(this.getTime() + (this.getTimezoneOffset() * 60 * 1000))
   } 
-  console.log(`from UTC: ${date}, to locale: ${this.toISOString()}`)
+  //console.log(`from UTC: ${date}, to locale: ${this.toISOString()}`)
   return this;
 }
 
 // eslint-disable-next-line
 Date.prototype.toUTC = function() {
-  let date = this.toISOString();
+  //let date = this.toISOString();
   if (this.getUTCHours() || this.getUTCMinutes() || this.getUTCSeconds() || this.getUTCMilliseconds()) {
     this.setTime(this.getTime() - ((this.getHours() * 60 * 60 * 1000) + (this.getMinutes() * 60 * 1000) + (this.getSeconds() * 1000) + this.getMilliseconds() + (this.getTimezoneOffset() * 60 * 1000)) )
   }
-  console.log(`from locale: ${date}, to UTC: ${this.toISOString()}`)
+  //console.log(`from locale: ${date}, to UTC: ${this.toISOString()}`)
   return this;
 }
 
@@ -47,9 +47,6 @@ export default class App extends Component {
 
     let date = new Date().fromUTC().toLocaleDateString('pt-BR');
     let hora = new Date().fromUTC().toLocaleTimeString('pt-BR').slice(0,5);;
-
-    console.log('data = ' + date)
-    console.log('hora = ' + hora)
 
     this.state = {
       config: {codigo: null}, 

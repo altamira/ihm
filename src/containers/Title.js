@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ConfirmDate from './dialogDate.jsx';
 
 import { 
   Row,
@@ -14,15 +15,23 @@ export default class Title extends Component {
   constructor(props) {
     super(props);
 
+    this.state = { 
+      dialog :null
+    }
+
+    this.CloseDialog = this.CloseDialog.bind(this);
     this.timerHours = this.timerHours.bind(this);
   }
 
-
+  CloseDialog() {
+    this.setState({ dialog: undefined })
+  }
 
   timerHours() {
-    let hora = new Date().toLocaleTimeString();
-    //this.setState({dialog: <Confirm message={'O que você quer fazer ?'} onClose={() => this.setState({ dialog: undefined}) } />})
-    alert(hora + ' horas - ' + this.props.timer.date); 
+    //let hora = new Date().toLocaleTimeString();
+    this.setState({dialog: <ConfirmDate date={this.props.timer.date} hours={this.props.timer.hours} CloseDialog={this.CloseDialog.bind(this)} />});
+    //alert(hora + ' horas - ' + this.props.timer.date); 
+
   }
 
 
@@ -70,6 +79,7 @@ export default class Title extends Component {
               </Button>
             } 
         </Col>
+        {this.state.dialog}
     	</Row>
     )
   }

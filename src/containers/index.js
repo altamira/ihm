@@ -7,6 +7,7 @@ import ViewConfig 			from './ViewConfig'
 import SelectConfig 		from './SelectConfig'
 import dialogConfirmLogout  from './dialogConfirmLogout'
 import dialogDate 			from './dialogDate'
+import dialogDefault 		from './dialogDefault'
 
 export { Shell }
 export { Title }
@@ -17,6 +18,7 @@ export { ViewConfig }
 export { SelectConfig }
 export { dialogConfirmLogout }
 export { dialogDate }
+export { dialogDefault }
 
 export default {
 	Shell: Shell,
@@ -28,4 +30,5 @@ export default {
 	SelectConfig: SelectConfig,
 	dialogConfirmLogout: dialogConfirmLogout,
 	dialogDate: dialogDate,
+	dialogDefault: dialogDefault,
 }
