@@ -1,5 +1,5 @@
 const LOCAL_HOST = 'http://localhost'
-const LOCAL_PORT = '80'; 
+const LOCAL_PORT = '1880'; 
 const LOCAL_API_ROOT = '/api/';
 
 //Servidor remoto
