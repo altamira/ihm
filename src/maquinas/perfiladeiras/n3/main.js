@@ -17,7 +17,9 @@ import {
   Image,
   Button,
   Row,
-  Col
+  Col,
+  Tooltip,
+  OverlayTrigger
 } from 'react-bootstrap';
 
 var sectionStyle = {
@@ -127,6 +129,10 @@ export default class IHM extends Component  {
 
 
 	render() {
+    const tooltip_aplanDescer = (<Tooltip id="tooltip_aplanDescer"><strong>Aplanadora toda Desce!</strong></Tooltip>),
+          tooltip_aplanSubir =  (<Tooltip id="tooltip_aplanSubir"> <strong>Aplanadora toda Sobe! </strong></Tooltip>);
+ 
+
 		return(
           <section style={ sectionStyle } > 
             <Row>
@@ -134,8 +140,12 @@ export default class IHM extends Component  {
                 <h1>{this.props.config.nome}</h1>
               </Col>
               <Col xs={12} md={12}>
-                <Button onClick={this.aplanDescer}><Image style={{height: '50px', width: '60px'}} src={AplanDescer} rounded     /> {"Aplanadora desce"}</Button>
-                <Button onClick={this.aplanSubir}> <Image style={{height: '50px', width: '60px'}} src={AplanSubir} rounded      /> {"Aplanadora Subir"}</Button>
+                <OverlayTrigger placement="top" overlay={tooltip_aplanDescer}><img onClick={this.aplanDescer} alt="AplanDescer" src={AplanDescer} /></OverlayTrigger>
+                <OverlayTrigger placement="top" overlay={tooltip_aplanSubir}><img onClick={this.aplanSubir}  alt="AplanSubir"  src={AplanSubir}  /></OverlayTrigger>
+                
+                
+                
+                
                 <Button onClick={this.aplanAbrir}> <Image style={{height: '50px', width: '60px'}} src={AplanTampaAbrir} rounded /> {"Aplanadora Abrir "}</Button>
                 <Button onClick={this.aplanFechar}><Image style={{height: '50px', width: '60px'}} src={AplanTampaFechar} rounded /> {"Aplanadora Fecha"}</Button>
               </Col>
@@ -156,4 +166,5 @@ export default class IHM extends Component  {
 		)
 	}
 }
-//<img alt="Logo" src={require('./images/reset.png')}/>
+// image <img onClick={this.aplanDescer} alt="test" src={AplanDescer}/>
+// botao <Button onClick={this.aplanDescer}><Image style={{height: '50px', width: '60px'}} src={AplanDescer} rounded     /> {"Aplanadora desce"}</Button>
