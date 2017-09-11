@@ -14,8 +14,6 @@ import DesbobOff        from './../../../images/ihm-ent-desbob-off.png';
 import DesbobOn         from './../../../images/ihm-ent-desbob-on.png';
 
 import {
-  Image,
-  Button,
   Row,
   Col,
   Tooltip,
@@ -33,7 +31,18 @@ var sectionStyle = {
   backgroundImage: `url(${Background})`
 };
 
-
+const tooltip_aplanDescer =  (<Tooltip id="tooltip_aplanDescer">  <strong>Aplanadora toda Desce!</strong></Tooltip>),
+      tooltip_aplanSubir =   (<Tooltip id="tooltip_aplanSubir">   <strong>Aplanadora toda Sobe! </strong></Tooltip>),
+      tooltip_aplanAbrir =   (<Tooltip id="tooltip_aplanAbrir">   <strong>A Tampa Abre. </strong></Tooltip>),
+      tooltip_aplanFechar =  (<Tooltip id="tooltip_aplanFechar">  <strong>A Tampa Fecha. </strong></Tooltip>),
+      tooltip_perfilAvanca = (<Tooltip id="tooltip_perfilAvanca"> <strong>Avança chapa. </strong></Tooltip>),
+      tooltip_perfilRecua =  (<Tooltip id="tooltip_perfilRecua">  <strong>Recua chapa. </strong></Tooltip>),
+      tooltip_plataformaSobe=(<Tooltip id="tooltip_plataformaSobe"><strong>Plataforma Externa Sobe. </strong></Tooltip>),
+      tooltip_plataformaDesce=(<Tooltip id="tooltip_plataformaDesce"><strong>Plataforma Externa Desce. </strong></Tooltip>),
+      tooltip_prensaLigar =   (<Tooltip id="tooltip_prensaLigar">   <strong>Motor ON. </strong></Tooltip>),
+      tooltip_prensaDesligar =(<Tooltip id="tooltip_prensaDesligar"><strong>Motor OFF. </strong></Tooltip>),
+      tooltip_desbobinadorLigar =   (<Tooltip id="tooltip_desbobinadorLigar">   <strong>Desb ON. </strong></Tooltip>),
+      tooltip_desbobinadorDesligar =(<Tooltip id="tooltip_desbobinadorDesligar"><strong>Desb OFF. </strong></Tooltip>);
 
 export default class IHM extends Component  {
 
@@ -128,43 +137,35 @@ export default class IHM extends Component  {
   }
 
 
-	render() {
-    const tooltip_aplanDescer = (<Tooltip id="tooltip_aplanDescer"><strong>Aplanadora toda Desce!</strong></Tooltip>),
-          tooltip_aplanSubir =  (<Tooltip id="tooltip_aplanSubir"> <strong>Aplanadora toda Sobe! </strong></Tooltip>);
- 
-
-		return(
-          <section style={ sectionStyle } > 
-            <Row>
-              <Col xs={12} md={12}>
-                <h1>{this.props.config.nome}</h1>
-              </Col>
-              <Col xs={12} md={12}>
-                <OverlayTrigger placement="top" overlay={tooltip_aplanDescer}><img onClick={this.aplanDescer} alt="AplanDescer" src={AplanDescer} /></OverlayTrigger>
-                <OverlayTrigger placement="top" overlay={tooltip_aplanSubir}><img onClick={this.aplanSubir}  alt="AplanSubir"  src={AplanSubir}  /></OverlayTrigger>
-                
-                
-                
-                
-                <Button onClick={this.aplanAbrir}> <Image style={{height: '50px', width: '60px'}} src={AplanTampaAbrir} rounded /> {"Aplanadora Abrir "}</Button>
-                <Button onClick={this.aplanFechar}><Image style={{height: '50px', width: '60px'}} src={AplanTampaFechar} rounded /> {"Aplanadora Fecha"}</Button>
-              </Col>
-              <Col xs={12} md={12}>
-                <Button onClick={this.perfilAvanca}>  <Image style={{height: '50px', width: '60px'}} src={AplanPerfilAvanca} rounded /> {"Chapa Avança"}</Button>
-                <Button onClick={this.perfilRecua}>   <Image style={{height: '50px', width: '60px'}} src={AplanPerfilRecua} rounded /> {"Chapa Recua"}</Button>
-                <Button onClick={this.plataformaSobe}><Image style={{height: '50px', width: '60px'}} src={AplanExtSubir} rounded    /> {"Plataforma Sobe"}</Button>
-                <Button onClick={this.plataformaDesce}><Image style={{height: '50px', width: '60px'}} src={AplanExtDescer} rounded  /> {"Plataforma Desce"}</Button>
-              </Col>
-              <Col xs={12} md={12}>
-                <Button onClick={this.prensaLigar}>   <Image style={{height: '50px', width: '60px'}} src={Prensa} rounded          /> {"Presa ligar"}</Button>
-                <Button onClick={this.prensaDesligar}><Image style={{height: '50px', width: '60px'}} src={Prensa} rounded          /> {"Presa desligar"}</Button>
-                <Button onClick={this.desbobinadorLigar}>   <Image style={{height: '50px', width: '60px'}} src={DesbobOff} rounded /> {"Desbobinador Ligar"}</Button>
-                <Button onClick={this.desbobinadorDesligar}><Image style={{height: '50px', width: '60px'}} src={DesbobOn} rounded /> {"Desbobinador Desligar"}</Button>
-              </Col>  
-            </Row>
-          </section>
-		)
-	}
+  render() {
+    return (
+      <section style={sectionStyle} >
+        <Row>
+          <Col xs={12} md={12}>
+            <OverlayTrigger placement="top" overlay={tooltip_aplanDescer}><img onTouchEnd={this.aplanDescer} onClick={this.aplanDescer} alt="AplanDescer" src={AplanDescer} /></OverlayTrigger>
+            <OverlayTrigger placement="top" overlay={tooltip_aplanSubir}><img onTouchEnd={this.aplanSubir} onClick={this.aplanSubir} alt="AplanSubir" src={AplanSubir} /></OverlayTrigger>
+            <OverlayTrigger placement="top" overlay={tooltip_aplanAbrir}><img onTouchEnd={this.aplanAbrir} onClick={this.aplanAbrir} alt="AplanAbrir" src={AplanTampaAbrir} /></OverlayTrigger>
+            <OverlayTrigger placement="top" overlay={tooltip_aplanFechar}><img onTouchEnd={this.aplanFechar} onClick={this.aplanFechar} alt="AplanFechar" src={AplanTampaFechar} /></OverlayTrigger>
+          </Col>
+          <Col xs={12} md={12}>
+            <OverlayTrigger placement="top" overlay={tooltip_perfilAvanca}><img onTouchEnd={this.perfilAvanca} onClick={this.perfilAvanca} alt="Chapa Avança" src={AplanPerfilAvanca} /></OverlayTrigger>
+            <OverlayTrigger placement="top" overlay={tooltip_perfilRecua}><img onTouchEnd={this.perfilRecua} onClick={this.perfilRecua} alt="Chapa Recua" src={AplanPerfilRecua} /></OverlayTrigger>
+            <OverlayTrigger placement="top" overlay={tooltip_plataformaSobe}><img onTouchEnd={this.plataformaSobe} onClick={this.plataformaSobe} alt="Plataforma Sobe" src={AplanExtSubir} /></OverlayTrigger>
+            <OverlayTrigger placement="top" overlay={tooltip_plataformaDesce}><img onTouchEnd={this.plataformaDesce} onClick={this.plataformaDesce} alt="Plataforma Desce" src={AplanExtDescer} /></OverlayTrigger>
+          </Col>
+          <Col xs={12} md={12}>
+            <OverlayTrigger placement="top" overlay={tooltip_prensaLigar}><img onTouchEnd={this.prensaLigar} onClick={this.prensaLigar} alt="Presa ligar" src={Prensa} /></OverlayTrigger>
+            <OverlayTrigger placement="top" overlay={tooltip_prensaDesligar}><img onTouchEnd={this.prensaDesligar} onClick={this.prensaDesligar} alt="Presa Desligar" src={Prensa} /></OverlayTrigger>
+            <OverlayTrigger placement="top" overlay={tooltip_desbobinadorLigar}><img onTouchEnd={this.desbobinadorLigar} onClick={this.desbobinadorLigar} alt="Desb Ligar" src={DesbobOff} /></OverlayTrigger>
+            <OverlayTrigger placement="top" overlay={tooltip_desbobinadorDesligar}><img onTouchEnd={this.desbobinadorDesligar} onClick={this.desbobinadorDesligar} alt="Desb Desligar" src={DesbobOn} /></OverlayTrigger>
+          </Col>
+        </Row>
+      </section>
+    )
+  }
 }
 // image <img onClick={this.aplanDescer} alt="test" src={AplanDescer}/>
 // botao <Button onClick={this.aplanDescer}><Image style={{height: '50px', width: '60px'}} src={AplanDescer} rounded     /> {"Aplanadora desce"}</Button>
+// <Col xs={12} md={12}>
+// <h1>{this.props.config.nome}</h1>
+// </Col>
