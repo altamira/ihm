@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+// Botton
 import Background       from './../../../images/bg01.png';
 import AplanDescer      from './../../../images/cmd-aplan-descer.png';
 import AplanSubir       from './../../../images/cmd-aplan-subir.png';
@@ -13,22 +14,57 @@ import Prensa           from './../../../images/cmd-prensa-ligar.png';
 import DesbobOff        from './../../../images/ihm-ent-desbob-off.png';
 import DesbobOn         from './../../../images/ihm-ent-desbob-on.png';
 
+//Image background
+import Desbobinador     from './../../../images/maq-desbob.png';
+import AplanadoraDirCorpo from './../../../images/maq-aplan-dir-corpo.png';
+import PrensaCorpo      from './../../../images/maq-prs-corpo.png';
+
 import {
   Row,
   Col,
   Tooltip,
-  OverlayTrigger
+  OverlayTrigger,
+  Grid
 } from 'react-bootstrap';
 
 var sectionStyle = {
-  width: "100%",
-  height: "400px",
-  padding: "50px",
-  backgroundPosition: "center",
-  backgroundRepeat: "no-repeat",
-  backgroundSize: "100% 100%",
+  width: '100%',
+  height: '400px',
+  padding: '0px',
+  backgroundImage: `url(${Background})`,
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: '100% 100%',
+  backgroundColor:'transparent'
+};
+
+var Desbobi = {
+  backgroundImage: `url(${Desbobinador})`,
+  backgroundPosition: '10% 90%',
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover',
   backgroundColor:'transparent',
-  backgroundImage: `url(${Background})`
+  webkitTransform: 'scaleX(-1)', 
+  filter: 'FlipH',
+  border: '1px solid red'
+};
+
+var Aplan = {
+  backgroundImage: `url(${AplanadoraDirCorpo})`,
+  backgroundPosition: '10% 90%',
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover',
+  backgroundColor:'transparent',
+  border: '1px solid blue'
+};
+
+var Press = {
+  backgroundImage: `url(${PrensaCorpo})`,
+  backgroundPosition: '10% 90%',
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover',
+  backgroundColor:'transparent',
+  border: '1px solid green'
 };
 
 const tooltip_aplanDescer =  (<Tooltip id="tooltip_aplanDescer">  <strong>Aplanadora toda Desce!</strong></Tooltip>),
@@ -140,26 +176,28 @@ export default class IHM extends Component  {
   render() {
     return (
       <section style={sectionStyle} >
-        <Row>
-          <Col xs={12} md={12}>
-            <OverlayTrigger placement="top" overlay={tooltip_aplanDescer}><img style={{ zIndex: '1'}} onTouchEnd={this.aplanDescer} onClick={this.aplanDescer} alt="AplanDescer" src={AplanDescer} /></OverlayTrigger>
-            <OverlayTrigger placement="top" overlay={tooltip_aplanSubir}><img style={{ zIndex: '1'}} onTouchEnd={this.aplanSubir} onClick={this.aplanSubir} alt="AplanSubir" src={AplanSubir} /></OverlayTrigger>
-            <OverlayTrigger placement="top" overlay={tooltip_aplanAbrir}><img style={{ zIndex: '1'}} onTouchEnd={this.aplanAbrir} onClick={this.aplanAbrir} alt="AplanAbrir" src={AplanTampaAbrir} /></OverlayTrigger>
-            <OverlayTrigger placement="top" overlay={tooltip_aplanFechar}><img style={{ zIndex: '1'}} onTouchEnd={this.aplanFechar} onClick={this.aplanFechar} alt="AplanFechar" src={AplanTampaFechar} /></OverlayTrigger>
-          </Col>
-          <Col xs={12} md={12}>
-            <OverlayTrigger placement="top" overlay={tooltip_perfilAvanca}><img style={{ zIndex: '1'}} onTouchEnd={this.perfilAvanca} onClick={this.perfilAvanca} alt="Chapa Avança" src={AplanPerfilAvanca} /></OverlayTrigger>
-            <OverlayTrigger placement="top" overlay={tooltip_perfilRecua}><img style={{ zIndex: '1'}} onTouchEnd={this.perfilRecua} onClick={this.perfilRecua} alt="Chapa Recua" src={AplanPerfilRecua} /></OverlayTrigger>
-            <OverlayTrigger placement="top" overlay={tooltip_plataformaSobe}><img style={{ zIndex: '1'}} onTouchEnd={this.plataformaSobe} onClick={this.plataformaSobe} alt="Plataforma Sobe" src={AplanExtSubir} /></OverlayTrigger>
-            <OverlayTrigger placement="top" overlay={tooltip_plataformaDesce}><img style={{ zIndex: '1'}} onTouchEnd={this.plataformaDesce} onClick={this.plataformaDesce} alt="Plataforma Desce" src={AplanExtDescer} /></OverlayTrigger>
-          </Col>
-          <Col xs={12} md={12}>
-            <OverlayTrigger placement="top" overlay={tooltip_prensaLigar}><img style={{ zIndex: '1'}} onTouchEnd={this.prensaLigar} onClick={this.prensaLigar} alt="Presa ligar" src={Prensa} /></OverlayTrigger>
-            <OverlayTrigger placement="top" overlay={tooltip_prensaDesligar}><img style={{ zIndex: '1'}} onTouchEnd={this.prensaDesligar} onClick={this.prensaDesligar} alt="Presa Desligar" src={Prensa} /></OverlayTrigger>
-            <OverlayTrigger placement="top" overlay={tooltip_desbobinadorLigar}><img style={{ zIndex: '1'}} onTouchEnd={this.desbobinadorLigar} onClick={this.desbobinadorLigar} alt="Desb Ligar" src={DesbobOff} /></OverlayTrigger>
-            <OverlayTrigger placement="top" overlay={tooltip_desbobinadorDesligar}><img style={{ zIndex: '1'}} onTouchEnd={this.desbobinadorDesligar} onClick={this.desbobinadorDesligar} alt="Desb Desligar" src={DesbobOn} /></OverlayTrigger>
-          </Col>
-        </Row>
+        <Grid fluid style={{ paddingLeft: 20, paddingRight: 20 }}>
+          <Row>
+            <Col xs={4} md={4} style={Desbobi}>
+              <OverlayTrigger placement="top" overlay={tooltip_desbobinadorLigar}><img onTouchEnd={this.desbobinadorLigar} onClick={this.desbobinadorLigar} alt="Desb Ligar" src={DesbobOff} /></OverlayTrigger>
+              <OverlayTrigger placement="top" overlay={tooltip_desbobinadorDesligar}><img onTouchEnd={this.desbobinadorDesligar} onClick={this.desbobinadorDesligar} alt="Desb Desligar" src={DesbobOn} /></OverlayTrigger>
+            </Col>
+            <Col xs={4} md={4} style={Aplan}>
+              <OverlayTrigger placement="top" overlay={tooltip_aplanSubir}><img onTouchEnd={this.aplanSubir} onClick={this.aplanSubir} alt="AplanSubir" src={AplanSubir} /></OverlayTrigger>
+              <OverlayTrigger placement="top" overlay={tooltip_aplanDescer}><img onTouchEnd={this.aplanDescer} onClick={this.aplanDescer} alt="AplanDescer" src={AplanDescer} /></OverlayTrigger>
+              <OverlayTrigger placement="top" overlay={tooltip_aplanAbrir}><img onTouchEnd={this.aplanAbrir} onClick={this.aplanAbrir} alt="AplanAbrir" src={AplanTampaAbrir} /></OverlayTrigger>
+              <OverlayTrigger placement="top" overlay={tooltip_aplanFechar}><img onTouchEnd={this.aplanFechar} onClick={this.aplanFechar} alt="AplanFechar" src={AplanTampaFechar} /></OverlayTrigger>
+              <OverlayTrigger placement="top" overlay={tooltip_perfilAvanca}><img onTouchEnd={this.perfilAvanca} onClick={this.perfilAvanca} alt="Chapa Avança" src={AplanPerfilAvanca} /></OverlayTrigger>
+              <OverlayTrigger placement="top" overlay={tooltip_perfilRecua}><img onTouchEnd={this.perfilRecua} onClick={this.perfilRecua} alt="Chapa Recua" src={AplanPerfilRecua} /></OverlayTrigger>
+              <OverlayTrigger placement="top" overlay={tooltip_plataformaSobe}><img onTouchEnd={this.plataformaSobe} onClick={this.plataformaSobe} alt="Plataforma Sobe" src={AplanExtSubir} /></OverlayTrigger>
+              <OverlayTrigger placement="top" overlay={tooltip_plataformaDesce}><img onTouchEnd={this.plataformaDesce} onClick={this.plataformaDesce} alt="Plataforma Desce" src={AplanExtDescer} /></OverlayTrigger>
+            </Col>
+            <Col xs={4} md={4} style={Press}>
+              <OverlayTrigger placement="top" overlay={tooltip_prensaLigar}><img onTouchEnd={this.prensaLigar} onClick={this.prensaLigar} alt="Presa ligar" src={Prensa} /></OverlayTrigger>
+              <OverlayTrigger placement="top" overlay={tooltip_prensaDesligar}><img onTouchEnd={this.prensaDesligar} onClick={this.prensaDesligar} alt="Presa Desligar" src={Prensa} /></OverlayTrigger>
+            </Col>
+          </Row>
+        </Grid>
       </section>
     )
   }
