@@ -85,6 +85,16 @@ export default class IHM extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+        motor: false,
+        Desbobinador: false,
+        Tampa: true
+    }
+
+//  public handleOnChange(event: any) : void {
+//    this.setState({ name: event.target.value });
+//  }
+
     this.aplanDescer = this.aplanDescer.bind(this);
     this.aplanSubir = this.aplanSubir.bind(this);
     this.aplanAbrir = this.aplanAbrir.bind(this);
@@ -162,6 +172,9 @@ export default class IHM extends Component {
 
   desbobinadorLigar() {
     //console.log("AplanDescer");
+    this.setState({ 
+      Desbobinador: !Desbobinador
+    });
     const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
     this.props.mqttCommand(caminho, "desbobinadorLigar");
   }
@@ -186,8 +199,10 @@ export default class IHM extends Component {
                 <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
               </Row>
               <Row>
-                <OverlayTrigger placement="top" overlay={tooltip_desbobinadorLigar}><img onTouchEnd={this.desbobinadorLigar} onClick={this.desbobinadorLigar} alt="Desb Ligar" src={DesbobOff} style={{ float: 'right', height: '60px', width: '60px' }} /></OverlayTrigger>
-                <OverlayTrigger placement="top" overlay={tooltip_desbobinadorDesligar}><img onTouchEnd={this.desbobinadorDesligar} onClick={this.desbobinadorDesligar} alt="Desb Desligar" src={DesbobOn} style={{ float: 'right', height: '60px', width: '60px' }} /></OverlayTrigger>
+                {this.state.Desbobinador === true ?
+                  (<OverlayTrigger placement="top" overlay={tooltip_desbobinadorLigar}><img onTouchEnd={this.desbobinadorLigar} onClick={this.desbobinadorLigar} alt="Desb Ligar" src={DesbobOff} style={{ float: 'right', height: '60px', width: '60px' }} /></OverlayTrigger>):
+                  (<OverlayTrigger placement="top" overlay={tooltip_desbobinadorDesligar}><img onTouchEnd={this.desbobinadorDesligar} onClick={this.desbobinadorDesligar} alt="Desb Desligar" src={DesbobOn} style={{ float: 'right', height: '60px', width: '60px' }} /></OverlayTrigger>)
+                }                
               </Row>
               <Row>
                 <Col xsHidden mdOffset={12} lgOffset={12}>'  '</Col>
