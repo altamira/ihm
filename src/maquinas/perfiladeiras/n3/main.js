@@ -10,7 +10,8 @@ import AplanPerfilAvanca from './../../../images/cmd-aplan-perfil-avanca.png';
 import AplanPerfilRecua from './../../../images/cmd-aplan-perfil-recua.png';
 import AplanExtSubir from './../../../images/cmd-aplan-ext-subir.png';
 import AplanExtDescer from './../../../images/cmd-aplan-ext-descer.png';
-import Prensa from './../../../images/cmd-prensa-ligar.png';
+import motorPrensaON from './../../../images/cmd-prensa-ligar.png';
+import motorPrensaOFF from './../../../images/cmd-prensa-desligar.png';
 import DesbobOff from './../../../images/ihm-ent-desbob-off.png';
 import DesbobOn from './../../../images/ihm-ent-desbob-on.png';
 
@@ -262,8 +263,8 @@ export default class IHM extends Component {
                 <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
               </Row>
               <Row>
-                <OverlayTrigger placement="top" overlay={tooltip_prensaLigar}><img onTouchEnd={this.prensaLigar} onClick={this.prensaLigar} alt="Presa ligar" src={Prensa} style={{ height: '57px', width: '64px' }} /></OverlayTrigger>
-                <OverlayTrigger placement="top" overlay={tooltip_prensaDesligar}><img onTouchEnd={this.prensaDesligar} onClick={this.prensaDesligar} alt="Presa Desligar" src={Prensa} style={{ height: '57px', width: '64px' }} /></OverlayTrigger>
+                <OverlayTrigger placement="top" overlay={tooltip_prensaLigar}><img onTouchEnd={this.prensaLigar} onClick={this.prensaLigar} alt="Presa ligar" src={motorPrensaON} style={{ height: '57px', width: '64px' }} /></OverlayTrigger>
+                <OverlayTrigger placement="top" overlay={tooltip_prensaDesligar}><img onTouchEnd={this.prensaDesligar} onClick={this.prensaDesligar} alt="Presa Desligar" src={motorPrensaOFF} style={{ height: '57px', width: '64px' }} /></OverlayTrigger>
               </Row>
               <Row>
                 <Col xsHidden mdOffset={12} lgOffset={12}>'  '</Col>
