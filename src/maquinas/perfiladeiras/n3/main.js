@@ -54,18 +54,18 @@ var Desbobi = {
 
 var AplanCorpo = {
   backgroundImage: [`url(${AplanadoraTampa})`, `url(${AplanadoraCorpo})`],
-  backgroundPosition: ['47% 46%','50% 100%'],
-  backgroundRepeat: ['no-repeat','no-repeat'],
-  backgroundColor: ['transparent','transparent'],
+  backgroundPosition: ['47% 44%', '50% 94%'],
+  backgroundRepeat: ['no-repeat', 'no-repeat'],
+  backgroundColor: ['transparent', 'transparent'],
   //border: '1px solid blue'
 };
 
 var PressCorpo = {
-  backgroundImage: [`url(${PrensaCorpo})`,`url(${PrensaCobertura})`,`url(${PrensaMartelo})`],
-  backgroundPosition: ['50% 100%','50% 0%','50% 32%'],
-  backgroundRepeat: ['no-repeat','no-repeat','no-repeat'],
-  backgroundColor: ['transparent','transparent','transparent'],
-//  border: '1px solid green'
+  backgroundImage: [`url(${PrensaCorpo})`, `url(${PrensaCobertura})`, `url(${PrensaMartelo})`],
+  backgroundPosition: ['50% 100%', '50% 0%', '50% 32%'],
+  backgroundRepeat: ['no-repeat', 'no-repeat', 'no-repeat'],
+  backgroundColor: ['transparent', 'transparent', 'transparent'],
+  //  border: '1px solid green'
 };
 
 const tooltip_aplanDescer = (<Tooltip id="tooltip_aplanDescer">  <strong>Aplanadora toda Desce!</strong></Tooltip>),
@@ -76,8 +76,8 @@ const tooltip_aplanDescer = (<Tooltip id="tooltip_aplanDescer">  <strong>Aplanad
   tooltip_perfilRecua = (<Tooltip id="tooltip_perfilRecua">  <strong>Recua chapa. </strong></Tooltip>),
   tooltip_plataformaSobe = (<Tooltip id="tooltip_plataformaSobe"><strong>Plataforma Externa Sobe. </strong></Tooltip>),
   tooltip_plataformaDesce = (<Tooltip id="tooltip_plataformaDesce"><strong>Plataforma Externa Desce. </strong></Tooltip>),
-  tooltip_prensaLigar = (<Tooltip id="tooltip_prensaLigar">   <strong>Motor ON. </strong></Tooltip>),
-  tooltip_prensaDesligar = (<Tooltip id="tooltip_prensaDesligar"><strong>Motor OFF. </strong></Tooltip>),
+  tooltip_prensaLigada = (<Tooltip id="tooltip_prensaLigada">   <strong>Motor ON. </strong></Tooltip>),
+  tooltip_prensaDesligada = (<Tooltip id="tooltip_prensaDesligada"><strong>Motor OFF. </strong></Tooltip>),
   tooltip_desbobinadorLigar = (<Tooltip id="tooltip_desbobinadorLigar">   <strong>Desb ON. </strong></Tooltip>),
   tooltip_desbobinadorDesligar = (<Tooltip id="tooltip_desbobinadorDesligar"><strong>Desb OFF. </strong></Tooltip>);
 
@@ -87,14 +87,14 @@ export default class IHM extends Component {
     super(props);
 
     this.state = {
-        motor: false,
-        Desbobinador: false,
-        Tampa: true
+      motor: false,
+      Desbobinador: false,
+      Tampa: true
     }
 
-//  public handleOnChange(event: any) : void {
-//    this.setState({ name: event.target.value });
-//  }
+    //  public handleOnChange(event: any) : void {
+    //    this.setState({ name: event.target.value });
+    //  }
 
     this.aplanDescer = this.aplanDescer.bind(this);
     this.aplanSubir = this.aplanSubir.bind(this);
@@ -161,19 +161,25 @@ export default class IHM extends Component {
 
   prensaLigar() {
     //console.log("AplanDescer");
+    this.setState({
+      motor: false
+    });
     const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
     this.props.mqttCommand(caminho, "prensaLigar");
   }
 
   prensaDesligar() {
     //console.log("AplanDescer");
+    this.setState({
+      motor: true
+    });
     const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
     this.props.mqttCommand(caminho, "prensaDesligar");
   }
 
   desbobinadorLigar() {
     //console.log("AplanDescer");
-    this.setState({ 
+    this.setState({
       Desbobinador: true
     });
     const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
@@ -182,7 +188,7 @@ export default class IHM extends Component {
 
   desbobinadorDesligar() {
     //console.log("AplanDescer");
-    this.setState({ 
+    this.setState({
       Desbobinador: false
     });
     const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
@@ -200,16 +206,16 @@ export default class IHM extends Component {
                 <Col xsHidden mdOffset={12} lgOffset={12}>'  '</Col>
               </Row>
               <Row>
+                {this.state.Desbobinador === false ?
+                  (<OverlayTrigger placement="top" overlay={tooltip_desbobinadorDesligar}><img onTouchEnd={this.desbobinadorLigar} onClick={this.desbobinadorLigar} alt="Desb Ligar" src={DesbobOff} style={{ float: 'right', height: '60px', width: '60px' }} /></OverlayTrigger>) :
+                  (<OverlayTrigger placement="top" overlay={tooltip_desbobinadorLigar}><img onTouchEnd={this.desbobinadorDesligar} onClick={this.desbobinadorDesligar} alt="Desb Desligar" src={DesbobOn} style={{ float: 'right', height: '60px', width: '60px' }} /></OverlayTrigger>)
+                }
+              </Row>
+              <Row>
                 <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
               </Row>
               <Row>
-                {this.state.Desbobinador === false ?
-                  (<OverlayTrigger placement="top" overlay={tooltip_desbobinadorLigar}><img onTouchEnd={this.desbobinadorLigar} onClick={this.desbobinadorLigar} alt="Desb Ligar" src={DesbobOff} style={{ float: 'right', height: '60px', width: '60px' }} /></OverlayTrigger>):
-                  (<OverlayTrigger placement="top" overlay={tooltip_desbobinadorDesligar}><img onTouchEnd={this.desbobinadorDesligar} onClick={this.desbobinadorDesligar} alt="Desb Desligar" src={DesbobOn} style={{ float: 'right', height: '60px', width: '60px' }} /></OverlayTrigger>)
-                }                
-              </Row>
-              <Row>
-                <Col xsHidden mdOffset={12} lgOffset={12}>'  '</Col>
+                <Col xsHidden      mdOffset={12} lgOffset={12}>'  '</Col>
               </Row>
               <Row>
                 <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
@@ -229,15 +235,14 @@ export default class IHM extends Component {
             </Col>
             <Col xs={12} md={4} style={AplanCorpo}>
               <Row>
-                <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
+                <OverlayTrigger placement="top" overlay={tooltip_aplanAbrir}><img onTouchEnd={this.aplanAbrir} onClick={this.aplanAbrir} alt="AplanAbrir" src={AplanTampaAbrir} style={{ float: 'center', height: '54px', width: '66px' }} /></OverlayTrigger>
               </Row>
 
               <Row>
-                <OverlayTrigger placement="top" overlay={tooltip_aplanAbrir}><img onTouchEnd={this.aplanAbrir} onClick={this.aplanAbrir} alt="AplanAbrir" src={AplanTampaAbrir} style={{ float: 'center', height: '54px', width: '66px' }} /></OverlayTrigger>
+                < OverlayTrigger placement="top" overlay={tooltip_aplanFechar}><img onTouchEnd={this.aplanFechar} onClick={this.aplanFechar} alt="AplanFechar" src={AplanTampaFechar} style={{ float: 'center', height: '54px', width: '66px' }} /></OverlayTrigger>
               </Row>
               <Row>
                 <OverlayTrigger placement="top" overlay={tooltip_perfilRecua}><img onTouchEnd={this.perfilRecua} onClick={this.perfilRecua} alt="Chapa Recua" src={AplanPerfilRecua} style={{ float: 'left', height: '54px', width: '66px' }} /></OverlayTrigger>
-                <OverlayTrigger placement="top" overlay={tooltip_aplanFechar}><img onTouchEnd={this.aplanFechar} onClick={this.aplanFechar} alt="AplanFechar" src={AplanTampaFechar} style={{ float: 'center', height: '54px', width: '66px' }} /></OverlayTrigger>
                 <OverlayTrigger placement="top" overlay={tooltip_perfilAvanca}><img onTouchEnd={this.perfilAvanca} onClick={this.perfilAvanca} alt="Chapa Avança" src={AplanPerfilAvanca} style={{ float: 'right', height: '54px', width: '66px' }} /></OverlayTrigger>
               </Row>
               <Row>
@@ -249,7 +254,7 @@ export default class IHM extends Component {
                 <OverlayTrigger placement="top" overlay={tooltip_plataformaDesce}><img onTouchEnd={this.plataformaDesce} onClick={this.plataformaDesce} alt="Plataforma Desce" src={AplanExtDescer} style={{ float: 'right', height: '54px', width: '66px' }} /></OverlayTrigger>
               </Row>
               <Row>
-                <Col  mdOffset={12} lgOffset={12}>'  '</Col>
+                <Col mdOffset={12} lgOffset={12}>'  '</Col>
               </Row>
               <Row>
                 <Col xsHidden mdOffset={12} lgOffset={12}>'  '</Col>
@@ -263,8 +268,10 @@ export default class IHM extends Component {
                 <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
               </Row>
               <Row>
-                <OverlayTrigger placement="top" overlay={tooltip_prensaLigar}><img onTouchEnd={this.prensaLigar} onClick={this.prensaLigar} alt="Presa ligar" src={motorPrensaON} style={{ height: '57px', width: '64px' }} /></OverlayTrigger>
-                <OverlayTrigger placement="top" overlay={tooltip_prensaDesligar}><img onTouchEnd={this.prensaDesligar} onClick={this.prensaDesligar} alt="Presa Desligar" src={motorPrensaOFF} style={{ height: '57px', width: '64px' }} /></OverlayTrigger>
+                {this.state.motor === false ?
+                  (<OverlayTrigger placement="top" overlay={tooltip_prensaDesligada}><img onTouchEnd={this.prensaDesligar} onClick={this.prensaDesligar} alt="Presa Desligar" src={motorPrensaOFF} style={{ height: '57px', width: '64px' }} /></OverlayTrigger>) :
+                  (<OverlayTrigger placement="top" overlay={tooltip_prensaLigada}><img onTouchEnd={this.prensaLigar} onClick={this.prensaLigar} alt="Presa ligar" src={motorPrensaON} style={{ height: '57px', width: '64px' }} /></OverlayTrigger>)
+                }
               </Row>
               <Row>
                 <Col xsHidden mdOffset={12} lgOffset={12}>'  '</Col>
