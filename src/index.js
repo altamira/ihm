@@ -10,6 +10,7 @@ import App from './App';
 
 import IHM_N3 from './maquinas/perfiladeiras/n3';
 import IHM_N3_MAIN from './maquinas/perfiladeiras/n3/main.js';
+import IHM_N3_TAREFAS from './maquinas/perfiladeiras/n3/tarefas.js';
 import IHM_N3_AUTOMATICO from './maquinas/perfiladeiras/n3/automatico.js';
 import IHM_N3_MANUAL from './maquinas/perfiladeiras/n3/manual.js';
 
@@ -24,6 +25,7 @@ render((
     	{/* incluir novas maquinas aqui*/}
     	<Route path="maquinas/perfiladeiras/n3" component={IHM_N3}>
     		<Route path="main" component={IHM_N3_MAIN}/>
+        <Route path="taferas" component={IHM_N3_TAREFAS}/>
         <Route path="automatico" component={IHM_N3_AUTOMATICO}/>
         <Route path="manual" component={IHM_N3_MANUAL}/>
     	</Route>

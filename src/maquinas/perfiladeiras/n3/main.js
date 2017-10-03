@@ -189,7 +189,7 @@ export default class IHM extends Component {
   desbobinadorDesligar() {
     //console.log("AplanDescer");
     this.setState({
-      Desbobinador: false
+      Desbobinador: test
     });
     const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
     this.props.mqttCommand(caminho, "desbobinadorDesligar");

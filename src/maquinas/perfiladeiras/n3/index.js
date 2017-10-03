@@ -17,7 +17,8 @@ export default class IHM extends Component {
 	constructor(props) {
 	    super(props);
 
-	    this.handleMenuPrincipal = this.handleMenuPrincipal.bind(this);
+		this.handleMenuPrincipal = this.handleMenuPrincipal.bind(this);
+		this.handleTarefas 		 = this.handleTarefas.bind(this);
 	    this.handleAutomatico 	 = this.handleAutomatico.bind(this);
 	    this.handleManual 		 = this.handleManual.bind(this);
 	    //this.handlePerfil 		 = this.handlePerfil.bind(this);
@@ -25,6 +26,10 @@ export default class IHM extends Component {
 
 	handleMenuPrincipal() {
 		this.props.router.push('/maquinas/perfiladeiras/n3/main')
+	}
+
+	handleTarefas() {
+		this.props.router.push('/maquinas/perfiladeiras/n3/tarefas')
 	}
 
 	handleAutomatico(params) {
@@ -75,12 +80,12 @@ export default class IHM extends Component {
 
 				<Command 
 					onClick={[
-						{ label: 'Principal', onclick: this.handleMenuPrincipal, image: Home , 		disabled: perfil > PERFIL.AJUDANTE },
-						{ label: 'Tarefas', onclick: this.handleAutomatico, 	image: Tasks, 		disabled: perfil > PERFIL.OPERADOR },
-						{ label: 'Modo Manual', onclick: this.handleManual, 	image: Wrench, 		disabled: perfil > PERFIL.OPERADOR },
-						{ label: 'Relatorios', onclick: this.handleMenuPrincipal,image: Report, 	disabled: perfil > PERFIL.LIDER_PRODUCAO },
-						{ label: 'Programação', onclick: this.handleAutomatico,	image: Config, 		disabled: perfil > PERFIL.SUPERVISOR },
-						{ label: 'Manutenção', onclick: this.handleManual, 		image: Manutencao, 	disabled: ((perfil > PERFIL.MANUTENCAO) || (perfil > PERFIL.SUPERVISOR)) }
+						{ label: 'Principal', onclick: this.handleMenuPrincipal,  image: Home , 		disabled: perfil > PERFIL.AJUDANTE },
+						{ label: 'Tarefas', onclick: this.handleTarefas, 	      image: Tasks, 		disabled: perfil > PERFIL.OPERADOR },
+						{ label: 'Modo Manual', onclick: this.handleManual, 	  image: Wrench, 		disabled: perfil > PERFIL.OPERADOR },
+						{ label: 'Relatorios', onclick: this.handleMenuPrincipal, image: Report,    	disabled: perfil > PERFIL.LIDER_PRODUCAO },
+						{ label: 'Programação', onclick: this.handleAutomatico,	  image: Config, 		disabled: perfil > PERFIL.SUPERVISOR },
+						{ label: 'Manutenção', onclick: this.handleManual, 		  image: Manutencao, 	disabled: ((perfil > PERFIL.MANUTENCAO) || (perfil > PERFIL.SUPERVISOR)) }
 					]}
 				/>
 			</Shell>
