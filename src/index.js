@@ -25,7 +25,7 @@ render((
     	{/* incluir novas maquinas aqui*/}
     	<Route path="maquinas/perfiladeiras/n3" component={IHM_N3}>
     		<Route path="main" component={IHM_N3_MAIN}/>
-        <Route path="taferas" component={IHM_N3_TAREFAS}/>
+        <Route path="tarefas" component={IHM_N3_TAREFAS}/>
         <Route path="automatico" component={IHM_N3_AUTOMATICO}/>
         <Route path="manual" component={IHM_N3_MANUAL}/>
     	</Route>
