@@ -11,11 +11,12 @@ import App from './App';
 import IHM_N3 from './maquinas/perfiladeiras/n3';
 import IHM_N3_MAIN from './maquinas/perfiladeiras/n3/main.js';
 import IHM_N3_TAREFAS from './maquinas/perfiladeiras/n3/tarefas.js';
-import IHM_N3_AUTOMATICO from './maquinas/perfiladeiras/n3/automatico.js';
 import IHM_N3_MANUAL from './maquinas/perfiladeiras/n3/manual.js';
+import IHM_N3_RELATORIOS from './maquinas/perfiladeiras/n3/relatorios.js';
+import IHM_N3_AUTOMATICO from './maquinas/perfiladeiras/n3/automatico.js';
 
 const NoMatch = props => (
-	<div><h1>Rota não encontrada !</h1></div>
+	<div><h1>Pagina não encontrada !</h1></div>
 )
 
 render(( 
@@ -26,20 +27,25 @@ render((
     	<Route path="maquinas/perfiladeiras/n3" component={IHM_N3}>
     		<Route path="main" component={IHM_N3_MAIN}/>
         <Route path="tarefas" component={IHM_N3_TAREFAS}/>
-        <Route path="automatico" component={IHM_N3_AUTOMATICO}/>
         <Route path="manual" component={IHM_N3_MANUAL}/>
-    	</Route>
+        <Route path="relatorios" component={IHM_N3_RELATORIOS}/>
+        <Route path="automatico" component={IHM_N3_AUTOMATICO}/>
+     	</Route>
       {/*perfiladeira reforço*/}
       <Route path="maquinas/perfiladeiras/reforco" component={IHM_N3}>
         <Route path="main" component={IHM_N3_MAIN}/>
-        <Route path="automatico" component={IHM_N3_AUTOMATICO}/>
+        <Route path="tarefas" component={IHM_N3_TAREFAS}/>
         <Route path="manual" component={IHM_N3_MANUAL}/>
+        <Route path="relatorios" component={IHM_N3_RELATORIOS}/>
+        <Route path="automatico" component={IHM_N3_AUTOMATICO}/>
       </Route>
       {/*perfiladeira Sigma 120mm*/}
       <Route path="maquinas/perfiladeiras/sigma120" component={IHM_N3}>
         <Route path="main" component={IHM_N3_MAIN}/>
-        <Route path="automatico" component={IHM_N3_AUTOMATICO}/>
+        <Route path="tarefas" component={IHM_N3_TAREFAS}/>
         <Route path="manual" component={IHM_N3_MANUAL}/>
+        <Route path="relatorios" component={IHM_N3_RELATORIOS}/>
+        <Route path="automatico" component={IHM_N3_AUTOMATICO}/>
       </Route>
     	{/*fim*/}
 
