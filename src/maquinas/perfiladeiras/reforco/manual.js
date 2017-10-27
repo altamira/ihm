@@ -6,7 +6,7 @@ export default class IHM extends Component {
 
 		return(
 			<div>
-				<h1>Tela de inicio de AJUSTE MANUAL em REFORÇO...</h1>
+				<h1>Tela de inicio de AJUSTE MANUAL Perfiladeira {this.props.config.nome}...</h1>
 			</div>
 		)
 

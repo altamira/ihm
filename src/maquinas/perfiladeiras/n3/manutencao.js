@@ -6,7 +6,7 @@ export default class IHM extends Component {
 
 		return(
 			<div>
-				<h1>Tela de MANUTENCAO Coluna N3...</h1>
+				<h1>Tela de MANUTENCAO Coluna {this.props.config.nome}...</h1>
 			</div>
 		)
 

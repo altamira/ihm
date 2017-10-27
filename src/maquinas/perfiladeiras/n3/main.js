@@ -146,7 +146,6 @@ export default class IHM extends Component {
     this.props.mqttCommand(caminho, "perfilRecua");
   }
 
-
   plataformaSobe() {
     //console.log("AplanDescer");
     const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
