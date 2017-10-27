@@ -21,7 +21,8 @@ export default class IHM extends Component {
 		this.handleTarefas = this.handleTarefas.bind(this);
 		this.handleManual = this.handleManual.bind(this);
 		this.handleRelatorios = this.handleRelatorios.bind(this);
-		this.handleAutomatico = this.handleAutomatico.bind(this);
+		this.handleProgramacao = this.handleProgramacao.bind(this);
+		this.handleManutencao = this.handleManutencao.bind(this);
 		//this.handlePerfil 		 = this.handlePerfil.bind(this);
 	}
 
@@ -41,8 +42,12 @@ export default class IHM extends Component {
 		this.props.router.push('/maquinas/perfiladeiras/n3/relatorios');
 	}
 
-	handleAutomatico(params) {
-		this.props.router.push('/maquinas/perfiladeiras/n3/automatico');
+	handleProgramacao(params) {
+		this.props.router.push('/maquinas/perfiladeiras/n3/programacao');
+	}
+
+	handleManutencao(params) {
+		this.props.router.push('/maquinas/perfiladeiras/n3/manutencao');
 	}
 	/*handlePerfil(perfil){
 		//console.log(JSON.stringify(this.props.user,null,2));
@@ -88,8 +93,8 @@ export default class IHM extends Component {
 						{ label: 'Tarefas', onclick: this.handleTarefas, image: Tasks, disabled: perfil > PERFIL.OPERADOR },
 						{ label: 'Manual', onclick: this.handleManual, image: Wrench, disabled: perfil > PERFIL.OPERADOR },
 						{ label: 'Relatorios', onclick: this.handleRelatorios, image: Report, disabled: perfil > PERFIL.LIDER_PRODUCAO },
-						{ label: 'Programação', onclick: this.handleAutomatico, image: Config, disabled: perfil > PERFIL.SUPERVISOR },
-						{ label: 'Manutenção', onclick: this.handleManual, image: Manutencao, disabled: ((perfil > PERFIL.MANUTENCAO) || (perfil > PERFIL.SUPERVISOR)) }
+						{ label: 'Programação', onclick: this.handleProgramacao, image: Config, disabled: perfil > PERFIL.SUPERVISOR },
+						{ label: 'Manutenção', onclick: this.handleManutencao, image: Manutencao, disabled: ((perfil > PERFIL.MANUTENCAO) || (perfil > PERFIL.SUPERVISOR)) }
 					]}
 				/>
 			</Shell>

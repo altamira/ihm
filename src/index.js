@@ -13,7 +13,8 @@ import IHM_N3_MAIN from './maquinas/perfiladeiras/n3/main.js';
 import IHM_N3_TAREFAS from './maquinas/perfiladeiras/n3/tarefas.js';
 import IHM_N3_MANUAL from './maquinas/perfiladeiras/n3/manual.js';
 import IHM_N3_RELATORIOS from './maquinas/perfiladeiras/n3/relatorios.js';
-import IHM_N3_AUTOMATICO from './maquinas/perfiladeiras/n3/automatico.js';
+import IHM_N3_PROGRAMACAO from './maquinas/perfiladeiras/n3/programacao.js';
+import IHM_N3_MANUTENCAO from './maquinas/perfiladeiras/n3/manutencao.js';
 
 const NoMatch = props => (
 	<div><h1>Pagina não encontrada !</h1></div>
@@ -29,7 +30,8 @@ render((
         <Route path="tarefas" component={IHM_N3_TAREFAS}/>
         <Route path="manual" component={IHM_N3_MANUAL}/>
         <Route path="relatorios" component={IHM_N3_RELATORIOS}/>
-        <Route path="automatico" component={IHM_N3_AUTOMATICO}/>
+        <Route path="programacao" component={IHM_N3_PROGRAMACAO}/>
+        <Route path="manutencao" component={IHM_N3_MANUTENCAO}/>
      	</Route>
       {/*perfiladeira reforço*/}
       <Route path="maquinas/perfiladeiras/reforco" component={IHM_N3}>
@@ -37,7 +39,8 @@ render((
         <Route path="tarefas" component={IHM_N3_TAREFAS}/>
         <Route path="manual" component={IHM_N3_MANUAL}/>
         <Route path="relatorios" component={IHM_N3_RELATORIOS}/>
-        <Route path="automatico" component={IHM_N3_AUTOMATICO}/>
+        <Route path="programacao" component={IHM_N3_PROGRAMACAO}/>
+        <Route path="manutencao" component={IHM_N3_MANUTENCAO}/>
       </Route>
       {/*perfiladeira Sigma 120mm*/}
       <Route path="maquinas/perfiladeiras/sigma120" component={IHM_N3}>
@@ -45,7 +48,8 @@ render((
         <Route path="tarefas" component={IHM_N3_TAREFAS}/>
         <Route path="manual" component={IHM_N3_MANUAL}/>
         <Route path="relatorios" component={IHM_N3_RELATORIOS}/>
-        <Route path="automatico" component={IHM_N3_AUTOMATICO}/>
+        <Route path="programacao" component={IHM_N3_PROGRAMACAO}/>
+        <Route path="manutencao" component={IHM_N3_MANUTENCAO}/>
       </Route>
     	{/*fim*/}
 
