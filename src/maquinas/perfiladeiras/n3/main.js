@@ -28,7 +28,9 @@ import {
   Col,
   Tooltip,
   OverlayTrigger,
-  Grid
+  Grid,
+  Button,
+  Glyphicon
 } from 'react-bootstrap';
 
 var sectionStyle = {
@@ -252,14 +254,16 @@ export default class IHM extends Component {
                 <OverlayTrigger placement="top" overlay={tooltip_aplanDescer}><img onTouchEnd={this.aplanDescer} onClick={this.aplanDescer} alt="AplanDescer" src={AplanDescer} style={{ float: 'left' }} /></OverlayTrigger>
                 <OverlayTrigger placement="top" overlay={tooltip_plataformaDesce}><img onTouchEnd={this.plataformaDesce} onClick={this.plataformaDesce} alt="Plataforma Desce" src={AplanExtDescer} style={{ float: 'right', height: '54px', width: '66px' }} /></OverlayTrigger>
               </Row>
-              <Row>
+              <Row style={{height: '33px'}}>
                 <Col mdOffset={12} lgOffset={12}>'  '</Col>
               </Row>
               <Row>
-                <Col xsHidden mdOffset={12} lgOffset={12}>'  '</Col>
+                <Col>
+                  <Button bsStyle="danger" bsSize="large" height="54px" block > AUTOMATICO <Glyphicon glyph="refresh" /> </Button>
+                </Col>
               </Row>
-              <Row>
-                <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
+              <Row style={{height: '33px'}}>
+                <Col xsHidden mdOffset={12} lgOffset={12}>' '</Col>
               </Row>
             </Col>
             <Col xs={12} md={4} style={PressCorpo}>
