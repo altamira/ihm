@@ -91,7 +91,8 @@ export default class IHM extends Component {
     this.state = {
       motor: false,
       Desbobinador: false,
-      Tampa: true
+      Tampa: true,
+      aplanAuto: false
     }
 
     //  public handleOnChange(event: any) : void {
@@ -110,6 +111,8 @@ export default class IHM extends Component {
     this.prensaDesligar = this.prensaDesligar.bind(this);
     this.desbobinadorLigar = this.desbobinadorLigar.bind(this);
     this.desbobinadorDesligar = this.desbobinadorDesligar.bind(this);
+    this.aplanadoraAutomatica = this.aplanadoraAutomatica.bind(this);
+    this.aplanadoraManual = this.aplanadoraManual.bind(this);
   }
 
   aplanDescer() {
@@ -119,67 +122,58 @@ export default class IHM extends Component {
   }
 
   aplanSubir() {
-    //console.log("AplanDescer");
+    //console.log("AplanSubir");
     const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
     this.props.mqttCommand(caminho, "aplanSubir");
   }
 
   aplanAbrir() {
-    //console.log("AplanDescer");
     const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
     this.props.mqttCommand(caminho, "aplanAbrir");
   }
 
   aplanFechar() {
-    //console.log("AplanDescer");
     const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
     this.props.mqttCommand(caminho, "aplanFechar");
   }
 
   perfilAvanca() {
-    //console.log("AplanDescer");
     const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
     this.props.mqttCommand(caminho, "perfilAvanca");
   }
 
   perfilRecua() {
-    //console.log("AplanDescer");
     const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
     this.props.mqttCommand(caminho, "perfilRecua");
   }
 
   plataformaSobe() {
-    //console.log("AplanDescer");
     const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
     this.props.mqttCommand(caminho, "plataformaSobe");
   }
 
   plataformaDesce() {
-    //console.log("AplanDescer");
     const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
     this.props.mqttCommand(caminho, "plataformaDesce");
   }
 
   prensaLigar() {
-    //console.log("AplanDescer");
     this.setState({
       motor: false
-    });
-    const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
-    this.props.mqttCommand(caminho, "prensaLigar");
-  }
-
-  prensaDesligar() {
-    //console.log("AplanDescer");
-    this.setState({
-      motor: true
     });
     const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
     this.props.mqttCommand(caminho, "prensaDesligar");
   }
 
+  prensaDesligar() {
+    this.setState({
+      motor: true
+    });
+    const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
+    this.props.mqttCommand(caminho, "prensaLigar");
+  }
+
   desbobinadorLigar() {
-    //console.log("AplanDescer");
     this.setState({
       Desbobinador: true
     });
@@ -188,12 +182,29 @@ export default class IHM extends Component {
   }
 
   desbobinadorDesligar() {
-    //console.log("AplanDescer");
     this.setState({
-      Desbobinador: test
+      Desbobinador: false
     });
     const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
     this.props.mqttCommand(caminho, "desbobinadorDesligar");
+  }
+
+  aplanadoraAutomatica() {
+    //console.log("aplanadoraAutomatica");
+    this.setState({
+      aplanAuto: true
+    });
+    const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
+    this.props.mqttCommand(caminho, "aplanadoraAutomatica");
+  }
+
+  aplanadoraManual() {
+    //console.log("aplanadoraManual");
+    this.setState({
+      aplanAuto: false
+    });
+    const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
+    this.props.mqttCommand(caminho, "aplanadoraManual");
   }
 
 
@@ -216,7 +227,7 @@ export default class IHM extends Component {
                 <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
               </Row>
               <Row>
-                <Col xsHidden      mdOffset={12} lgOffset={12}>'  '</Col>
+                <Col xsHidden mdOffset={12} lgOffset={12}>'  '</Col>
               </Row>
               <Row>
                 <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
@@ -235,34 +246,66 @@ export default class IHM extends Component {
               </Row>
             </Col>
             <Col xs={12} md={4} style={AplanCorpo}>
-              <Row>
-                <OverlayTrigger placement="top" overlay={tooltip_aplanAbrir}><img onTouchEnd={this.aplanAbrir} onClick={this.aplanAbrir} alt="AplanAbrir" src={AplanTampaAbrir} style={{ float: 'center', height: '54px', width: '66px' }} /></OverlayTrigger>
-              </Row>
-
-              <Row>
-                < OverlayTrigger placement="top" overlay={tooltip_aplanFechar}><img onTouchEnd={this.aplanFechar} onClick={this.aplanFechar} alt="AplanFechar" src={AplanTampaFechar} style={{ float: 'center', height: '54px', width: '66px' }} /></OverlayTrigger>
-              </Row>
-              <Row>
-                <OverlayTrigger placement="top" overlay={tooltip_perfilRecua}><img onTouchEnd={this.perfilRecua} onClick={this.perfilRecua} alt="Chapa Recua" src={AplanPerfilRecua} style={{ float: 'left', height: '54px', width: '66px' }} /></OverlayTrigger>
-                <OverlayTrigger placement="top" overlay={tooltip_perfilAvanca}><img onTouchEnd={this.perfilAvanca} onClick={this.perfilAvanca} alt="Chapa Avança" src={AplanPerfilAvanca} style={{ float: 'right', height: '54px', width: '66px' }} /></OverlayTrigger>
-              </Row>
-              <Row>
-                <OverlayTrigger placement="top" overlay={tooltip_aplanSubir}><img onTouchEnd={this.aplanSubir} onClick={this.aplanSubir} alt="AplanSubir" src={AplanSubir} style={{ float: 'left' }} /></OverlayTrigger>
-                <OverlayTrigger placement="top" overlay={tooltip_plataformaSobe}><img onTouchEnd={this.plataformaSobe} onClick={this.plataformaSobe} alt="Plataforma Sobe" src={AplanExtSubir} style={{ float: 'right', height: '54px', width: '66px' }} /></OverlayTrigger>
-              </Row>
-              <Row>
-                <OverlayTrigger placement="top" overlay={tooltip_aplanDescer}><img onTouchEnd={this.aplanDescer} onClick={this.aplanDescer} alt="AplanDescer" src={AplanDescer} style={{ float: 'left' }} /></OverlayTrigger>
-                <OverlayTrigger placement="top" overlay={tooltip_plataformaDesce}><img onTouchEnd={this.plataformaDesce} onClick={this.plataformaDesce} alt="Plataforma Desce" src={AplanExtDescer} style={{ float: 'right', height: '54px', width: '66px' }} /></OverlayTrigger>
-              </Row>
-              <Row style={{height: '33px'}}>
+              {this.state.aplanAuto === false ?
+                (<Row>
+                  <OverlayTrigger placement="top" overlay={tooltip_aplanAbrir}><img onTouchEnd={this.aplanAbrir} onClick={this.aplanAbrir} alt="AplanAbrir" src={AplanTampaAbrir} style={{ float: 'center', height: '54px', width: '66px' }} /></OverlayTrigger>
+                 </Row>):
+                (<Row>
+                    <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
+                    <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
+                  </Row>)
+              }
+              {this.state.aplanAuto === false ?
+                (<Row>
+                    < OverlayTrigger placement="top" overlay={tooltip_aplanFechar}><img onTouchEnd={this.aplanFechar} onClick={this.aplanFechar} alt="AplanFechar" src={AplanTampaFechar} style={{ float: 'center', height: '54px', width: '66px' }} /></OverlayTrigger>
+                  </Row>):
+                (<Row style={{ height: '70px' }}>
+                    <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
+                    <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
+                  </Row>)
+              }
+              {this.state.aplanAuto === false ?
+                (<Row>
+                    <OverlayTrigger placement="top" overlay={tooltip_perfilRecua}><img onTouchEnd={this.perfilRecua} onClick={this.perfilRecua} alt="Chapa Recua" src={AplanPerfilRecua} style={{ float: 'left', height: '54px', width: '66px' }} /></OverlayTrigger>
+                    <OverlayTrigger placement="top" overlay={tooltip_perfilAvanca}><img onTouchEnd={this.perfilAvanca} onClick={this.perfilAvanca} alt="Chapa Avança" src={AplanPerfilAvanca} style={{ float: 'right', height: '54px', width: '66px' }} /></OverlayTrigger>
+                  </Row>):
+                (<Row>
+                    <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
+                  </Row>)
+              }
+              {this.state.aplanAuto === false ?
+                (<Row>
+                    <OverlayTrigger placement="top" overlay={tooltip_aplanSubir}><img onTouchEnd={this.aplanSubir} onClick={this.aplanSubir} alt="AplanSubir" src={AplanSubir} style={{ float: 'left' }} /></OverlayTrigger>
+                    <OverlayTrigger placement="top" overlay={tooltip_plataformaSobe}><img onTouchEnd={this.plataformaSobe} onClick={this.plataformaSobe} alt="Plataforma Sobe" src={AplanExtSubir} style={{ float: 'right', height: '54px', width: '66px' }} /></OverlayTrigger>
+                    </Row>):
+                (<Row>
+                    <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
+                  </Row>)
+              }
+              {this.state.aplanAuto === false ?
+                (<Row>
+                    <OverlayTrigger placement="top" overlay={tooltip_aplanDescer}><img onTouchEnd={this.aplanDescer} onClick={this.aplanDescer} alt="AplanDescer" src={AplanDescer} style={{ float: 'left' }} /></OverlayTrigger>
+                    <OverlayTrigger placement="top" overlay={tooltip_plataformaDesce}><img onTouchEnd={this.plataformaDesce} onClick={this.plataformaDesce} alt="Plataforma Desce" src={AplanExtDescer} style={{ float: 'right', height: '54px', width: '66px' }} /></OverlayTrigger>
+                    </Row>):
+                (<Row>
+                    <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
+                  </Row>)
+              }
+              <Row style={{ height: '33px' }}>
                 <Col mdOffset={12} lgOffset={12}>'  '</Col>
               </Row>
               <Row>
-                <Col>
-                  <Button bsStyle="danger" bsSize="large" height="54px" block > AUTOMATICO <Glyphicon glyph="refresh" /> </Button>
-                </Col>
+                {this.state.aplanAuto === false ?
+                  (<Col>
+                    <Button bsStyle="danger" bsSize="large" height="54px" block onClick={this.aplanadoraAutomatica} > AUTOMATICO <Glyphicon glyph="refresh" /> </Button>
+                  </Col>) :
+                  (<Col>
+                    <Button bsStyle="success" bsSize="large" height="54px" block onClick={this.aplanadoraManual} > MANUAL <Glyphicon glyph="hand-up" /> </Button>
+                  </Col>)
+                }
+
               </Row>
-              <Row style={{height: '33px'}}>
+              <Row style={{ height: '33px' }}>
                 <Col xsHidden mdOffset={12} lgOffset={12}>' '</Col>
               </Row>
             </Col>
