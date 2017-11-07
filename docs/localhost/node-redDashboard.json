@@ -1,0 +1,1626 @@
+[
+    {
+        "id": "29c2878c.30d058",
+        "type": "inject",
+        "z": "7581d7dc.5693f8",
+        "name": "READ SYSTEM",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "30",
+        "crontab": "",
+        "once": true,
+        "x": 123.25,
+        "y": 203.75,
+        "wires": [
+            [
+                "aedda7cd.64cab8",
+                "e80ed4b3.2e8288",
+                "f2070f24.3eba5"
+            ]
+        ]
+    },
+    {
+        "id": "98af7036.12de",
+        "type": "comment",
+        "z": "7581d7dc.5693f8",
+        "name": "SISTEMA",
+        "info": "",
+        "x": 93.5,
+        "y": 163.75,
+        "wires": []
+    },
+    {
+        "id": "1051473b.a662d9",
+        "type": "function",
+        "z": "7581d7dc.5693f8",
+        "name": "hostname",
+        "func": "msg.payload = msg.payload.hostname; \n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 560.5000076293945,
+        "y": 47.25000190734863,
+        "wires": [
+            [
+                "cb21508c.2f4dd"
+            ]
+        ]
+    },
+    {
+        "id": "cb21508c.2f4dd",
+        "type": "ui_text",
+        "z": "7581d7dc.5693f8",
+        "group": "787bff23.acf5c",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "hostname",
+        "label": "Hostname",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 741.0000076293945,
+        "y": 47.25000190734863,
+        "wires": []
+    },
+    {
+        "id": "f82e3b45.bd4eb8",
+        "type": "ui_text",
+        "z": "7581d7dc.5693f8",
+        "group": "787bff23.acf5c",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "OS",
+        "label": "OS",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 731.0000076293945,
+        "y": 92.00000190734863,
+        "wires": []
+    },
+    {
+        "id": "9b0a82da.69017",
+        "type": "function",
+        "z": "7581d7dc.5693f8",
+        "name": "osType",
+        "func": "msg.payload = msg.payload.type; \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 561.0000076293945,
+        "y": 92.50000381469727,
+        "wires": [
+            [
+                "f82e3b45.bd4eb8"
+            ]
+        ]
+    },
+    {
+        "id": "924fa9e9.2f8078",
+        "type": "function",
+        "z": "7581d7dc.5693f8",
+        "name": "platform",
+        "func": "msg.payload = msg.payload.platform; \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 559.7500076293945,
+        "y": 137.25000381469727,
+        "wires": [
+            [
+                "f90fc261.5703d"
+            ]
+        ]
+    },
+    {
+        "id": "f90fc261.5703d",
+        "type": "ui_text",
+        "z": "7581d7dc.5693f8",
+        "group": "787bff23.acf5c",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "platform",
+        "label": "Platform",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 740.7500076293945,
+        "y": 137.25000381469727,
+        "wires": []
+    },
+    {
+        "id": "1fce2af1.6ea555",
+        "type": "function",
+        "z": "7581d7dc.5693f8",
+        "name": "Usage",
+        "func": "msg.payload = msg.payload.memusage;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 499.25000381469727,
+        "y": 280.00000762939453,
+        "wires": [
+            [
+                "b1520077.d0f04"
+            ]
+        ]
+    },
+    {
+        "id": "b1520077.d0f04",
+        "type": "ui_gauge",
+        "z": "7581d7dc.5693f8",
+        "name": "Memory Usage",
+        "group": "4e078d3a.3dc904",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "gtype": "gage",
+        "title": "1 Minute",
+        "label": "Usage",
+        "format": "{{value | number:2}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 699.5000076293945,
+        "y": 279.50000762939453,
+        "wires": []
+    },
+    {
+        "id": "5b026b99.8c87a4",
+        "type": "function",
+        "z": "7581d7dc.5693f8",
+        "name": "TOTAL MEM",
+        "func": "function formatBytes(bytes,decimals) {\n   if(bytes === 0) return '0 Byte';\n   var k = 1000; // or 1024 for binary\n   var dm = decimals + 1 || 3;\n   var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n   var i = Math.floor(Math.log(bytes) / Math.log(k));\n   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\n\nmsg.payload = formatBytes(msg.payload.totalmem);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 520.7500038146973,
+        "y": 320.50000858306885,
+        "wires": [
+            [
+                "21a4294e.f278f6"
+            ]
+        ]
+    },
+    {
+        "id": "eba85c7b.170c4",
+        "type": "function",
+        "z": "7581d7dc.5693f8",
+        "name": "freemem",
+        "func": "function formatBytes(bytes,decimals) {\n   if(bytes === 0) return '0 Byte';\n   var k = 1000; // or 1024 for binary\n   var dm = decimals + 1 || 3;\n   var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n   var i = Math.floor(Math.log(bytes) / Math.log(k));\n   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\n\nmsg.payload = formatBytes(msg.payload.freemem);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 512.5000076293945,
+        "y": 360.25000953674316,
+        "wires": [
+            [
+                "3b258a06.46a946"
+            ]
+        ]
+    },
+    {
+        "id": "21a4294e.f278f6",
+        "type": "ui_text",
+        "z": "7581d7dc.5693f8",
+        "group": "4e078d3a.3dc904",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "name": "",
+        "label": "Total Memory",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 700.0000076293945,
+        "y": 319.5000057220459,
+        "wires": []
+    },
+    {
+        "id": "3b258a06.46a946",
+        "type": "ui_text",
+        "z": "7581d7dc.5693f8",
+        "group": "4e078d3a.3dc904",
+        "order": 3,
+        "width": "0",
+        "height": "0",
+        "name": "",
+        "label": "Free Memory",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 691.2500076293945,
+        "y": 360.25000858306885,
+        "wires": []
+    },
+    {
+        "id": "6f1e319.e9382d",
+        "type": "function",
+        "z": "7581d7dc.5693f8",
+        "name": "memusage",
+        "func": "msg.payload = msg.payload.memusage;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 520.2500076293945,
+        "y": 237.25000667572021,
+        "wires": [
+            [
+                "46bad4fc.ee91bc"
+            ]
+        ]
+    },
+    {
+        "id": "46bad4fc.ee91bc",
+        "type": "ui_chart",
+        "z": "7581d7dc.5693f8",
+        "name": "Memory - 24 Hours",
+        "group": "4e078d3a.3dc904",
+        "order": 0,
+        "width": "0",
+        "height": "0",
+        "label": "24 Hours",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "86400",
+        "cutout": "",
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": true,
+        "x": 707.5000076293945,
+        "y": 237.00000762939453,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "bed3147f.e64008",
+        "type": "ui_template",
+        "z": "7581d7dc.5693f8",
+        "group": "ee0c144e.855ce8",
+        "name": "CAIXA DE ENTRADA",
+        "order": 2,
+        "width": "6",
+        "height": "5",
+        "format": "Ultima Mensagem recebida\n<div> <b> </b> </div>\n<div ng-bind-html=\"msg.payload\"></div>",
+        "storeOutMessages": false,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 1764.0000228881836,
+        "y": 359.2500190734863,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a91ab1bc.c116",
+        "type": "ui_toast",
+        "z": "7581d7dc.5693f8",
+        "position": "top right",
+        "displayTime": "2",
+        "highlight": "",
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "topic": "",
+        "name": "",
+        "x": 1645.5000228881836,
+        "y": 470.75000953674316,
+        "wires": []
+    },
+    {
+        "id": "13ac61db.b3a5ae",
+        "type": "ui_form",
+        "z": "7581d7dc.5693f8",
+        "name": "",
+        "label": "Mensagem",
+        "group": "ee0c144e.855ce8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Email",
+                "value": "mytxt",
+                "type": "text",
+                "required": true
+            }
+        ],
+        "formValue": {
+            "mytxt": ""
+        },
+        "payload": "",
+        "topic": "",
+        "x": 1235.000015258789,
+        "y": 515.2500095367432,
+        "wires": [
+            [
+                "2bb8e7a4.fbb728",
+                "e00c165.86b1ae8"
+            ]
+        ]
+    },
+    {
+        "id": "701cfc57.7b5504",
+        "type": "comment",
+        "z": "7581d7dc.5693f8",
+        "name": "Send Email",
+        "info": "",
+        "x": 1632.5000076293945,
+        "y": 427.50000762939453,
+        "wires": []
+    },
+    {
+        "id": "2bb8e7a4.fbb728",
+        "type": "function",
+        "z": "7581d7dc.5693f8",
+        "name": "",
+        "func": "msg.payload = msg.payload.mytxt +\" Mensagem enviada [200 ok]\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1421.2500190734863,
+        "y": 471.25000953674316,
+        "wires": [
+            [
+                "a91ab1bc.c116"
+            ]
+        ]
+    },
+    {
+        "id": "aedda7cd.64cab8",
+        "type": "OS",
+        "z": "7581d7dc.5693f8",
+        "name": "",
+        "x": 344.5,
+        "y": 110.5,
+        "wires": [
+            [
+                "1051473b.a662d9",
+                "9b0a82da.69017",
+                "924fa9e9.2f8078"
+            ]
+        ]
+    },
+    {
+        "id": "e80ed4b3.2e8288",
+        "type": "Memory",
+        "z": "7581d7dc.5693f8",
+        "name": "",
+        "x": 341.00001525878906,
+        "y": 298.75,
+        "wires": [
+            [
+                "6f1e319.e9382d",
+                "1fce2af1.6ea555",
+                "5b026b99.8c87a4",
+                "eba85c7b.170c4"
+            ]
+        ]
+    },
+    {
+        "id": "81fc2ba8.4bd3d8",
+        "type": "mqtt in",
+        "z": "7581d7dc.5693f8",
+        "name": "Comandos",
+        "topic": "fabrica/ihm/comandos/#",
+        "qos": "0",
+        "broker": "d8f46f1a.2a7e2",
+        "x": 132.85714721679688,
+        "y": 808.5714721679688,
+        "wires": [
+            [
+                "4d66a2ff.4adbfc",
+                "b5a20744.bfef78"
+            ]
+        ]
+    },
+    {
+        "id": "4d66a2ff.4adbfc",
+        "type": "debug",
+        "z": "7581d7dc.5693f8",
+        "name": "MQTT # RAW",
+        "active": false,
+        "console": "false",
+        "complete": "payload",
+        "x": 732.8571472167969,
+        "y": 808.5714721679688,
+        "wires": []
+    },
+    {
+        "id": "b5a20744.bfef78",
+        "type": "function",
+        "z": "7581d7dc.5693f8",
+        "name": "Store and shift msg",
+        "func": "\n\n\n// initialise the counter to 0 if it doesn't exist already\nvar text = context.get('text')|| [];\n\ntext.push(msg);\nif (text.length > 20){\n text.shift();\n text.length = 20;\n} \n\n// store the value back\ncontext.set('text',text);\n// make it part of the outgoing msg object\nmsg = {};\nmsg.payload = text;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 402.8571472167969,
+        "y": 868.5714721679688,
+        "wires": [
+            [
+                "8237b742.a6a8a8",
+                "fe07db9d.357708"
+            ]
+        ]
+    },
+    {
+        "id": "8237b742.a6a8a8",
+        "type": "debug",
+        "z": "7581d7dc.5693f8",
+        "name": "mqtt array",
+        "active": false,
+        "console": "false",
+        "complete": "payload",
+        "x": 722.8571472167969,
+        "y": 888.5714721679688,
+        "wires": []
+    },
+    {
+        "id": "fe07db9d.357708",
+        "type": "ui_template",
+        "z": "7581d7dc.5693f8",
+        "group": "911950c8.1cf2f",
+        "name": "MQTT comandos",
+        "order": 1,
+        "width": "6",
+        "height": "7",
+        "format": "<ul>\n <li ng-repeat=\"x in msg.payload\">\n <font color=\"red\">{{x.topic}}</font>\n <ul>\n <li>{{x.payload}}</li>\n </ul>\n </li>\n</ul>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 742.8571472167969,
+        "y": 848.5714721679688,
+        "wires": [
+            [
+                "db97fcf7.c58e4"
+            ]
+        ]
+    },
+    {
+        "id": "2751b2b9.da581e",
+        "type": "ui_text_input",
+        "z": "7581d7dc.5693f8",
+        "name": "Message",
+        "label": "Message",
+        "group": "911950c8.1cf2f",
+        "order": 3,
+        "width": "0",
+        "height": "0",
+        "passthru": true,
+        "mode": "text",
+        "delay": "300",
+        "topic": "message",
+        "x": 132.85714721679688,
+        "y": 928.5714721679688,
+        "wires": [
+            [
+                "e024a57b.4bec08"
+            ]
+        ]
+    },
+    {
+        "id": "47796945.b66a18",
+        "type": "ui_button",
+        "z": "7581d7dc.5693f8",
+        "name": "Submit",
+        "group": "911950c8.1cf2f",
+        "order": 4,
+        "width": "3",
+        "height": "2",
+        "passthru": false,
+        "label": "ENVIAR",
+        "color": "black",
+        "bgcolor": "",
+        "icon": "fa-arrow-circle-o-up",
+        "payload": "submit",
+        "payloadType": "str",
+        "topic": "submit",
+        "x": 122.85714721679688,
+        "y": 968.5714721679688,
+        "wires": [
+            [
+                "e024a57b.4bec08"
+            ]
+        ]
+    },
+    {
+        "id": "e024a57b.4bec08",
+        "type": "function",
+        "z": "7581d7dc.5693f8",
+        "name": "Store and Submit",
+        "func": "context.msg = context.msg || {};\n\nswitch (msg.topic){\n case 'message':\n    context.msg.payload = msg.payload;\n break;\n case 'topic':\n    context.msg.topic = msg.payload;\n break;\n case 'submit':\n    if(context.msg.topic){\n    return context.msg;\n    }else{\n    context.msg.topic=\"#\"; // set default topic\n return context.msg;\n }\n}",
+        "outputs": "1",
+        "noerr": 0,
+        "x": 402.8571472167969,
+        "y": 948.5714721679688,
+        "wires": [
+            [
+                "b9864037.f8e4b",
+                "238e9ad4.f5f916"
+            ]
+        ]
+    },
+    {
+        "id": "b9864037.f8e4b",
+        "type": "debug",
+        "z": "7581d7dc.5693f8",
+        "name": "MQTT Monitor",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 712.8571472167969,
+        "y": 948.5714721679688,
+        "wires": []
+    },
+    {
+        "id": "de0a3a10.be9ae8",
+        "type": "ui_text_input",
+        "z": "7581d7dc.5693f8",
+        "name": "Comando",
+        "label": "Topic/",
+        "group": "911950c8.1cf2f",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "Comando",
+        "x": 132.85714721679688,
+        "y": 888.5714721679688,
+        "wires": [
+            [
+                "e024a57b.4bec08"
+            ]
+        ]
+    },
+    {
+        "id": "fa5023b.8aa18e",
+        "type": "ui_button",
+        "z": "7581d7dc.5693f8",
+        "name": "Clear",
+        "group": "911950c8.1cf2f",
+        "order": 0,
+        "width": "3",
+        "height": "2",
+        "passthru": false,
+        "label": "LIMPAR",
+        "color": "black",
+        "bgcolor": "",
+        "icon": "fa-trash",
+        "payload": "0",
+        "payloadType": "str",
+        "topic": "",
+        "x": 122.85714721679688,
+        "y": 1008.5714721679688,
+        "wires": [
+            [
+                "2751b2b9.da581e",
+                "de0a3a10.be9ae8"
+            ]
+        ]
+    },
+    {
+        "id": "c64b554f.ec1528",
+        "type": "comment",
+        "z": "7581d7dc.5693f8",
+        "name": "MQTT Console with dashboard comandos",
+        "info": "This flow demonstrates how to view MQTT data\n\nIt is also a nice demonstration how you can\nuse an array to shift data into the UI template\n\n\nUI Viewable:\nhttp://localhost:1880/ui\n\nWritten by\nCory Guynn\n2016\nwww.InternetOfLEG0.com",
+        "x": 232.85714721679688,
+        "y": 768.5714721679688,
+        "wires": []
+    },
+    {
+        "id": "238e9ad4.f5f916",
+        "type": "mqtt out",
+        "z": "7581d7dc.5693f8",
+        "name": "Topico Comandos da Maquina",
+        "topic": "fabrica/ihm/comandos/PERF-N3",
+        "qos": "0",
+        "retain": "false",
+        "broker": "d8f46f1a.2a7e2",
+        "x": 761.607177734375,
+        "y": 997.3214721679688,
+        "wires": []
+    },
+    {
+        "id": "db97fcf7.c58e4",
+        "type": "debug",
+        "z": "7581d7dc.5693f8",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 926.7796587262837,
+        "y": 848.1369977678569,
+        "wires": []
+    },
+    {
+        "id": "6a4a0c92.cd0294",
+        "type": "mqtt in",
+        "z": "7581d7dc.5693f8",
+        "name": "Estado",
+        "topic": "fabrica/ihm/estado/#",
+        "qos": "0",
+        "broker": "d8f46f1a.2a7e2",
+        "x": 117.85714721679688,
+        "y": 1121.5714721679688,
+        "wires": [
+            [
+                "28709457.f6d17c",
+                "db0a6e48.27b0b"
+            ]
+        ]
+    },
+    {
+        "id": "28709457.f6d17c",
+        "type": "debug",
+        "z": "7581d7dc.5693f8",
+        "name": "MQTT # RAW",
+        "active": false,
+        "console": "false",
+        "complete": "payload",
+        "x": 727.8571472167969,
+        "y": 1121.5714721679688,
+        "wires": []
+    },
+    {
+        "id": "db0a6e48.27b0b",
+        "type": "function",
+        "z": "7581d7dc.5693f8",
+        "name": "Store and shift msg",
+        "func": "\n\n\n// initialise the counter to 0 if it doesn't exist already\nvar text = context.get('text')|| [];\n\ntext.push(msg);\nif (text.length > 20){\n text.shift();\n text.length = 20;\n} \n\n// store the value back\ncontext.set('text',text);\n// make it part of the outgoing msg object\nmsg = {};\nmsg.payload = text;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 397.8571472167969,
+        "y": 1181.5714721679688,
+        "wires": [
+            [
+                "b16aca03.611ff8",
+                "37f86535.710f4a"
+            ]
+        ]
+    },
+    {
+        "id": "b16aca03.611ff8",
+        "type": "debug",
+        "z": "7581d7dc.5693f8",
+        "name": "mqtt array",
+        "active": false,
+        "console": "false",
+        "complete": "payload",
+        "x": 717.8571472167969,
+        "y": 1201.5714721679688,
+        "wires": []
+    },
+    {
+        "id": "37f86535.710f4a",
+        "type": "ui_template",
+        "z": "7581d7dc.5693f8",
+        "group": "3468dea5.f49022",
+        "name": "MQTT comandos",
+        "order": 1,
+        "width": "6",
+        "height": "7",
+        "format": "<ul>\n <li ng-repeat=\"x in msg.payload\">\n <font color=\"red\">{{x.topic}}</font>\n <ul>\n <li>{{x.payload}}</li>\n </ul>\n </li>\n</ul>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 737.8571472167969,
+        "y": 1161.5714721679688,
+        "wires": [
+            [
+                "6309c521.c788ec"
+            ]
+        ]
+    },
+    {
+        "id": "63eb303f.2e4a1",
+        "type": "ui_text_input",
+        "z": "7581d7dc.5693f8",
+        "name": "Message",
+        "label": "Message",
+        "group": "3468dea5.f49022",
+        "order": 3,
+        "width": "0",
+        "height": "0",
+        "passthru": true,
+        "mode": "text",
+        "delay": "300",
+        "topic": "message",
+        "x": 127.85714721679688,
+        "y": 1241.5714721679688,
+        "wires": [
+            [
+                "448206f1.85d038"
+            ]
+        ]
+    },
+    {
+        "id": "33c0b812.b0f078",
+        "type": "ui_button",
+        "z": "7581d7dc.5693f8",
+        "name": "Submit",
+        "group": "3468dea5.f49022",
+        "order": 4,
+        "width": "3",
+        "height": "2",
+        "passthru": false,
+        "label": "ENVIAR",
+        "color": "black",
+        "bgcolor": "",
+        "icon": "fa-arrow-circle-o-up",
+        "payload": "submit",
+        "payloadType": "str",
+        "topic": "submit",
+        "x": 117.85714721679688,
+        "y": 1281.5714721679688,
+        "wires": [
+            [
+                "448206f1.85d038"
+            ]
+        ]
+    },
+    {
+        "id": "448206f1.85d038",
+        "type": "function",
+        "z": "7581d7dc.5693f8",
+        "name": "Store and Submit",
+        "func": "context.msg = context.msg || {};\n\nswitch (msg.topic){\n case 'message':\n    context.msg.payload = msg.payload;\n break;\n case 'topic':\n    context.msg.topic = msg.payload;\n break;\n case 'submit':\n    if(context.msg.topic){\n    return context.msg;\n    }else{\n    context.msg.topic=\"#\"; // set default topic\n return context.msg;\n }\n}",
+        "outputs": "1",
+        "noerr": 0,
+        "x": 397.8571472167969,
+        "y": 1261.5714721679688,
+        "wires": [
+            [
+                "3d34e89d.b54428",
+                "ad39c7fc.d0b468"
+            ]
+        ]
+    },
+    {
+        "id": "3d34e89d.b54428",
+        "type": "debug",
+        "z": "7581d7dc.5693f8",
+        "name": "MQTT Monitor",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 707.8571472167969,
+        "y": 1261.5714721679688,
+        "wires": []
+    },
+    {
+        "id": "610a0c91.e1d524",
+        "type": "ui_text_input",
+        "z": "7581d7dc.5693f8",
+        "name": "Comando",
+        "label": "Topic/",
+        "group": "3468dea5.f49022",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "Comando",
+        "x": 127.85714721679688,
+        "y": 1201.5714721679688,
+        "wires": [
+            [
+                "448206f1.85d038"
+            ]
+        ]
+    },
+    {
+        "id": "19f7f539.103a7b",
+        "type": "ui_button",
+        "z": "7581d7dc.5693f8",
+        "name": "Clear",
+        "group": "3468dea5.f49022",
+        "order": 0,
+        "width": "3",
+        "height": "2",
+        "passthru": false,
+        "label": "LIMPAR",
+        "color": "black",
+        "bgcolor": "",
+        "icon": "fa-trash",
+        "payload": "0",
+        "payloadType": "str",
+        "topic": "",
+        "x": 117.85714721679688,
+        "y": 1321.5714721679688,
+        "wires": [
+            [
+                "63eb303f.2e4a1",
+                "610a0c91.e1d524"
+            ]
+        ]
+    },
+    {
+        "id": "d3d83246.32d96",
+        "type": "comment",
+        "z": "7581d7dc.5693f8",
+        "name": "MQTT Console with dashboard Estado",
+        "info": "This flow demonstrates how to view MQTT data\n\nIt is also a nice demonstration how you can\nuse an array to shift data into the UI template\n\n\nUI Viewable:\nhttp://localhost:1880/ui\n\nWritten by\nCory Guynn\n2016\nwww.InternetOfLEG0.com",
+        "x": 217.85714721679688,
+        "y": 1081.5714721679688,
+        "wires": []
+    },
+    {
+        "id": "ad39c7fc.d0b468",
+        "type": "mqtt out",
+        "z": "7581d7dc.5693f8",
+        "name": "Topico Estado da Maquina",
+        "topic": "fabrica/ihm/estado/PERF-N3",
+        "qos": "0",
+        "retain": "false",
+        "broker": "d8f46f1a.2a7e2",
+        "x": 746.607177734375,
+        "y": 1310.3214721679688,
+        "wires": []
+    },
+    {
+        "id": "6309c521.c788ec",
+        "type": "debug",
+        "z": "7581d7dc.5693f8",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 921.7796587262837,
+        "y": 1161.1369977678569,
+        "wires": []
+    },
+    {
+        "id": "143820b8.ec2f9f",
+        "type": "mqtt in",
+        "z": "7581d7dc.5693f8",
+        "name": "User",
+        "topic": "fabrica/ihm/user/#",
+        "qos": "0",
+        "broker": "d8f46f1a.2a7e2",
+        "x": 1112.6071472167969,
+        "y": 807.8214721679688,
+        "wires": [
+            [
+                "754ff247.45956c",
+                "15fdd870.7421a8"
+            ]
+        ]
+    },
+    {
+        "id": "754ff247.45956c",
+        "type": "debug",
+        "z": "7581d7dc.5693f8",
+        "name": "MQTT # RAW",
+        "active": false,
+        "console": "false",
+        "complete": "payload",
+        "x": 1722.6071472167969,
+        "y": 807.8214721679688,
+        "wires": []
+    },
+    {
+        "id": "15fdd870.7421a8",
+        "type": "function",
+        "z": "7581d7dc.5693f8",
+        "name": "Store and shift msg",
+        "func": "\n\n\n// initialise the counter to 0 if it doesn't exist already\nvar text = context.get('text')|| [];\n\ntext.push(msg);\nif (text.length > 20){\n text.shift();\n text.length = 20;\n} \n\n// store the value back\ncontext.set('text',text);\n// make it part of the outgoing msg object\nmsg = {};\nmsg.payload = text;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1392.6071472167969,
+        "y": 867.8214721679688,
+        "wires": [
+            [
+                "b0af2c66.1f723",
+                "c466e8e8.5b84b8"
+            ]
+        ]
+    },
+    {
+        "id": "b0af2c66.1f723",
+        "type": "debug",
+        "z": "7581d7dc.5693f8",
+        "name": "mqtt array",
+        "active": false,
+        "console": "false",
+        "complete": "payload",
+        "x": 1712.6071472167969,
+        "y": 887.8214721679688,
+        "wires": []
+    },
+    {
+        "id": "c466e8e8.5b84b8",
+        "type": "ui_template",
+        "z": "7581d7dc.5693f8",
+        "group": "a455e7cf.0b1728",
+        "name": "MQTT comandos",
+        "order": 1,
+        "width": "6",
+        "height": "7",
+        "format": "<ul>\n <li ng-repeat=\"x in msg.payload\">\n <font color=\"red\">{{x.topic}}</font>\n <ul>\n <li>{{x.payload}}</li>\n </ul>\n </li>\n</ul>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 1732.6071472167969,
+        "y": 847.8214721679688,
+        "wires": [
+            [
+                "e828ece7.ddebc"
+            ]
+        ]
+    },
+    {
+        "id": "1ca658d4.ffe047",
+        "type": "ui_text_input",
+        "z": "7581d7dc.5693f8",
+        "name": "Message",
+        "label": "Message",
+        "group": "a455e7cf.0b1728",
+        "order": 3,
+        "width": "0",
+        "height": "0",
+        "passthru": true,
+        "mode": "text",
+        "delay": "300",
+        "topic": "message",
+        "x": 1122.6071472167969,
+        "y": 927.8214721679688,
+        "wires": [
+            [
+                "89fb8c41.af037"
+            ]
+        ]
+    },
+    {
+        "id": "8cb2ea89.8f7cf8",
+        "type": "ui_button",
+        "z": "7581d7dc.5693f8",
+        "name": "Submit",
+        "group": "a455e7cf.0b1728",
+        "order": 4,
+        "width": "3",
+        "height": "2",
+        "passthru": false,
+        "label": "ENVIAR",
+        "color": "black",
+        "bgcolor": "",
+        "icon": "fa-arrow-circle-o-up",
+        "payload": "submit",
+        "payloadType": "str",
+        "topic": "submit",
+        "x": 1112.6071472167969,
+        "y": 967.8214721679688,
+        "wires": [
+            [
+                "89fb8c41.af037"
+            ]
+        ]
+    },
+    {
+        "id": "89fb8c41.af037",
+        "type": "function",
+        "z": "7581d7dc.5693f8",
+        "name": "Store and Submit",
+        "func": "context.msg = context.msg || {};\n\nswitch (msg.topic){\n case 'message':\n    context.msg.payload = msg.payload;\n break;\n case 'topic':\n    context.msg.topic = msg.payload;\n break;\n case 'submit':\n    if(context.msg.topic){\n    return context.msg;\n    }else{\n    context.msg.topic=\"#\"; // set default topic\n return context.msg;\n }\n}",
+        "outputs": "1",
+        "noerr": 0,
+        "x": 1392.6071472167969,
+        "y": 947.8214721679688,
+        "wires": [
+            [
+                "3270fc91.3ac7c4",
+                "f61b486b.6a8938"
+            ]
+        ]
+    },
+    {
+        "id": "3270fc91.3ac7c4",
+        "type": "debug",
+        "z": "7581d7dc.5693f8",
+        "name": "MQTT Monitor",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 1702.6071472167969,
+        "y": 947.8214721679688,
+        "wires": []
+    },
+    {
+        "id": "b168acd6.2f768",
+        "type": "ui_text_input",
+        "z": "7581d7dc.5693f8",
+        "name": "Comando",
+        "label": "Topic/",
+        "group": "a455e7cf.0b1728",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "Comando",
+        "x": 1122.6071472167969,
+        "y": 887.8214721679688,
+        "wires": [
+            [
+                "89fb8c41.af037"
+            ]
+        ]
+    },
+    {
+        "id": "d453e328.2934",
+        "type": "ui_button",
+        "z": "7581d7dc.5693f8",
+        "name": "Clear",
+        "group": "a455e7cf.0b1728",
+        "order": 0,
+        "width": "3",
+        "height": "2",
+        "passthru": false,
+        "label": "LIMPAR",
+        "color": "black",
+        "bgcolor": "",
+        "icon": "fa-trash",
+        "payload": "0",
+        "payloadType": "str",
+        "topic": "",
+        "x": 1112.6071472167969,
+        "y": 1007.8214721679688,
+        "wires": [
+            [
+                "1ca658d4.ffe047",
+                "b168acd6.2f768"
+            ]
+        ]
+    },
+    {
+        "id": "99941ee5.86aa1",
+        "type": "comment",
+        "z": "7581d7dc.5693f8",
+        "name": "MQTT Console with dashboard User",
+        "info": "This flow demonstrates how to view MQTT data\n\nIt is also a nice demonstration how you can\nuse an array to shift data into the UI template\n\n\nUI Viewable:\nhttp://localhost:1880/ui\n\nWritten by\nCory Guynn\n2016\nwww.InternetOfLEG0.com",
+        "x": 1202.6071472167969,
+        "y": 767.8214721679688,
+        "wires": []
+    },
+    {
+        "id": "f61b486b.6a8938",
+        "type": "mqtt out",
+        "z": "7581d7dc.5693f8",
+        "name": "Topico USER",
+        "topic": "fabrica/ihm/user/PERF-N3",
+        "qos": "0",
+        "retain": "false",
+        "broker": "d8f46f1a.2a7e2",
+        "x": 1691.357177734375,
+        "y": 996.5714721679688,
+        "wires": []
+    },
+    {
+        "id": "e828ece7.ddebc",
+        "type": "debug",
+        "z": "7581d7dc.5693f8",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 1916.5296587262837,
+        "y": 847.3869977678569,
+        "wires": []
+    },
+    {
+        "id": "2f3cb29a.663dee",
+        "type": "mqtt in",
+        "z": "7581d7dc.5693f8",
+        "name": "Erros",
+        "topic": "fabrica/ihm/erros/#",
+        "qos": "0",
+        "broker": "d8f46f1a.2a7e2",
+        "x": 1113.1071472167969,
+        "y": 1121.8214721679688,
+        "wires": [
+            [
+                "7abc8b94.97a7f4",
+                "2d448c52.a757c4"
+            ]
+        ]
+    },
+    {
+        "id": "7abc8b94.97a7f4",
+        "type": "debug",
+        "z": "7581d7dc.5693f8",
+        "name": "MQTT # RAW",
+        "active": false,
+        "console": "false",
+        "complete": "payload",
+        "x": 1723.1071472167969,
+        "y": 1121.8214721679688,
+        "wires": []
+    },
+    {
+        "id": "2d448c52.a757c4",
+        "type": "function",
+        "z": "7581d7dc.5693f8",
+        "name": "Store and shift msg",
+        "func": "\n\n\n// initialise the counter to 0 if it doesn't exist already\nvar text = context.get('text')|| [];\n\ntext.push(msg);\nif (text.length > 20){\n text.shift();\n text.length = 20;\n} \n\n// store the value back\ncontext.set('text',text);\n// make it part of the outgoing msg object\nmsg = {};\nmsg.payload = text;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1393.1071472167969,
+        "y": 1181.8214721679688,
+        "wires": [
+            [
+                "82c6e9a4.814a98",
+                "7ddfd591.6f8c6c"
+            ]
+        ]
+    },
+    {
+        "id": "82c6e9a4.814a98",
+        "type": "debug",
+        "z": "7581d7dc.5693f8",
+        "name": "mqtt array",
+        "active": false,
+        "console": "false",
+        "complete": "payload",
+        "x": 1713.1071472167969,
+        "y": 1201.8214721679688,
+        "wires": []
+    },
+    {
+        "id": "7ddfd591.6f8c6c",
+        "type": "ui_template",
+        "z": "7581d7dc.5693f8",
+        "group": "61858bde.7da874",
+        "name": "MQTT comandos",
+        "order": 1,
+        "width": "6",
+        "height": "7",
+        "format": "<ul>\n <li ng-repeat=\"x in msg.payload\">\n <font color=\"red\">{{x.topic}}</font>\n <ul>\n <li>{{x.payload}}</li>\n </ul>\n </li>\n</ul>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 1733.1071472167969,
+        "y": 1161.8214721679688,
+        "wires": [
+            [
+                "9971ea6a.49f968"
+            ]
+        ]
+    },
+    {
+        "id": "ce1dfc4e.6951",
+        "type": "ui_text_input",
+        "z": "7581d7dc.5693f8",
+        "name": "Message",
+        "label": "Message",
+        "group": "61858bde.7da874",
+        "order": 3,
+        "width": "0",
+        "height": "0",
+        "passthru": true,
+        "mode": "text",
+        "delay": "300",
+        "topic": "message",
+        "x": 1123.1071472167969,
+        "y": 1241.8214721679688,
+        "wires": [
+            [
+                "b2160195.abfcb"
+            ]
+        ]
+    },
+    {
+        "id": "cb4092fd.05c35",
+        "type": "ui_button",
+        "z": "7581d7dc.5693f8",
+        "name": "Submit",
+        "group": "61858bde.7da874",
+        "order": 4,
+        "width": "3",
+        "height": "2",
+        "passthru": false,
+        "label": "ENVIAR",
+        "color": "black",
+        "bgcolor": "",
+        "icon": "fa-arrow-circle-o-up",
+        "payload": "submit",
+        "payloadType": "str",
+        "topic": "submit",
+        "x": 1113.1071472167969,
+        "y": 1281.8214721679688,
+        "wires": [
+            [
+                "b2160195.abfcb"
+            ]
+        ]
+    },
+    {
+        "id": "b2160195.abfcb",
+        "type": "function",
+        "z": "7581d7dc.5693f8",
+        "name": "Store and Submit",
+        "func": "context.msg = context.msg || {};\n\nswitch (msg.topic){\n case 'message':\n    context.msg.payload = msg.payload;\n break;\n case 'topic':\n    context.msg.topic = msg.payload;\n break;\n case 'submit':\n    if(context.msg.topic){\n    return context.msg;\n    }else{\n    context.msg.topic=\"#\"; // set default topic\n return context.msg;\n }\n}",
+        "outputs": "1",
+        "noerr": 0,
+        "x": 1393.1071472167969,
+        "y": 1261.8214721679688,
+        "wires": [
+            [
+                "81dec6c3.bb5708",
+                "3b2d65f5.25d21a"
+            ]
+        ]
+    },
+    {
+        "id": "81dec6c3.bb5708",
+        "type": "debug",
+        "z": "7581d7dc.5693f8",
+        "name": "MQTT Monitor",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 1703.1071472167969,
+        "y": 1261.8214721679688,
+        "wires": []
+    },
+    {
+        "id": "ac03383a.3bc8c8",
+        "type": "ui_text_input",
+        "z": "7581d7dc.5693f8",
+        "name": "Comando",
+        "label": "Topic/",
+        "group": "61858bde.7da874",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "Comando",
+        "x": 1123.1071472167969,
+        "y": 1201.8214721679688,
+        "wires": [
+            [
+                "b2160195.abfcb"
+            ]
+        ]
+    },
+    {
+        "id": "aabd8d35.dab99",
+        "type": "ui_button",
+        "z": "7581d7dc.5693f8",
+        "name": "Clear",
+        "group": "61858bde.7da874",
+        "order": 0,
+        "width": "3",
+        "height": "2",
+        "passthru": false,
+        "label": "LIMPAR",
+        "color": "black",
+        "bgcolor": "",
+        "icon": "fa-trash",
+        "payload": "0",
+        "payloadType": "str",
+        "topic": "",
+        "x": 1113.1071472167969,
+        "y": 1321.8214721679688,
+        "wires": [
+            [
+                "ce1dfc4e.6951",
+                "ac03383a.3bc8c8"
+            ]
+        ]
+    },
+    {
+        "id": "e937fce3.9aa5e",
+        "type": "comment",
+        "z": "7581d7dc.5693f8",
+        "name": "MQTT Console with dashboard User",
+        "info": "This flow demonstrates how to view MQTT data\n\nIt is also a nice demonstration how you can\nuse an array to shift data into the UI template\n\n\nUI Viewable:\nhttp://localhost:1880/ui\n\nWritten by\nCory Guynn\n2016\nwww.InternetOfLEG0.com",
+        "x": 1203.1071472167969,
+        "y": 1081.8214721679688,
+        "wires": []
+    },
+    {
+        "id": "3b2d65f5.25d21a",
+        "type": "mqtt out",
+        "z": "7581d7dc.5693f8",
+        "name": "Topico ERROS",
+        "topic": "fabrica/ihm/erros/PERF-N3",
+        "qos": "0",
+        "retain": "false",
+        "broker": "d8f46f1a.2a7e2",
+        "x": 1701.857177734375,
+        "y": 1310.5714721679688,
+        "wires": []
+    },
+    {
+        "id": "9971ea6a.49f968",
+        "type": "debug",
+        "z": "7581d7dc.5693f8",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 1917.0296587262837,
+        "y": 1161.3869977678569,
+        "wires": []
+    },
+    {
+        "id": "f2070f24.3eba5",
+        "type": "Uptime",
+        "z": "7581d7dc.5693f8",
+        "name": "",
+        "x": 342,
+        "y": 176,
+        "wires": [
+            [
+                "c2985105.64918"
+            ]
+        ]
+    },
+    {
+        "id": "c2985105.64918",
+        "type": "function",
+        "z": "7581d7dc.5693f8",
+        "name": "uptime",
+        "func": "function timeConversion(millisec) {\n\n    var seconds = (millisec / 1000).toFixed(1);\n\n    var minutes = (millisec / (1000 * 60)).toFixed(1);\n\n    var hours = (millisec / (1000 * 60 * 60)).toFixed(1);\n\n    var days = (millisec / (1000 * 60 * 60 * 24)).toFixed(1);\n\n    if (seconds < 60) {\n        return seconds + \" Sec\";\n    } else if (minutes < 60) {\n        return minutes + \" Min\";\n    } else if (hours < 24) {\n        return hours + \" Hrs\";\n    } else {\n        return days + \" Days\"\n    }\n}\n\nmsg.payload = timeConversion(msg.payload.uptime * 1000);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 552,
+        "y": 177,
+        "wires": [
+            [
+                "fe6e2ac0.ee9968"
+            ]
+        ]
+    },
+    {
+        "id": "fe6e2ac0.ee9968",
+        "type": "ui_text",
+        "z": "7581d7dc.5693f8",
+        "group": "787bff23.acf5c",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "name": "",
+        "label": "Uptime",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 740,
+        "y": 177,
+        "wires": []
+    },
+    {
+        "id": "bb62dac0.7eb6b8",
+        "type": "e-mail in",
+        "z": "7581d7dc.5693f8",
+        "name": "ihmaltamira@gmail.com",
+        "protocol": "IMAP",
+        "server": "imap.gmail.com",
+        "useSSL": true,
+        "port": "993",
+        "box": "INBOX",
+        "disposition": "Read",
+        "repeat": "400",
+        "x": 1516.750015258789,
+        "y": 316.500036239624,
+        "wires": [
+            [
+                "ea4e532d.0adef",
+                "bed3147f.e64008"
+            ]
+        ]
+    },
+    {
+        "id": "ea4e532d.0adef",
+        "type": "debug",
+        "z": "7581d7dc.5693f8",
+        "name": "recebidos",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 1723.461353302002,
+        "y": 316.6565818786621,
+        "wires": []
+    },
+    {
+        "id": "35ad5e52.f58052",
+        "type": "debug",
+        "z": "7581d7dc.5693f8",
+        "name": "EMAIL RECADO",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 1876.2000942230225,
+        "y": 514.7674646377563,
+        "wires": []
+    },
+    {
+        "id": "a198bbd6.b99008",
+        "type": "function",
+        "z": "7581d7dc.5693f8",
+        "name": "Corpo do email",
+        "func": "//Titulo do email\nmsg.topic = \"IHM-ALIMENTADOR-N3\";\n\n//Corpo do email\nmsg.payload = \n`\n<!DOCTYPE html>\n<html>\n<head>\n <meta charset=\"utf-8\">\n <title>Alimentador N3</title>\n</head>\n<body>\n\n <div>\n <h2>Recado</h2>\n <table>\n <tr>\n <td><b>Mensagem</b></td>\n <td><nobr>${msg.payload.mytxt}</nobr></td>\n </tr>\n <tr>\n <td><b>Evento ocorreu</b></td>\n <td><nobr>Dia = ${msg.date} Hora = ${msg.time}</nobr></td>\n </tr>\n <tr>\n <td><b>Operador</b></td>\n <td><nobr>Marcelo Miranda</nobr></td>\n </tr>\n </table>\n </div>\n\n</body>\n</html>\n`\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1636.2000942230225,
+        "y": 514.7674646377563,
+        "wires": [
+            [
+                "35ad5e52.f58052",
+                "e446c10b.c76a5"
+            ]
+        ]
+    },
+    {
+        "id": "e446c10b.c76a5",
+        "type": "e-mail",
+        "z": "7581d7dc.5693f8",
+        "server": "smtp.gmail.com",
+        "port": "587",
+        "secure": false,
+        "name": "ihmaltamira@gmail.com",
+        "dname": "",
+        "x": 1896.3685703277588,
+        "y": 461.804967880249,
+        "wires": []
+    },
+    {
+        "id": "e00c165.86b1ae8",
+        "type": "function",
+        "z": "7581d7dc.5693f8",
+        "name": "timer",
+        "func": "let myHours = new Date().toTimeString().replace(/.*(\\d{2}:\\d{2}:\\d{2}).*/, \"$1\");\n\nlet d = new Date();\nlet x = (\"00\" + (d.getMonth() + 1)).slice(-2) + \"/\" + \n        (\"00\" + d.getDate()).slice(-2) + \"/\" + \n        d.getFullYear() + \" \" + myHours.slice(0,5);\n        \nlet y = (\"00\" + (d.getMonth() + 1)).slice(-2) + \"/\" + \n        (\"00\" + d.getDate()).slice(-2) + \"/\" + \n        d.getFullYear();\n\nmsg.date =  y;\nmsg.time =  myHours.slice(0,5);\n  \nnode.status({fill:\"blue\",shape:\"dot\",text:x});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1422.4999980926514,
+        "y": 515.0000457763672,
+        "wires": [
+            [
+                "a198bbd6.b99008",
+                "ecf5a5d1.8a0318"
+            ]
+        ]
+    },
+    {
+        "id": "ecf5a5d1.8a0318",
+        "type": "debug",
+        "z": "7581d7dc.5693f8",
+        "name": "timer",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 1607.4260482788086,
+        "y": 558.7869358062744,
+        "wires": []
+    },
+    {
+        "id": "4efaa88b.2be258",
+        "type": "comment",
+        "z": "7581d7dc.5693f8",
+        "name": "Receive Email",
+        "info": "",
+        "x": 1632.5000228881836,
+        "y": 276.25000381469727,
+        "wires": []
+    },
+    {
+        "id": "787bff23.acf5c",
+        "type": "ui_group",
+        "z": "",
+        "name": "Sysinfo",
+        "tab": "5b1c3ac2.7e1374",
+        "order": 1,
+        "disp": true,
+        "width": "6"
+    },
+    {
+        "id": "4e078d3a.3dc904",
+        "type": "ui_group",
+        "z": "",
+        "name": "Memory",
+        "tab": "5b1c3ac2.7e1374",
+        "order": 2,
+        "disp": true,
+        "width": "6"
+    },
+    {
+        "id": "ee0c144e.855ce8",
+        "type": "ui_group",
+        "z": "",
+        "name": "Emails Recebidos",
+        "tab": "5b1c3ac2.7e1374",
+        "order": 4,
+        "disp": true,
+        "width": "7"
+    },
+    {
+        "id": "d8f46f1a.2a7e2",
+        "type": "mqtt-broker",
+        "z": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": ""
+    },
+    {
+        "id": "911950c8.1cf2f",
+        "type": "ui_group",
+        "z": "",
+        "name": "COMANDO",
+        "tab": "baa64de.92385b",
+        "disp": true,
+        "width": "6"
+    },
+    {
+        "id": "3468dea5.f49022",
+        "type": "ui_group",
+        "z": "",
+        "name": "ESTADO",
+        "tab": "baa64de.92385b",
+        "disp": true,
+        "width": "6"
+    },
+    {
+        "id": "a455e7cf.0b1728",
+        "type": "ui_group",
+        "z": "",
+        "name": "USER",
+        "tab": "baa64de.92385b",
+        "disp": true,
+        "width": "6"
+    },
+    {
+        "id": "61858bde.7da874",
+        "type": "ui_group",
+        "z": "",
+        "name": "ERRO",
+        "tab": "baa64de.92385b",
+        "disp": true,
+        "width": "6"
+    },
+    {
+        "id": "5b1c3ac2.7e1374",
+        "type": "ui_tab",
+        "z": "",
+        "name": "IHM ESTADO",
+        "icon": "dashboard"
+    },
+    {
+        "id": "baa64de.92385b",
+        "type": "ui_tab",
+        "z": "",
+        "name": "FILAS",
+        "icon": "dashboard"
+    }
+]

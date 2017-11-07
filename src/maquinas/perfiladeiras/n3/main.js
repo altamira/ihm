@@ -297,10 +297,10 @@ export default class IHM extends Component {
               <Row>
                 {this.state.aplanAuto === false ?
                   (<Col>
-                    <Button bsStyle="danger" bsSize="large" height="54px" block onClick={this.aplanadoraAutomatica} > AUTOMATICO <Glyphicon glyph="refresh" /> </Button>
+                    <Button bsStyle="danger" bsSize="large" height="54px" block onClick={this.aplanadoraAutomatica} > COLOCAR EM AUTOMATICO <Glyphicon glyph="refresh" /> </Button>
                   </Col>) :
                   (<Col>
-                    <Button bsStyle="success" bsSize="large" height="54px" block onClick={this.aplanadoraManual} > MANUAL <Glyphicon glyph="hand-up" /> </Button>
+                    <Button bsStyle="success" bsSize="large" height="54px" block onClick={this.aplanadoraManual} > COLOCAR EM MANUAL <Glyphicon glyph="hand-up" /> </Button>
                   </Col>)
                 }
 
