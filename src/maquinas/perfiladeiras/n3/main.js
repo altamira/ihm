@@ -249,47 +249,47 @@ export default class IHM extends Component {
               {this.state.aplanAuto === false ?
                 (<Row>
                   <OverlayTrigger placement="top" overlay={tooltip_aplanAbrir}><img onTouchEnd={this.aplanAbrir} onClick={this.aplanAbrir} alt="AplanAbrir" src={AplanTampaAbrir} style={{ float: 'center', height: '54px', width: '66px' }} /></OverlayTrigger>
-                 </Row>):
+                </Row>) :
                 (<Row>
-                    <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
-                    <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
-                  </Row>)
+                  <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
+                  <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
+                </Row>)
               }
               {this.state.aplanAuto === false ?
                 (<Row>
-                    < OverlayTrigger placement="top" overlay={tooltip_aplanFechar}><img onTouchEnd={this.aplanFechar} onClick={this.aplanFechar} alt="AplanFechar" src={AplanTampaFechar} style={{ float: 'center', height: '54px', width: '66px' }} /></OverlayTrigger>
-                  </Row>):
+                  < OverlayTrigger placement="top" overlay={tooltip_aplanFechar}><img onTouchEnd={this.aplanFechar} onClick={this.aplanFechar} alt="AplanFechar" src={AplanTampaFechar} style={{ float: 'center', height: '54px', width: '66px' }} /></OverlayTrigger>
+                </Row>) :
                 (<Row style={{ height: '70px' }}>
-                    <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
-                    <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
-                  </Row>)
+                  <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
+                  <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
+                </Row>)
               }
               {this.state.aplanAuto === false ?
                 (<Row>
-                    <OverlayTrigger placement="top" overlay={tooltip_perfilRecua}><img onTouchEnd={this.perfilRecua} onClick={this.perfilRecua} alt="Chapa Recua" src={AplanPerfilRecua} style={{ float: 'left', height: '54px', width: '66px' }} /></OverlayTrigger>
-                    <OverlayTrigger placement="top" overlay={tooltip_perfilAvanca}><img onTouchEnd={this.perfilAvanca} onClick={this.perfilAvanca} alt="Chapa Avança" src={AplanPerfilAvanca} style={{ float: 'right', height: '54px', width: '66px' }} /></OverlayTrigger>
-                  </Row>):
+                  <OverlayTrigger placement="top" overlay={tooltip_perfilRecua}><img onTouchEnd={this.perfilRecua} onClick={this.perfilRecua} alt="Chapa Recua" src={AplanPerfilRecua} style={{ float: 'left', height: '54px', width: '66px' }} /></OverlayTrigger>
+                  <OverlayTrigger placement="top" overlay={tooltip_perfilAvanca}><img onTouchEnd={this.perfilAvanca} onClick={this.perfilAvanca} alt="Chapa Avança" src={AplanPerfilAvanca} style={{ float: 'right', height: '54px', width: '66px' }} /></OverlayTrigger>
+                </Row>) :
                 (<Row>
-                    <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
-                  </Row>)
+                  <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
+                </Row>)
               }
               {this.state.aplanAuto === false ?
                 (<Row>
-                    <OverlayTrigger placement="top" overlay={tooltip_aplanSubir}><img onTouchEnd={this.aplanSubir} onClick={this.aplanSubir} alt="AplanSubir" src={AplanSubir} style={{ float: 'left' }} /></OverlayTrigger>
-                    <OverlayTrigger placement="top" overlay={tooltip_plataformaSobe}><img onTouchEnd={this.plataformaSobe} onClick={this.plataformaSobe} alt="Plataforma Sobe" src={AplanExtSubir} style={{ float: 'right', height: '54px', width: '66px' }} /></OverlayTrigger>
-                    </Row>):
+                  <OverlayTrigger placement="top" overlay={tooltip_aplanSubir}><img onTouchEnd={this.aplanSubir} onClick={this.aplanSubir} alt="AplanSubir" src={AplanSubir} style={{ float: 'left' }} /></OverlayTrigger>
+                  <OverlayTrigger placement="top" overlay={tooltip_plataformaSobe}><img onTouchEnd={this.plataformaSobe} onClick={this.plataformaSobe} alt="Plataforma Sobe" src={AplanExtSubir} style={{ float: 'right', height: '54px', width: '66px' }} /></OverlayTrigger>
+                </Row>) :
                 (<Row>
-                    <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
-                  </Row>)
+                  <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
+                </Row>)
               }
               {this.state.aplanAuto === false ?
                 (<Row>
-                    <OverlayTrigger placement="top" overlay={tooltip_aplanDescer}><img onTouchEnd={this.aplanDescer} onClick={this.aplanDescer} alt="AplanDescer" src={AplanDescer} style={{ float: 'left' }} /></OverlayTrigger>
-                    <OverlayTrigger placement="top" overlay={tooltip_plataformaDesce}><img onTouchEnd={this.plataformaDesce} onClick={this.plataformaDesce} alt="Plataforma Desce" src={AplanExtDescer} style={{ float: 'right', height: '54px', width: '66px' }} /></OverlayTrigger>
-                    </Row>):
+                  <OverlayTrigger placement="top" overlay={tooltip_aplanDescer}><img onTouchEnd={this.aplanDescer} onClick={this.aplanDescer} alt="AplanDescer" src={AplanDescer} style={{ float: 'left' }} /></OverlayTrigger>
+                  <OverlayTrigger placement="top" overlay={tooltip_plataformaDesce}><img onTouchEnd={this.plataformaDesce} onClick={this.plataformaDesce} alt="Plataforma Desce" src={AplanExtDescer} style={{ float: 'right', height: '54px', width: '66px' }} /></OverlayTrigger>
+                </Row>) :
                 (<Row>
-                    <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
-                  </Row>)
+                  <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
+                </Row>)
               }
               <Row style={{ height: '33px' }}>
                 <Col mdOffset={12} lgOffset={12}>'  '</Col>
