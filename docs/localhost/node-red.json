@@ -569,7 +569,7 @@
         "type": "mqtt out",
         "z": "3f422101.3791ae",
         "name": "Topico Estado da Maquina",
-        "topic": "AplanadoraN/Estado",
+        "topic": "fabrica/ihm/estado",
         "qos": "0",
         "retain": "false",
         "broker": "37b3c15d.a7496e",
@@ -1123,7 +1123,7 @@
         "type": "mqtt out",
         "z": "3f422101.3791ae",
         "name": "Topico Estado da Maquina",
-        "topic": "AplanadoraN/Estado",
+        "topic": "fabrica/ihm/estado",
         "qos": "0",
         "retain": "false",
         "broker": "37b3c15d.a7496e",
@@ -1136,7 +1136,7 @@
         "type": "mqtt out",
         "z": "3f422101.3791ae",
         "name": "Topico Estado da Maquina",
-        "topic": "AplanadoraN/Estado",
+        "topic": "fabrica/ihm/estado",
         "qos": "0",
         "retain": "false",
         "broker": "37b3c15d.a7496e",
@@ -1635,8 +1635,8 @@
         "func": "msg.i++;\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 2283.356819152832,
-        "y": 1205.41090965271,
+        "x": 2181.1348266601562,
+        "y": 1278.855381011963,
         "wires": [
             [
                 "d8aa29e4.ad5358"
@@ -1847,12 +1847,12 @@
         "id": "b3bee5b3.702928",
         "type": "debug",
         "z": "3f422101.3791ae",
-        "name": "Array completo",
+        "name": "Array",
         "active": false,
         "console": "false",
         "complete": "payload",
-        "x": 3300.664794921875,
-        "y": 1504.07861328125,
+        "x": 3262.664794921875,
+        "y": 1512.07861328125,
         "wires": []
     },
     {
@@ -1863,8 +1863,8 @@
         "active": false,
         "console": "false",
         "complete": "payload.length",
-        "x": 3280.33154296875,
-        "y": 1461.554443359375,
+        "x": 3273.33154296875,
+        "y": 1469.554443359375,
         "wires": []
     },
     {
@@ -1872,15 +1872,14 @@
         "type": "function",
         "z": "3f422101.3791ae",
         "name": "Separa cada mensagem",
-        "func": "var msgs = [null, null, null, null, null, null, null, null, null, null];\n\nmsgs[flow.get('params').length - 1] = {payload: flow.get('params')[flow.get('params').length - 1]};\n\nnode.send(msgs);\n",
-        "outputs": "10",
+        "func": "var msgs = [null, null, null, null, null, null, null, null];\n\nmsgs[flow.get('params').length - 1] = {payload: flow.get('params')[flow.get('params').length - 1]};\n\nnode.send(msgs);\n",
+        "outputs": "8",
         "noerr": 0,
-        "x": 3535.292724609375,
+        "x": 3495.292724609375,
         "y": 1546.39892578125,
         "wires": [
             [
-                "322a851.8a1977a",
-                "10711e6a.720182"
+                "322a851.8a1977a"
             ],
             [
                 "daf003bd.19cd9"
@@ -1902,26 +1901,8 @@
             ],
             [
                 "921fa6ac.588e08"
-            ],
-            [
-                "8ec7469.540c9b8"
-            ],
-            [
-                "5d8709b5.f20a48"
             ]
         ]
-    },
-    {
-        "id": "1735a92c.5a8817",
-        "type": "link out",
-        "z": "3f422101.3791ae",
-        "name": "Erro ModBus",
-        "links": [
-            "7fb2661d.9b7b08"
-        ],
-        "x": 4122.733245849609,
-        "y": 1822.502314567566,
-        "wires": []
     },
     {
         "id": "de2a4214.04601",
@@ -1931,8 +1912,8 @@
         "func": "//Somente entra aqui se o array ainda for >= 0\nif (flow.get('params').length >= 0) {\n \n // Carrega todos os parametros que ainda não foram enviados\n var params = flow.get('params');\n \n // Cria um novo Array tirando o ultimo elemento\n var novo = params.slice(0, flow.get('params').length - 1);\n \n // Sobrescreve o arry params\n flow.set('params', novo);\n \n // Envia novo array com -1 elemento\n msg.payload = novo;\n return msg;\n}\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 3586.618896484375,
-        "y": 1337.7164306640625,
+        "x": 3541.618896484375,
+        "y": 1343.7164306640625,
         "wires": [
             [
                 "47159ceb.d93454"
@@ -1947,8 +1928,8 @@
         "active": false,
         "console": "false",
         "complete": "payload",
-        "x": 3536.0791015625,
-        "y": 1296.6053466796875,
+        "x": 3491.0791015625,
+        "y": 1302.6053466796875,
         "wires": []
     },
     {
@@ -1959,15 +1940,15 @@
         "dataType": "HoldingRegister",
         "adr": "14",
         "server": "9d9e7956.cdee38",
-        "x": 3896.829002380371,
-        "y": 1346.7164363861084,
+        "x": 3814.829002380371,
+        "y": 1216.7164363861084,
         "wires": [
             [
                 "f3dfdc5d.546f1",
                 "eb66237a.c0298"
             ],
             [
-                "1735a92c.5a8817"
+                "e0b06437.caa188"
             ]
         ]
     },
@@ -1979,15 +1960,15 @@
         "dataType": "HoldingRegister",
         "adr": "21",
         "server": "9d9e7956.cdee38",
-        "x": 3888.400463104248,
-        "y": 1539.145022392273,
+        "x": 3801.4003715515137,
+        "y": 1592.1449356079102,
         "wires": [
             [
                 "f3dfdc5d.546f1",
                 "96e48791.470a58"
             ],
             [
-                "1735a92c.5a8817"
+                "dd13de36.dcbe8"
             ]
         ]
     },
@@ -1999,15 +1980,15 @@
         "dataType": "HoldingRegister",
         "adr": "18",
         "server": "9d9e7956.cdee38",
-        "x": 3898.9716796875,
-        "y": 1443.859375,
+        "x": 3812.9715881347656,
+        "y": 1400.8593187332153,
         "wires": [
             [
                 "f3dfdc5d.546f1",
                 "3cb6665d.6432ca"
             ],
             [
-                "1735a92c.5a8817"
+                "549e431f.7b84bc"
             ]
         ]
     },
@@ -2019,15 +2000,15 @@
         "dataType": "HoldingRegister",
         "adr": "17",
         "server": "9d9e7956.cdee38",
-        "x": 3898.1146240234375,
-        "y": 1394.859375,
+        "x": 3816.1146240234375,
+        "y": 1308.859375,
         "wires": [
             [
                 "f3dfdc5d.546f1",
                 "6ff967e5.bbf5f8"
             ],
             [
-                "1735a92c.5a8817"
+                "1eaf33fa.12061c"
             ]
         ]
     },
@@ -2039,35 +2020,15 @@
         "dataType": "HoldingRegister",
         "adr": "20",
         "server": "9d9e7956.cdee38",
-        "x": 3887.971752166748,
-        "y": 1492.5736112594604,
+        "x": 3801.9716606140137,
+        "y": 1494.5735549926758,
         "wires": [
             [
                 "f3dfdc5d.546f1",
                 "758841f0.5bbd5"
             ],
             [
-                "1735a92c.5a8817"
-            ]
-        ]
-    },
-    {
-        "id": "5d8709b5.f20a48",
-        "type": "modbustcp-no-pooling-write",
-        "z": "3f422101.3791ae",
-        "name": "NovoCiclosMil_M26",
-        "dataType": "HoldingRegister",
-        "adr": "26",
-        "server": "9d9e7956.cdee38",
-        "x": 3908.828929901123,
-        "y": 1781.7164335250854,
-        "wires": [
-            [
-                "f3dfdc5d.546f1",
-                "25e0e342.1f8cac"
-            ],
-            [
-                "1735a92c.5a8817"
+                "16e9aad3.ced205"
             ]
         ]
     },
@@ -2075,19 +2036,19 @@
         "id": "6eece4fd.472e4c",
         "type": "modbustcp-no-pooling-write",
         "z": "3f422101.3791ae",
-        "name": "PrsCiclosUnid_M27",
+        "name": "PrsCiclos_M27",
         "dataType": "HoldingRegister",
         "adr": "27",
         "server": "9d9e7956.cdee38",
-        "x": 3899.400146484375,
-        "y": 1640.4307861328125,
+        "x": 3800.4000549316406,
+        "y": 1788.4306993484497,
         "wires": [
             [
                 "f3dfdc5d.546f1",
                 "1154279d.870758"
             ],
             [
-                "1735a92c.5a8817"
+                "6d873cfe.3f1bd4"
             ]
         ]
     },
@@ -2099,35 +2060,15 @@
         "dataType": "HoldingRegister",
         "adr": "22",
         "server": "9d9e7956.cdee38",
-        "x": 3888.5430908203125,
-        "y": 1589.4307861328125,
+        "x": 3800.54296875,
+        "y": 1689.4306640625,
         "wires": [
             [
                 "f3dfdc5d.546f1",
                 "d069fa5e.c28398"
             ],
             [
-                "1735a92c.5a8817"
-            ]
-        ]
-    },
-    {
-        "id": "8ec7469.540c9b8",
-        "type": "modbustcp-no-pooling-write",
-        "z": "3f422101.3791ae",
-        "name": "NovoPrsCiclosUnd_M25",
-        "dataType": "HoldingRegister",
-        "adr": "25",
-        "server": "9d9e7956.cdee38",
-        "x": 3918.400218963623,
-        "y": 1732.145022392273,
-        "wires": [
-            [
-                "f3dfdc5d.546f1",
-                "d1baee8f.18b2d"
-            ],
-            [
-                "1735a92c.5a8817"
+                "db11a312.2683b"
             ]
         ]
     },
@@ -2139,15 +2080,15 @@
         "dataType": "HoldingRegister",
         "adr": "28",
         "server": "9d9e7956.cdee38",
-        "x": 3899.6067810058594,
-        "y": 1686.2165174484253,
+        "x": 3809.606689453125,
+        "y": 1889.2164306640625,
         "wires": [
             [
                 "f3dfdc5d.546f1",
                 "fb901fa1.dca68"
             ],
             [
-                "1735a92c.5a8817"
+                "ddeddc8f.1e15f"
             ]
         ]
     },
@@ -2159,8 +2100,8 @@
         "links": [
             "f3dfdc5d.546f1"
         ],
-        "x": 3241.35693359375,
-        "y": 1336.68310546875,
+        "x": 3196.35693359375,
+        "y": 1342.68310546875,
         "wires": [
             [
                 "920309e0.622ac8"
@@ -2175,8 +2116,8 @@
         "links": [
             "507768a8.b14b28"
         ],
-        "x": 4132.106781005859,
-        "y": 1304.4831800460815,
+        "x": 4013.106689453125,
+        "y": 1151.483154296875,
         "wires": []
     },
     {
@@ -2187,8 +2128,8 @@
         "func": "setTimeout(function() {\n node.send(msg);\n}, 100);\nreturn null;",
         "outputs": 1,
         "noerr": 0,
-        "x": 3364.35693359375,
-        "y": 1336.6331787109375,
+        "x": 3319.35693359375,
+        "y": 1342.6331787109375,
         "wires": [
             [
                 "2d7806a4.f1a3fa",
@@ -2200,13 +2141,13 @@
         "id": "3d792536.d4f21a",
         "type": "mqtt out",
         "z": "3f422101.3791ae",
-        "name": "Topico Regitradores da Maquina",
-        "topic": "AplanadoraN/registradores",
+        "name": "fabrica/ihm/estado/registradores/",
+        "topic": "fabrica/ihm/estado/registradores/",
         "qos": "0",
         "retain": "false",
         "broker": "37b3c15d.a7496e",
-        "x": 4675.0830078125,
-        "y": 1538.83544921875,
+        "x": 4483.194190979004,
+        "y": 1521.946593284607,
         "wires": []
     },
     {
@@ -2215,8 +2156,8 @@
         "z": "3f422101.3791ae",
         "name": "Grava valor dos registradores no CLP",
         "info": "A cada inicialização os valores dos registradores são atualizados a partir de MongoDB:\n\n1- AplanVelAuto M14\nVelocidade maxima no automatico de 0% a 100%\n\n2- AplanVelMan M17\nVelocidade maxima no manual de 0% a 100%\n\n3- AplanPasso M18\nPasso da ferramenta em \"mm\", de 0 a 400mm\n\n4- EncFactor M20\nFator de correção do encoder em numeros inteiros apenas.\n\n5- EncResol M21\nResolução do encoder em numeros inteiros apenas. 1 a 10000\n\n6- EncPerim M22\nPerimetro do encoder em \"mm\". De 1 a 999\n\n7- PrsCiclosUnid M23\nCiclos de Lubrificação da prensa. De 0 a 65534 unidades\n\n8- PrsCiclosMil M24\nCiclos de Lubrificação da prensa vezes 1000. De 0 a 65534 unidades\n\n9- NovoPrsCiclosUnd M25\nCiclos que faltam para proxima Lubrificação da prensa. De 0 a 65534 unidades\n\n10- NovoCiclosMil M26\nCiclos que faltam para proxima Lubrificação da prensa vezes 1000. De 0 a 65534 unidades\n\n",
-        "x": 3954.273193359375,
-        "y": 1295.5498046875,
+        "x": 3875.0509033203125,
+        "y": 1114.2164402008057,
         "wires": []
     },
     {
@@ -2227,8 +2168,8 @@
         "func": "var valor = msg.payload;\n\nmsg.payload = {\n AplanVelAuto: valor\n};\nnode.status({fill:\"blue\",shape:\"dot\",text:valor});\n\n \nreturn msg;",
         "outputs": "1",
         "noerr": 0,
-        "x": 4280.60661315918,
-        "y": 1339.4546480178833,
+        "x": 4108.60661315918,
+        "y": 1193.4546480178833,
         "wires": [
             [
                 "3d792536.d4f21a"
@@ -2243,8 +2184,8 @@
         "func": "var valor = msg.payload;\n\nmsg.payload = {\n AplanVelMan: valor\n};\nnode.status({fill:\"blue\",shape:\"dot\",text:valor});\n \nreturn msg;",
         "outputs": "1",
         "noerr": 0,
-        "x": 4279.463958740234,
-        "y": 1388.0260572433472,
+        "x": 4107.4638671875,
+        "y": 1288.0260009765625,
         "wires": [
             [
                 "3d792536.d4f21a"
@@ -2259,8 +2200,8 @@
         "func": "var valor = msg.payload;\n\nglobal.set(\"FatorEncoder\",valor);\nmsg.payload = {\n EncFactor: valor\n};\nnode.status({fill:\"blue\",shape:\"dot\",text:valor});\n \nreturn msg;",
         "outputs": "1",
         "noerr": 0,
-        "x": 4278.463958740234,
-        "y": 1485.740382194519,
+        "x": 4106.4638671875,
+        "y": 1474.7403564453125,
         "wires": [
             [
                 "3d792536.d4f21a"
@@ -2275,8 +2216,8 @@
         "func": "var valor = msg.payload;\n\nmsg.payload = {\n AplanPasso: valor\n};\nnode.status({fill:\"blue\",shape:\"dot\",text:valor});\nreturn msg;",
         "outputs": "1",
         "noerr": 0,
-        "x": 4279.60661315918,
-        "y": 1436.1689729690552,
+        "x": 4106.6064453125,
+        "y": 1381.1689453125,
         "wires": [
             [
                 "3d792536.d4f21a"
@@ -2291,8 +2232,8 @@
         "func": "var valor = msg.payload;\n\nmsg.payload = {\n PrsCiclosUnid: valor\n};\nnode.status({fill:\"blue\",shape:\"dot\",text:valor});\n \nreturn msg;",
         "outputs": "1",
         "noerr": 0,
-        "x": 4277.321136474609,
-        "y": 1631.883204460144,
+        "x": 4107.321044921875,
+        "y": 1761.8831787109375,
         "wires": [
             [
                 "3d792536.d4f21a"
@@ -2307,8 +2248,8 @@
         "func": "var valor = msg.payload;\n\nmsg.payload = {\n EncPerim: valor\n};\nnode.status({fill:\"blue\",shape:\"dot\",text:valor});\nreturn msg;",
         "outputs": "1",
         "noerr": 0,
-        "x": 4278.463790893555,
-        "y": 1582.3117952346802,
+        "x": 4107.46369934082,
+        "y": 1665.3117694854736,
         "wires": [
             [
                 "3d792536.d4f21a"
@@ -2323,40 +2264,8 @@
         "func": "var valor = msg.payload;\n\nmsg.payload = {\n EncResol: valor\n};\nnode.status({fill:\"blue\",shape:\"dot\",text:valor});\nreturn msg;",
         "outputs": "1",
         "noerr": 0,
-        "x": 4278.321136474609,
-        "y": 1534.1688795089722,
-        "wires": [
-            [
-                "3d792536.d4f21a"
-            ]
-        ]
-    },
-    {
-        "id": "25e0e342.1f8cac",
-        "type": "function",
-        "z": "3f422101.3791ae",
-        "name": "Atualiza M26 na pagina",
-        "func": "var valor = msg.payload;\n\nmsg.payload = {\n NovoCiclosMil: valor\n};\nnode.status({fill:\"blue\",shape:\"dot\",text:\"falta implementar\"});\n \nreturn msg;",
-        "outputs": "1",
-        "noerr": 0,
-        "x": 4276.463958740234,
-        "y": 1775.740382194519,
-        "wires": [
-            [
-                "3d792536.d4f21a"
-            ]
-        ]
-    },
-    {
-        "id": "d1baee8f.18b2d",
-        "type": "function",
-        "z": "3f422101.3791ae",
-        "name": "Atualiza M25 na pagina",
-        "func": "var valor = msg.payload;\n\nmsg.payload = {\n NovoPrsCiclosUnd: valor\n};\nnode.status({fill:\"blue\",shape:\"dot\",text:valor});\n \nreturn msg;",
-        "outputs": "1",
-        "noerr": 0,
-        "x": 4277.60661315918,
-        "y": 1726.1689729690552,
+        "x": 4107.321044921875,
+        "y": 1571.1688537597656,
         "wires": [
             [
                 "3d792536.d4f21a"
@@ -2371,8 +2280,8 @@
         "func": "var valor = msg.payload;\n\nmsg.payload = {\n PrsCiclosMil: valor\n};\nnode.status({fill:\"blue\",shape:\"dot\",text:(\"Valor x1000 = \"+ valor)});\n\nreturn msg;",
         "outputs": "1",
         "noerr": 0,
-        "x": 4277.463958740234,
-        "y": 1678.0260572433472,
+        "x": 4107.4638671875,
+        "y": 1859.0260314941406,
         "wires": [
             [
                 "3d792536.d4f21a"
@@ -2476,8 +2385,8 @@
         "active": false,
         "console": "false",
         "complete": "true",
-        "x": 2690.409828186035,
-        "y": 1676.9096908569336,
+        "x": 2673.409912109375,
+        "y": 1670.90966796875,
         "wires": []
     },
     {
@@ -2909,7 +2818,7 @@
         "type": "mqtt out",
         "z": "3f422101.3791ae",
         "name": "Topico Estado da Maquina",
-        "topic": "AplanadoraN/Estado",
+        "topic": "fabrica/ihm/estado",
         "qos": "0",
         "retain": "false",
         "broker": "37b3c15d.a7496e",
@@ -3038,8 +2947,8 @@
         "upsert": true,
         "multi": true,
         "operation": "update",
-        "x": 2982.878547668457,
-        "y": 1286.26198387146,
+        "x": 2981.878547668457,
+        "y": 1287.26198387146,
         "wires": []
     },
     {
@@ -3236,7 +3145,7 @@
         "type": "mqtt out",
         "z": "3f422101.3791ae",
         "name": "Topico Estado da Maquina",
-        "topic": "AplanadoraN/Estado",
+        "topic": "fabrica/ihm/estado",
         "qos": "0",
         "retain": "false",
         "broker": "37b3c15d.a7496e",
@@ -3399,18 +3308,6 @@
                 "de00c564.1ca1a8"
             ]
         ]
-    },
-    {
-        "id": "10711e6a.720182",
-        "type": "debug",
-        "z": "3f422101.3791ae",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "false",
-        "x": 3875.056640625,
-        "y": 1251.233154296875,
-        "wires": []
     },
     {
         "id": "8f4d2241.79377",
@@ -3777,7 +3674,7 @@
         "qos": "0",
         "broker": "37b3c15d.a7496e",
         "x": 161.6956558227539,
-        "y": 993.2869129180908,
+        "y": 957.2869129180908,
         "wires": [
             [
                 "522ab01.03e9d5"
@@ -3793,7 +3690,7 @@
         "console": "false",
         "complete": "false",
         "x": 518.6349716186523,
-        "y": 993.4426832199097,
+        "y": 957.4426832199097,
         "wires": []
     },
     {
@@ -3804,8 +3701,8 @@
         "topic": "fabrica/ihm/debug/#",
         "qos": "0",
         "broker": "37b3c15d.a7496e",
-        "x": 157.1567153930664,
-        "y": 1053.914792060852,
+        "x": 161.1567153930664,
+        "y": 1008.914792060852,
         "wires": [
             [
                 "a3febcdf.3a988"
@@ -3820,8 +3717,8 @@
         "active": false,
         "console": "false",
         "complete": "false",
-        "x": 516.9531784057617,
-        "y": 1054.070544242859,
+        "x": 520.9531784057617,
+        "y": 1009.0705442428589,
         "wires": []
     },
     {
@@ -3832,8 +3729,8 @@
         "topic": "fabrica/ihm/estado/#",
         "qos": "0",
         "broker": "37b3c15d.a7496e",
-        "x": 163.01386260986328,
-        "y": 1107.91477394104,
+        "x": 162.01386260986328,
+        "y": 1062.91477394104,
         "wires": [
             [
                 "2ad4b6f1.35c84a"
@@ -3848,8 +3745,8 @@
         "active": false,
         "console": "false",
         "complete": "false",
-        "x": 519.9531784057617,
-        "y": 1108.070544242859,
+        "x": 518.9531784057617,
+        "y": 1063.070544242859,
         "wires": []
     },
     {
@@ -3860,8 +3757,8 @@
         "topic": "fabrica/ihm/comandos/#",
         "qos": "0",
         "broker": "37b3c15d.a7496e",
-        "x": 173.01386260986328,
-        "y": 1160.91477394104,
+        "x": 172.01386260986328,
+        "y": 1163.91477394104,
         "wires": [
             [
                 "2a685e5f.82bf42"
@@ -3876,8 +3773,8 @@
         "active": false,
         "console": "false",
         "complete": "false",
-        "x": 519.9531784057617,
-        "y": 1161.070544242859,
+        "x": 518.9531784057617,
+        "y": 1164.070544242859,
         "wires": []
     },
     {
@@ -3888,8 +3785,8 @@
         "topic": "fabrica/ihm/timer/",
         "qos": "0",
         "broker": "37b3c15d.a7496e",
-        "x": 153.01386260986328,
-        "y": 1223.46018409729,
+        "x": 151.01386260986328,
+        "y": 1213.46018409729,
         "wires": [
             [
                 "9d7c3d1d.8d63e"
@@ -3904,8 +3801,8 @@
         "active": false,
         "console": "false",
         "complete": "false",
-        "x": 519.9531784057617,
-        "y": 1223.615954399109,
+        "x": 517.9531784057617,
+        "y": 1213.615954399109,
         "wires": []
     },
     {
@@ -3917,8 +3814,8 @@
         "qos": "0",
         "retain": "",
         "broker": "37b3c15d.a7496e",
-        "x": 1010.6928253173828,
-        "y": 1041.673243522644,
+        "x": 1017.6928253173828,
+        "y": 1052.673243522644,
         "wires": []
     },
     {
@@ -3933,7 +3830,7 @@
         "crontab": "",
         "once": false,
         "x": 775.698486328125,
-        "y": 1041.88916015625,
+        "y": 1052.88916015625,
         "wires": [
             [
                 "fd7f824f.1891a"
@@ -3981,8 +3878,8 @@
         "qos": "0",
         "retain": "",
         "broker": "37b3c15d.a7496e",
-        "x": 1020.0280914306641,
-        "y": 1173.465968132019,
+        "x": 1019.0280914306641,
+        "y": 1156.465968132019,
         "wires": []
     },
     {
@@ -3996,8 +3893,8 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 775.0337524414062,
-        "y": 1173.681884765625,
+        "x": 774.0337524414062,
+        "y": 1156.681884765625,
         "wires": [
             [
                 "d4b3afd3.ea031"
@@ -4012,8 +3909,8 @@
         "topic": "fabrica/ihm/user/#",
         "qos": "0",
         "broker": "37b3c15d.a7496e",
-        "x": 151.0138702392578,
-        "y": 1282.278413772583,
+        "x": 161.0138702392578,
+        "y": 1266.278413772583,
         "wires": [
             [
                 "cc50e727.e3cba8"
@@ -4028,8 +3925,8 @@
         "active": false,
         "console": "false",
         "complete": "false",
-        "x": 517.9531860351562,
-        "y": 1282.4341840744019,
+        "x": 527.9531860351562,
+        "y": 1266.4341840744019,
         "wires": []
     },
     {
@@ -4163,7 +4060,7 @@
         "links": [
             "500fd6f7.a15278"
         ],
-        "x": 2120.333381652832,
+        "x": 2147.333381652832,
         "y": 1220.000020980835,
         "wires": []
     },
@@ -4173,10 +4070,11 @@
         "z": "3f422101.3791ae",
         "name": "",
         "links": [
+            "a8661b93.855de8",
             "c2c5220a.c006e",
-            "a8661b93.855de8"
+            "f0f4111c.32aaa"
         ],
-        "x": 2478.333381652832,
+        "x": 2474.333381652832,
         "y": 1220.000020980835,
         "wires": [
             [
@@ -4197,22 +4095,9 @@
         "y": 1554.000020980835,
         "wires": [
             [
-                "7a3aef67.22dc9"
+                "7a3aef67.22dc9",
+                "6fcccea9.c952d"
             ]
-        ]
-    },
-    {
-        "id": "895fe136.b32da",
-        "type": "function",
-        "z": "3f422101.3791ae",
-        "name": "Variaveis Globais",
-        "func": "//Estado inicial da maquina é não inicializada MaqInicializada=0\nglobal.set('conectadoServidor', 0);\nglobal.set(\"ComandoMaquina\",0);//liberamensagens do bloco libera maquina\nglobal.set(\"MotorPrensa\",0);\nglobal.set(\"MotorLigado\",0);\nglobal.set(\"MotorInvertido\",0);\nglobal.set(\"Desbobinador\",0);\nglobal.set(\"Indice_Mongo\",0);\nglobal.set(\"TamanhoDesejadoPeca_KEYBOARD\",0);\nglobal.set(\"TamanhoRealPeca_KEYBOARD\",0);\nglobal.set(\"FatorEncoder\",9909);\nglobal.set(\"ModBus\",[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]);\nvar start = new Date().getTime();\nglobal.set(\"tempo\",start);\n\nvar mensagens = [];\n\nmensagens['LER_CLP_MODBUS'] =        { type: 'error', message: ' CLP não responde. Verifique as conexões de rede.' };\nmensagens['EMERGENCIA'] =            { type: 'error', message: ' Emergencia acionada!' };\nmensagens['FALTA_FASE'] =            { type: 'error', message: ' Falta de Fase' };\nmensagens['BOMBA_HIDRAULICA'] =      { type: 'error', message: ' Térmico da Bomba Hidraulica' };\nmensagens['MARTELO_PRENSA'] =        { type: 'error', message: ' Térmico do Motor do Martelo Prensa' };\nmensagens['PRESSAO_AR'] =            { type: 'warning', message: 'Pressao do Ar Baixa!' };\nmensagens['INVERSOR'] =              { type: 'error', message: ' Erro no Inversor' };\nmensagens['SERVO'] =                 { type: 'error', message: ' Erro no Servo' };\nmensagens['CHAVE_GERAL_DESLIGADA'] = { type: 'warning', message: ' Chave Geral Desligada' };\nmensagens['CHAVE_GERAL_LIGADA']    = { type: 'warning', message: ' Chave Geral ligada' };\nmensagens['MAQUINA_NAO_LIBERADA'] =  { type: 'warning', message: ' Maquina Não Liberada' };\nmensagens['MAQUINA_LIBERADA']     =  { type: 'warning', message: ' Maquina Liberada' };\nmensagens['ERRO_POSICIONAMENTO']=    { type: 'error', message: ' Erro Posicionamento' };\nmensagens['SEGURAN_PRENSA'] =        { type: 'info', message: ' Segurança da Prensa' };\nmensagens['APLAN_ABERTA'] =          { type: 'info', message: ' Aplanadora Aberda' };\n\nglobal.set(\"mensagens\",mensagens);\nmsg= {payload: \"{MAQUINA_OFF:0}\"};\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 297.7459716796875,
-        "y": 174.73354053497314,
-        "wires": [
-            []
         ]
     },
     {
@@ -4239,7 +4124,7 @@
         "type": "function",
         "z": "3f422101.3791ae",
         "name": "Carregar parametros",
-        "func": "var msg2 = {};\nvar parametros = []; //Cria um array vazio\nvar x = 0;\n\nif (msg.payload.length){\n    x=msg.payload[0].codigo;\n    msg2 = null;         //Saida de erro não acontece nada\n\n    parametros.push(msg.payload[0].parametros.automatico.velocidade); //AplanVelAuto M14\n    parametros.push(msg.payload[0].parametros.manual.velocidade); //AplanVelMan M17\n    parametros.push(msg.payload[0].parametros.ferramenta.passoN2); //AplanPasso M18\n    parametros.push(msg.payload[0].parametros.encoder.fator); //EncFactor M20\n    parametros.push(msg.payload[0].parametros.encoder.resolucao); //EncResol M21 \n    parametros.push(msg.payload[0].parametros.encoder.perimetro); //EncPerim M22\n    parametros.push(msg.payload[0].parametros.lubrificacao.ciclos.PrsCiclos); //PrsCiclosUnid M23\n    //parametros.push(msg.payload[0].lubrificacao.ciclos.PrsCiclosMil); //PrsCiclosMil M24\n    //parametros.push(msg.payload[0].lubrificacao.preset.MbNovoCiclosUnd);//NovoPrsCiclosUnd M25\n    parametros.push(msg.payload[0].parametros.lubrificacao.preset.MbNovoCiclos);//NovoCiclosMil M26\n    \n    //flow.set('params', parametros); //Salva em uma variavel externa ao bloco\n    \n    msg.payload = parametros; //Envia o conteudo do array para o proximo bloco\n    node.status({fill:\"blue\",shape:\"dot\",text:\"Parametros Carregados \" + x});\n\n}else{ // banco vazio\n    msg2.payload = { type: 'error', message: 'Banco vazio Paramentros!'};\n    msg.payload = null;\n    msg.payload.time= new Date();\n    node.status({fill:\"red\",shape:\"dot\",text:'Erro banco vazio!'});\n}\n\nreturn [msg,msg2];\n",
+        "func": "var msg2 = {};\nvar parametros = []; //Cria um array vazio\nvar x = 0;\n\nif (msg.payload.length){\n    x=msg.payload[0].codigo;\n    msg2 = null;         //Saida de erro não acontece nada\n\n    parametros.push(msg.payload[0].parametros.automatico.velocidade); //AplanVelAuto M14\n    parametros.push(msg.payload[0].parametros.manual.velocidade); //AplanVelMan M17\n    parametros.push(msg.payload[0].parametros.ferramenta.passoN2); //AplanPasso M18\n    parametros.push(msg.payload[0].parametros.encoder.fator); //EncFactor M20\n    parametros.push(msg.payload[0].parametros.encoder.resolucao); //EncResol M21 \n    parametros.push(msg.payload[0].parametros.encoder.perimetro); //EncPerim M22\n    parametros.push(msg.payload[0].parametros.lubrificacao.ciclos.PrsCiclos); //PrsCiclosUnid M23\n    //parametros.push(msg.payload[0].parametros.lubrificacao.ciclos.PrsCiclosMil); //PrsCiclosMil M24\n    parametros.push(msg.payload[0].parametros.lubrificacao.preset.MbNovoCiclos);//NovoCiclosMil M26\n    \n    flow.set('params', parametros); //Salva em uma variavel externa ao bloco\n    \n    msg.payload = parametros; //Envia o conteudo do array para o proximo bloco\n    node.status({fill:\"blue\",shape:\"dot\",text:\"Parametros Carregados \" + x});\n\n}else{ // banco vazio\n    msg2.payload = { type: 'error', message: 'Banco vazio Paramentros!'};\n    msg.payload = null;\n    msg.payload.time= new Date();\n    node.status({fill:\"red\",shape:\"dot\",text:'Erro banco vazio!'});\n}\n\nreturn [msg,msg2];\n",
         "outputs": "2",
         "noerr": 0,
         "x": 3046.833297729492,
@@ -4278,12 +4163,203 @@
         "id": "a8661b93.855de8",
         "type": "link out",
         "z": "3f422101.3791ae",
-        "name": "erro comunicacao",
+        "name": "erro Carregando Parametros",
         "links": [
             "500fd6f7.a15278"
         ],
-        "x": 3238,
+        "x": 3228,
         "y": 1593,
+        "wires": []
+    },
+    {
+        "id": "6fcccea9.c952d",
+        "type": "debug",
+        "z": "3f422101.3791ae",
+        "name": "Parametros MongoBD",
+        "active": false,
+        "console": "false",
+        "complete": "payload",
+        "x": 3047,
+        "y": 1511,
+        "wires": []
+    },
+    {
+        "id": "e0b06437.caa188",
+        "type": "function",
+        "z": "3f422101.3791ae",
+        "name": "Erro Escrita M14",
+        "func": "msg.payload = { type: 'error', message: 'Falha de escrita dos modbus do CLP. M14'};\nmsg.payload.time= new Date();\nnode.status({fill:\"red\",shape:\"dot\",text:'Falha M14'});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 4087,
+        "y": 1241,
+        "wires": [
+            [
+                "f0f4111c.32aaa"
+            ]
+        ]
+    },
+    {
+        "id": "1eaf33fa.12061c",
+        "type": "function",
+        "z": "3f422101.3791ae",
+        "name": "Erro Escrita M17",
+        "func": "msg.payload = { type: 'error', message: 'Falha de escrita dos modbus do CLP. M17'};\nmsg.payload.time= new Date();\nnode.status({fill:\"red\",shape:\"dot\",text:'Falha M17'});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 4086,
+        "y": 1334,
+        "wires": [
+            [
+                "f0f4111c.32aaa"
+            ]
+        ]
+    },
+    {
+        "id": "549e431f.7b84bc",
+        "type": "function",
+        "z": "3f422101.3791ae",
+        "name": "Erro Escrita M18",
+        "func": "msg.payload = { type: 'error', message: 'Falha de escrita dos modbus do CLP. M18'};\nmsg.payload.time= new Date();\nnode.status({fill:\"red\",shape:\"dot\",text:'Falha M18'});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 4087,
+        "y": 1428,
+        "wires": [
+            [
+                "f0f4111c.32aaa"
+            ]
+        ]
+    },
+    {
+        "id": "16e9aad3.ced205",
+        "type": "function",
+        "z": "3f422101.3791ae",
+        "name": "Erro Escrita M20",
+        "func": "msg.payload = { type: 'error', message: 'Falha de escrita dos modbus do CLP. M20'};\nmsg.payload.time= new Date();\nnode.status({fill:\"red\",shape:\"dot\",text:'Falha M20'});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 4087,
+        "y": 1521,
+        "wires": [
+            [
+                "f0f4111c.32aaa"
+            ]
+        ]
+    },
+    {
+        "id": "dd13de36.dcbe8",
+        "type": "function",
+        "z": "3f422101.3791ae",
+        "name": "Erro Escrita M21",
+        "func": "msg.payload = { type: 'error', message: 'Falha de escrita dos modbus do CLP. M21'};\nmsg.payload.time= new Date();\nnode.status({fill:\"red\",shape:\"dot\",text:'Falha M21'});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 4087,
+        "y": 1618,
+        "wires": [
+            [
+                "f0f4111c.32aaa"
+            ]
+        ]
+    },
+    {
+        "id": "db11a312.2683b",
+        "type": "function",
+        "z": "3f422101.3791ae",
+        "name": "Erro Escrita M22",
+        "func": "msg.payload = { type: 'error', message: 'Falha de escrita dos modbus do CLP. M22'};\nmsg.payload.time= new Date();\nnode.status({fill:\"red\",shape:\"dot\",text:'Falha M22'});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 4088,
+        "y": 1714,
+        "wires": [
+            [
+                "f0f4111c.32aaa"
+            ]
+        ]
+    },
+    {
+        "id": "6d873cfe.3f1bd4",
+        "type": "function",
+        "z": "3f422101.3791ae",
+        "name": "Erro Escrita M27",
+        "func": "msg.payload = { type: 'error', message: 'Falha de escrita dos modbus do CLP. M27'};\nmsg.payload.time= new Date();\nnode.status({fill:\"red\",shape:\"dot\",text:'Falha M27'});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 4088,
+        "y": 1810,
+        "wires": [
+            [
+                "f0f4111c.32aaa"
+            ]
+        ]
+    },
+    {
+        "id": "ddeddc8f.1e15f",
+        "type": "function",
+        "z": "3f422101.3791ae",
+        "name": "Erro Escrita M28",
+        "func": "msg.payload = { type: 'error', message: 'Falha de escrita dos modbus do CLP. M28'};\nmsg.payload.time= new Date();\nnode.status({fill:\"red\",shape:\"dot\",text:'Falha M28'});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 4088,
+        "y": 1907,
+        "wires": [
+            [
+                "f0f4111c.32aaa"
+            ]
+        ]
+    },
+    {
+        "id": "f0f4111c.32aaa",
+        "type": "link out",
+        "z": "3f422101.3791ae",
+        "name": "erro gravando modbus",
+        "links": [
+            "8adc7ae0.3b6808",
+            "500fd6f7.a15278"
+        ],
+        "x": 4357.777788162231,
+        "y": 1481.333342552185,
+        "wires": []
+    },
+    {
+        "id": "33b11be2.758b84",
+        "type": "comment",
+        "z": "3f422101.3791ae",
+        "name": "Comunica erro na gravação do ModBus",
+        "info": "A cada inicialização os valores dos registradores são atualizados a partir de MongoDB:\n\n1- AplanVelAuto M14\nVelocidade maxima no automatico de 0% a 100%\n\n2- AplanVelMan M17\nVelocidade maxima no manual de 0% a 100%\n\n3- AplanPasso M18\nPasso da ferramenta em \"mm\", de 0 a 400mm\n\n4- EncFactor M20\nFator de correção do encoder em numeros inteiros apenas.\n\n5- EncResol M21\nResolução do encoder em numeros inteiros apenas. 1 a 10000\n\n6- EncPerim M22\nPerimetro do encoder em \"mm\". De 1 a 999\n\n7- PrsCiclosUnid M23\nCiclos de Lubrificação da prensa. De 0 a 65534 unidades\n\n8- PrsCiclosMil M24\nCiclos de Lubrificação da prensa vezes 1000. De 0 a 65534 unidades\n\n9- NovoPrsCiclosUnd M25\nCiclos que faltam para proxima Lubrificação da prensa. De 0 a 65534 unidades\n\n10- NovoCiclosMil M26\nCiclos que faltam para proxima Lubrificação da prensa vezes 1000. De 0 a 65534 unidades\n\n",
+        "x": 4534.4443359375,
+        "y": 1481.22216796875,
+        "wires": []
+    },
+    {
+        "id": "6706a201.4219ec",
+        "type": "mqtt in",
+        "z": "3f422101.3791ae",
+        "name": "",
+        "topic": "fabrica/ihm/estado/registradores/#",
+        "qos": "0",
+        "broker": "37b3c15d.a7496e",
+        "x": 211.6666660308838,
+        "y": 1115.5555419921875,
+        "wires": [
+            [
+                "d3bbca7.bc9aa38"
+            ]
+        ]
+    },
+    {
+        "id": "d3bbca7.bc9aa38",
+        "type": "debug",
+        "z": "3f422101.3791ae",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 518.6059818267822,
+        "y": 1115.7113122940063,
         "wires": []
     },
     {
