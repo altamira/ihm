@@ -7,8 +7,8 @@
         "active": true,
         "console": "false",
         "complete": "payload",
-        "x": 1663.9996643066406,
-        "y": 340.363618850708,
+        "x": 3368.9997024536133,
+        "y": 2765.363622069359,
         "wires": []
     },
     {
@@ -19,8 +19,8 @@
         "url": "/api/maquina/",
         "method": "get",
         "swaggerDoc": "",
-        "x": 3864.475814819336,
-        "y": 3874.1255254745483,
+        "x": 285.4758758544922,
+        "y": 2594.6255412101746,
         "wires": [
             [
                 "2446f44f.ab89cc"
@@ -32,8 +32,8 @@
         "type": "http response",
         "z": "3f422101.3791ae",
         "name": "",
-        "x": 4402.475778579712,
-        "y": 3875.125524520874,
+        "x": 823.4758396148682,
+        "y": 2595.6255402565002,
         "wires": []
     },
     {
@@ -44,8 +44,8 @@
         "func": "var myDate = new Date().toTimeString().replace(/.*(\\d{2}:\\d{2}:\\d{2}).*/, \"$1\");\n\nvar d = new Date();\nvar x = (\"00\" + (d.getMonth() + 1)).slice(-2) + \"/\" + \n        (\"00\" + d.getDate()).slice(-2) + \"/\" + \n        d.getFullYear() + \" \" + myDate;\n\nmsg.payload = \n[\n  {\n    \"_id\": \"Aplanadora-N3\",\n    \"codigo\": \"PERF-N3\",\n    \"nome\": \"Aplanadora N3\",\n    \"path\": \"maquinas/perfiladeiras/n3\",\n    \"rede\": [\n      { \"nome\": \"IHM\", \"ip\": \"192.168.2.230\", \"port\": 8080 },\n      { \"nome\": \"POP7\", \"ip\": \"192.168.2.231\" },\n      { \"nome\": \"ESP8266\", \"ip\": \"192.168.2.232\" }\n    ],\n    \"atualizacao\": d.toISOString(),\n    \"parametros\": {\n      \"encoder\": {\n        \"fator\": 9978,\n        \"resolucao\": 2500,\n        \"perimetro\": 400\n      },\n      \"manual\": {\n        \"aceleracao\": \"0.2\",\n        \"desaceleracao\": \"0.2\",\n        \"velocidade\": 30\n      },\n      \"automatico\": {\n        \"aceleracao\": \"0.2\",\n        \"desaceleracao\": \"0.2\",\n        \"velocidade\": 95,\n        \"paradaEntrePecasProduzidas\": 0,\n        \"tempoParada\": 0\n      },\n      \"transmissao\": {\n        \"reducao\": 0,\n        \"diametrorolo\": 0,\n        \"avancoMilimetrosPorRotacao\": 9.5144\n      },\n      \"corte\":{\n        \"espessura\": 0,\n        \"tempo\": 3\n      },\n      \"ferramenta\": {\n        \"passoN2\": 200,\n        \"passoN3\": 200,\n        \"passoN5\": 200\n      },\n      \"lubrificacao\": {\n        \"preset\": {\n          \"MbNovoCiclos\": 100000\n        },\n        \"ciclos\": {\n          \"PrsCiclos\": 5000\n        }\n      }\n    },\n    \"estado\": {\n      \"situacao\": {\n        \"codigo\": 4,\n        \"descricao\": \"Maquina OK\"\n      }\n    },\n    \"operadores\": [\n      { \"nome\": \"HELIO\", \"senha\": \"0aec9f876b8e62cba16c2704d99559d3\" },\n      { \"nome\": \"MARCELO\", \"senha\": \"99bb3473f26bb4814ea456d17af58f48\" }\n    ],\n    \"os\": [\n      {\n        \"numero\": \"10095646\",\n        \"produto\": {\n          \"codigo\": \"ESTCAN000N300000000#2000#0#0\",\n          \"descricao\": \"CANTONEIRA N-3 2000MM\",\n          \"quantidade\": 2,\n          \"produzido\": 0,\n          \"refugo\": 0\n        },\n        \"atualizacao\": \"2015-02-10T11:22:08.224Z\",\n        \"status\": \"produzindo\"\n      },\n      {\n        \"numero\": \"10095645\",\n        \"produto\": {\n          \"codigo\": \"ESTCAN000N300000000#2400#0#0\",\n          \"descricao\": \"CANTONEIRA N-3 2400MM\",\n          \"quantidade\": 2,\n          \"produzido\": 0,\n          \"refugo\": 0\n        },\n        \"atualizacao\": \"2015-02-10T11:22:08.224Z\",\n        \"status\": \"pendente\"\n      }\n    ]\n  },\n  {\n    \"_id\": \"Perfiladeira Reforco\",\n    \"codigo\": \"REFORCO\",\n    \"nome\": \"Perfiladeira Reforco\",\n    \"path\": \"maquinas/perfiladeiras/reforco\",\n    \"rede\": [\n      { \"nome\": \"IHM\", \"ip\": \"192.168.2.233\", \"port\": 8080 },\n      { \"nome\": \"POP7\", \"ip\": \"192.168.2.234\" },\n      { \"nome\": \"ESP8266\", \"ip\": \"192.168.2.235\" }\n    ],\n    \"atualizacao\": d.toISOString(),\n     \"parametros\": {\n      \"encoder\": {\n        \"fator\": 9986,\n        \"resolucao\": 2500,\n        \"perimetro\": 127.32\n      },\n      \"manual\": {\n        \"aceleracao\": \"0.2\",\n        \"desaceleracao\": \"0.2\",\n        \"velocidade\": 30\n      },\n      \"automatico\": {\n        \"aceleracao\": \"0.6\",\n        \"desaceleracao\": \"0.6\",\n        \"velocidade\": 95,\n        \"paradaEntrePecasProduzidas\": 20,\n        \"tempoParada\": 10\n      },\n      \"transmissao\": {\n        \"reducao\": 0,\n        \"diametrorolo\": 0,\n        \"avancoMilimetrosPorRotacao\": 9.5144\n      },\n      \"corte\":{\n        \"espessura\": 5,\n        \"tempo\": 3\n      },\n      \"ferramenta\": {\n        \"corte\": 1,\n        \"furo\": 20\n      },\n      \"lubrificacao\": {\n        \"preset\": {\n          \"MbNovoCiclos\": 100000\n        },\n        \"ciclos\": {\n          \"PrsCiclos\": 5000\n        }\n      }\n    },\n    \"estado\": {\n      \"situacao\": {\n        \"codigo\": 4,\n        \"descricao\": \"Maquina OK\"\n      }\n    },\n    \"operadores\": [\n      { \"nome\": \"HELIO\", \"senha\": \"0aec9f876b8e62cba16c2704d99559d3\" },\n      { \"nome\": \"MARCELO\", \"senha\": \"99bb3473f26bb4814ea456d17af58f48\" }\n    ],\n    \"os\": [\n      {\n        \"numero\": \"1231-11\",\n        \"produto\": {\n          \"codigo\": \"PPLESTREFOUGAL000000#0#0#610\",\n          \"descricao\": \"PERFIL U GALV P/ APOIO DE CAIXA MED 610MM\",\n          \"quantidade\": 2,\n          \"produzido\": 0,\n          \"refugo\": 0\n        },\n        \"atualizacao\": \"2015-02-11T11:22:08.224Z\",\n        \"status\": \"produzindo\"\n      },\n      {\n        \"numero\": \"8792-55\",\n        \"produto\": {\n          \"codigo\": \"PPLESTREFOUGAL000000#0#0#910\",\n          \"descricao\": \"PERFIL U GALV P/ APOIO DE CAIXA MED 910MM\",\n          \"quantidade\": 2,\n          \"produzido\": 0,\n          \"refugo\": 0\n        },\n        \"atualizacao\": \"2015-02-10T11:22:08.224Z\",\n        \"status\": \"pendente\"\n      }\n    ]\n  },\n    {\n    \"_id\": \"Perfiladeira Sigma 120\",\n    \"codigo\": \"Sigma 120\",\n    \"nome\": \"Perfiladeira Sigma 120\",\n    \"path\": \"maquinas/perfiladeiras/sigma120\",\n    \"rede\": [\n      { \"nome\": \"IHM\", \"ip\": \"192.168.2.236\", \"port\": 8080 },\n      { \"nome\": \"POP7\", \"ip\": \"192.168.2.237\" },\n      { \"nome\": \"ESP8266\", \"ip\": \"192.168.2.238\" }\n    ],\n    \"atualizacao\": d.toISOString(),\n     \"parametros\": {\n      \"encoder\": {\n        \"fator\": 9909,\n        \"resolucao\": 2500,\n        \"perimetro\": 400\n      },\n      \"manual\": {\n        \"aceleracao\": \"3\",\n        \"desaceleracao\": \"1\",\n        \"velocidade\": 30\n      },\n      \"automatico\": {\n        \"aceleracao\": \"2\",\n        \"desaceleracao\": \"1\",\n        \"velocidade\": 100,\n        \"paradaEntrePecasProduzidas\": 40,\n        \"tempoParada\": 2\n      },\n      \"transmissao\": {\n        \"reducao\": \"72.73\",\n        \"diametrorolo\": 165,\n        \"avancoMilimetrosPorRotacao\": 0\n      },\n      \"corte\":{\n        \"espessura\": 5,\n        \"tempo\": 3\n      },\n      \"ferramenta\": {\n        \"corte\": 1\n      },\n      \"lubrificacao\": {\n        \"preset\": {\n          \"MbNovoCiclos\": 100000\n        },\n        \"ciclos\": {\n          \"PrsCiclos\": 5000\n        }\n      }\n    },\n    \"estado\": {\n      \"situacao\": {\n        \"codigo\": 4,\n        \"descricao\": \"Maquina OK\"\n      }\n    },\n    \"operadores\": [\n      { \"nome\": \"HELIO\", \"senha\": \"0aec9f876b8e62cba16c2704d99559d3\" },\n      { \"nome\": \"MARCELO\", \"senha\": \"99bb3473f26bb4814ea456d17af58f48\" }\n    ],\n    \"os\": [\n      {\n        \"numero\": \"1231-11\",\n        \"produto\": {\n          \"codigo\": \"MEZSIG0CH1412000000#1800#0#0\",\n          \"descricao\": \"VIGA SIGMA 120 CH 2.00 MM MED 1800MM\",\n          \"quantidade\": 2,\n          \"produzido\": 0,\n          \"refugo\": 0\n        },\n        \"atualizacao\": \"2017-04-10T11:22:08.224Z\",\n        \"status\": \"Produzindo\"\n      },\n      {\n        \"numero\": \"8792-55\",\n        \"produto\": {\n          \"codigo\": \"PPLSTRSI120050D00000#1200#0#0\",\n          \"descricao\": \"STOP TRAZEIRO SIGMA 120 DEITADO MED 1200MM\",\n          \"quantidade\": 2,\n          \"produzido\": 0,\n          \"refugo\": 0\n        },\n        \"atualizacao\": \"2017-04-14T11:22:08.224Z\",\n        \"status\": \"Pendente\"\n      }\n    ]\n  }\n]\nnode.status({fill:\"blue\",shape:\"dot\",text:x});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 4153.4758377075195,
-        "y": 3875.125534057617,
+        "x": 574.4758987426758,
+        "y": 2595.6255497932434,
         "wires": [
             [
                 "7fc844d9.163eec"
@@ -60,8 +60,8 @@
         "url": "/api/maquina/",
         "method": "put",
         "swaggerDoc": "",
-        "x": 3865.3329544067383,
-        "y": 3967.1255394518375,
+        "x": 286.33301544189453,
+        "y": 2687.6255551874638,
         "wires": [
             []
         ]
@@ -71,8 +71,8 @@
         "type": "http response",
         "z": "3f422101.3791ae",
         "name": "",
-        "x": 4335.332954406738,
-        "y": 3967.1255394518375,
+        "x": 756.3330154418945,
+        "y": 2687.6255551874638,
         "wires": []
     },
     {
@@ -83,8 +83,8 @@
         "func": "return msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 4115.332954406738,
-        "y": 3967.1255394518375,
+        "x": 536.3330154418945,
+        "y": 2687.6255551874638,
         "wires": [
             [
                 "ffb86459.735c28"
@@ -99,8 +99,8 @@
         "url": "/api/maquina/",
         "method": "post",
         "swaggerDoc": "",
-        "x": 3865.3329544067383,
-        "y": 3918.1255394518375,
+        "x": 286.33301544189453,
+        "y": 2638.6255551874638,
         "wires": [
             []
         ]
@@ -110,8 +110,8 @@
         "type": "http response",
         "z": "3f422101.3791ae",
         "name": "",
-        "x": 4335.332954406738,
-        "y": 3918.1255394518375,
+        "x": 756.3330154418945,
+        "y": 2638.6255551874638,
         "wires": []
     },
     {
@@ -122,8 +122,8 @@
         "func": "return msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 4115.332954406738,
-        "y": 3918.1255394518375,
+        "x": 536.3330154418945,
+        "y": 2638.6255551874638,
         "wires": [
             [
                 "28967eba.e63c82"
@@ -138,8 +138,8 @@
         "url": "/api/maquina/config",
         "method": "get",
         "swaggerDoc": "",
-        "x": 152.99966430664062,
-        "y": 333.363618850708,
+        "x": 1857.9997024536133,
+        "y": 2758.363622069359,
         "wires": [
             [
                 "e0d5cd6b.723b"
@@ -151,8 +151,8 @@
         "type": "http response",
         "z": "3f422101.3791ae",
         "name": "",
-        "x": 892.9996643066406,
-        "y": 242.363618850708,
+        "x": 2597.9997024536133,
+        "y": 2667.363622069359,
         "wires": []
     },
     {
@@ -163,8 +163,8 @@
         "active": true,
         "console": "false",
         "complete": "payload",
-        "x": 961.9996643066406,
-        "y": 291.363618850708,
+        "x": 2666.9997024536133,
+        "y": 2716.363622069359,
         "wires": []
     },
     {
@@ -175,8 +175,8 @@
         "active": true,
         "console": "false",
         "complete": "payload",
-        "x": 914.9996643066406,
-        "y": 520.363618850708,
+        "x": 2619.9997024536133,
+        "y": 2945.363622069359,
         "wires": []
     },
     {
@@ -185,8 +185,8 @@
         "z": "3f422101.3791ae",
         "name": "INICIALIZA VARIAVEIS GLOBAIS DAS MAQUINAS",
         "info": "",
-        "x": 2313.850975036621,
-        "y": 2474.7875051498413,
+        "x": 326.85113525390625,
+        "y": 1600.0376510620117,
         "wires": []
     },
     {
@@ -197,8 +197,8 @@
         "url": "/api/maquina/config",
         "method": "post",
         "swaggerDoc": "",
-        "x": 177.99966430664062,
-        "y": 620.3636493682861,
+        "x": 1882.9997024536133,
+        "y": 3045.363652586937,
         "wires": [
             [
                 "298ad3cc.8c239c"
@@ -210,8 +210,8 @@
         "type": "http response",
         "z": "3f422101.3791ae",
         "name": "",
-        "x": 894.7139339447021,
-        "y": 613.5064506530762,
+        "x": 2599.713972091675,
+        "y": 3038.506453871727,
         "wires": []
     },
     {
@@ -225,8 +225,8 @@
         "upsert": false,
         "multi": false,
         "operation": "delete",
-        "x": 932.9996643066406,
-        "y": 390.363618850708,
+        "x": 2637.9997024536133,
+        "y": 2815.363622069359,
         "wires": []
     },
     {
@@ -235,8 +235,8 @@
         "z": "3f422101.3791ae",
         "name": "Apagar Cuidado \"Teste\"",
         "info": "#Resultados de paginação usando skip e limit\n\nMuitas vezes, ao lidar com conjuntos de resultados de dados, \nsó queremos recuperar um subconjunto por vez, talvez para fornecer \nresultados por página da Web. Em MySQL, em geral fazemos isso \nusando a palavra-chave LIMIT. \nÉ fácil replicar essa funcionalidade no MongoDB \nusando msg.skip e msg.limit. \nPara retornar os primeiros cinco documentos na \ncoleção, podemos executar a seguinte operação:\n> msg.limit = 5;<\n\nPara pular resultados, use o seguinte comando:\n\n> msg.skip = 5;<\n\nCom ele é possível iguinorar os primeiros cinco\nregistros. ",
-        "x": 122.33292198181152,
-        "y": 1528.6967032849789,
+        "x": 2772.332960128784,
+        "y": 1053.6966803967953,
         "wires": []
     },
     {
@@ -250,8 +250,8 @@
         "upsert": false,
         "multi": false,
         "operation": "delete",
-        "x": 603.4440841674805,
-        "y": 1570.696702003479,
+        "x": 3253.444122314453,
+        "y": 1095.6966791152954,
         "wires": []
     },
     {
@@ -265,8 +265,8 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 146.0862331390381,
-        "y": 1569.6458810269833,
+        "x": 2796.0862712860107,
+        "y": 1094.6458581387997,
         "wires": [
             [
                 "6cee4bbe.905a44",
@@ -285,8 +285,8 @@
         "upsert": false,
         "multi": false,
         "operation": "delete",
-        "x": 923.8513793945312,
-        "y": 436.69713401794434,
+        "x": 2628.851417541504,
+        "y": 2861.697137236595,
         "wires": []
     },
     {
@@ -300,8 +300,8 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 3914.9996795654297,
-        "y": 4261.696967124939,
+        "x": 335.99974060058594,
+        "y": 2982.196982860565,
         "wires": [
             [
                 "30841220.1855fe"
@@ -316,8 +316,8 @@
         "name": "consulta",
         "collection": "parametros",
         "operation": "find",
-        "x": 4433.966850280762,
-        "y": 4262.052463531494,
+        "x": 854.966911315918,
+        "y": 2982.5524792671204,
         "wires": [
             [
                 "84e6c7a8.381538"
@@ -332,8 +332,8 @@
         "active": true,
         "console": "false",
         "complete": "payload",
-        "x": 4718.077892303467,
-        "y": 4262.163619041443,
+        "x": 1139.077953338623,
+        "y": 2982.663634777069,
         "wires": []
     },
     {
@@ -344,8 +344,8 @@
         "func": "msg.query = { _id: 'AplanadoraN3' }\nmsg.payload = {\n    $inc: {\n       \"os.produzido\": 1\n     }\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 4236.188949584961,
-        "y": 4168.630286216736,
+        "x": 657.1890106201172,
+        "y": 2889.130301952362,
         "wires": [
             [
                 "dbd77ef5.fbc78"
@@ -363,8 +363,8 @@
         "upsert": false,
         "multi": false,
         "operation": "update",
-        "x": 4444.188934326172,
-        "y": 4169.03028011322,
+        "x": 865.1889953613281,
+        "y": 2889.5302958488464,
         "wires": []
     },
     {
@@ -378,8 +378,8 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 3923.022487640381,
-        "y": 4168.296982765198,
+        "x": 344.0225486755371,
+        "y": 2888.796998500824,
         "wires": [
             [
                 "dfeb141a.11bb38",
@@ -395,8 +395,8 @@
         "func": "msg.limit = 5;\nmsg.skip = 0;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 4232.411203384399,
-        "y": 4262.111746788025,
+        "x": 653.4112644195557,
+        "y": 2982.611762523651,
         "wires": [
             [
                 "909fe0ef.51522"
@@ -409,8 +409,8 @@
         "z": "3f422101.3791ae",
         "name": "Paginação  e consulta MongoDB",
         "info": "#Resultados de paginação usando skip e limit\n\nMuitas vezes, ao lidar com conjuntos de resultados de dados, \nsó queremos recuperar um subconjunto por vez, talvez para fornecer \nresultados por página da Web. Em MySQL, em geral fazemos isso \nusando a palavra-chave LIMIT. \nÉ fácil replicar essa funcionalidade no MongoDB \nusando msg.skip e msg.limit. \nPara retornar os primeiros cinco documentos na \ncoleção, podemos executar a seguinte operação:\n> msg.limit = 5;<\n\nPara pular resultados, use o seguinte comando:\n\n> msg.skip = 5;<\n\nCom ele é possível iguinorar os primeiros cinco\nregistros. ",
-        "x": 3951.189037322998,
-        "y": 4225.963586330414,
+        "x": 372.1890983581543,
+        "y": 2946.46360206604,
         "wires": []
     },
     {
@@ -421,8 +421,8 @@
         "func": "setTimeout(function() {\n    node.send(msg);\n}, 50);\nreturn null;",
         "outputs": 1,
         "noerr": 0,
-        "x": 4235.522354125977,
-        "y": 4204.074573516846,
+        "x": 656.5224151611328,
+        "y": 2924.574589252472,
         "wires": [
             [
                 "30841220.1855fe"
@@ -435,8 +435,8 @@
         "z": "3f422101.3791ae",
         "name": "Contador Produzidos ++ ",
         "info": "#Resultados de paginação usando skip e limit\n\nMuitas vezes, ao lidar com conjuntos de resultados de dados, \nsó queremos recuperar um subconjunto por vez, talvez para fornecer \nresultados por página da Web. Em MySQL, em geral fazemos isso \nusando a palavra-chave LIMIT. \nÉ fácil replicar essa funcionalidade no MongoDB \nusando msg.skip e msg.limit. \nPara retornar os primeiros cinco documentos na \ncoleção, podemos executar a seguinte operação:\n> msg.limit = 5;<\n\nPara pular resultados, use o seguinte comando:\n\n> msg.skip = 5;<\n\nCom ele é possível iguinorar os primeiros cinco\nregistros. ",
-        "x": 3928.1885299682617,
-        "y": 4132.963542938232,
+        "x": 349.18859100341797,
+        "y": 2853.4635586738586,
         "wires": []
     },
     {
@@ -447,8 +447,8 @@
         "func": "setTimeout(function() {\n    node.send(msg);\n}, 100);\nreturn null;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1138.9996643066406,
-        "y": 340.363618850708,
+        "x": 2843.9997024536133,
+        "y": 2765.363622069359,
         "wires": [
             [
                 "636eaf61.9eab7",
@@ -465,8 +465,8 @@
         "func": "if(global.get('conectadoServidor')){\n    console.dir('CONECTADO AO SERVIDOR !');\n    node.status({fill:\"blue\",shape:\"dot\",text:'CONECTADO COM SERVIDOR'});\n}else{\n    console.dir('-------------> ERRO NA CONEXAO PRODUCAO !!!!!! <-------------');\n    global.set('conectadoServidor', 0);\n    node.status({fill:\"red\",shape:\"dot\",text:'ERRO'});\n}\n\nmsg= {payload: global.get('conectadoServidor')};\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 1393.9996643066406,
-        "y": 340.363618850708,
+        "x": 3098.9997024536133,
+        "y": 2765.363622069359,
         "wires": [
             [
                 "62f025ed.e0393c"
@@ -484,8 +484,8 @@
         "upsert": false,
         "multi": false,
         "operation": "store",
-        "x": 1585.9996643066406,
-        "y": 388.363618850708,
+        "x": 3290.9997024536133,
+        "y": 2813.363622069359,
         "wires": []
     },
     {
@@ -496,8 +496,8 @@
         "func": "let myDate = new Date().toTimeString().replace(/.*(\\d{2}:\\d{2}:\\d{2}).*/, \"$1\");\nlet d = new Date();\nconst x = ((\"00\" + (d.getMonth() + 1)).slice(-2) + \"/\" + \n        (\"00\" + d.getDate()).slice(-2) + \"/\" + \n        d.getFullYear() + \" \" + myDate)||0;\n        \nmsg.payload = {\n\t\"_id\": 1,\n\t\"log_mesagens\": {\n\t}\n}\nnode.status({fill:\"blue\",shape:\"dot\",text:x});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1384.7586135864258,
-        "y": 388.46839141845703,
+        "x": 3089.7586517333984,
+        "y": 2813.468394637108,
         "wires": [
             [
                 "4b2b6c85.acec14"
@@ -515,8 +515,8 @@
         "upsert": false,
         "multi": true,
         "operation": "store",
-        "x": 1586.9996643066406,
-        "y": 436.363618850708,
+        "x": 3291.9997024536133,
+        "y": 2861.363622069359,
         "wires": []
     },
     {
@@ -527,8 +527,8 @@
         "func": "msg.payload = {\n\t\"_id\": \"indice\",\n\t\"indice_mesagens\": 0\n}\n\nnode.status({fill:\"blue\",shape:\"dot\",text:'Indice Criado'});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1375.9996643066406,
-        "y": 436.363618850708,
+        "x": 3080.9997024536133,
+        "y": 2861.363622069359,
         "wires": [
             [
                 "10968ce6.4d0753"
@@ -541,8 +541,8 @@
         "z": "3f422101.3791ae",
         "name": "Deserializador global \"Referencia\"",
         "info": "var msgs = [];\nvar g = (global.get(\"M\")||[0]);\nfor(z = 0; z < g.length) {\nfor (i = 0; i < 15; i++) {\n msgs.push(\n {\n _msgid: msg._msgid,\n topic: msg.topic,\n payload: g[z] & (1 << i)\n }\n );\n}\n}\n//var type = msg.payload[0] & 1 ? 'error' : 'warning';\n\n//var count = flow.get(\"CONTADOR_ERRO_M2\");\n//count++;\n\n\nreturn msgs;",
-        "x": 579.9995956420898,
-        "y": 123.36355113983154,
+        "x": 2284.9996337890625,
+        "y": 2548.3635543584824,
         "wires": []
     },
     {
@@ -556,11 +556,11 @@
         "repeat": "",
         "crontab": "",
         "once": true,
-        "x": 2239.3334045410156,
-        "y": 2511.0000505447388,
+        "x": 237.33343505859375,
+        "y": 1557.5000667572021,
         "wires": [
             [
-                "f30afed4.182cd"
+                "7812b5cf.241fdc"
             ]
         ]
     },
@@ -572,8 +572,8 @@
         "func": "global.set(\"ModBus\", msg.payload);\nmsg2 = {};\nmsg2.payload = \"Iguail\";\nvar Anterior =(global.get(\"Anterior\")||[0]);\nvar ValorAtual = global.get(\"ModBus\");\nmsg = null;\n\nfor (var i = 0; i < Anterior.length; i++) {\n \n if (Anterior[i] != ValorAtual[i]) {\n msg2.payload = \"Diferente\";\n global.set(\"Anterior\", ValorAtual);\n msg = {payload:ValorAtual};\n break;\n } \n}\nreturn [msg,msg2];",
         "outputs": "2",
         "noerr": 0,
-        "x": 560.4104309082031,
-        "y": 164.07792568206787,
+        "x": 2265.410469055176,
+        "y": 2589.0779289007187,
         "wires": [
             [],
             []
@@ -587,8 +587,8 @@
         "topic": "fabrica/ihm/comandos/",
         "qos": "0",
         "broker": "37b3c15d.a7496e",
-        "x": 164.99968338012695,
-        "y": 2223.3636050224304,
+        "x": 1729.9997024536133,
+        "y": 798.3635973930359,
         "wires": [
             [
                 "36862eda.835662",
@@ -604,8 +604,8 @@
         "func": "var p = JSON.parse(msg.payload);\nvar res = [null,null,null,null,null,null,null,null,null,null,null,null,null];\nvar modbus = global.get(\"ModBus\");\n \n //***** INICIALIZA OU DESLIGA MAQUINA *****//\n if (p.LigarMaquina !== undefined) {\n if (modbus[2] & (1 << 11)) {\n modbus[2] &= ~(1<<11); //M2.11 igual a 1 MbLigaChaveGeral\n node.status({fill:\"red\",shape:\"ring\",text:\"Geral Desligada\"});\n } else {\n modbus[2] |= (1<<11); //M2.11 igual a 0 MbLigaChaveGeral\n node.status({fill:\"green\",shape:\"dot\",text:\"Geral Ligada\"});\n }\n global.set(\"ComandoMaquina\",1); \n global.set('ModBus', modbus); //Atualiza registrador global.\n res[0] = {payload:modbus[2]}; //Primeiro liga ou desliga chave geral\n }\n \n //***** ON/OFF MOTOR *****//\n if (p.LigarPrensa !== undefined) {\n if ((modbus[3]) & (1 << 3)) {\n modbus[3] &= ~(1<<3); //M3.3 igual a 1 DbPrsLigaMotor\n global.set(\"MotorLigado\",0);\n node.status({fill:\"red\",shape:\"ring\",text:\"Motor OFF\"});\n } else {\n modbus[3] |= (1<<3);//M3.3 igual a 0 DbPrsParar\n global.set(\"MotorLigado\",1);\n node.status({fill:\"green\",shape:\"dot\",text:\"Motor ON\"});\n }\n global.set(\"ComandoMaquina\",2);\n global.set('ModBus', modbus);//Atualiza registrador global.\n res[1] = {payload: modbus[3]};\n }\n \n //***** ABRIR TAMPA MODBUS 31.10 *****//\n if (p.abrirTampa !== undefined) {\n if (p.abrirTampa == '1'){\n modbus[31] |= (1<<10); \n }else if (p.abrirTampa == '0'){\n modbus[31] = 0; \n }\n global.set(\"ComandoMaquina\",3);\n res[2] = {payload:(modbus[31])};\n }\n \n //***** FECHAR TAMPA MODBUS 31.11 *****//\n if (p.fecharTampa !== undefined) {\n if(p.fecharTampa == '1'){\n modbus[31] |= (1<<11); \n }else if (p.fecharTampa == '0'){\n modbus[31] = 0;\n }\n global.set(\"ComandoMaquina\",4);\n res[3] = {payload:(modbus[31])};\n }\n \n //***** AVANCAR PERFIL MODBUS 2.3 *****//\n if (p.avancaPerfil !== undefined) {\n if(p.avancaPerfil == '1'){\n modbus[2] |= (1<<3); \n }else if (p.avancaPerfil == '0'){\n modbus[2] &= ~(1<<3);\n }\n global.set(\"ComandoMaquina\",5);\n res[4] = {payload: modbus[2]};\n }\n //***** RECUAR PERFIL MODBUS 2.4 *****//\n if (p.recuaPerfil !== undefined) {\n if(p.recuaPerfil == '1'){\n modbus[2] |= (1<<4); \n }else if (p.recuaPerfil == '0'){\n modbus[2] &= ~(1<<4);\n }\n global.set(\"ComandoMaquina\",6); \n res[5] = {payload:modbus[2]};\n }\n \n //*****botao_Parar_Maquina***********//\n if (p.botao_Parar_Maquina !== undefined) {\n modbus[2] |= (1<<13); //M2.13 igual a 0 MbPrsParar\n modbus[2] &= ~(1<<0); //M2.0 igual a 0 MbModoAuto\n node.status({fill:\"red\",shape:\"ring\",text:\"Parando prensa\"});\n global.set(\"ComandoMaquina\",7);\n global.set('ModBus', modbus);//Atualiza registrador global.\n res[6] = {payload: modbus[2]};\n }\n \n //*****botao_Manual************//\n if (p.botao_Manual !== undefined) {\n modbus[3] |= 1; //Libera maquina\n modbus[2] &= ~(1<<0); //M2.0 igual a 0 MbModoAuto\n node.status({fill:\"red\",shape:\"ring\",text:\"Modo Manual\"});\n global.set(\"ComandoMaquina\",8);\n global.set('ModBus', modbus);//Atualiza registrador global.\n res[7] = {payload: modbus[2]};\n }\n \n //*****botao_Produzir*********//\n if (p.botao_Produzir !== undefined) {\n modbus[3] |= 1; //Libera maquina\n if ((modbus[2]) & (1 << 0)) {\n modbus[2] &= ~(1<<0); //M2.0 igual a 1 produzir\n node.status({fill:\"green\",shape:\"dot\",text:\"Produzindo\"});\n } else {\n modbus[2] |= (1<<0);//M2.0 igual a 0 não produzir\n node.status({fill:\"red\",shape:\"ring\",text:\"Não produzindo\"});\n }\n global.set(\"ComandoMaquina\",9);\n global.set('ModBus', modbus);//Atualiza registrador global.\n res[8] = {payload: modbus[2]};\n }\n \n //***** Reverçao do motor da prensa *****//\n if (p.SentidoInv !== undefined) {\n if ((modbus[2]) & (1 << 14)) {\n modbus[2] &= ~(1<<14); //M2.14 igual a 1 MbPrsSentidoInv\n global.set(\"MotorInvertido\",0);\n node.status({fill:\"blue\",shape:\"ring\",text:\"Motor normal\"});\n } else {\n modbus[2] |= (1<<14);//M3.3 igual a 0 DbPrsParar\n global.set(\"MotorInvertido\",1);\n node.status({fill:\"green\",shape:\"dot\",text:\"Motor Invertido\"});\n }\n global.set(\"ComandoMaquina\",10);\n global.set('ModBus', modbus);//Atualiza registrador global.\n res[9] = {payload: modbus[2]};\n }\n \n //***** DESLIGA MAQUINA depois zera tudo *****//\n if (p.ResetMaquina !== undefined) {\n modbus[2] &= ~(1<<11); \n node.status({fill:\"red\",shape:\"ring\",text:\"Geral Desligada e reset\"});\n global.set(\"ComandoMaquina\",0); \n global.set('ModBus', modbus); //Atualiza registrador global.\n res[10] = {payload:modbus[2]}; //Primeiro desliga chave geral\n }\n \n //*****Desbobinador ******//\n if (p.AceleracaoAuto !== undefined) {\n var x = global.get(\"Desbobinador\");\n if(x){\n global.set('Desbobinador', 0);//Atualiza registrador global.\n }else{\n global.set('Desbobinador', 1);//Atualiza registrador global.\n }\n global.set(\"ComandoMaquina\",11);\n res[11] = {payload: global.get(\"Desbobinador\")};\n }\n \n //*****Atualiza TABS-2**************//\n if (p.AtualizarRegistradores !== undefined) {\n node.status({fill:\"red\",shape:\"ring\",text:\"Tab-2\"});\n res[12] = {payload: 1};\n }\n \nreturn res;",
         "outputs": "13",
         "noerr": 0,
-        "x": 432.1781120300293,
-        "y": 2224.1470108032227,
+        "x": 1997.1781311035156,
+        "y": 799.1470031738281,
         "wires": [
             [
                 "4385b0f9.574de"
@@ -656,8 +656,8 @@
         "dataType": "HoldingRegister",
         "adr": "3",
         "server": "9d9e7956.cdee38",
-        "x": 812.526180267334,
-        "y": 1932.5493545532227,
+        "x": 2377.5261993408203,
+        "y": 507.5493469238281,
         "wires": [
             [
                 "da8f5bb2.8b1618"
@@ -675,8 +675,8 @@
         "dataType": "HoldingRegister",
         "adr": "2",
         "server": "9d9e7956.cdee38",
-        "x": 793.9072952270508,
-        "y": 2141.8348898887634,
+        "x": 2358.907314300537,
+        "y": 716.8348822593689,
         "wires": [
             [
                 "c397feac.bfd1f"
@@ -694,8 +694,8 @@
         "dataType": "HoldingRegister",
         "adr": "31",
         "server": "9d9e7956.cdee38",
-        "x": 804.1927604675293,
-        "y": 2073.4064044952393,
+        "x": 2369.1927795410156,
+        "y": 648.4063968658447,
         "wires": [
             [
                 "301db44f.91665c"
@@ -713,8 +713,8 @@
         "dataType": "HoldingRegister",
         "adr": "31",
         "server": "9d9e7956.cdee38",
-        "x": 813.3357048034668,
-        "y": 2002.4064044952393,
+        "x": 2378.335723876953,
+        "y": 577.4063968658447,
         "wires": [
             [
                 "c3b8fba7.148f78"
@@ -732,8 +732,8 @@
         "dataType": "HoldingRegister",
         "adr": "2",
         "server": "9d9e7956.cdee38",
-        "x": 792.6214981079102,
-        "y": 2212.8347792625427,
+        "x": 2357.6215171813965,
+        "y": 787.8347716331482,
         "wires": [
             [
                 "d03cb3de.65188"
@@ -749,8 +749,8 @@
         "z": "3f422101.3791ae",
         "name": "Registradores R/W Setup da Aplanadora \"HTML\"",
         "info": "#test\n- nao\n- sei\n- onde v\n- vai \n- parar\n- isso",
-        "x": 797.8173942565918,
-        "y": 1804.7706680297852,
+        "x": 2362.817413330078,
+        "y": 379.7706604003906,
         "wires": []
     },
     {
@@ -761,8 +761,8 @@
         "func": "\nmsg.payload = { type: 'error', message: 'Falha de escrita dos modbus do CLP.'};\nmsg.payload.time= new Date();\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 2230.5400772094727,
-        "y": 2193.6926593780518,
+        "x": 3401.373435974121,
+        "y": 1298.1931524276733,
         "wires": [
             [
                 "c2c5220a.c006e"
@@ -774,14 +774,13 @@
         "type": "function",
         "z": "3f422101.3791ae",
         "name": "VAR Globais",
-        "func": "//Estado inicial da maquina é não inicializada MaqInicializada=0\nglobal.set(\"ComandoMaquina\",0);//liberamensagens do bloco libera maquina\nglobal.set(\"MotorPrensa\",0);\nglobal.set(\"MotorLigado\",0);\nglobal.set(\"MotorInvertido\",0);\nglobal.set(\"Desbobinador\",0);\nglobal.set(\"Indice_Mongo\",0);\nglobal.set(\"TamanhoDesejadoPeca_KEYBOARD\",0);\nglobal.set(\"TamanhoRealPeca_KEYBOARD\",0);\nglobal.set(\"FatorEncoder\",9909);\nglobal.set(\"ModBus\",[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]);\nvar start = new Date().getTime();\nglobal.set(\"tempo\",start);\nglobal.set(\"erro\",[]);\n\nmsg.payload= { type: 'warning', message: 'MAQUINA_RESET'};\nmsg.payload.time= new Date();\n//mensagens['CHAVE_GERAL_LIGADA'] = { type: 'warning', message: ' Chave Geral ligada' };\n\n//mensagens['MAQUINA_LIBERADA'] = { type: 'warning', message: ' Maquina Liberada' };\n\nreturn msg;",
+        "func": "//Estado inicial da maquina é não inicializada MaqInicializada=0\nglobal.set(\"ComandoMaquina\",0);//liberamensagens do bloco libera maquina\nglobal.set(\"MotorPrensa\",0);\nglobal.set(\"MotorLigado\",0);\nglobal.set(\"MotorInvertido\",0);\nglobal.set(\"Desbobinador\",0);\nglobal.set(\"Indice_Mongo\",0);\nglobal.set(\"TamanhoDesejadoPeca_KEYBOARD\",0);\nglobal.set(\"TamanhoRealPeca_KEYBOARD\",0);\nglobal.set(\"FatorEncoder\",9909);\nglobal.set(\"ModBus\",[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]);\nvar start = new Date().getTime();\nglobal.set(\"tempo\",start);\nglobal.set(\"erro\",[]);\n\nmsg.payload= { type: 'warning', message: 'MAQUINA_RESET'};\n//msg.payload.time= new Date();\n//mensagens['CHAVE_GERAL_LIGADA'] = { type: 'warning', message: ' Chave Geral ligada' };\n\n//mensagens['MAQUINA_LIBERADA'] = { type: 'warning', message: ' Maquina Liberada' };\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 2684.3334045410156,
-        "y": 2512.0000505447388,
+        "x": 682.3334350585938,
+        "y": 1558.5000667572021,
         "wires": [
             [
-                "83348503.f46a38",
                 "5acf5954.4ed6e8"
             ]
         ]
@@ -794,8 +793,8 @@
         "func": "//verifica 2.11 e libera 3.0\nvar modbus = msg.payload;\nvar msg2 = {};\n\n\nif (((modbus[2]) & (1 << 11))) {\n modbus[3] |= 1; //M3.0 igual a 1 libera maquina\n msg.payload = modbus[3];\n msg2.payload =  { type: 'warning', message: ' Chave Geral ligada' };\n msg2.payload.time= new Date();\n node.status({fill:\"green\",shape:\"dot\",text:\"Chave Ligada\"});\n}else if (~((modbus[2]) & (1 << 11))){ \n modbus[3] &= 0;\n msg.payload = 0;\n msg2.payload =  { type: 'warning', message: ' Chave Geral Desligada' };\n msg2.payload.time= new Date();\n node.status({fill:\"yellow\",shape:\"ring\",text:\"Chave Deslidaga\"});\n}else {\n node.status({fill:\"red\",shape:\"ring\",text:\"Bug\"});\n}\n \n\nglobal.set('ModBus', modbus);//Atualiza registrador global\nreturn [msg, msg2];",
         "outputs": "2",
         "noerr": 0,
-        "x": 1838.481632232666,
-        "y": 1166.4119629859924,
+        "x": 3698.481647491455,
+        "y": 336.4120240211487,
         "wires": [
             [
                 "e0776435.85e3a8"
@@ -813,8 +812,8 @@
         "dataType": "HoldingRegister",
         "adr": "2",
         "server": "9d9e7956.cdee38",
-        "x": 792.5946159362793,
-        "y": 1864.8631916046143,
+        "x": 2357.5946350097656,
+        "y": 439.8631839752197,
         "wires": [
             [
                 "f7580835.f0a308"
@@ -832,8 +831,8 @@
         "dataType": "HoldingRegister",
         "adr": "3",
         "server": "9d9e7956.cdee38",
-        "x": 2301.1997833251953,
-        "y": 1160.058470249176,
+        "x": 4161.199798583984,
+        "y": 330.0585312843323,
         "wires": [
             [
                 "ec6a80e6.618b5"
@@ -851,8 +850,8 @@
         "func": "msg.payload = { type: 'error', message: 'CLP não responde. Verifique as conexões de rede.'};\nmsg.payload.time= new Date();\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 2231.3334045410156,
-        "y": 2245.0000505447388,
+        "x": 3402.166763305664,
+        "y": 1349.5005435943604,
         "wires": [
             [
                 "c2c5220a.c006e"
@@ -868,8 +867,8 @@
         "adr": "0",
         "quantity": "32",
         "server": "9d9e7956.cdee38",
-        "x": 1978.196159362793,
-        "y": 2387.0220699310303,
+        "x": 3149.0295181274414,
+        "y": 1491.5225629806519,
         "wires": [
             [
                 "fa929536.972ea8",
@@ -894,11 +893,12 @@
             "d03cb3de.65188",
             "a3b7a4ff.8832e8"
         ],
-        "x": 1413.0769348144531,
-        "y": 1335.4757232666016,
+        "x": 3273.076950073242,
+        "y": 505.4757843017578,
         "wires": [
             [
-                "eaa2d6ba.68b368"
+                "eaa2d6ba.68b368",
+                "9e6517a5.d622f8"
             ]
         ]
     },
@@ -916,8 +916,8 @@
             "e7de3316.2c099",
             "41e7e1a5.d8c8e"
         ],
-        "x": 1550.381736755371,
-        "y": 2416.9544973373413,
+        "x": 2671.929557800293,
+        "y": 1446.597755908966,
         "wires": [
             [
                 "81972c62.08ae8"
@@ -932,8 +932,8 @@
         "links": [
             "93ec0c20.a969a"
         ],
-        "x": 973.3564300537109,
-        "y": 1845.2728805541992,
+        "x": 2538.3564491271973,
+        "y": 420.2728729248047,
         "wires": []
     },
     {
@@ -953,8 +953,8 @@
             "777bd47b.b983dc",
             "a99b0250.54b63"
         ],
-        "x": 2628.1395568847656,
-        "y": 2458.2719011306763,
+        "x": 3798.972915649414,
+        "y": 1562.7723941802979,
         "wires": []
     },
     {
@@ -965,8 +965,8 @@
         "links": [
             "93ec0c20.a969a"
         ],
-        "x": 973.5648918151855,
-        "y": 1915.6874332427979,
+        "x": 2538.564910888672,
+        "y": 490.6874256134033,
         "wires": []
     },
     {
@@ -977,8 +977,8 @@
         "links": [
             "7fb2661d.9b7b08"
         ],
-        "x": 973.2554588317871,
-        "y": 1951.3065185546875,
+        "x": 2538.2554779052734,
+        "y": 526.306510925293,
         "wires": []
     },
     {
@@ -1005,8 +1005,8 @@
             "1876e927.61d017",
             "de00c564.1ca1a8"
         ],
-        "x": 2090.828785419464,
-        "y": 2193.2911167144775,
+        "x": 3261.6621441841125,
+        "y": 1297.7916097640991,
         "wires": [
             [
                 "60d1ae93.b2c27"
@@ -1021,8 +1021,8 @@
         "links": [
             "7fb2661d.9b7b08"
         ],
-        "x": 973.3744964599609,
-        "y": 1880.5445861816406,
+        "x": 2538.3745155334473,
+        "y": 455.5445785522461,
         "wires": []
     },
     {
@@ -1033,8 +1033,8 @@
         "links": [
             "a75f58eb.95d308"
         ],
-        "x": 974.422191619873,
-        "y": 1985.1954517364502,
+        "x": 2539.4222106933594,
+        "y": 560.1954441070557,
         "wires": []
     },
     {
@@ -1045,8 +1045,8 @@
         "links": [
             "7fb2661d.9b7b08"
         ],
-        "x": 974.6444206237793,
-        "y": 2019.1954517364502,
+        "x": 2539.6444396972656,
+        "y": 594.1954441070557,
         "wires": []
     },
     {
@@ -1057,8 +1057,8 @@
         "links": [
             "a75f58eb.95d308"
         ],
-        "x": 974.1555290222168,
-        "y": 2055.306535720825,
+        "x": 2539.155548095703,
+        "y": 630.3065280914307,
         "wires": []
     },
     {
@@ -1069,8 +1069,8 @@
         "links": [
             "7fb2661d.9b7b08"
         ],
-        "x": 974.1555290222168,
-        "y": 2090.306535720825,
+        "x": 2539.155548095703,
+        "y": 665.3065280914307,
         "wires": []
     },
     {
@@ -1082,8 +1082,8 @@
         "qos": "0",
         "retain": "false",
         "broker": "37b3c15d.a7496e",
-        "x": 3003.3334045410156,
-        "y": 2425.0000505447388,
+        "x": 4174.166763305664,
+        "y": 1529.5005435943604,
         "wires": []
     },
     {
@@ -1095,8 +1095,8 @@
         "qos": "0",
         "retain": "false",
         "broker": "37b3c15d.a7496e",
-        "x": 2140.428409576416,
-        "y": 1209.6164555549622,
+        "x": 4000.428424835205,
+        "y": 379.6165165901184,
         "wires": []
     },
     {
@@ -1108,8 +1108,8 @@
         "qos": "0",
         "retain": "false",
         "broker": "37b3c15d.a7496e",
-        "x": 2142.2809143066406,
-        "y": 1340.3306427001953,
+        "x": 4002.2809295654297,
+        "y": 510.33070373535156,
         "wires": []
     },
     {
@@ -1120,8 +1120,8 @@
         "func": "setTimeout(function() {\n node.send(msg);\n}, 100);\nreturn null;",
         "outputs": 1,
         "noerr": 0,
-        "x": 2091.8566818237305,
-        "y": 1160.1878380775452,
+        "x": 3951.8566970825195,
+        "y": 330.1878991127014,
         "wires": [
             [
                 "cfd9dcd9.d9c2a"
@@ -1136,12 +1136,12 @@
         "func": "msg.payload = 'pausa';\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1650.8567123413086,
-        "y": 2416.2831106185913,
+        "x": 2777.832878112793,
+        "y": 1447.3549065589905,
         "wires": [
             [
                 "1f799d27.a7d3c3",
-                "25ffaa1d.6ab9b6"
+                "414487e5.0aa2e8"
             ]
         ]
     },
@@ -1153,8 +1153,8 @@
         "active": false,
         "console": "false",
         "complete": "payload",
-        "x": 2125.0474014282227,
-        "y": 1071.1401987075806,
+        "x": 3985.0474166870117,
+        "y": 241.14025974273682,
         "wires": []
     },
     {
@@ -1165,8 +1165,8 @@
         "links": [
             "7fb2661d.9b7b08"
         ],
-        "x": 2452.7734413146973,
-        "y": 1166.2354493141174,
+        "x": 4312.773456573486,
+        "y": 336.2355103492737,
         "wires": []
     },
     {
@@ -1240,15 +1240,15 @@
         ],
         "checkall": "true",
         "outputs": 12,
-        "x": 1547.3564758300781,
-        "y": 1335.6165313720703,
+        "x": 3407.356491088867,
+        "y": 505.61659240722656,
         "wires": [
             [
-                "3941fc9e.2ee4e4",
-                "31fc46ca.23cf3a"
+                "3941fc9e.2ee4e4"
             ],
             [
-                "45698b7.af43074"
+                "45698b7.af43074",
+                "31fc46ca.23cf3a"
             ],
             [
                 "9a0bb6c7.0186c8"
@@ -1290,8 +1290,8 @@
         "func": "global.set(\"ComandoMaquina\",0);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 2563.6901779174805,
-        "y": 1141.2830929756165,
+        "x": 4423.6901931762695,
+        "y": 311.2831540107727,
         "wires": [
             []
         ]
@@ -1304,8 +1304,8 @@
         "func": "global.set(\"ComandoMaquina\",0);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 2569.618434906006,
-        "y": 1273.6640267372131,
+        "x": 4429.618450164795,
+        "y": 443.6640877723694,
         "wires": [
             []
         ]
@@ -1318,8 +1318,8 @@
         "func": "//verifica 3.3 e libera 2.12\nvar modbus = global.get(\"ModBus\");\nvar msg2 = {};\n\n\nif (((modbus[3]) & (1 << 3))) {//M3.3 igual a 1 ligando motor\n modbus[2] |= (1<<12);\n msg.payload = modbus[2];\n msg2.payload ={ type: 'info', message: 'Acelerando motor...' };\n msg2.payload.time= new Date();\n node.status({fill:\"green\",shape:\"dot\",text:\"Acelerando...\"});\n}else if (~((modbus[3]) & (1 << 3))){ // M3.3 igual a 0 Desliga motor\n modbus[2] &= ~(1<<12);\n msg.payload = modbus[2];\n msg2.payload ={ type: 'info', message: 'Desligando motor...' };\n msg2.payload.time= new Date();\n node.status({fill:\"yellow\",shape:\"ring\",text:\"Deslingado\"});\n}else {\n node.status({fill:\"red\",shape:\"ring\",text:\"Bug\"});\n}\n \nglobal.set('ModBus', modbus);//Atualiza registrador global\nreturn [msg, msg2];",
         "outputs": "2",
         "noerr": 0,
-        "x": 1841.2567176818848,
-        "y": 1296.34982919693,
+        "x": 3701.256732940674,
+        "y": 466.3498902320862,
         "wires": [
             [
                 "77061f0a.3b9f"
@@ -1337,8 +1337,8 @@
         "func": "setTimeout(function() {\n node.send(msg);\n}, 100);\nreturn null;",
         "outputs": 1,
         "noerr": 0,
-        "x": 2091.8564414978027,
-        "y": 1290.2830958366394,
+        "x": 3951.856456756592,
+        "y": 460.28315687179565,
         "wires": [
             [
                 "31cebb79.0c4c24"
@@ -1353,8 +1353,8 @@
         "dataType": "HoldingRegister",
         "adr": "2",
         "server": "9d9e7956.cdee38",
-        "x": 2301.5231971740723,
-        "y": 1289.9498047828674,
+        "x": 4161.523212432861,
+        "y": 459.9498658180237,
         "wires": [
             [
                 "a5898d53.e72bf"
@@ -1372,8 +1372,8 @@
         "links": [
             "7fb2661d.9b7b08"
         ],
-        "x": 2458.1423377990723,
-        "y": 1296.378393650055,
+        "x": 4318.142353057861,
+        "y": 466.3784546852112,
         "wires": []
     },
     {
@@ -1384,8 +1384,8 @@
         "func": "global.set(\"ComandoMaquina\",0);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 2572.3566932678223,
-        "y": 1394.6998047828674,
+        "x": 4432.356708526611,
+        "y": 564.6998658180237,
         "wires": [
             []
         ]
@@ -1398,8 +1398,8 @@
         "func": "setTimeout(function() {\n node.send(msg);\n}, 50);\nnode.status({fill:\"yellow\",shape:\"dot\",text:\" Aplanadora Abre M31.10\"});\nreturn null;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1841.6066932678223,
-        "y": 1399.6998047828674,
+        "x": 3701.6067085266113,
+        "y": 569.6998658180237,
         "wires": [
             [
                 "fa65911f.62f7d"
@@ -1414,8 +1414,8 @@
         "func": "global.set(\"ComandoMaquina\",0);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 2572.8566932678223,
-        "y": 1443.9498047828674,
+        "x": 4432.856708526611,
+        "y": 613.9498658180237,
         "wires": [
             []
         ]
@@ -1428,8 +1428,8 @@
         "func": "setTimeout(function() {\n node.send(msg);\n}, 50);\nnode.status({fill:\"yellow\",shape:\"dot\",text:\"Aplanadora fecha M31.11\"});\nreturn null;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1840.1066932678223,
-        "y": 1447.6998047828674,
+        "x": 3700.1067085266113,
+        "y": 617.6998658180237,
         "wires": [
             [
                 "4d5fd3a4.358f9c"
@@ -1444,8 +1444,8 @@
         "links": [
             "a75f58eb.95d308"
         ],
-        "x": 974.9460220336914,
-        "y": 2125.406587123871,
+        "x": 2539.9460411071777,
+        "y": 700.4065794944763,
         "wires": []
     },
     {
@@ -1456,8 +1456,8 @@
         "links": [
             "7fb2661d.9b7b08"
         ],
-        "x": 975.3746109008789,
-        "y": 2160.1208205223083,
+        "x": 2540.3746299743652,
+        "y": 735.1208128929138,
         "wires": []
     },
     {
@@ -1468,8 +1468,8 @@
         "links": [
             "a75f58eb.95d308"
         ],
-        "x": 975.9460220336914,
-        "y": 2196.2636427879333,
+        "x": 2540.9460411071777,
+        "y": 771.2636351585388,
         "wires": []
     },
     {
@@ -1480,8 +1480,8 @@
         "links": [
             "7fb2661d.9b7b08"
         ],
-        "x": 975.2317886352539,
-        "y": 2231.406587123871,
+        "x": 2540.2318077087402,
+        "y": 806.4065794944763,
         "wires": []
     },
     {
@@ -1492,8 +1492,8 @@
         "func": "setTimeout(function() {\n node.send(msg);\n}, 50);\nnode.status({fill:\"yellow\",shape:\"dot\",text:\" Perfil Avança M2.3\"});\nreturn null;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1842.9995422363281,
-        "y": 1494.7640686035156,
+        "x": 3702.999557495117,
+        "y": 664.7641296386719,
         "wires": [
             [
                 "fbe4f143.10f6a"
@@ -1508,8 +1508,8 @@
         "func": "setTimeout(function() {\n node.send(msg);\n}, 50);\nnode.status({fill:\"yellow\",shape:\"dot\",text:\"M2.4\"});\nreturn null;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1842.4995422363281,
-        "y": 1540.7640686035156,
+        "x": 3702.499557495117,
+        "y": 710.7641296386719,
         "wires": [
             [
                 "bf2ab421.388df8"
@@ -1524,8 +1524,8 @@
         "func": "global.set(\"ComandoMaquina\",0);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 2572.713897705078,
-        "y": 1491.7640686035156,
+        "x": 4432.713912963867,
+        "y": 661.7641296386719,
         "wires": [
             []
         ]
@@ -1538,8 +1538,8 @@
         "func": "global.set(\"ComandoMaquina\",0);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 2572.8565979003906,
-        "y": 1537.7640600204468,
+        "x": 4432.85661315918,
+        "y": 707.764121055603,
         "wires": [
             []
         ]
@@ -1578,8 +1578,8 @@
         ],
         "checkall": "true",
         "outputs": 5,
-        "x": 2443.4958457946777,
-        "y": 2381.32758808136,
+        "x": 3614.329204559326,
+        "y": 1485.8280811309814,
         "wires": [
             [
                 "e9797736.d2e4a8"
@@ -1606,8 +1606,8 @@
         "func": "msg.i++;\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 2441.13484954834,
-        "y": 2303.8554105758667,
+        "x": 3611.9682083129883,
+        "y": 1408.3559036254883,
         "wires": [
             [
                 "d8aa29e4.ad5358"
@@ -1622,8 +1622,8 @@
         "func": "var mensagens = global.get(\"mensagens\");\nvar msg2 ={\n payload: msg.payload\n};\n\nif (msg2.payload[0] & (1 << 0)) {\n    msg2.payload = { type: 'error', message: 'Emergencia acionada!'};\n} else if (msg2.payload[0] & (1 << 1)) {\n    msg2.payload = { type: 'error', message: 'Falta de Fase'};\n} else if (msg2.payload[0] & (1 << 2)) {\n    msg2.payload = { type: 'error', message: 'Térmico da Bomba Hidraulica'};\n} else if (msg2.payload[0] & (1 << 3)) {\n    msg2.payload = { type: 'error', message: 'Térmico do Motor do Martelo Prensa'};\n} else if (msg2.payload[0] & (1 << 4)) {\n    msg2.payload = { type: 'error', message: 'Pressao do Ar Baixa!'};\n} else if (msg2.payload[0] & (1 << 5)) {\n    msg2.payload = { type: 'error', message: 'Erro no Inversor'};\n} else if (msg2.payload[0] & (1 << 6)) {\n    msg2.payload = { type: 'error', message: 'Erro no Servo'};\n} else if ((msg2.payload[0] & (1 << 7))) { /*||(msg.payload[2] &= ~(1 << 11)))*/\n    msg2.payload = { type: 'warning', message: 'Chave Geral Desligada'};\n} else if (msg2.payload[0] & (1 << 9)) {\n    msg2.payload =  { type: 'error', message: 'Erro Posicionamento'}\n} else if (msg2.payload[0] & (1 << 10)) {\n    msg2.payload = { type: 'info', message: 'Segurança da Prensa'};\n} else if (msg2.payload[1] & (1 << 12)) {\n    msg2.payload = { type: 'info', message: 'Aplanadora Aberda'};\n} else if (msg2.payload[0] & (1 << 8)) {\n    msg2.payload = { type: 'warning', message: 'Maquina Não Liberada'};\n} else {\n    if((global.get(\"MotorInvertido\"))==1){\n        msg2.payload = { type: 'info', message: 'Motor Invertido!!!'};\n    }else{\n        msg2.payload = { type: 'info', message: 'Maquina OK'};\n    }\n}\n\nmsg2.payload.time= new Date();\nmsg.payload.time= msg2.payload.time;\nreturn [msg, msg2];",
         "outputs": "2",
         "noerr": 0,
-        "x": 2681.037364959717,
-        "y": 2305.910937309265,
+        "x": 3851.8707237243652,
+        "y": 1410.4114303588867,
         "wires": [
             [
                 "203c6e06.e71172"
@@ -1642,8 +1642,8 @@
         "func": "msg.i =0;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 2181.8290939331055,
-        "y": 2381.1331872940063,
+        "x": 3352.662452697754,
+        "y": 1485.633680343628,
         "wires": [
             [
                 "d8aa29e4.ad5358"
@@ -1658,8 +1658,8 @@
         "func": "var msg2 ={\n payload: msg.payload\n};\n\nif (msg2.payload[2] & (1 << 11 )) {\n    msg2.payload = { type: 'warning', message: 'MAQUINA_ON'};\n} else{\n    msg2.payload = { type: 'warning', message: 'MAQUINA_OFF'};\n}\n\nmsg2.payload.time= msg.payload.time;\nreturn [msg, msg2];",
         "outputs": "2",
         "noerr": 0,
-        "x": 2670.634521484375,
-        "y": 2343.9387073516846,
+        "x": 3841.4678802490234,
+        "y": 1448.4392004013062,
         "wires": [
             [
                 "203c6e06.e71172"
@@ -1675,8 +1675,8 @@
         "z": "3f422101.3791ae",
         "name": "Liga Chave Geral e Libera a Maquina",
         "info": "#test\n- nao\n- sei\n- onde v\n- vai \n- parar\n- isso",
-        "x": 1916.74560546875,
-        "y": 1124.6053142547607,
+        "x": 3776.745620727539,
+        "y": 294.605375289917,
         "wires": []
     },
     {
@@ -1685,8 +1685,8 @@
         "z": "3f422101.3791ae",
         "name": "Liga / Deslig Motor",
         "info": "#test\n- nao\n- sei\n- onde v\n- vai \n- parar\n- isso",
-        "x": 1860.4123840332031,
-        "y": 1254.6053619384766,
+        "x": 3720.412399291992,
+        "y": 424.6054229736328,
         "wires": []
     },
     {
@@ -1695,8 +1695,8 @@
         "z": "3f422101.3791ae",
         "name": "Envia para fila qualquer erro na comunicação",
         "info": "#test\n- nao\n- sei\n- onde v\n- vai \n- parar\n- isso",
-        "x": 3048.1897888183594,
-        "y": 2388.271810531616,
+        "x": 4219.023147583008,
+        "y": 1492.7723035812378,
         "wires": []
     },
     {
@@ -1707,8 +1707,8 @@
         "name": "consulta",
         "collection": "parametros",
         "operation": "find",
-        "x": 4332.138481140137,
-        "y": 4337.530299663544,
+        "x": 753.138542175293,
+        "y": 3058.03031539917,
         "wires": [
             [
                 "7ab96e23.43ca7"
@@ -1723,8 +1723,8 @@
         "func": "// Para ler um registro primeiro especificar \"_id\" no payload\nmsg.payload = { \"_id\": \"AplanadoraN3\" }\n\n// No parametro projection 1 ou zero significa ler ou inguinorar resultado\nmsg.projection = { \"parametros.encoder.fator\": 1 }\n\n// Ler 1 valor\nmsg.limit = 1;\n\n// Pular 0 resultados\nmsg.skip = 0;\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 4119.249551773071,
-        "y": 4337.36733007431,
+        "x": 540.2496128082275,
+        "y": 3057.8673458099365,
         "wires": [
             [
                 "7b982c2d.20fc54"
@@ -1742,8 +1742,8 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 3899.2634620666504,
-        "y": 4337.030280590057,
+        "x": 320.26352310180664,
+        "y": 3057.5302963256836,
         "wires": [
             [
                 "f80c04c0.0dc4f8"
@@ -1758,8 +1758,8 @@
         "func": "msg.payload=msg.payload[0].parametros.encoder.fator;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 4525.3052978515625,
-        "y": 4337.946999073029,
+        "x": 946.3053588867188,
+        "y": 3058.447014808655,
         "wires": [
             [
                 "71c576f0.caad58"
@@ -1774,8 +1774,8 @@
         "active": true,
         "console": "false",
         "complete": "payload",
-        "x": 4731.638717651367,
-        "y": 4337.946879863739,
+        "x": 1152.6387786865234,
+        "y": 3058.4468955993652,
         "wires": []
     },
     {
@@ -1784,8 +1784,8 @@
         "z": "3f422101.3791ae",
         "name": "Lê apenas um valor",
         "info": "#Resultados de paginação usando skip e limit\n\nMuitas vezes, ao lidar com conjuntos de resultados de dados, \nsó queremos recuperar um subconjunto por vez, talvez para fornecer \nresultados por página da Web. Em MySQL, em geral fazemos isso \nusando a palavra-chave LIMIT. \nÉ fácil replicar essa funcionalidade no MongoDB \nusando msg.skip e msg.limit. \nPara retornar os primeiros cinco documentos na \ncoleção, podemos executar a seguinte operação:\n> msg.limit = 5;<\n\nPara pular resultados, use o seguinte comando:\n\n> msg.skip = 5;<\n\nCom ele é possível iguinorar os primeiros cinco\nregistros. ",
-        "x": 3904.471513748169,
-        "y": 4301.946939945221,
+        "x": 325.4715747833252,
+        "y": 3022.446955680847,
         "wires": []
     },
     {
@@ -1796,8 +1796,8 @@
         "func": "msg.limit = 50;\nmsg.skip = 0;\nmsg.payload = \"\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 2950.3334045410156,
-        "y": 2579.0000505447388,
+        "x": 948.3334350585938,
+        "y": 1625.5000667572021,
         "wires": [
             [
                 "cccfbe3b.1ca04",
@@ -1811,8 +1811,8 @@
         "z": "3f422101.3791ae",
         "name": "Carrega valores iniciais do banco",
         "info": "#Resultados de paginação usando skip e limit\n\nMuitas vezes, ao lidar com conjuntos de resultados de dados, \nsó queremos recuperar um subconjunto por vez, talvez para fornecer \nresultados por página da Web. Em MySQL, em geral fazemos isso \nusando a palavra-chave LIMIT. \nÉ fácil replicar essa funcionalidade no MongoDB \nusando msg.skip e msg.limit. \nPara retornar os primeiros cinco documentos na \ncoleção, podemos executar a seguinte operação:\n> msg.limit = 5;<\n\nPara pular resultados, use o seguinte comando:\n\n> msg.skip = 5;<\n\nCom ele é possível iguinorar os primeiros cinco\nregistros. ",
-        "x": 3011.3335189819336,
-        "y": 2630.000029563904,
+        "x": 1009.3335494995117,
+        "y": 1676.5000457763672,
         "wires": []
     },
     {
@@ -1823,8 +1823,8 @@
         "active": true,
         "console": "false",
         "complete": "payload",
-        "x": 3521.6648178100586,
-        "y": 2540.078642845154,
+        "x": 1526.33158493042,
+        "y": 1692.9117403030396,
         "wires": []
     },
     {
@@ -1835,8 +1835,8 @@
         "active": false,
         "console": "false",
         "complete": "payload.length",
-        "x": 3532.3315658569336,
-        "y": 2495.554472923279,
+        "x": 1536.2482109069824,
+        "y": 1735.387493133545,
         "wires": []
     },
     {
@@ -1847,8 +1847,8 @@
         "func": "var msgs = [null, null, null, null, null, null, null, null];\n\nmsgs[flow.get('params').length - 1] = {payload: flow.get('params')[flow.get('params').length - 1]};\n\nnode.send(msgs);\n",
         "outputs": "8",
         "noerr": 0,
-        "x": 3755.2927474975586,
-        "y": 2571.398955345154,
+        "x": 1753.2927780151367,
+        "y": 1618.8989715576172,
         "wires": [
             [
                 "322a851.8a1977a"
@@ -1884,25 +1884,13 @@
         "func": "//Somente entra aqui se o array ainda for >= 0\nif (flow.get('params').length >= 0) {\n \n // Carrega todos os parametros que ainda não foram enviados\n var params = flow.get('params');\n \n // Cria um novo Array tirando o ultimo elemento\n var novo = params.slice(0, flow.get('params').length - 1);\n \n // Sobrescreve o arry params\n flow.set('params', novo);\n \n // Envia novo array com -1 elemento\n msg.payload = novo;\n return msg;\n}\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 3801.6189193725586,
-        "y": 2368.7164602279663,
+        "x": 1740.6189498901367,
+        "y": 1779.2163543701172,
         "wires": [
             [
                 "47159ceb.d93454"
             ]
         ]
-    },
-    {
-        "id": "2d7806a4.f1a3fa",
-        "type": "debug",
-        "z": "3f422101.3791ae",
-        "name": "LOOP",
-        "active": false,
-        "console": "false",
-        "complete": "payload",
-        "x": 3751.0791244506836,
-        "y": 2327.6053762435913,
-        "wires": []
     },
     {
         "id": "322a851.8a1977a",
@@ -1912,8 +1900,8 @@
         "dataType": "HoldingRegister",
         "adr": "14",
         "server": "9d9e7956.cdee38",
-        "x": 4074.8290252685547,
-        "y": 2241.716465950012,
+        "x": 2072.8291778564453,
+        "y": 1573.216594696045,
         "wires": [
             [
                 "f3dfdc5d.546f1",
@@ -1932,8 +1920,8 @@
         "dataType": "HoldingRegister",
         "adr": "21",
         "server": "9d9e7956.cdee38",
-        "x": 4061.4003944396973,
-        "y": 2617.144965171814,
+        "x": 2059.400547027588,
+        "y": 1948.6450939178467,
         "wires": [
             [
                 "f3dfdc5d.546f1",
@@ -1952,8 +1940,8 @@
         "dataType": "HoldingRegister",
         "adr": "18",
         "server": "9d9e7956.cdee38",
-        "x": 4072.971611022949,
-        "y": 2425.859348297119,
+        "x": 2070.97176361084,
+        "y": 1757.3594770431519,
         "wires": [
             [
                 "f3dfdc5d.546f1",
@@ -1972,8 +1960,8 @@
         "dataType": "HoldingRegister",
         "adr": "17",
         "server": "9d9e7956.cdee38",
-        "x": 4076.114646911621,
-        "y": 2333.859404563904,
+        "x": 2074.1147994995117,
+        "y": 1665.3595333099365,
         "wires": [
             [
                 "f3dfdc5d.546f1",
@@ -1992,8 +1980,8 @@
         "dataType": "HoldingRegister",
         "adr": "20",
         "server": "9d9e7956.cdee38",
-        "x": 4061.9716835021973,
-        "y": 2519.5735845565796,
+        "x": 2059.971836090088,
+        "y": 1851.0737133026123,
         "wires": [
             [
                 "f3dfdc5d.546f1",
@@ -2012,8 +2000,8 @@
         "dataType": "HoldingRegister",
         "adr": "27",
         "server": "9d9e7956.cdee38",
-        "x": 4060.400077819824,
-        "y": 2813.4307289123535,
+        "x": 2058.400230407715,
+        "y": 2144.9308576583862,
         "wires": [
             [
                 "f3dfdc5d.546f1",
@@ -2032,8 +2020,8 @@
         "dataType": "HoldingRegister",
         "adr": "22",
         "server": "9d9e7956.cdee38",
-        "x": 4060.5429916381836,
-        "y": 2714.430693626404,
+        "x": 2058.543144226074,
+        "y": 2045.9308223724365,
         "wires": [
             [
                 "f3dfdc5d.546f1",
@@ -2052,8 +2040,8 @@
         "dataType": "HoldingRegister",
         "adr": "28",
         "server": "9d9e7956.cdee38",
-        "x": 4069.6067123413086,
-        "y": 2914.2164602279663,
+        "x": 2067.606864929199,
+        "y": 2245.716588973999,
         "wires": [
             [
                 "f3dfdc5d.546f1",
@@ -2072,11 +2060,11 @@
         "links": [
             "f3dfdc5d.546f1"
         ],
-        "x": 3456.3569564819336,
-        "y": 2367.683135032654,
+        "x": 1426.3569869995117,
+        "y": 1779.1830291748047,
         "wires": [
             [
-                "920309e0.622ac8"
+                "a285b920.7d9458"
             ]
         ]
     },
@@ -2088,26 +2076,9 @@
         "links": [
             "507768a8.b14b28"
         ],
-        "x": 4273.106712341309,
-        "y": 2176.483183860779,
+        "x": 2273.1069869995117,
+        "y": 2313.983200073242,
         "wires": []
-    },
-    {
-        "id": "920309e0.622ac8",
-        "type": "function",
-        "z": "3f422101.3791ae",
-        "name": "Delay 100ms",
-        "func": "setTimeout(function() {\n node.send(msg);\n}, 100);\nreturn null;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 3579.3569564819336,
-        "y": 2367.6332082748413,
-        "wires": [
-            [
-                "2d7806a4.f1a3fa",
-                "de2a4214.04601"
-            ]
-        ]
     },
     {
         "id": "3d792536.d4f21a",
@@ -2118,8 +2089,8 @@
         "qos": "0",
         "retain": "false",
         "broker": "37b3c15d.a7496e",
-        "x": 4743.1942138671875,
-        "y": 2546.9466228485107,
+        "x": 2741.194366455078,
+        "y": 1878.4467515945435,
         "wires": []
     },
     {
@@ -2128,8 +2099,8 @@
         "z": "3f422101.3791ae",
         "name": "Grava valor dos registradores no CLP",
         "info": "A cada inicialização os valores dos registradores são atualizados a partir de MongoDB:\n\n1- AplanVelAuto M14\nVelocidade maxima no automatico de 0% a 100%\n\n2- AplanVelMan M17\nVelocidade maxima no manual de 0% a 100%\n\n3- AplanPasso M18\nPasso da ferramenta em \"mm\", de 0 a 400mm\n\n4- EncFactor M20\nFator de correção do encoder em numeros inteiros apenas.\n\n5- EncResol M21\nResolução do encoder em numeros inteiros apenas. 1 a 10000\n\n6- EncPerim M22\nPerimetro do encoder em \"mm\". De 1 a 999\n\n7- PrsCiclosUnid M23\nCiclos de Lubrificação da prensa. De 0 a 65534 unidades\n\n8- PrsCiclosMil M24\nCiclos de Lubrificação da prensa vezes 1000. De 0 a 65534 unidades\n\n9- NovoPrsCiclosUnd M25\nCiclos que faltam para proxima Lubrificação da prensa. De 0 a 65534 unidades\n\n10- NovoCiclosMil M26\nCiclos que faltam para proxima Lubrificação da prensa vezes 1000. De 0 a 65534 unidades\n\n",
-        "x": 4135.050926208496,
-        "y": 2139.2164697647095,
+        "x": 2045.0510787963867,
+        "y": 1524.7165985107422,
         "wires": []
     },
     {
@@ -2140,11 +2111,12 @@
         "func": "var valor = msg.payload;\n\nmsg.payload = {\n AplanVelAuto: valor\n};\nnode.status({fill:\"blue\",shape:\"dot\",text:valor});\n\n \nreturn msg;",
         "outputs": "1",
         "noerr": 0,
-        "x": 4368.606636047363,
-        "y": 2218.454677581787,
+        "x": 2366.606788635254,
+        "y": 1549.9548063278198,
         "wires": [
             [
-                "3d792536.d4f21a"
+                "3d792536.d4f21a",
+                "362ffa7.8703d06"
             ]
         ]
     },
@@ -2156,8 +2128,8 @@
         "func": "var valor = msg.payload;\n\nmsg.payload = {\n AplanVelMan: valor\n};\nnode.status({fill:\"blue\",shape:\"dot\",text:valor});\n \nreturn msg;",
         "outputs": "1",
         "noerr": 0,
-        "x": 4367.463890075684,
-        "y": 2313.0260305404663,
+        "x": 2365.464042663574,
+        "y": 1644.526159286499,
         "wires": [
             [
                 "3d792536.d4f21a"
@@ -2172,8 +2144,8 @@
         "func": "var valor = msg.payload;\n\nglobal.set(\"FatorEncoder\",valor);\nmsg.payload = {\n EncFactor: valor\n};\nnode.status({fill:\"blue\",shape:\"dot\",text:valor});\n \nreturn msg;",
         "outputs": "1",
         "noerr": 0,
-        "x": 4366.463890075684,
-        "y": 2499.7403860092163,
+        "x": 2364.464042663574,
+        "y": 1831.240514755249,
         "wires": [
             [
                 "3d792536.d4f21a"
@@ -2188,8 +2160,8 @@
         "func": "var valor = msg.payload;\n\nmsg.payload = {\n AplanPasso: valor\n};\nnode.status({fill:\"blue\",shape:\"dot\",text:valor});\nreturn msg;",
         "outputs": "1",
         "noerr": 0,
-        "x": 4366.606468200684,
-        "y": 2406.168974876404,
+        "x": 2364.606620788574,
+        "y": 1737.6691036224365,
         "wires": [
             [
                 "3d792536.d4f21a"
@@ -2204,8 +2176,8 @@
         "func": "var valor = msg.payload;\n\nmsg.payload = {\n PrsCiclosUnid: valor\n};\nnode.status({fill:\"blue\",shape:\"dot\",text:valor});\n \nreturn msg;",
         "outputs": "1",
         "noerr": 0,
-        "x": 4367.321067810059,
-        "y": 2786.8832082748413,
+        "x": 2365.321220397949,
+        "y": 2118.383337020874,
         "wires": [
             [
                 "3d792536.d4f21a"
@@ -2220,8 +2192,8 @@
         "func": "var valor = msg.payload;\n\nmsg.payload = {\n EncPerim: valor\n};\nnode.status({fill:\"blue\",shape:\"dot\",text:valor});\nreturn msg;",
         "outputs": "1",
         "noerr": 0,
-        "x": 4367.463722229004,
-        "y": 2690.3117990493774,
+        "x": 2365.4638748168945,
+        "y": 2021.8119277954102,
         "wires": [
             [
                 "3d792536.d4f21a"
@@ -2236,8 +2208,8 @@
         "func": "var valor = msg.payload;\n\nmsg.payload = {\n EncResol: valor\n};\nnode.status({fill:\"blue\",shape:\"dot\",text:valor});\nreturn msg;",
         "outputs": "1",
         "noerr": 0,
-        "x": 4367.321067810059,
-        "y": 2596.1688833236694,
+        "x": 2365.321220397949,
+        "y": 1927.6690120697021,
         "wires": [
             [
                 "3d792536.d4f21a"
@@ -2252,8 +2224,8 @@
         "func": "var valor = msg.payload;\n\nmsg.payload = {\n PrsCiclosMil: valor\n};\nnode.status({fill:\"blue\",shape:\"dot\",text:(\"Valor x1000 = \"+ valor)});\n\nreturn msg;",
         "outputs": "1",
         "noerr": 0,
-        "x": 4367.463890075684,
-        "y": 2884.0260610580444,
+        "x": 2365.464042663574,
+        "y": 2215.526189804077,
         "wires": [
             [
                 "3d792536.d4f21a"
@@ -2268,13 +2240,13 @@
         "func": "var parametro = JSON.parse(msg.payload);\n\n/****** APLANADORA VELOCIDADE AUTOMATICA M14 *********/\nif (parametro.AplanVelAuto_KEYBOARD !== undefined) {\n var x = parametro.AplanVelAuto_KEYBOARD;\n msg.query = { _id: 'AplanadoraN3' }\n msg.payload = {\n $set: {\n \"parametros.velocidade.automatico\": x\n }\n }\n node.status({fill:\"blue\",shape:\"dot\",text:(\"Velocidade Auto = \"+ x)});\n return msg;\n}\n\n/****** APLANADORA VELOCIDADE MANUAL M17 *********/\nif (parametro.AplanVelMan_KEYBOARD !== undefined) {\n var x = parametro.AplanVelMan_KEYBOARD;\n msg.query = { _id: 'AplanadoraN3' }\n msg.payload = {\n $set: {\n \"parametros.velocidade.manual\": x\n }\n }\n node.status({fill:\"blue\",shape:\"dot\",text:(\"Velocidade Manual = \"+ x)});\n return msg;\n}\n\n/****** APLANADORA PASSO M18 *********/\nif (parametro.AplanPasso_KEYBOARD !== undefined) {\n var x = parametro.AplanPasso_KEYBOARD;\n msg.query = { _id: 'AplanadoraN3' }\n msg.payload = {\n $set: {\n \"parametros.ferramenta.passo\": x\n }\n }\n node.status({fill:\"blue\",shape:\"dot\",text:(\"Passo = \"+ x)});\n return msg;\n}\n\n/****** FATOR DE ENCONDER M20*********/\nif (parametro.EncFactor_KEYBOARD !== undefined) {\n var x = parametro.EncFactor_KEYBOARD;\n msg.query = { _id: 'AplanadoraN3' }\n msg.payload = {\n $set: {\n \"parametros.encoder.fator\": x\n }\n }\n node.status({fill:\"blue\",shape:\"dot\",text:(\"fator = \"+ x)});\n return msg;\n}\n\n/****** RESOLUÇÃO DO ENCONDER M21 *********/\nif (parametro.EncResol_KEYBOARD !== undefined) {\n var x = parametro.EncResol_KEYBOARD;\n msg.query = { _id: 'AplanadoraN3' }\n msg.payload = {\n $set: {\n \"parametros.encoder.resolucao\": x\n }\n }\n node.status({fill:\"blue\",shape:\"dot\",text:(\"Resolução ENC = \"+ x)});\n return msg;\n}\n\n/****** PERIMETRO DO ENCONDER M22 *********/\nif (parametro.EncPerim_KEYBOARD !== undefined) {\n var x = parametro.EncPerim_KEYBOARD;\n msg.query = { _id: 'AplanadoraN3' }\n msg.payload = {\n $set: {\n \"parametros.encoder.perimetro\": x\n }\n }\n node.status({fill:\"blue\",shape:\"dot\",text:(\"Perimetro ENC = \"+ x)});\n return msg;\n}\n\n/****** TamanhoDesejadoPeca Campo da pagina *********/\nif (parametro.TamanhoDesejadoPeca_KEYBOARD !== undefined) {\n var x = (parametro.TamanhoDesejadoPeca_KEYBOARD||0);\n if ((x>=2)&&(x<=20000)){\n global.set('TamanhoDesejadoPeca_KEYBOARD', x);\n }else {\n x=0;\n global.set('TamanhoDesejadoPeca_KEYBOARD', 0);\n }\n node.status({fill:\"blue\",shape:\"dot\",text:(\"Tamanho Desejado = \"+ x)});\n}\n\n/****** TamanhoRealPeca Campo da pagina *********/\nif (parametro.TamanhoRealPeca_KEYBOARD !== undefined) {\n var x = (parametro.TamanhoRealPeca_KEYBOARD||0);\n if ((x>=2)&&(x<=20000)){\n global.set('TamanhoRealPeca_KEYBOARD', x);\n }else {\n x=0;\n global.set('TamanhoRealPeca_KEYBOARD', 0);\n }\n node.status({fill:\"blue\",shape:\"dot\",text:(\"Tamanho Real = \"+ x)});\n}\n\n/****** RecalcularFator e grava no banco *********/\nif (parametro.RecalcularFator !== undefined) {\n var x = (global.get('TamanhoRealPeca_KEYBOARD')||0);\n var y = (global.get('TamanhoDesejadoPeca_KEYBOARD')||0);\n if ((x!==0)&&(y!==0)){\n var z = x/y;\n z *= (global.get('FatorEncoder')/10000);\n var z2 = Math.round(z*10000);\n msg.query = { _id: 'AplanadoraN3' }\n msg.payload = {\n $set: {\n \"parametros.encoder.fator\": z2\n }\n }\n node.status({fill:\"blue\",shape:\"dot\",text:(\"Calculado Fator ENC = \"+ z2)});\n return msg;\n }\n}\n\n/****** Atualiza numero de cilcos da prensa e grava no banco ********/\nif ((parametro.PrsCiclosUnid_KEYBOARD !== undefined )||(parametro.PRENSA_CICLOS !== undefined) ) {\n msg.query = { _id: 'AplanadoraN3' }\n msg.payload = {\n $set: {\n \"lubrificacao.ciclos.PrsCiclosUnid\": parametro.PrsCiclosUnid_KEYBOARD\n }\n }\n node.status({fill:\"blue\",shape:\"dot\",text:(\"Ciclos = \"+ parametro.PrsCiclosUnid_KEYBOARD)});\n return msg;\n}\n\n/* FALTA FAZER*************\nPrsCiclosUnid M23\nPrsCiclosMil M24\nNovoPrsCiclosUnd M25\nNovoCiclosMil M26*/\n\n\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 2410.213840484619,
-        "y": 2699.7403268814087,
+        "x": 408.21387100219727,
+        "y": 1746.240343093872,
         "wires": [
             [
                 "f94637bc.72f068",
                 "9f1cc9f3.7aece8",
-                "de8f8edb.9cff6"
+                "7bc83fa3.e83c"
             ]
         ]
     },
@@ -2289,8 +2261,8 @@
         "upsert": false,
         "multi": false,
         "operation": "update",
-        "x": 2670.2138061523438,
-        "y": 2699.8069972991943,
+        "x": 668.2138366699219,
+        "y": 1746.3070135116577,
         "wires": []
     },
     {
@@ -2301,8 +2273,8 @@
         "topic": "fabrica/ihm/comandos/",
         "qos": "0",
         "broker": "37b3c15d.a7496e",
-        "x": 2129.3096199035645,
-        "y": 2750.017922401428,
+        "x": 128.30965042114258,
+        "y": 1796.5179386138916,
         "wires": [
             [
                 "af685ba4.325c48",
@@ -2316,8 +2288,8 @@
         "z": "3f422101.3791ae",
         "name": "Save the modified values in the bank",
         "info": "#Whats is saved until now!\n\nAfter one JSON.parse(msg.payload);\n\nAPLANADORA VELOCIDADE AUTOMATICA M14\nAPLANADORA VELOCIDADE MANUAL M17\nAPLANADORA PASSO M18\nRESOLUÇÃO DO ENCONDER M21",
-        "x": 2414.376953125,
-        "y": 2659.149064064026,
+        "x": 412.3769836425781,
+        "y": 1705.6490802764893,
         "wires": []
     },
     {
@@ -2328,25 +2300,9 @@
         "active": true,
         "console": "false",
         "complete": "payload",
-        "x": 2671.6426391601562,
-        "y": 2752.7403478622437,
+        "x": 669.6426696777344,
+        "y": 1799.240364074707,
         "wires": []
-    },
-    {
-        "id": "de8f8edb.9cff6",
-        "type": "function",
-        "z": "3f422101.3791ae",
-        "name": "Delay 300ms",
-        "func": "setTimeout(function() {\n msg= {payload: \"{MAQUINA_OFF:0}\"};\n node.send(msg);\n}, 300);\n\nreturn null;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 2687.6665954589844,
-        "y": 2642.2641820907593,
-        "wires": [
-            [
-                "5acf5954.4ed6e8"
-            ]
-        ]
     },
     {
         "id": "a55a1e61.1fab",
@@ -2356,8 +2312,8 @@
         "active": true,
         "console": "false",
         "complete": "payload",
-        "x": 2370.6796073913574,
-        "y": 2749.624047279358,
+        "x": 368.67963790893555,
+        "y": 1796.1240634918213,
         "wires": []
     },
     {
@@ -2368,8 +2324,8 @@
         "active": true,
         "console": "false",
         "complete": "payload",
-        "x": 383.7316665649414,
-        "y": 2096.19221162796,
+        "x": 1948.7316856384277,
+        "y": 671.1922039985657,
         "wires": []
     },
     {
@@ -2380,8 +2336,8 @@
         "active": false,
         "console": "false",
         "complete": "payload",
-        "x": 2203.1427307128906,
-        "y": 2334.9188737869263,
+        "x": 3373.976089477539,
+        "y": 1439.4193668365479,
         "wires": []
     },
     {
@@ -2392,8 +2348,8 @@
         "func": "var msg2 ={\n payload: msg.payload\n};\n\nif (msg2.payload[19] !== 0) {\n    msg2.payload = { type: 'info', message: 'ERRO_POS: ' + (msg2.payload[19].toString())};\n} else{\n    msg2.payload = { type: 'info', message: 'POS_ATUAL: '+ (msg2.payload[5].toString())};\n}\nmsg2.payload.time= msg.payload.time;\nreturn [msg, msg2];",
         "outputs": "2",
         "noerr": 0,
-        "x": 2680.8569946289062,
-        "y": 2381.4998693466187,
+        "x": 3851.6903533935547,
+        "y": 1486.0003623962402,
         "wires": [
             [
                 "203c6e06.e71172"
@@ -2411,37 +2367,14 @@
         "func": "var msg2 ={\n payload: msg.payload\n};\n\n//var ciclos = msg2.payload[23];\nvar Mciclos =msg2.payload[24];\n\n msg2.payload = { type: 'info', message: 'PRENSA_MIL_CICLOS: '+ (msg2.payload[24].toString())};\n\nmsg2.payload.time= msg.payload.time;\nreturn [msg, msg2];",
         "outputs": "2",
         "noerr": 0,
-        "x": 2683.1571350097656,
-        "y": 2420.1998796463013,
+        "x": 3853.990493774414,
+        "y": 1524.7003726959229,
         "wires": [
             [
                 "203c6e06.e71172"
             ],
             [
                 "83348503.f46a38"
-            ]
-        ]
-    },
-    {
-        "id": "f30afed4.182cd",
-        "type": "delay",
-        "z": "3f422101.3791ae",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "1",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 2453.3334045410156,
-        "y": 2511.0000505447388,
-        "wires": [
-            [
-                "42750595.14a0ec"
             ]
         ]
     },
@@ -2453,8 +2386,8 @@
         "dataType": "HoldingRegister",
         "adr": "2",
         "server": "9d9e7956.cdee38",
-        "x": 810.5721206665039,
-        "y": 2426.187394618988,
+        "x": 2375.5721397399902,
+        "y": 1001.1873869895935,
         "wires": [
             [
                 "f33f8791.8265c8"
@@ -2472,8 +2405,8 @@
         "func": "setTimeout(function() {\n node.send(msg);\n}, 50);\nnode.status({fill:\"yellow\",shape:\"dot\",text:\"Parar Maquina\"});\nreturn null;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1842.7066955566406,
-        "y": 1598.116470336914,
+        "x": 3702.7067108154297,
+        "y": 768.1165313720703,
         "wires": [
             [
                 "835451f4.5a93a"
@@ -2488,8 +2421,8 @@
         "func": "setTimeout(function() {\n node.send(msg);\n}, 50);\nnode.status({fill:\"yellow\",shape:\"dot\",text:\"M31.11\"});\nreturn null;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1841.2066955566406,
-        "y": 1676.116470336914,
+        "x": 3701.2067108154297,
+        "y": 846.1165313720703,
         "wires": [
             [
                 "28ee6a27.238ba6"
@@ -2504,8 +2437,8 @@
         "func": "setTimeout(function() {\n node.send(msg);\n}, 50);\nnode.status({fill:\"yellow\",shape:\"dot\",text:\"Produzir\"});\nreturn null;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1844.0995445251465,
-        "y": 1723.1807341575623,
+        "x": 3704.0995597839355,
+        "y": 893.1807951927185,
         "wires": [
             [
                 "b9f58702.491698"
@@ -2520,8 +2453,8 @@
         "func": "setTimeout(function() {\n node.send(msg);\n}, 50);\nnode.status({fill:\"yellow\",shape:\"dot\",text:\"Desbobinador\"});\nreturn null;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1893.5995445251465,
-        "y": 1894.1807341575623,
+        "x": 3753.5995597839355,
+        "y": 1064.1807951927185,
         "wires": [
             [
                 "91ed9b83.330878"
@@ -2536,8 +2469,8 @@
         "func": "global.set(\"ComandoMaquina\",0);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 2573.323516845703,
-        "y": 1584.816421508789,
+        "x": 4433.323532104492,
+        "y": 754.8164825439453,
         "wires": [
             []
         ]
@@ -2550,8 +2483,8 @@
         "func": "global.set(\"ComandoMaquina\",0);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 2573.823516845703,
-        "y": 1676.066421508789,
+        "x": 4433.823532104492,
+        "y": 846.0664825439453,
         "wires": [
             []
         ]
@@ -2564,8 +2497,8 @@
         "func": "global.set(\"ComandoMaquina\",0);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 2573.680721282959,
-        "y": 1716.8806853294373,
+        "x": 4433.680736541748,
+        "y": 886.8807463645935,
         "wires": [
             []
         ]
@@ -2578,8 +2511,8 @@
         "func": "global.set(\"ComandoMaquina\",0);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 2573.8234214782715,
-        "y": 1894.8806767463684,
+        "x": 4433.823436737061,
+        "y": 1064.8807377815247,
         "wires": [
             []
         ]
@@ -2592,8 +2525,8 @@
         "links": [
             "93ec0c20.a969a"
         ],
-        "x": 972.6388931274414,
-        "y": 2412.1374068260193,
+        "x": 2537.6389122009277,
+        "y": 987.1373991966248,
         "wires": []
     },
     {
@@ -2604,8 +2537,8 @@
         "links": [
             "7fb2661d.9b7b08"
         ],
-        "x": 972.329460144043,
-        "y": 2447.756492137909,
+        "x": 2537.3294792175293,
+        "y": 1022.7564845085144,
         "wires": []
     },
     {
@@ -2616,8 +2549,8 @@
         "func": "//*****MbMaquinaProduzindo M1.7\nvar modbus = global.get(\"ModBus\");\n \nif ((modbus[2]) & (1 << 0)) {\n modbus[1] &= ~(1<<7); //M1.7 igual a 1 produzir\n node.status({fill:\"red\",shape:\"dot\",text:\"M1.7 = OFF\"});\n} else {\n modbus[1] |= (1<<7);//M1.7 igual a 0 não produzir\n node.status({fill:\"green\",shape:\"ring\",text:\"M1.7 = ON\"});\n}\nglobal.set(\"ComandoMaquina\",9);\nglobal.set('ModBus', modbus);//Atualiza registrador global.\nmsg.payload = modbus[1];\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 2090.306671142578,
-        "y": 1723.4832305908203,
+        "x": 3950.306686401367,
+        "y": 893.4832916259766,
         "wires": [
             [
                 "cac5fc75.5c759"
@@ -2632,8 +2565,8 @@
         "dataType": "HoldingRegister",
         "adr": "1",
         "server": "9d9e7956.cdee38",
-        "x": 2336.340118408203,
-        "y": 1724.166519165039,
+        "x": 4196.340133666992,
+        "y": 894.1665802001953,
         "wires": [
             [
                 "765f2bc8.9b2264"
@@ -2651,8 +2584,8 @@
         "links": [
             "7fb2661d.9b7b08"
         ],
-        "x": 2499.3233947753906,
-        "y": 1758.1665802001953,
+        "x": 4359.32341003418,
+        "y": 928.1666412353516,
         "wires": []
     },
     {
@@ -2663,8 +2596,8 @@
         "dataType": "HoldingRegister",
         "adr": "2",
         "server": "9d9e7956.cdee38",
-        "x": 807.6054306030273,
-        "y": 2284.887279033661,
+        "x": 2372.6054496765137,
+        "y": 859.8872714042664,
         "wires": [
             [
                 "ffe2a610.2de9c8"
@@ -2682,8 +2615,8 @@
         "links": [
             "93ec0c20.a969a"
         ],
-        "x": 974.6721572875977,
-        "y": 2266.837296962738,
+        "x": 2539.672176361084,
+        "y": 841.8372893333435,
         "wires": []
     },
     {
@@ -2694,8 +2627,8 @@
         "links": [
             "7fb2661d.9b7b08"
         ],
-        "x": 974.3627090454102,
-        "y": 2301.456437587738,
+        "x": 2539.3627281188965,
+        "y": 876.4564299583435,
         "wires": []
     },
     {
@@ -2706,8 +2639,8 @@
         "dataType": "HoldingRegister",
         "adr": "2",
         "server": "9d9e7956.cdee38",
-        "x": 801.0388565063477,
-        "y": 2352.8874068260193,
+        "x": 2366.038875579834,
+        "y": 927.8873991966248,
         "wires": [
             [
                 "c7690c7c.bdddd"
@@ -2725,8 +2658,8 @@
         "links": [
             "93ec0c20.a969a"
         ],
-        "x": 974.1056289672852,
-        "y": 2338.8374190330505,
+        "x": 2539.1056480407715,
+        "y": 913.837411403656,
         "wires": []
     },
     {
@@ -2737,8 +2670,8 @@
         "links": [
             "7fb2661d.9b7b08"
         ],
-        "x": 972.7961959838867,
-        "y": 2374.45650434494,
+        "x": 2537.796215057373,
+        "y": 949.4564967155457,
         "wires": []
     },
     {
@@ -2749,8 +2682,8 @@
         "links": [
             "a75f58eb.95d308"
         ],
-        "x": 716.6055679321289,
-        "y": 2642.2375044822693,
+        "x": 2281.6055870056152,
+        "y": 1217.2374968528748,
         "wires": []
     },
     {
@@ -2761,8 +2694,8 @@
         "func": "//muda 3.3\nvar mensagens = global.get(\"mensagens\");\nvar modbus = global.get(\"ModBus\");\nvar msg2 = {};\n\n// M3.3 igual a 0 Desliga motor\n modbus[2] &= ~(1<<12);\n msg.payload = modbus[2];\n msg2.payload ={ type: 'info', message: 'Desligando motor para reverter...' };\n msg2.payload.time= new Date();\n node.status({fill:\"yellow\",shape:\"ring\",text:\"Deslingado\"});\n\nglobal.set(\"MotorLigado\",0);\nglobal.set('ModBus', modbus);//Atualiza registrador global\nreturn [msg, msg2];",
         "outputs": "2",
         "noerr": 0,
-        "x": 2024.9817199707031,
-        "y": 1598.6539459228516,
+        "x": 3884.981735229492,
+        "y": 768.6540069580078,
         "wires": [
             [
                 "1c039ee5.9fdc81"
@@ -2781,8 +2714,8 @@
         "qos": "0",
         "retain": "false",
         "broker": "37b3c15d.a7496e",
-        "x": 2294.481719970703,
-        "y": 1641.4039459228516,
+        "x": 4154.481735229492,
+        "y": 811.4040069580078,
         "wires": []
     },
     {
@@ -2793,8 +2726,8 @@
         "dataType": "HoldingRegister",
         "adr": "2",
         "server": "9d9e7956.cdee38",
-        "x": 2275.231719970703,
-        "y": 1591.6539459228516,
+        "x": 4135.231735229492,
+        "y": 761.6540069580078,
         "wires": [
             [
                 "909bffb8.7ad7a"
@@ -2812,8 +2745,8 @@
         "links": [
             "7fb2661d.9b7b08"
         ],
-        "x": 2498.981719970703,
-        "y": 1630.9039459228516,
+        "x": 4358.981735229492,
+        "y": 800.9040069580078,
         "wires": []
     },
     {
@@ -2824,8 +2757,8 @@
         "func": "//Carrega variavel global indice em y\nvar y = msg.id;\n\n//monta a mensagem\nmsg.query = {_id:'indice'};\nmsg.payload = {\n $set: {\"indice_salvo\": parseInt(y)}\n};\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 3159.9033432006836,
-        "y": 2244.1253957748413,
+        "x": 4330.736701965332,
+        "y": 1348.625888824463,
         "wires": [
             [
                 "61e20076.f1ab9"
@@ -2843,8 +2776,8 @@
         "upsert": true,
         "multi": true,
         "operation": "update",
-        "x": 3350.6172790527344,
-        "y": 2244.4755125045776,
+        "x": 4521.450637817383,
+        "y": 1348.9760055541992,
         "wires": []
     },
     {
@@ -2855,8 +2788,8 @@
         "func": "var a = global.get(\"erro\");\n\nif (a.message!==msg.payload.message){\n    global.set(\"erro\",msg.payload);\n    var x = msg.payload;\n    var y = global.get(\"Indice_Mongo\");\n    \n    if (y <= 9){\n        msg.query = {_id:y.toString()};\n        msg.payload = {\n            $set:x\n        };\n        y++;\n        global.set(\"Indice_Mongo\",y);\n    } else{\n        global.set(\"Indice_Mongo\",0);\n        y=0;\n        msg.query = {_id:y.toString()};\n        msg.payload = {\n            $set:x\n        };\n    }\n    msg.id = y;\n    return msg;\n} else{\n    msg = null;\n    return msg;\n}",
         "outputs": 1,
         "noerr": 0,
-        "x": 2935.4342346191406,
-        "y": 2244.8622331619263,
+        "x": 4106.267593383789,
+        "y": 1349.3627262115479,
         "wires": [
             [
                 "6f7d434b.3e957c",
@@ -2876,8 +2809,8 @@
         "upsert": true,
         "multi": true,
         "operation": "update",
-        "x": 3169.8786849975586,
-        "y": 2296.261992454529,
+        "x": 4340.712043762207,
+        "y": 1400.7624855041504,
         "wires": []
     },
     {
@@ -2888,11 +2821,11 @@
         "links": [
             "998aa1cf.9dfc6"
         ],
-        "x": 2484.3069458007812,
-        "y": 2747.616629600525,
+        "x": 482.3069763183594,
+        "y": 1794.1166458129883,
         "wires": [
             [
-                "de8f8edb.9cff6"
+                "7bc83fa3.e83c"
             ]
         ]
     },
@@ -2904,8 +2837,8 @@
         "links": [
             "27b77e93.93b722"
         ],
-        "x": 715.5387954711914,
-        "y": 2701.1540083885193,
+        "x": 2280.5388145446777,
+        "y": 1276.1540007591248,
         "wires": []
     },
     {
@@ -2914,8 +2847,8 @@
         "z": "3f422101.3791ae",
         "name": "Desbobinador",
         "info": "",
-        "x": 822.5387954711914,
-        "y": 2642.337480068207,
+        "x": 2387.5388145446777,
+        "y": 1217.3374724388123,
         "wires": []
     },
     {
@@ -2924,8 +2857,8 @@
         "z": "3f422101.3791ae",
         "name": "TABS2",
         "info": "",
-        "x": 803.2388687133789,
-        "y": 2700.337480068207,
+        "x": 2368.2388877868652,
+        "y": 1275.3374724388123,
         "wires": []
     },
     {
@@ -2936,8 +2869,8 @@
         "dataType": "HoldingRegister",
         "adr": "2",
         "server": "9d9e7956.cdee38",
-        "x": 797.8721694946289,
-        "y": 2505.2375044822693,
+        "x": 2362.8721885681152,
+        "y": 1080.2374968528748,
         "wires": [
             [
                 "e7de3316.2c099"
@@ -2955,8 +2888,8 @@
         "links": [
             "93ec0c20.a969a"
         ],
-        "x": 974.9388961791992,
-        "y": 2487.1875224113464,
+        "x": 2539.9389152526855,
+        "y": 1062.187514781952,
         "wires": []
     },
     {
@@ -2967,8 +2900,8 @@
         "links": [
             "7fb2661d.9b7b08"
         ],
-        "x": 974.6294479370117,
-        "y": 2521.8066630363464,
+        "x": 2539.629467010498,
+        "y": 1096.806655406952,
         "wires": []
     },
     {
@@ -2979,8 +2912,8 @@
         "func": "global.set(\"ComandoMaquina\",0);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 2573.206817626953,
-        "y": 1795.5164947509766,
+        "x": 4433.206832885742,
+        "y": 965.5165557861328,
         "wires": [
             []
         ]
@@ -2993,8 +2926,8 @@
         "func": "setTimeout(function() {\n node.send(msg);\n}, 50);\nnode.status({fill:\"yellow\",shape:\"dot\",text:\"Reverter prensa\"});\nreturn null;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1842.9829406738281,
-        "y": 1807.8165521621704,
+        "x": 3702.982955932617,
+        "y": 977.8166131973267,
         "wires": [
             [
                 "b97c0c7f.c8f64"
@@ -3009,8 +2942,8 @@
         "func": "//muda 3.3\nvar mensagens = global.get(\"mensagens\");\nvar modbus = global.get(\"ModBus\");\nvar msg2 = {};\n\n// M3.3 igual a 0 Desliga motor\n modbus[2] &= ~(1<<12);\n msg.payload = modbus[2];\n msg2.payload ={ type: 'info', message: 'Desligando motor para reverter...' };\n msg2.payload.time= new Date();\n node.status({fill:\"yellow\",shape:\"ring\",text:\"Deslingado\"});\n\nglobal.set(\"MotorLigado\",0);\nglobal.set('ModBus', modbus);//Atualiza registrador global\nreturn [msg, msg2];",
         "outputs": "2",
         "noerr": 0,
-        "x": 2019.9734191894531,
-        "y": 1807.5164947509766,
+        "x": 3879.973434448242,
+        "y": 977.5165557861328,
         "wires": [
             [
                 "dcdc5f9e.53bc6"
@@ -3028,8 +2961,8 @@
         "dataType": "HoldingRegister",
         "adr": "2",
         "server": "9d9e7956.cdee38",
-        "x": 2278.9735412597656,
-        "y": 1801.5164947509766,
+        "x": 4138.973556518555,
+        "y": 971.5165557861328,
         "wires": [
             [
                 "37b03494.7701ec"
@@ -3046,8 +2979,8 @@
         "qos": "0",
         "retain": "false",
         "broker": "37b3c15d.a7496e",
-        "x": 2299.9735412597656,
-        "y": 1851.5164947509766,
+        "x": 4159.973556518555,
+        "y": 1021.5165557861328,
         "wires": []
     },
     {
@@ -3058,8 +2991,8 @@
         "dataType": "HoldingRegister",
         "adr": "2",
         "server": "9d9e7956.cdee38",
-        "x": 797.3219718933105,
-        "y": 2577.9540786743164,
+        "x": 2362.321990966797,
+        "y": 1152.9540710449219,
         "wires": [
             [
                 "2d563054.784"
@@ -3077,8 +3010,8 @@
         "links": [
             "7fb2661d.9b7b08"
         ],
-        "x": 974.1018524169922,
-        "y": 2595.635473251343,
+        "x": 2539.1018714904785,
+        "y": 1170.6354656219482,
         "wires": []
     },
     {
@@ -3089,8 +3022,8 @@
         "links": [
             "2d563054.784"
         ],
-        "x": 232.3359375,
-        "y": 1613.9459228515625,
+        "x": 2882.3359756469727,
+        "y": 1138.945899963379,
         "wires": [
             [
                 "6cee4bbe.905a44",
@@ -3106,8 +3039,8 @@
         "links": [
             "96c6b7f3.640bc8"
         ],
-        "x": 975.1511268615723,
-        "y": 2560.5166625976562,
+        "x": 2540.1511459350586,
+        "y": 1135.5166549682617,
         "wires": []
     },
     {
@@ -3116,8 +3049,8 @@
         "z": "3f422101.3791ae",
         "name": "Consulta MongoDB por string",
         "info": "$options => i for case insensitive search\n\nStart with string\n\ndb.collection.find({zip:{'$regex' : '^string', '$options' : 'i'}})\nEnd with string\n\ndb.collection.find({zip:{'$regex' : 'string$', '$options' : 'i'}})\nContains string\n\ndb.collection.find({zip:{'$regex' : 'string', '$options' : 'i'}})\nDoesn't Contains string\n\ndb.collection.find({zip:{'$regex' : '^((?!string).)*$', '$options' : 'i'}})\nKeep this as a bookmark, and a reference for any other alterations you may need. http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/",
-        "x": 3964.9996795654297,
-        "y": 4041.696967124939,
+        "x": 385.99974060058594,
+        "y": 2762.196982860565,
         "wires": []
     },
     {
@@ -3128,8 +3061,8 @@
         "func": "msg.limit = parseInt(msg.req.query.size) || 10;\nmsg.skip = ((parseInt(msg.req.query.page) || 1) - 1) * (parseInt(msg.req.query.page) || 1);\nmsg.payload = {nome: {'$regex' : msg.payload.nome, '$options' : 'i'}}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 3949.0158309936523,
-        "y": 4085.396842956543,
+        "x": 370.0158920288086,
+        "y": 2805.896858692169,
         "wires": [
             []
         ]
@@ -3142,8 +3075,8 @@
         "func": "var tempo = global.get(\"tempo\");\n\nif (((msg.payload[3]) & (1 << 3))){\n var atrazo = new Date().getTime();\n var diff = Math.round((parseInt((atrazo - tempo))/60000));\n \n node.status({fill:\"green\",shape:\"dot\",text:\"Diferença de tempo em min = \"+ diff});\n}else {\n var start = new Date().getTime();\n global.set(\"tempo\",start);\n node.status({fill:\"green\",shape:\"dot\",text:\"Motor Desligado \"});\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1864.9517669677734,
-        "y": 1071.0973510742188,
+        "x": 3724.9517822265625,
+        "y": 241.097412109375,
         "wires": [
             [
                 "cd4855aa.9d0fc8"
@@ -3158,8 +3091,8 @@
         "links": [
             "93ec0c20.a969a"
         ],
-        "x": 2574.078643798828,
-        "y": 1002.0497589111328,
+        "x": 4434.078659057617,
+        "y": 172.04981994628906,
         "wires": []
     },
     {
@@ -3170,8 +3103,8 @@
         "links": [
             "7fb2661d.9b7b08"
         ],
-        "x": 2580.4360094070435,
-        "y": 1071.0022974014282,
+        "x": 4440.4360246658325,
+        "y": 241.00235843658447,
         "wires": []
     },
     {
@@ -3182,8 +3115,8 @@
         "dataType": "HoldingRegister",
         "adr": "3",
         "server": "9d9e7956.cdee38",
-        "x": 2407.0399322509766,
-        "y": 1018.9116802215576,
+        "x": 4267.039947509766,
+        "y": 188.91174125671387,
         "wires": [
             [
                 "41e7e1a5.d8c8e"
@@ -3201,8 +3134,8 @@
         "url": "/api/usuario/login",
         "method": "post",
         "swaggerDoc": "",
-        "x": 148.66633224487305,
-        "y": 846.6969547271729,
+        "x": 1853.6663703918457,
+        "y": 3271.6969579458237,
         "wires": [
             [
                 "2794fa06.5dc4e6"
@@ -3214,8 +3147,8 @@
         "type": "http response",
         "z": "3f422101.3791ae",
         "name": "",
-        "x": 1005.7905311584473,
-        "y": 846.1336193084717,
+        "x": 2710.79056930542,
+        "y": 3271.1336225271225,
         "wires": []
     },
     {
@@ -3227,8 +3160,8 @@
         "fieldTypeToHash": "msg",
         "hashField": "md5",
         "hashFieldType": "msg",
-        "x": 193.0947265625,
-        "y": 1349.5540771484375,
+        "x": 278.09476470947266,
+        "y": 1004.5540959835052,
         "wires": [
             [
                 "8a66ccc.3565b3"
@@ -3243,8 +3176,8 @@
         "active": false,
         "console": "false",
         "complete": "true",
-        "x": 526.2376136779785,
-        "y": 1349.9826488494873,
+        "x": 611.2376518249512,
+        "y": 1004.982667684555,
         "wires": []
     },
     {
@@ -3255,8 +3188,8 @@
         "name": "consulta",
         "collection": "config",
         "operation": "find",
-        "x": 555.9996643066406,
-        "y": 333.363618850708,
+        "x": 2260.9997024536133,
+        "y": 2758.363622069359,
         "wires": [
             [
                 "5e094217.8eda8c"
@@ -3271,8 +3204,8 @@
         "func": "// No parametro projection 1 ou zero significa ler ou inguinorar resultado\n//msg.projection = { _id: 1, codigo: 1, nome: 1, path: 1}\nmsg.limit = 50;\nmsg.skip = 0;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 375.13793182373047,
-        "y": 333.1871929168701,
+        "x": 2080.137969970703,
+        "y": 2758.187196135521,
         "wires": [
             [
                 "36cb040b.1fae5c"
@@ -3287,8 +3220,8 @@
         "func": "var msg2 = {};\n\nif (msg.payload.length){\n    msg.payload=msg.payload[0];\n    msg2 = null;\n    node.status({fill:\"blue\",shape:\"dot\",text:msg.payload.codigo});\n    \n}else{ // banco vazio\n    msg2.payload = {};\n    msg.payload = {};\n    node.status({fill:\"red\",shape:\"dot\",text:'erro'});\n}\n\nreturn [msg,msg2];\n",
         "outputs": "2",
         "noerr": 0,
-        "x": 712.9996643066406,
-        "y": 333.363618850708,
+        "x": 2417.9997024536133,
+        "y": 2758.363622069359,
         "wires": [
             [
                 "e4c79f51.06a1d",
@@ -3312,8 +3245,8 @@
         "upsert": false,
         "multi": false,
         "operation": "store",
-        "x": 954.9996643066406,
-        "y": 565.363618850708,
+        "x": 2659.9997024536133,
+        "y": 2990.363622069359,
         "wires": []
     },
     {
@@ -3324,8 +3257,8 @@
         "func": "let mssql = global.get('mssql');\n\nmsg.payload = \"conectando\";\n\nlet PRODUCAO = new mssql.Connection(\"mssql://financeiro:financeiro@192.168.0.1/FINANCEIRO\", function(err) {\n    if (err) {\n        global.set('conectadoServidor', 0);\n        PRODUCAO.on('error', function(err) {\n            node.error({payload: err || { erro: 9996, mensagem: 'Erro desconhecido na conexão'}});\n        });\n    } else {\n        global.set('conectadoServidor', 1);\n    }\n});\nnode.status({fill:\"yellow\",shape:\"dot\",text:'Conectando 192.168.0.1'});\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 942.9996643066406,
-        "y": 340.363618850708,
+        "x": 2647.9997024536133,
+        "y": 2765.363622069359,
         "wires": [
             [
                 "5ac573d9.ac563c"
@@ -3338,8 +3271,8 @@
         "z": "3f422101.3791ae",
         "name": "CARREGA CONFIG LOCAL",
         "info": "",
-        "x": 181.99966430664062,
-        "y": 285.363618850708,
+        "x": 1886.9997024536133,
+        "y": 2710.363622069359,
         "wires": []
     },
     {
@@ -3348,8 +3281,8 @@
         "z": "3f422101.3791ae",
         "name": "SALVA CONFIG ESCOLHIDO \"localhost\"",
         "info": "",
-        "x": 217.99966430664062,
-        "y": 573.363618850708,
+        "x": 1922.9997024536133,
+        "y": 2998.363622069359,
         "wires": []
     },
     {
@@ -3358,8 +3291,8 @@
         "z": "3f422101.3791ae",
         "name": "Verifica a senha e usuario",
         "info": "#Resultados de paginação usando skip e limit\n\nMuitas vezes, ao lidar com conjuntos de resultados de dados, \nsó queremos recuperar um subconjunto por vez, talvez para fornecer \nresultados por página da Web. Em MySQL, em geral fazemos isso \nusando a palavra-chave LIMIT. \nÉ fácil replicar essa funcionalidade no MongoDB \nusando msg.skip e msg.limit. \nPara retornar os primeiros cinco documentos na \ncoleção, podemos executar a seguinte operação:\n> msg.limit = 5;<\n\nPara pular resultados, use o seguinte comando:\n\n> msg.skip = 5;<\n\nCom ele é possível iguinorar os primeiros cinco\nregistros. ",
-        "x": 177.66632843017578,
-        "y": 723.696946144104,
+        "x": 1882.6663665771484,
+        "y": 3148.696949362755,
         "wires": []
     },
     {
@@ -3370,8 +3303,8 @@
         "func": "let msg2 ={ payload: msg.payload.usuarios}; //Passa para msg2 o JSON de usuarios\nlet d = new Date(),\n    lodash = global.get('lodash'), \n    i=0;\n\n// Converte iso date para hora local\n//let myDate = new Date().toTimeString().replace(/.*(\\d{2}:\\d{2}:\\d{2}).*/, \"$1\");\n//var x = (\"00\" + (d.getMonth() + 1)).slice(-2) + \"/\" + \n//        (\"00\" + d.getDate()).slice(-2) + \"/\" + \n//        d.getFullYear() + \" \" + myDate;\n\nconst l = (msg2.payload.length||0); //mede o tamanho do array fora do laço\nconst t = d.toISOString();\n\n\n//MAQUINA\nmsg.payload.maquina._id = msg.payload.maquina.id.toString(); //Converte id p/ _id para gravar no mongoDB\nmsg.payload.maquina.atualizacao = t; // Hora da gravação da configuração da maquina\nmsg.payload = lodash.omit(msg.payload.maquina, 'id'); //apaga o original\n\n\n//USUARIO\nfor (i=0; i<l; i++){\n    msg2.payload[i]._id = msg2.payload[i].id.toString();\n    msg2.payload[i].atualizacao = t; // Hora da gravação do log de usuarios\n    msg2.payload[i] = lodash.omit(msg2.payload[i], 'id');\n}\n\n//console.log(JSON.stringify(msg2.payload,null,2));      //Imprime no console o JSON do config que sera gravado\n\nreturn [msg, msg2];\n\n\n \n",
         "outputs": "2",
         "noerr": 0,
-        "x": 645.9996643066406,
-        "y": 620.363618850708,
+        "x": 2350.9997024536133,
+        "y": 3045.363622069359,
         "wires": [
             [
                 "f626ee91.998c7",
@@ -3390,8 +3323,8 @@
         "z": "3f422101.3791ae",
         "name": "Parametros de todas as maquinas \"referencia\"",
         "info": "Copia local de segurança de todos os parametros das maquinas\n\nPor default esta carregando essa lista do servidor\n\nÉ possível mudar para carregar local alterando o arquivo \n\n> ihm/src/api/maquina/config/index.js<",
-        "x": 3955.475814819336,
-        "y": 3838.1255254745483,
+        "x": 376.4758758544922,
+        "y": 2558.6255412101746,
         "wires": []
     },
     {
@@ -3405,8 +3338,8 @@
         "upsert": false,
         "multi": false,
         "operation": "delete",
-        "x": 613.0718002319336,
-        "y": 1618.6443338394165,
+        "x": 3263.0718383789062,
+        "y": 1143.644310951233,
         "wires": []
     },
     {
@@ -3420,8 +3353,8 @@
         "upsert": false,
         "multi": false,
         "operation": "store",
-        "x": 1108.9489727020264,
-        "y": 708.0876550674438,
+        "x": 2813.949010848999,
+        "y": 3133.0876582860947,
         "wires": []
     },
     {
@@ -3432,8 +3365,8 @@
         "func": "// No parametro projection 1 ou zero significa ler ou inguinorar resultado\nlet parametro = msg.payload;\n\nmsg.payload = {usuario:{$in:[parametro.usuario]}, senha:{$in:[parametro.senha]}};\n//msg.projection = { usuario: 1, senha: 1};\nmsg.limit = 5;\nmsg.skip = 0;\n\nnode.status({fill:\"yellow\",shape:\"dot\",text: parametro.usuario + ' ' + parametro.senha});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 398.1628532409668,
-        "y": 846.3328037261963,
+        "x": 2103.1628913879395,
+        "y": 3271.332806944847,
         "wires": [
             [
                 "57941e20.9a987"
@@ -3448,8 +3381,8 @@
         "name": "consulta operadores",
         "collection": "operadores",
         "operation": "find",
-        "x": 653.5959091186523,
-        "y": 846.5091934204102,
+        "x": 2358.595947265625,
+        "y": 3271.509196639061,
         "wires": [
             [
                 "d5a6843f.f0a258"
@@ -3464,8 +3397,8 @@
         "active": true,
         "console": "false",
         "complete": "payload",
-        "x": 1023.1577682495117,
-        "y": 802.4308929443359,
+        "x": 2728.1578063964844,
+        "y": 3227.4308961629868,
         "wires": []
     },
     {
@@ -3479,8 +3412,8 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 158.8510971069336,
-        "y": 805.7086038589478,
+        "x": 1863.8511352539062,
+        "y": 3230.7086070775986,
         "wires": [
             [
                 "2794fa06.5dc4e6"
@@ -3493,8 +3426,8 @@
         "z": "3f422101.3791ae",
         "name": "",
         "splt": "\\n",
-        "x": 896.0199737548828,
-        "y": 707.8911285400391,
+        "x": 2601.0200119018555,
+        "y": 3132.89113175869,
         "wires": [
             [
                 "df49ea92.edd948"
@@ -3509,8 +3442,8 @@
         "func": "msg.payload = msg.payload[0]?msg.payload[0]:{};\n\nreturn msg;",
         "outputs": "1",
         "noerr": 0,
-        "x": 835.4485893249512,
-        "y": 846.4105167388916,
+        "x": 2540.448627471924,
+        "y": 3271.4105199575424,
         "wires": [
             [
                 "2c3cc605.2dbeaa",
@@ -3529,8 +3462,8 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 168.01387786865234,
-        "y": 764.9147806167603,
+        "x": 1873.013916015625,
+        "y": 3189.914783835411,
         "wires": [
             [
                 "2794fa06.5dc4e6"
@@ -3545,8 +3478,8 @@
         "active": true,
         "console": "false",
         "complete": "payload",
-        "x": 905.6957092285156,
-        "y": 661.6079683303833,
+        "x": 2610.6957473754883,
+        "y": 3086.607971549034,
         "wires": []
     },
     {
@@ -3557,8 +3490,8 @@
         "topic": "fabrica/ihm/erros/#",
         "qos": "0",
         "broker": "37b3c15d.a7496e",
-        "x": 161.6956558227539,
-        "y": 957.2869129180908,
+        "x": 246.69569396972656,
+        "y": 612.2869317531586,
         "wires": [
             [
                 "522ab01.03e9d5"
@@ -3573,8 +3506,8 @@
         "active": false,
         "console": "false",
         "complete": "false",
-        "x": 518.6349716186523,
-        "y": 957.4426832199097,
+        "x": 603.635009765625,
+        "y": 612.4427020549774,
         "wires": []
     },
     {
@@ -3585,8 +3518,8 @@
         "topic": "fabrica/ihm/debug/#",
         "qos": "0",
         "broker": "37b3c15d.a7496e",
-        "x": 161.1567153930664,
-        "y": 1008.914792060852,
+        "x": 246.15675354003906,
+        "y": 663.9148108959198,
         "wires": [
             [
                 "a3febcdf.3a988"
@@ -3601,8 +3534,8 @@
         "active": false,
         "console": "false",
         "complete": "false",
-        "x": 520.9531784057617,
-        "y": 1009.0705442428589,
+        "x": 605.9532165527344,
+        "y": 664.0705630779266,
         "wires": []
     },
     {
@@ -3613,8 +3546,8 @@
         "topic": "fabrica/ihm/estado/#",
         "qos": "0",
         "broker": "37b3c15d.a7496e",
-        "x": 162.01386260986328,
-        "y": 1062.91477394104,
+        "x": 247.01390075683594,
+        "y": 717.9147927761078,
         "wires": [
             [
                 "2ad4b6f1.35c84a"
@@ -3629,8 +3562,8 @@
         "active": false,
         "console": "false",
         "complete": "false",
-        "x": 518.9531784057617,
-        "y": 1063.070544242859,
+        "x": 603.9532165527344,
+        "y": 718.0705630779266,
         "wires": []
     },
     {
@@ -3641,8 +3574,8 @@
         "topic": "fabrica/ihm/comandos/#",
         "qos": "0",
         "broker": "37b3c15d.a7496e",
-        "x": 172.01386260986328,
-        "y": 1163.91477394104,
+        "x": 257.01390075683594,
+        "y": 818.9147927761078,
         "wires": [
             [
                 "2a685e5f.82bf42"
@@ -3657,8 +3590,8 @@
         "active": false,
         "console": "false",
         "complete": "false",
-        "x": 518.9531784057617,
-        "y": 1164.070544242859,
+        "x": 603.9532165527344,
+        "y": 819.0705630779266,
         "wires": []
     },
     {
@@ -3669,8 +3602,8 @@
         "topic": "fabrica/ihm/timer/",
         "qos": "0",
         "broker": "37b3c15d.a7496e",
-        "x": 151.01386260986328,
-        "y": 1213.46018409729,
+        "x": 236.01390075683594,
+        "y": 868.4602029323578,
         "wires": [
             [
                 "9d7c3d1d.8d63e"
@@ -3685,8 +3618,8 @@
         "active": false,
         "console": "false",
         "complete": "false",
-        "x": 517.9531784057617,
-        "y": 1213.615954399109,
+        "x": 602.9532165527344,
+        "y": 868.6159732341766,
         "wires": []
     },
     {
@@ -3698,8 +3631,8 @@
         "qos": "0",
         "retain": "",
         "broker": "37b3c15d.a7496e",
-        "x": 1017.6928253173828,
-        "y": 1052.673243522644,
+        "x": 1102.6928634643555,
+        "y": 707.6732623577118,
         "wires": []
     },
     {
@@ -3713,8 +3646,8 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 775.698486328125,
-        "y": 1052.88916015625,
+        "x": 860.6985244750977,
+        "y": 707.8891789913177,
         "wires": [
             [
                 "fd7f824f.1891a"
@@ -3730,8 +3663,8 @@
         "qos": "0",
         "retain": "",
         "broker": "37b3c15d.a7496e",
-        "x": 1010.0138854980469,
-        "y": 1103.4602375030518,
+        "x": 1095.0139236450195,
+        "y": 758.4602563381195,
         "wires": []
     },
     {
@@ -3745,8 +3678,8 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 775.0195465087891,
-        "y": 1103.6761541366577,
+        "x": 860.0195846557617,
+        "y": 758.6761729717255,
         "wires": [
             [
                 "1b98aabe.2c7625"
@@ -3762,8 +3695,8 @@
         "qos": "0",
         "retain": "",
         "broker": "37b3c15d.a7496e",
-        "x": 1019.0280914306641,
-        "y": 1156.465968132019,
+        "x": 1104.0281295776367,
+        "y": 811.4659869670868,
         "wires": []
     },
     {
@@ -3777,8 +3710,8 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 774.0337524414062,
-        "y": 1156.681884765625,
+        "x": 859.0337905883789,
+        "y": 811.6819036006927,
         "wires": [
             [
                 "d4b3afd3.ea031"
@@ -3793,8 +3726,8 @@
         "topic": "fabrica/ihm/user/#",
         "qos": "0",
         "broker": "37b3c15d.a7496e",
-        "x": 161.0138702392578,
-        "y": 1266.278413772583,
+        "x": 246.01390838623047,
+        "y": 921.2784326076508,
         "wires": [
             [
                 "cc50e727.e3cba8"
@@ -3809,8 +3742,8 @@
         "active": false,
         "console": "false",
         "complete": "false",
-        "x": 527.9531860351562,
-        "y": 1266.4341840744019,
+        "x": 612.9532241821289,
+        "y": 921.4342029094696,
         "wires": []
     },
     {
@@ -3824,8 +3757,8 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 1146.6928329467773,
-        "y": 241.52552890777588,
+        "x": 2851.69287109375,
+        "y": 2666.5255321264267,
         "wires": [
             [
                 "636eaf61.9eab7"
@@ -3840,8 +3773,8 @@
         "func": "let myHours = new Date().toTimeString().replace(/.*(\\d{2}:\\d{2}:\\d{2}).*/, \"$1\");\n\nlet d = new Date();\nlet x = (\"00\" + (d.getMonth() + 1)).slice(-2) + \"/\" + \n        (\"00\" + d.getDate()).slice(-2) + \"/\" + \n        d.getFullYear() + \" \" + myHours.slice(0,5);\n        \nlet y = (\"00\" + (d.getMonth() + 1)).slice(-2) + \"/\" + \n        (\"00\" + d.getDate()).slice(-2) + \"/\" + \n        d.getFullYear();\n\nmsg.payload = \n  {\n    \"date\": y,\n    \"hours\": myHours.slice(0,5)\n  };\n  \nnode.status({fill:\"blue\",shape:\"dot\",text:x});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 495.0138854980469,
-        "y": 1441.278413772583,
+        "x": 580.0139236450195,
+        "y": 1096.2784326076508,
         "wires": [
             [
                 "28a038ce.6793e8",
@@ -3860,8 +3793,8 @@
         "repeat": "60",
         "crontab": "",
         "once": false,
-        "x": 193.6956558227539,
-        "y": 1441.2414054870605,
+        "x": 278.69569396972656,
+        "y": 1096.2414243221283,
         "wires": [
             [
                 "971e9d0a.28396"
@@ -3876,8 +3809,8 @@
         "active": false,
         "console": "false",
         "complete": "payload",
-        "x": 632.6899719238281,
-        "y": 1474.0653076171875,
+        "x": 717.6900100708008,
+        "y": 1129.0653264522552,
         "wires": []
     },
     {
@@ -3889,39 +3822,20 @@
         "qos": "0",
         "retain": "",
         "broker": "37b3c15d.a7496e",
-        "x": 633.7013549804688,
-        "y": 1414.7584228515625,
+        "x": 718.7013931274414,
+        "y": 1069.7584416866302,
         "wires": []
-    },
-    {
-        "id": "71f669d8.abcef8",
-        "type": "inject",
-        "z": "3f422101.3791ae",
-        "name": "inicio",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "x": 1513.850975036621,
-        "y": 2362.2875051498413,
-        "wires": [
-            [
-                "389c2aa3.6d90c6"
-            ]
-        ]
     },
     {
         "id": "31fc46ca.23cf3a",
         "type": "debug",
         "z": "3f422101.3791ae",
         "name": "",
-        "active": false,
+        "active": true,
         "console": "false",
         "complete": "true",
-        "x": 1817.3331298828125,
-        "y": 1001.666669845581,
+        "x": 3677.3331451416016,
+        "y": 171.6667308807373,
         "wires": []
     },
     {
@@ -3932,8 +3846,8 @@
         "active": false,
         "console": "false",
         "complete": "true",
-        "x": 2192.3334045410156,
-        "y": 2289.0000505447388,
+        "x": 3363.166763305664,
+        "y": 1393.5005435943604,
         "wires": []
     },
     {
@@ -3944,10 +3858,11 @@
         "links": [
             "a8661b93.855de8",
             "c2c5220a.c006e",
-            "f0f4111c.32aaa"
+            "f0f4111c.32aaa",
+            "b40dcbfd.9195f8"
         ],
-        "x": 2734.3334045410156,
-        "y": 2245.0000505447388,
+        "x": 3905.166763305664,
+        "y": 1349.5005435943604,
         "wires": [
             [
                 "1a65fa75.1e30f6",
@@ -3963,8 +3878,8 @@
         "name": "consulta",
         "collection": "config",
         "operation": "find",
-        "x": 3111.3334045410156,
-        "y": 2579.0000505447388,
+        "x": 1109.3334350585938,
+        "y": 1625.5000667572021,
         "wires": [
             [
                 "7a3aef67.22dc9",
@@ -3983,8 +3898,8 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 163,
-        "y": 230,
+        "x": 1868.0000381469727,
+        "y": 2655.000003218651,
         "wires": [
             [
                 "e0d5cd6b.723b"
@@ -3996,16 +3911,16 @@
         "type": "function",
         "z": "3f422101.3791ae",
         "name": "Carregar parametros",
-        "func": "var msg2 = {};\nvar parametros = []; //Cria um array vazio\nvar x = 0;\n\nif (msg.payload.length){\n    x=msg.payload[0].codigo;\n    msg2 = null;         //Saida de erro não acontece nada\n    \n    if(x=='REFORCO'){\n        parametros.push(msg.payload[0].parametros.automatico.velocidade); //AplanVelAuto M14\n        parametros.push(msg.payload[0].parametros.manual.velocidade); //AplanVelMan M17\n        parametros.push(msg.payload[0].parametros.ferramenta.furo); //AplanPasso M18\n        parametros.push(msg.payload[0].parametros.encoder.fator); //EncFactor M20\n        parametros.push(msg.payload[0].parametros.encoder.resolucao); //EncResol M21 \n        parametros.push(msg.payload[0].parametros.encoder.perimetro); //EncPerim M22\n        parametros.push(msg.payload[0].parametros.lubrificacao.ciclos.PrsCiclos); //PrsCiclosUnid M23\n        parametros.push(msg.payload[0].parametros.lubrificacao.preset.MbNovoCiclos);//NovoCiclosMil M26\n    }else if (x=='PERF-N3') {\n        parametros.push(msg.payload[0].parametros.automatico.velocidade); //AplanVelAuto M14\n        parametros.push(msg.payload[0].parametros.manual.velocidade); //AplanVelMan M17\n        parametros.push(msg.payload[0].parametros.ferramenta.passoN2); //AplanPasso M18\n        parametros.push(msg.payload[0].parametros.encoder.fator); //EncFactor M20\n        parametros.push(msg.payload[0].parametros.encoder.resolucao); //EncResol M21 \n        parametros.push(msg.payload[0].parametros.encoder.perimetro); //EncPerim M22\n        parametros.push(msg.payload[0].parametros.lubrificacao.ciclos.PrsCiclos); //PrsCiclosUnid M23\n        parametros.push(msg.payload[0].parametros.lubrificacao.preset.MbNovoCiclos);//NovoCiclosMil M26\n    } else{\n        parametros.push(msg.payload[0].parametros.automatico.velocidade); //AplanVelAuto M14\n        parametros.push(msg.payload[0].parametros.manual.velocidade); //AplanVelMan M17\n        parametros.push(msg.payload[0].parametros.ferramenta.furo); //AplanPasso M18\n        parametros.push(msg.payload[0].parametros.encoder.fator); //EncFactor M20\n        parametros.push(msg.payload[0].parametros.encoder.resolucao); //EncResol M21 \n        parametros.push(msg.payload[0].parametros.encoder.perimetro); //EncPerim M22\n        parametros.push(msg.payload[0].parametros.lubrificacao.ciclos.PrsCiclos); //PrsCiclosUnid M23\n        parametros.push(msg.payload[0].parametros.lubrificacao.preset.MbNovoCiclos);//NovoCiclosMil M26\n    }\n    flow.set('params', parametros); //Salva em uma variavel externa ao bloco\n    msg.payload = parametros; //Envia o conteudo do array para o proximo bloco\n    node.status({fill:\"blue\",shape:\"dot\",text:\"Parametros Carregados \" + x});\n\n}else{ // banco vazio\n    msg2.payload = { type: 'error', message: 'Banco vazio Paramentros!'};\n    msg.payload = null;\n    msg.payload.time= new Date();\n    node.status({fill:\"red\",shape:\"dot\",text:'Erro banco vazio!'});\n}\n\nreturn [msg,msg2];\n",
+        "func": "var msg2 = {};\nvar parametros = []; //Cria um array vazio\nvar x = 0;\n\nif (msg.payload.length){\n    x=msg.payload[0].codigo;\n    msg2 = null;         //Saida de erro não acontece nada\n    \n    if(x=='REFORCO'){\n        parametros.push(msg.payload[0].parametros.automatico.velocidade); //AplanVelAuto M14\n        parametros.push(msg.payload[0].parametros.manual.velocidade); //AplanVelMan M17\n        parametros.push(msg.payload[0].parametros.ferramenta.furo); //AplanPasso M18\n        parametros.push(msg.payload[0].parametros.encoder.fator); //EncFactor M20\n        parametros.push(msg.payload[0].parametros.encoder.resolucao); //EncResol M21 \n        parametros.push(msg.payload[0].parametros.encoder.perimetro); //EncPerim M22\n        parametros.push(msg.payload[0].parametros.lubrificacao.ciclos.PrsCiclos); //PrsCiclosUnid M23\n        parametros.push(msg.payload[0].parametros.lubrificacao.preset.MbNovoCiclos);//NovoCiclosMil M26\n    }else if (x=='PERF-N3') {\n        parametros.push(msg.payload[0].parametros.automatico.velocidade); //AplanVelAuto M14\n        parametros.push(msg.payload[0].parametros.manual.velocidade); //AplanVelMan M17\n        parametros.push(msg.payload[0].parametros.ferramenta.passoN2); //AplanPasso M18\n        parametros.push(msg.payload[0].parametros.encoder.fator); //EncFactor M20\n        parametros.push(msg.payload[0].parametros.encoder.resolucao); //EncResol M21 \n        parametros.push(msg.payload[0].parametros.encoder.perimetro); //EncPerim M22\n        parametros.push(msg.payload[0].parametros.lubrificacao.ciclos.PrsCiclos); //PrsCiclosUnid M23\n        parametros.push(msg.payload[0].parametros.lubrificacao.preset.MbNovoCiclos);//NovoCiclosMil M26\n    } else{\n        parametros.push(msg.payload[0].parametros.automatico.velocidade); //AplanVelAuto M14\n        parametros.push(msg.payload[0].parametros.manual.velocidade); //AplanVelMan M17\n        parametros.push(msg.payload[0].parametros.ferramenta.furo); //AplanPasso M18\n        parametros.push(msg.payload[0].parametros.encoder.fator); //EncFactor M20\n        parametros.push(msg.payload[0].parametros.encoder.resolucao); //EncResol M21 \n        parametros.push(msg.payload[0].parametros.encoder.perimetro); //EncPerim M22\n        parametros.push(msg.payload[0].parametros.lubrificacao.ciclos.PrsCiclos); //PrsCiclosUnid M23\n        parametros.push(msg.payload[0].parametros.lubrificacao.preset.MbNovoCiclos);//NovoCiclosMil M26\n    }\n    flow.set('params', parametros); //Salva em uma variavel externa ao bloco\n    msg.payload = parametros; //Envia o conteudo do array para o proximo bloco\n    node.status({fill:\"blue\",shape:\"dot\",text:\"Parametros Carregados \" + x});\n\n}else{ // banco vazio\n    msg2.payload = { type: 'error', message: 'Banco vazio Paramentros!'};\n    msg2.payload.time= new Date();\n    msg.payload = null;\n    node.status({fill:\"red\",shape:\"dot\",text:'Erro banco vazio!'});\n}\n\nreturn [msg,msg2];\n",
         "outputs": "2",
         "noerr": 0,
-        "x": 3306.833320617676,
-        "y": 2579.2500524520874,
+        "x": 1304.833351135254,
+        "y": 1625.7500686645508,
         "wires": [
             [
+                "47159ceb.d93454",
                 "b3bee5b3.702928",
-                "a328d4ba.557548",
-                "47159ceb.d93454"
+                "a328d4ba.557548"
             ],
             [
                 "a8661b93.855de8"
@@ -4023,8 +3938,8 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 2695.3334045410156,
-        "y": 2580.0000505447388,
+        "x": 693.3334350585938,
+        "y": 1626.5000667572021,
         "wires": [
             [
                 "5acf5954.4ed6e8"
@@ -4039,8 +3954,8 @@
         "links": [
             "500fd6f7.a15278"
         ],
-        "x": 3488.0000228881836,
-        "y": 2608.000029563904,
+        "x": 1491.8334197998047,
+        "y": 1585.2500457763672,
         "wires": []
     },
     {
@@ -4051,8 +3966,8 @@
         "active": false,
         "console": "false",
         "complete": "payload",
-        "x": 3307.0000228881836,
-        "y": 2632.000029563904,
+        "x": 1305.0000534057617,
+        "y": 1678.5000457763672,
         "wires": []
     },
     {
@@ -4063,8 +3978,8 @@
         "func": "msg.payload = { type: 'error', message: 'Falha de escrita dos modbus do CLP. M14'};\nmsg.payload.time= new Date();\nnode.status({fill:\"red\",shape:\"dot\",text:'Falha M14'});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 4347.000022888184,
-        "y": 2266.000029563904,
+        "x": 2345.000175476074,
+        "y": 1597.5001583099365,
         "wires": [
             [
                 "f0f4111c.32aaa"
@@ -4079,8 +3994,8 @@
         "func": "msg.payload = { type: 'error', message: 'Falha de escrita dos modbus do CLP. M17'};\nmsg.payload.time= new Date();\nnode.status({fill:\"red\",shape:\"dot\",text:'Falha M17'});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 4346.000022888184,
-        "y": 2359.000029563904,
+        "x": 2344.000175476074,
+        "y": 1690.5001583099365,
         "wires": [
             [
                 "f0f4111c.32aaa"
@@ -4095,8 +4010,8 @@
         "func": "msg.payload = { type: 'error', message: 'Falha de escrita dos modbus do CLP. M18'};\nmsg.payload.time= new Date();\nnode.status({fill:\"red\",shape:\"dot\",text:'Falha M18'});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 4347.000022888184,
-        "y": 2453.000029563904,
+        "x": 2345.000175476074,
+        "y": 1784.5001583099365,
         "wires": [
             [
                 "f0f4111c.32aaa"
@@ -4111,8 +4026,8 @@
         "func": "msg.payload = { type: 'error', message: 'Falha de escrita dos modbus do CLP. M20'};\nmsg.payload.time= new Date();\nnode.status({fill:\"red\",shape:\"dot\",text:'Falha M20'});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 4347.000022888184,
-        "y": 2546.000029563904,
+        "x": 2345.000175476074,
+        "y": 1877.5001583099365,
         "wires": [
             [
                 "f0f4111c.32aaa"
@@ -4127,8 +4042,8 @@
         "func": "msg.payload = { type: 'error', message: 'Falha de escrita dos modbus do CLP. M21'};\nmsg.payload.time= new Date();\nnode.status({fill:\"red\",shape:\"dot\",text:'Falha M21'});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 4347.000022888184,
-        "y": 2643.000029563904,
+        "x": 2345.000175476074,
+        "y": 1974.5001583099365,
         "wires": [
             [
                 "f0f4111c.32aaa"
@@ -4143,8 +4058,8 @@
         "func": "msg.payload = { type: 'error', message: 'Falha de escrita dos modbus do CLP. M22'};\nmsg.payload.time= new Date();\nnode.status({fill:\"red\",shape:\"dot\",text:'Falha M22'});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 4348.000022888184,
-        "y": 2739.000029563904,
+        "x": 2346.000175476074,
+        "y": 2070.5001583099365,
         "wires": [
             [
                 "f0f4111c.32aaa"
@@ -4159,8 +4074,8 @@
         "func": "msg.payload = { type: 'error', message: 'Falha de escrita dos modbus do CLP. M27'};\nmsg.payload.time= new Date();\nnode.status({fill:\"red\",shape:\"dot\",text:'Falha M27'});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 4348.000022888184,
-        "y": 2835.000029563904,
+        "x": 2346.000175476074,
+        "y": 2166.5001583099365,
         "wires": [
             [
                 "f0f4111c.32aaa"
@@ -4175,8 +4090,8 @@
         "func": "msg.payload = { type: 'error', message: 'Falha de escrita dos modbus do CLP. M28'};\nmsg.payload.time= new Date();\nnode.status({fill:\"red\",shape:\"dot\",text:'Falha M28'});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 4348.000022888184,
-        "y": 2932.000029563904,
+        "x": 2346.000175476074,
+        "y": 2263.5001583099365,
         "wires": [
             [
                 "f0f4111c.32aaa"
@@ -4192,8 +4107,8 @@
             "8adc7ae0.3b6808",
             "500fd6f7.a15278"
         ],
-        "x": 4617.777811050415,
-        "y": 2506.333372116089,
+        "x": 2615.7779636383057,
+        "y": 1837.8335008621216,
         "wires": []
     },
     {
@@ -4202,8 +4117,8 @@
         "z": "3f422101.3791ae",
         "name": "Comunica erro na gravação do ModBus",
         "info": "A cada inicialização os valores dos registradores são atualizados a partir de MongoDB:\n\n1- AplanVelAuto M14\nVelocidade maxima no automatico de 0% a 100%\n\n2- AplanVelMan M17\nVelocidade maxima no manual de 0% a 100%\n\n3- AplanPasso M18\nPasso da ferramenta em \"mm\", de 0 a 400mm\n\n4- EncFactor M20\nFator de correção do encoder em numeros inteiros apenas.\n\n5- EncResol M21\nResolução do encoder em numeros inteiros apenas. 1 a 10000\n\n6- EncPerim M22\nPerimetro do encoder em \"mm\". De 1 a 999\n\n7- PrsCiclosUnid M23\nCiclos de Lubrificação da prensa. De 0 a 65534 unidades\n\n8- PrsCiclosMil M24\nCiclos de Lubrificação da prensa vezes 1000. De 0 a 65534 unidades\n\n9- NovoPrsCiclosUnd M25\nCiclos que faltam para proxima Lubrificação da prensa. De 0 a 65534 unidades\n\n10- NovoCiclosMil M26\nCiclos que faltam para proxima Lubrificação da prensa vezes 1000. De 0 a 65534 unidades\n\n",
-        "x": 4794.444358825684,
-        "y": 2506.222197532654,
+        "x": 2793.444511413574,
+        "y": 1837.7223262786865,
         "wires": []
     },
     {
@@ -4214,8 +4129,8 @@
         "topic": "fabrica/ihm/estado/registradores/#",
         "qos": "0",
         "broker": "37b3c15d.a7496e",
-        "x": 211.6666660308838,
-        "y": 1115.5555419921875,
+        "x": 296.66670417785645,
+        "y": 770.5555608272552,
         "wires": [
             [
                 "d3bbca7.bc9aa38"
@@ -4230,8 +4145,8 @@
         "active": false,
         "console": "false",
         "complete": "false",
-        "x": 518.6059818267822,
-        "y": 1115.7113122940063,
+        "x": 603.6060199737549,
+        "y": 770.7113311290741,
         "wires": []
     },
     {
@@ -4242,8 +4157,8 @@
         "links": [
             "500fd6f7.a15278"
         ],
-        "x": 2407.3334045410156,
-        "y": 2245.0000505447388,
+        "x": 3578.166763305664,
+        "y": 1349.5005435943604,
         "wires": []
     },
     {
@@ -4254,8 +4169,8 @@
         "name": "Indice",
         "collection": "indice",
         "operation": "find",
-        "x": 3102.2856674194336,
-        "y": 2531.264189720154,
+        "x": 1100.2856979370117,
+        "y": 1572.7642059326172,
         "wires": [
             [
                 "b84a9b28.ca7a58"
@@ -4267,11 +4182,11 @@
         "type": "function",
         "z": "3f422101.3791ae",
         "name": "Atualiza indice",
-        "func": "x =msg.payload[0].indice_salvo;\nglobal.set(\"Indice_Mongo\",x);\n\nmsg.payload =x;\nreturn msg;",
+        "func": "x = msg.payload[0].indice_salvo;\nglobal.set(\"Indice_Mongo\",x);\n\nmsg.payload =x;\nnode.status({fill:\"yellow\",shape:\"dot\",text:'Indice ' + x});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 3286.1721420288086,
-        "y": 2530.912383079529,
+        "x": 1284.1721725463867,
+        "y": 1572.4123992919922,
         "wires": [
             []
         ]
@@ -4284,8 +4199,8 @@
         "active": true,
         "console": "false",
         "complete": "false",
-        "x": 3160.1110229492188,
-        "y": 2184.555290222168,
+        "x": 4330.944381713867,
+        "y": 1289.0557832717896,
         "wires": []
     },
     {
@@ -4296,8 +4211,8 @@
         "func": "context.data = context.data || new Object();\n\nswitch (msg.topic) {\n    case \"task1\":\n        context.data.task1 = msg.payload;\n        msg = null;\n        break;\n    case \"task2\":\n        context.data.task2 = msg.payload;\n        msg = null;\n        break;\n    case \"task3\":\n        context.data.task3 = msg.payload;\n        msg = null;\n        break;\n        \n    default:\n        msg = null;\n    \tbreak;\n\n}\n\nif(context.data.task1 != null && context.data.task2 != null && context.data.task3 != null) {\n\tmsg2 = new Object();\n    msg2 = context.data;\n    context.data=null;\n\treturn msg2;\n} else return msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 4423.000022888184,
-        "y": 3646.000030517578,
+        "x": 851.5000591278076,
+        "y": 2379.0000591278076,
         "wires": [
             [
                 "4bb80eb.dcd35f"
@@ -4318,8 +4233,8 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 4157.000022888184,
-        "y": 3541.000030517578,
+        "x": 585.5000591278076,
+        "y": 2274.0000591278076,
         "wires": [
             [
                 "b167204.c0376e"
@@ -4334,8 +4249,8 @@
         "active": true,
         "console": "false",
         "complete": "true",
-        "x": 4630.000022888184,
-        "y": 3645.000030517578,
+        "x": 1058.5000591278076,
+        "y": 2378.0000591278076,
         "wires": []
     },
     {
@@ -4352,8 +4267,8 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 4157.000022888184,
-        "y": 3637.000030517578,
+        "x": 585.5000591278076,
+        "y": 2370.0000591278076,
         "wires": [
             [
                 "b167204.c0376e"
@@ -4374,8 +4289,8 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 4158.000022888184,
-        "y": 3721.000030517578,
+        "x": 586.5000591278076,
+        "y": 2454.0000591278076,
         "wires": [
             [
                 "b167204.c0376e"
@@ -4390,8 +4305,8 @@
         "func": "msg.topic=\"task1\";\nmsg.payload=\"Task1's payload\"\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 3989.0000228881836,
-        "y": 3541.000030517578,
+        "x": 417.5000591278076,
+        "y": 2274.0000591278076,
         "wires": [
             [
                 "96e7ff02.bf351"
@@ -4405,8 +4320,8 @@
         "name": "Task2",
         "func": "msg.topic=\"task2\";\nmsg.payload=\"Task2's payload\"\nreturn msg;",
         "outputs": 1,
-        "x": 3992.0000228881836,
-        "y": 3636.000030517578,
+        "x": 420.5000591278076,
+        "y": 2369.0000591278076,
         "wires": [
             [
                 "a0c82d8c.7c87f"
@@ -4420,8 +4335,8 @@
         "name": "Task3",
         "func": "msg.topic=\"task3\";\nmsg.payload=\"Task3's payload\"\nreturn msg;",
         "outputs": 1,
-        "x": 3987.0000228881836,
-        "y": 3720.000030517578,
+        "x": 415.5000591278076,
+        "y": 2453.0000591278076,
         "wires": [
             [
                 "96a96d8d.21098"
@@ -4439,8 +4354,8 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 3823.0000228881836,
-        "y": 3625.000030517578,
+        "x": 251.50005912780762,
+        "y": 2358.0000591278076,
         "wires": [
             [
                 "1407996.988b167",
@@ -4457,37 +4372,14 @@
         "func": "\ncontext.loop = context.loop || \"stop\";\ncontext.loops = context.loops || 0;\n\n\nswitch (msg.payload) {\n\tcase \"pausa\":\n\t\tcontext.loops = context.loops + 1;\n\t\tmsg.payload = \"stopped\";\n\t\tcontext.loop = \"stop\";\n\t\treturn [null,null];\n\tcase \"start\":\n\t\tmsg.payload = \"started\";\n\t\tcontext.loop = \"loop\";\n\t\tcontext.loops = 1;\n\t\treturn [msg,msg];\n\tdefault:\n\t\tif (context.loop == \"loop\") {\n\t\t\tcontext.loops = context.loops + 1;\n\t\t\tmsg.payload = \"loop:\" + context.loops;\n\t\t\treturn [msg,msg];\n\t\t} else {\n\t\t\treturn [null,null]; \n\t\t}\n}",
         "outputs": "2",
         "noerr": 0,
-        "x": 1809.0000228881836,
-        "y": 2394.000029563904,
+        "x": 2979.833381652832,
+        "y": 1498.5005226135254,
         "wires": [
             [
                 "e9703b45.435b48"
             ],
             [
-                "88ed5177.75a6c"
-            ]
-        ]
-    },
-    {
-        "id": "88ed5177.75a6c",
-        "type": "delay",
-        "z": "3f422101.3791ae",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 1801.0000228881836,
-        "y": 2468.000029563904,
-        "wires": [
-            [
-                "1f799d27.a7d3c3"
+                "8630156.a5859e8"
             ]
         ]
     },
@@ -4496,11 +4388,42 @@
         "type": "function",
         "z": "3f422101.3791ae",
         "name": "ON",
-        "func": "msg.payload = 'start';\n\nreturn msg;",
+        "func": "msg2 = {};\nmsg.payload = 'start';\nmsg2.payload= { type: 'warning', message: 'MAQUINA_RESET'};\nmsg2.payload.time= new Date();\nreturn [msg,msg2];",
+        "outputs": "2",
+        "noerr": 0,
+        "x": 2777.833381652832,
+        "y": 1550.5005226135254,
+        "wires": [
+            [
+                "1f799d27.a7d3c3"
+            ],
+            [
+                "b40dcbfd.9195f8"
+            ]
+        ]
+    },
+    {
+        "id": "b40dcbfd.9195f8",
+        "type": "link out",
+        "z": "3f422101.3791ae",
+        "name": "erro comunicacao",
+        "links": [
+            "500fd6f7.a15278"
+        ],
+        "x": 2943.750066757202,
+        "y": 1556.7500448226929,
+        "wires": []
+    },
+    {
+        "id": "8630156.a5859e8",
+        "type": "function",
+        "z": "3f422101.3791ae",
+        "name": "Delay 1000ms",
+        "func": "setTimeout(function() {\n node.send(msg);\n}, 1000);\nreturn null;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1651.0000228881836,
-        "y": 2362.000029563904,
+        "x": 2982.500068664551,
+        "y": 1444.00004196167,
         "wires": [
             [
                 "1f799d27.a7d3c3"
@@ -4508,27 +4431,96 @@
         ]
     },
     {
-        "id": "25ffaa1d.6ab9b6",
-        "type": "delay",
+        "id": "414487e5.0aa2e8",
+        "type": "function",
         "z": "3f422101.3791ae",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 1660.0000228881836,
-        "y": 2313.000029563904,
+        "name": "Delay 1000ms",
+        "func": "setTimeout(function() {\n node.send(msg);\n}, 1000);\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 2777.5000610351562,
+        "y": 1501.7500448226929,
         "wires": [
             [
                 "389c2aa3.6d90c6"
             ]
         ]
+    },
+    {
+        "id": "362ffa7.8703d06",
+        "type": "function",
+        "z": "3f422101.3791ae",
+        "name": "Delay 300ms",
+        "func": "setTimeout(function() {\n node.send(msg);\n}, 300);\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 2600.0000610351562,
+        "y": 1550.7500438690186,
+        "wires": [
+            [
+                "389c2aa3.6d90c6"
+            ]
+        ]
+    },
+    {
+        "id": "7812b5cf.241fdc",
+        "type": "function",
+        "z": "3f422101.3791ae",
+        "name": "Delay 1200ms",
+        "func": "setTimeout(function() {\n node.send(msg);\n}, 1200);\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 468.7500305175781,
+        "y": 1557.5000438690186,
+        "wires": [
+            [
+                "42750595.14a0ec"
+            ]
+        ]
+    },
+    {
+        "id": "a285b920.7d9458",
+        "type": "function",
+        "z": "3f422101.3791ae",
+        "name": "Delay 200ms",
+        "func": "setTimeout(function() {\n node.send(msg);\n}, 200);\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1544.0000457763672,
+        "y": 1779.7500476837158,
+        "wires": [
+            [
+                "de2a4214.04601"
+            ]
+        ]
+    },
+    {
+        "id": "7bc83fa3.e83c",
+        "type": "function",
+        "z": "3f422101.3791ae",
+        "name": "Delay 300ms",
+        "func": "setTimeout(function() {\n node.send(msg);\n}, 300);\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 683.0000228881836,
+        "y": 1680.25,
+        "wires": [
+            [
+                "5acf5954.4ed6e8"
+            ]
+        ]
+    },
+    {
+        "id": "9e6517a5.d622f8",
+        "type": "debug",
+        "z": "3f422101.3791ae",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 3423.750015258789,
+        "y": 340.00006103515625,
+        "wires": []
     },
     {
         "id": "69df81b0.bec44",
