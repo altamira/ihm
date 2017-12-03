@@ -133,7 +133,7 @@ export default class App extends Component {
         'fabrica/ihm/debug/' + clientId,
         'fabrica/ihm/estado/' + clientId,
         'fabrica/ihm/comandos/' + clientId,
-          'fabrica/ihm/timer/',
+        'fabrica/ihm/timer/',
         'fabrica/ihm/user/' + clientId],
         function (err, granted) {
           !err ?
@@ -190,15 +190,15 @@ export default class App extends Component {
   }
 
   handleDebug(msg) {
-    alert('Debug: ' + msg);  //Mostra o que recebeu da fila Debug
+    //alert('Debug: ' + msg);  //Mostra o que recebeu da fila Debug
   }
 
   handleEstado(msg) {
-    alert('Estado: ' + msg); //Mostra o que recebeu da fila Estado
+    //alert('Estado: ' + msg); //Mostra o que recebeu da fila Estado
   }
 
   handleComandos(msg) {
-    alert('Comandos: ' + msg); //Mostra o que recebeu da fila Comandos
+    //alert('Comandos: ' + msg); //Mostra o que recebeu da fila Comandos
   }
 
   handleTimer(msg) {

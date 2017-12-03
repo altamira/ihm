@@ -99,14 +99,22 @@ export default class IHM extends Component {
     //    this.setState({ name: event.target.value });
     //  }
 
-    this.aplanDescer = this.aplanDescer.bind(this);
-    this.aplanSubir = this.aplanSubir.bind(this);
-    this.aplanAbrir = this.aplanAbrir.bind(this);
-    this.aplanFechar = this.aplanFechar.bind(this);
-    this.perfilAvanca = this.perfilAvanca.bind(this);
-    this.perfilRecua = this.perfilRecua.bind(this);
-    this.plataformaSobe = this.plataformaSobe.bind(this);
-    this.plataformaDesce = this.plataformaDesce.bind(this);
+    this.aplanDescer0 = this.aplanDescer0.bind(this);
+    this.aplanDescer1 = this.aplanDescer1.bind(this);
+    this.aplanSubir0 = this.aplanSubir0.bind(this);
+    this.aplanSubir1 = this.aplanSubir1.bind(this);
+    this.aplanAbrir0 = this.aplanAbrir0.bind(this);
+    this.aplanAbrir1 = this.aplanAbrir1.bind(this);
+    this.aplanFechar1 = this.aplanFechar1.bind(this);
+    this.aplanFechar0 = this.aplanFechar0.bind(this);
+    this.perfilAvanca0 = this.perfilAvanca0.bind(this);
+    this.perfilAvanca1 = this.perfilAvanca1.bind(this);
+    this.perfilRecua0 = this.perfilRecua0.bind(this);
+    this.perfilRecua1 = this.perfilRecua1.bind(this);
+    this.plataformaSobe0 = this.plataformaSobe0.bind(this);
+    this.plataformaSobe1 = this.plataformaSobe1.bind(this);
+    this.plataformaDesce0 = this.plataformaDesce0.bind(this);
+    this.plataformaDesce1 = this.plataformaDesce1.bind(this);
     this.prensaLigar = this.prensaLigar.bind(this);
     this.prensaDesligar = this.prensaDesligar.bind(this);
     this.desbobinadorLigar = this.desbobinadorLigar.bind(this);
@@ -115,46 +123,88 @@ export default class IHM extends Component {
     this.aplanadoraManual = this.aplanadoraManual.bind(this);
   }
 
-  aplanDescer() {
+  aplanDescer0() {
     //console.log("AplanDescer");
     const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
-    this.props.mqttCommand(caminho, "aplanDescer");
+    this.props.mqttCommand(caminho, "aplanDescer=0");
   }
 
-  aplanSubir() {
+  aplanDescer1() {
+    //console.log("AplanDescer0");
+    const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
+    this.props.mqttCommand(caminho, "aplanDescer=1");
+  }
+
+  aplanSubir0() {
     //console.log("AplanSubir");
     const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
-    this.props.mqttCommand(caminho, "aplanSubir");
+    this.props.mqttCommand(caminho, "aplanSubir=0");
   }
 
-  aplanAbrir() {
+  aplanSubir1() {
+    //console.log("AplanSubir");
     const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
-    this.props.mqttCommand(caminho, "aplanAbrir");
+    this.props.mqttCommand(caminho, "aplanSubir=1");
   }
 
-  aplanFechar() {
+  aplanAbrir0() {
     const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
-    this.props.mqttCommand(caminho, "aplanFechar");
+    this.props.mqttCommand(caminho, "aplanAbrir=0");
   }
 
-  perfilAvanca() {
+  aplanAbrir1() {
     const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
-    this.props.mqttCommand(caminho, "perfilAvanca");
+    this.props.mqttCommand(caminho, "aplanAbrir=1");
   }
 
-  perfilRecua() {
+  aplanFechar0() {
     const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
-    this.props.mqttCommand(caminho, "perfilRecua");
+    this.props.mqttCommand(caminho, "aplanFechar=0");
   }
 
-  plataformaSobe() {
+  aplanFechar1() {
     const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
-    this.props.mqttCommand(caminho, "plataformaSobe");
+    this.props.mqttCommand(caminho, "aplanFechar=1");
   }
 
-  plataformaDesce() {
+  perfilAvanca0() {
     const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
-    this.props.mqttCommand(caminho, "plataformaDesce");
+    this.props.mqttCommand(caminho, "perfilAvanca=0");
+  }
+
+  perfilAvanca1() {
+    const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
+    this.props.mqttCommand(caminho, "perfilAvanca=1");
+  }
+
+  perfilRecua0() {
+    const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
+    this.props.mqttCommand(caminho, "perfilRecua=0");
+  }
+
+  perfilRecua1() {
+    const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
+    this.props.mqttCommand(caminho, "perfilRecua=1");
+  }
+
+  plataformaSobe0() {
+    const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
+    this.props.mqttCommand(caminho, "plataformaSobe=0");
+  }
+
+  plataformaSobe1() {
+    const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
+    this.props.mqttCommand(caminho, "plataformaSobe=1");
+  }
+
+  plataformaDesce0() {
+    const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
+    this.props.mqttCommand(caminho, "plataformaDesce=0");
+  }
+
+  plataformaDesce1() {
+    const caminho = ('fabrica/ihm/comandos/' + this.props.config.codigo.toString())
+    this.props.mqttCommand(caminho, "plataformaDesce=1");
   }
 
   prensaLigar() {
@@ -248,7 +298,7 @@ export default class IHM extends Component {
             <Col xs={12} md={4} style={AplanCorpo}>
               {this.state.aplanAuto === false ?
                 (<Row>
-                  <OverlayTrigger placement="top" overlay={tooltip_aplanAbrir}><img onTouchEnd={this.aplanAbrir} onClick={this.aplanAbrir} alt="AplanAbrir" src={AplanTampaAbrir} style={{ float: 'center', height: '54px', width: '66px' }} /></OverlayTrigger>
+                  <OverlayTrigger placement="top" overlay={tooltip_aplanAbrir}><img onTouchEnd={this.aplanAbrir0} onTouchStart={this.aplanAbrir1} onMouseUp={this.aplanAbrir0} onMouseDown={this.aplanAbrir1} alt="AplanAbrir" src={AplanTampaAbrir} style={{ float: 'center', height: '54px', width: '66px' }} /></OverlayTrigger>
                 </Row>) :
                 (<Row>
                   <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
@@ -257,7 +307,7 @@ export default class IHM extends Component {
               }
               {this.state.aplanAuto === false ?
                 (<Row>
-                  < OverlayTrigger placement="top" overlay={tooltip_aplanFechar}><img onTouchEnd={this.aplanFechar} onClick={this.aplanFechar} alt="AplanFechar" src={AplanTampaFechar} style={{ float: 'center', height: '54px', width: '66px' }} /></OverlayTrigger>
+                  < OverlayTrigger placement="top" overlay={tooltip_aplanFechar}><img onTouchEnd={this.aplanFechar0} onTouchStart={this.aplanFechar1} onMouseUp={this.aplanFechar0} onMouseDown={this.aplanFechar1} alt="AplanFechar" src={AplanTampaFechar} style={{ float: 'center', height: '54px', width: '66px' }} /></OverlayTrigger>
                 </Row>) :
                 (<Row style={{ height: '70px' }}>
                   <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
@@ -266,8 +316,8 @@ export default class IHM extends Component {
               }
               {this.state.aplanAuto === false ?
                 (<Row>
-                  <OverlayTrigger placement="top" overlay={tooltip_perfilRecua}><img onTouchEnd={this.perfilRecua} onClick={this.perfilRecua} alt="Chapa Recua" src={AplanPerfilRecua} style={{ float: 'left', height: '54px', width: '66px' }} /></OverlayTrigger>
-                  <OverlayTrigger placement="top" overlay={tooltip_perfilAvanca}><img onTouchEnd={this.perfilAvanca} onClick={this.perfilAvanca} alt="Chapa Avança" src={AplanPerfilAvanca} style={{ float: 'right', height: '54px', width: '66px' }} /></OverlayTrigger>
+                  <OverlayTrigger placement="top" overlay={tooltip_perfilRecua}><img onTouchEnd={this.perfilRecua0} onTouchStart={this.perfilRecua1} onMouseUp={this.perfilRecua0} onMouseDown={this.perfilRecua1} alt="Chapa Recua" src={AplanPerfilRecua} style={{ float: 'left', height: '54px', width: '66px' }} /></OverlayTrigger>
+                  <OverlayTrigger placement="top" overlay={tooltip_perfilAvanca}><img onTouchEnd={this.perfilAvanca0} onTouchStart={this.perfilAvanca1} onMouseUp={this.perfilAvanca0} onMouseDown={this.perfilAvanca1} alt="Chapa Avança" src={AplanPerfilAvanca} style={{ float: 'right', height: '54px', width: '66px' }} /></OverlayTrigger>
                 </Row>) :
                 (<Row>
                   <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
@@ -275,8 +325,8 @@ export default class IHM extends Component {
               }
               {this.state.aplanAuto === false ?
                 (<Row>
-                  <OverlayTrigger placement="top" overlay={tooltip_aplanSubir}><img onTouchEnd={this.aplanSubir} onClick={this.aplanSubir} alt="AplanSubir" src={AplanSubir} style={{ float: 'left' }} /></OverlayTrigger>
-                  <OverlayTrigger placement="top" overlay={tooltip_plataformaSobe}><img onTouchEnd={this.plataformaSobe} onClick={this.plataformaSobe} alt="Plataforma Sobe" src={AplanExtSubir} style={{ float: 'right', height: '54px', width: '66px' }} /></OverlayTrigger>
+                  <OverlayTrigger placement="top" overlay={tooltip_aplanSubir}><img onTouchEnd={this.aplanSubir0} onTouchStart={this.aplanSubir1} onMouseUp={this.aplanSubir0} onMouseDown={this.aplanSubir1} alt="AplanSubir" src={AplanSubir} style={{ float: 'left' }} /></OverlayTrigger>
+                  <OverlayTrigger placement="top" overlay={tooltip_plataformaSobe}><img onTouchEnd={this.plataformaSobe0} onTouchStart={this.plataformaSobe1} onMouseUp={this.plataformaSobe0} onMouseDown={this.plataformaSobe1} alt="Plataforma Sobe" src={AplanExtSubir} style={{ float: 'right', height: '54px', width: '66px' }} /></OverlayTrigger>
                 </Row>) :
                 (<Row>
                   <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
@@ -284,8 +334,8 @@ export default class IHM extends Component {
               }
               {this.state.aplanAuto === false ?
                 (<Row>
-                  <OverlayTrigger placement="top" overlay={tooltip_aplanDescer}><img onTouchEnd={this.aplanDescer} onClick={this.aplanDescer} alt="AplanDescer" src={AplanDescer} style={{ float: 'left' }} /></OverlayTrigger>
-                  <OverlayTrigger placement="top" overlay={tooltip_plataformaDesce}><img onTouchEnd={this.plataformaDesce} onClick={this.plataformaDesce} alt="Plataforma Desce" src={AplanExtDescer} style={{ float: 'right', height: '54px', width: '66px' }} /></OverlayTrigger>
+                  <OverlayTrigger placement="top" overlay={tooltip_aplanDescer}><img onTouchEnd={this.aplanDescer0} onTouchStart={this.aplanDescer1} onMouseUp={this.aplanDescer0} onMouseDown={this.aplanDescer1} alt="AplanDescer" src={AplanDescer} style={{ float: 'left' }} /></OverlayTrigger>
+                  <OverlayTrigger placement="top" overlay={tooltip_plataformaDesce}><img  onTouchEnd={this.plataformaDesce0} onTouchStart={this.plataformaDesce1}  onMouseUp={this.plataformaDesce0} onMouseDown={this.plataformaDesce1} alt="Plataforma Desce" src={AplanExtDescer} style={{ float: 'right', height: '54px', width: '66px' }} /></OverlayTrigger>
                 </Row>) :
                 (<Row>
                   <Col xsOffset={12} mdOffset={12} lgOffset={12}>'  '</Col>
@@ -297,10 +347,10 @@ export default class IHM extends Component {
               <Row>
                 {this.state.aplanAuto === false ?
                   (<Col>
-                    <Button bsStyle="danger" bsSize="large" height="54px" block onClick={this.aplanadoraAutomatica} > COLOCAR EM AUTOMATICO <Glyphicon glyph="refresh" /> </Button>
+                    <Button bsStyle="danger" bsSize="large" height="54px" block onTouchEnd={this.aplanadoraAutomatica} onClick={this.aplanadoraAutomatica} > COLOCAR EM AUTOMATICO <Glyphicon glyph="refresh" /> </Button>
                   </Col>) :
                   (<Col>
-                    <Button bsStyle="success" bsSize="large" height="54px" block onClick={this.aplanadoraManual} > COLOCAR EM MANUAL <Glyphicon glyph="hand-up" /> </Button>
+                    <Button bsStyle="success" bsSize="large" height="54px" block onTouchEnd={this.aplanadoraManual} onClick={this.aplanadoraManual} > COLOCAR EM MANUAL <Glyphicon glyph="hand-up" /> </Button>
                   </Col>)
                 }
 
