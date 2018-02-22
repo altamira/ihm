@@ -587,8 +587,8 @@
         "topic": "fabrica/ihm/comandos/#",
         "qos": "0",
         "broker": "37b3c15d.a7496e",
-        "x": 3268.9998474121094,
-        "y": 2304.363612651825,
+        "x": 3123.999755859375,
+        "y": 2303.363525390625,
         "wires": [
             [
                 "36862eda.835662",
@@ -601,17 +601,18 @@
         "type": "function",
         "z": "3f422101.3791ae",
         "name": "Registradores de Comandos",
-        "func": "var p = JSON.parse(msg.payload);\nvar res = [null,null,null,null,null,null,null,null,null,null,null,null,null];\nvar modbus = global.get(\"ModBus\");\n \n //***** INICIALIZA OU DESLIGA MAQUINA *****//\n if (p.LigarMaquina !== undefined) {\n if (modbus[2] & (1 << 11)) {\n modbus[2] &= ~(1<<11); //M2.11 igual a 1 MbLigaChaveGeral\n node.status({fill:\"red\",shape:\"ring\",text:\"Geral Desligada\"});\n } else {\n modbus[2] |= (1<<11); //M2.11 igual a 0 MbLigaChaveGeral\n node.status({fill:\"green\",shape:\"dot\",text:\"Geral Ligada\"});\n }\n global.set(\"ComandoMaquina\",1); \n global.set('ModBus', modbus); //Atualiza registrador global.\n res[0] = {payload:modbus[2]}; //Primeiro liga ou desliga chave geral\n }\n \n //***** ON/OFF MOTOR *****//\n if (p.LigarPrensa !== undefined) {\n if ((modbus[3]) & (1 << 3)) {\n modbus[3] &= ~(1<<3); //M3.3 igual a 1 DbPrsLigaMotor\n global.set(\"MotorLigado\",0);\n node.status({fill:\"red\",shape:\"ring\",text:\"Motor OFF\"});\n } else {\n modbus[3] |= (1<<3);//M3.3 igual a 0 DbPrsParar\n global.set(\"MotorLigado\",1);\n node.status({fill:\"green\",shape:\"dot\",text:\"Motor ON\"});\n }\n global.set(\"ComandoMaquina\",2);\n global.set('ModBus', modbus);//Atualiza registrador global.\n res[1] = {payload: modbus[3]};\n }\n \n //***** ABRIR TAMPA MODBUS 31.10 *****//\n if (p.abrirTampa !== undefined) {\n if (p.abrirTampa == '1'){\n modbus[31] |= (1<<10); \n }else if (p.abrirTampa == '0'){\n modbus[31] = 0; \n }\n global.set(\"ComandoMaquina\",3);\n res[2] = {payload:(modbus[31])};\n }\n \n //***** FECHAR TAMPA MODBUS 31.11 *****//\n if (p.fecharTampa !== undefined) {\n if(p.fecharTampa == '1'){\n modbus[31] |= (1<<11); \n }else if (p.fecharTampa == '0'){\n modbus[31] = 0;\n }\n global.set(\"ComandoMaquina\",4);\n res[3] = {payload:(modbus[31])};\n }\n \n //***** AVANCAR PERFIL MODBUS 2.3 *****//\n if (p.avancaPerfil !== undefined) {\n if(p.avancaPerfil == '1'){\n modbus[2] |= (1<<3); \n }else if (p.avancaPerfil == '0'){\n modbus[2] &= ~(1<<3);\n }\n global.set(\"ComandoMaquina\",5);\n res[4] = {payload: modbus[2]};\n }\n //***** RECUAR PERFIL MODBUS 2.4 *****//\n if (p.recuaPerfil !== undefined) {\n if(p.recuaPerfil == '1'){\n modbus[2] |= (1<<4); \n }else if (p.recuaPerfil == '0'){\n modbus[2] &= ~(1<<4);\n }\n global.set(\"ComandoMaquina\",6); \n res[5] = {payload:modbus[2]};\n }\n \n //*****botao_Parar_Maquina***********//\n if (p.botao_Parar_Maquina !== undefined) {\n modbus[2] |= (1<<13); //M2.13 igual a 0 MbPrsParar\n modbus[2] &= ~(1<<0); //M2.0 igual a 0 MbModoAuto\n node.status({fill:\"red\",shape:\"ring\",text:\"Parando prensa\"});\n global.set(\"ComandoMaquina\",7);\n global.set('ModBus', modbus);//Atualiza registrador global.\n res[6] = {payload: modbus[2]};\n }\n \n //*****botao_Manual************//\n if (p.botao_Manual !== undefined) {\n modbus[3] |= 1; //Libera maquina\n modbus[2] &= ~(1<<0); //M2.0 igual a 0 MbModoAuto\n node.status({fill:\"red\",shape:\"ring\",text:\"Modo Manual\"});\n global.set(\"ComandoMaquina\",8);\n global.set('ModBus', modbus);//Atualiza registrador global.\n res[7] = {payload: modbus[2]};\n }\n \n //*****botao_Produzir*********//\n if (p.botao_Produzir !== undefined) {\n modbus[3] |= 1; //Libera maquina\n if ((modbus[2]) & (1 << 0)) {\n modbus[2] &= ~(1<<0); //M2.0 igual a 1 produzir\n node.status({fill:\"green\",shape:\"dot\",text:\"Produzindo\"});\n } else {\n modbus[2] |= (1<<0);//M2.0 igual a 0 não produzir\n node.status({fill:\"red\",shape:\"ring\",text:\"Não produzindo\"});\n }\n global.set(\"ComandoMaquina\",9);\n global.set('ModBus', modbus);//Atualiza registrador global.\n res[8] = {payload: modbus[2]};\n }\n \n //***** Reverçao do motor da prensa *****//\n if (p.SentidoInv !== undefined) {\n if ((modbus[2]) & (1 << 14)) {\n modbus[2] &= ~(1<<14); //M2.14 igual a 1 MbPrsSentidoInv\n global.set(\"MotorInvertido\",0);\n node.status({fill:\"blue\",shape:\"ring\",text:\"Motor normal\"});\n } else {\n modbus[2] |= (1<<14);//M3.3 igual a 0 DbPrsParar\n global.set(\"MotorInvertido\",1);\n node.status({fill:\"green\",shape:\"dot\",text:\"Motor Invertido\"});\n }\n global.set(\"ComandoMaquina\",10);\n global.set('ModBus', modbus);//Atualiza registrador global.\n res[9] = {payload: modbus[2]};\n }\n \n //***** DESLIGA MAQUINA depois zera tudo *****//\n if (p.ResetMaquina !== undefined) {\n modbus[2] &= ~(1<<11); \n node.status({fill:\"red\",shape:\"ring\",text:\"Geral Desligada e reset\"});\n global.set(\"ComandoMaquina\",0); \n global.set('ModBus', modbus); //Atualiza registrador global.\n res[10] = {payload:modbus[2]}; //Primeiro desliga chave geral\n }\n \n //*****Desbobinador ******//\n if (p.AceleracaoAuto !== undefined) {\n var x = global.get(\"Desbobinador\");\n if(x){\n global.set('Desbobinador', 0);//Atualiza registrador global.\n }else{\n global.set('Desbobinador', 1);//Atualiza registrador global.\n }\n global.set(\"ComandoMaquina\",11);\n res[11] = {payload: global.get(\"Desbobinador\")};\n }\n \n //*****Atualiza TABS-2**************//\n if (p.AtualizarRegistradores !== undefined) {\n node.status({fill:\"red\",shape:\"ring\",text:\"Tab-2\"});\n res[12] = {payload: 1};\n }\n \nreturn res;",
+        "func": "var p = msg.payload;\nvar res = [null,null,null,null,null,null,null,null,null,null,null,null,null];\nvar modbus = global.get(\"ModBus\");\n \n //***** INICIALIZA OU DESLIGA MAQUINA *****//\n if (p == \"celso = Logout\") {\n    modbus[2] &= ~(1<<11); //M2.11 igual a 0 MbLigaChaveGeral\n    node.status({fill:\"red\",shape:\"ring\",text:\"Geral Desligada\"});\n    global.set(\"ComandoMaquina\",1); \n    global.set('ModBus', modbus); //Atualiza registrador global.\n    res[0] = {payload:modbus[2]}; //Primeiro liga ou desliga chave geral\n    } \nelse if (p== \"celso = Login\") {\n    modbus[2] |= (1<<11); //M2.11 igual a 1 MbLigaChaveGeral\n    node.status({fill:\"green\",shape:\"dot\",text:\"Geral Ligada\"});\n    global.set(\"ComandoMaquina\",1); \n    global.set('ModBus', modbus); //Atualiza registrador global.\n    res[0] = {payload:modbus[2]}; //Primeiro liga ou desliga chave geral\n }\n\n  //***** ON/OFF MOTOR *****//\n  //modbus[2] &= ~(1<<0)\n if  (p== \"prensaLigar\") {\n    var w=modbus[1];\n    node.status({fill:\"red\",shape:\"ring\",text:w});\n    if (modbus[3] & ~(1 << 3)) {\n        modbus[3] &= ~(1<<3); //M3.3 igual a 1 DbPrsLigaMotor\n        global.set(\"MotorLigado\",0);\n        node.status({fill:\"red\",shape:\"ring\",text:\"Motor OFF\"});\n    } \n //global.set(\"ComandoMaquina\",2);*/\n global.set('ModBus', modbus);//Atualiza registrador global.\n res[1] = {payload: modbus[3]};\n }\n if  (p== \"prensaDesligar\") {\n      var ww=modbus[1];\n    node.status({fill:\"red\",shape:\"ring\",text:ww});\n    if (modbus[3] & (1 << 3)) {\n        modbus[3] |= (1<<3);//M3.3 igual a 0 DbPrsParar\n        global.set(\"MotorLigado\",1);\n        node.status({fill:\"green\",shape:\"dot\",text:\"Motor ON\"});\n    }\n //global.set(\"ComandoMaquina\",2);*/\n global.set('ModBus', modbus);//Atualiza registrador global.\n res[1] = {payload: modbus[3]};\n }\n \n \n //***** ABRIR TAMPA MODBUS 31.10 *****//\n if (p.abrirTampa !== undefined) {\n if (p.abrirTampa == '1'){\n modbus[31] |= (1<<10); \n }else if (p.abrirTampa == '0'){\n modbus[31] = 0; \n }\n global.set(\"ComandoMaquina\",3);\n res[2] = {payload:(modbus[31])};\n }\n \n //***** FECHAR TAMPA MODBUS 31.11 *****//\n if (p.fecharTampa !== undefined) {\n if(p.fecharTampa == '1'){\n modbus[31] |= (1<<11); \n }else if (p.fecharTampa == '0'){\n modbus[31] = 0;\n }\n global.set(\"ComandoMaquina\",4);\n res[3] = {payload:(modbus[31])};\n }\n \n //***** AVANCAR PERFIL MODBUS 2.3 *****//\n if (p.avancaPerfil !== undefined) {\n if(p.avancaPerfil == '1'){\n modbus[2] |= (1<<3); \n }else if (p.avancaPerfil == '0'){\n modbus[2] &= ~(1<<3);\n }\n global.set(\"ComandoMaquina\",5);\n res[4] = {payload: modbus[2]};\n }\n //***** RECUAR PERFIL MODBUS 2.4 *****//\n if (p.recuaPerfil !== undefined) {\n if(p.recuaPerfil == '1'){\n modbus[2] |= (1<<4); \n }else if (p.recuaPerfil == '0'){\n modbus[2] &= ~(1<<4);\n }\n global.set(\"ComandoMaquina\",6); \n res[5] = {payload:modbus[2]};\n }\n \n //*****botao_Parar_Maquina***********//\n if (p.botao_Parar_Maquina !== undefined) {\n modbus[2] |= (1<<13); //M2.13 igual a 0 MbPrsParar\n modbus[2] &= ~(1<<0); //M2.0 igual a 0 MbModoAuto\n node.status({fill:\"red\",shape:\"ring\",text:\"Parando prensa\"});\n global.set(\"ComandoMaquina\",7);\n global.set('ModBus', modbus);//Atualiza registrador global.\n res[6] = {payload: modbus[2]};\n }\n \n //*****botao_Manual************//\n if (p.botao_Manual !== undefined) {\n modbus[3] |= 1; //Libera maquina\n modbus[2] &= ~(1<<0); //M2.0 igual a 0 MbModoAuto\n node.status({fill:\"red\",shape:\"ring\",text:\"Modo Manual\"});\n global.set(\"ComandoMaquina\",8);\n global.set('ModBus', modbus);//Atualiza registrador global.\n res[7] = {payload: modbus[2]};\n }\n \n //*****botao_Produzir*********//\n if (p.botao_Produzir !== undefined) {\n modbus[3] |= 1; //Libera maquina\n if ((modbus[2]) & (1 << 0)) {\n modbus[2] &= ~(1<<0); //M2.0 igual a 1 produzir\n node.status({fill:\"green\",shape:\"dot\",text:\"Produzindo\"});\n } else {\n modbus[2] |= (1<<0);//M2.0 igual a 0 não produzir\n node.status({fill:\"red\",shape:\"ring\",text:\"Não produzindo\"});\n }\n global.set(\"ComandoMaquina\",9);\n global.set('ModBus', modbus);//Atualiza registrador global.\n res[8] = {payload: modbus[2]};\n }\n \n //***** Reverçao do motor da prensa *****//\n if (p.SentidoInv !== undefined) {\n if ((modbus[2]) & (1 << 14)) {\n modbus[2] &= ~(1<<14); //M2.14 igual a 1 MbPrsSentidoInv\n global.set(\"MotorInvertido\",0);\n node.status({fill:\"blue\",shape:\"ring\",text:\"Motor normal\"});\n } else {\n modbus[2] |= (1<<14);//M3.3 igual a 0 DbPrsParar\n global.set(\"MotorInvertido\",1);\n node.status({fill:\"green\",shape:\"dot\",text:\"Motor Invertido\"});\n }\n global.set(\"ComandoMaquina\",10);\n global.set('ModBus', modbus);//Atualiza registrador global.\n res[9] = {payload: modbus[2]};\n }\n \n //***** DESLIGA MAQUINA depois zera tudo *****//\n if (p.ResetMaquina !== undefined) {\n modbus[2] &= ~(1<<11); \n node.status({fill:\"red\",shape:\"ring\",text:\"Geral Desligada e reset\"});\n global.set(\"ComandoMaquina\",0); \n global.set('ModBus', modbus); //Atualiza registrador global.\n res[10] = {payload:modbus[2]}; //Primeiro desliga chave geral\n }\n \n //*****Desbobinador ******//\n if (p.AceleracaoAuto !== undefined) {\n var x = global.get(\"Desbobinador\");\n if(x){\n global.set('Desbobinador', 0);//Atualiza registrador global.\n }else{\n global.set('Desbobinador', 1);//Atualiza registrador global.\n }\n global.set(\"ComandoMaquina\",11);\n res[11] = {payload: global.get(\"Desbobinador\")};\n }\n \n //*****Atualiza TABS-2**************//\n if (p.AtualizarRegistradores !== undefined) {\n node.status({fill:\"red\",shape:\"ring\",text:\"Tab-2\"});\n res[12] = {payload: 1};\n }\n \nreturn res;",
         "outputs": "13",
         "noerr": 0,
         "x": 3537.1782760620117,
         "y": 2304.147018432617,
         "wires": [
             [
-                "4385b0f9.574de"
+                "45b20629.b83528"
             ],
             [
-                "45e7cc78.853694"
+                "45e7cc78.853694",
+                "45b20629.b83528"
             ],
             [
                 "699ee25c.ef766c"
@@ -656,11 +657,11 @@
         "dataType": "HoldingRegister",
         "adr": "3",
         "server": "9d9e7956.cdee38",
-        "x": 3917.5263442993164,
-        "y": 2012.5493621826172,
+        "x": 3910.5263671875,
+        "y": 1970.54931640625,
         "wires": [
             [
-                "da8f5bb2.8b1618"
+                "e822fd7f.88182"
             ],
             [
                 "8c3a4c94.ffaf3"
@@ -761,8 +762,8 @@
         "func": "\nmsg.payload = { type: 'error', message: 'Falha de escrita dos modbus do CLP.'};\nmsg.payload.time= new Date();\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 3436.3734397888184,
-        "y": 128.1931848526001,
+        "x": 3438.37353515625,
+        "y": 180.19318389892578,
         "wires": [
             [
                 "c2c5220a.c006e"
@@ -812,33 +813,14 @@
         "dataType": "HoldingRegister",
         "adr": "2",
         "server": "9d9e7956.cdee38",
-        "x": 3897.5947799682617,
-        "y": 1944.8631992340088,
+        "x": 4732.5947265625,
+        "y": 534.8631591796875,
         "wires": [
             [
                 "f7580835.f0a308"
             ],
             [
                 "edcf9411.d91c88"
-            ]
-        ]
-    },
-    {
-        "id": "cfd9dcd9.d9c2a",
-        "type": "modbustcp-no-pooling-write",
-        "z": "3f422101.3791ae",
-        "name": "Libera Maquina M3.0",
-        "dataType": "HoldingRegister",
-        "adr": "3",
-        "server": "9d9e7956.cdee38",
-        "x": 4346.199806213379,
-        "y": 950.0585923194885,
-        "wires": [
-            [
-                "ec6a80e6.618b5"
-            ],
-            [
-                "4f3e660a.e02418"
             ]
         ]
     },
@@ -850,11 +832,12 @@
         "func": "msg.payload = { type: 'error', message: 'CLP não responde. Verifique as conexões de rede.'};\nmsg.payload.time= new Date();\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 3437.1667671203613,
-        "y": 179.5005760192871,
+        "x": 3387.166748046875,
+        "y": 354.5005798339844,
         "wires": [
             [
-                "c2c5220a.c006e"
+                "c2c5220a.c006e",
+                "e2812f13.5441a"
             ]
         ]
     },
@@ -867,8 +850,8 @@
         "adr": "0",
         "quantity": "32",
         "server": "9d9e7956.cdee38",
-        "x": 3184.0295219421387,
-        "y": 321.5225954055786,
+        "x": 3085.0295219421387,
+        "y": 248.5225954055786,
         "wires": [
             [
                 "fa929536.972ea8",
@@ -876,7 +859,7 @@
             ],
             [
                 "d431c06f.7343f",
-                "216b86c9.f8560a"
+                "16bcfba9.0ecdd4"
             ]
         ]
     },
@@ -897,7 +880,6 @@
         "y": 1125.4758338928223,
         "wires": [
             [
-                "eaa2d6ba.68b368",
                 "9e6517a5.d622f8"
             ]
         ]
@@ -908,18 +890,19 @@
         "z": "3f422101.3791ae",
         "name": "Comando para ler todo ModBus",
         "links": [
-            "f7580835.f0a308",
-            "da8f5bb2.8b1618",
-            "f33f8791.8265c8",
-            "ffe2a610.2de9c8",
-            "c7690c7c.bdddd",
-            "e7de3316.2c099",
-            "41e7e1a5.d8c8e",
             "2169d4ef.38e9fc",
-            "e635efc7.6f4a3"
+            "41e7e1a5.d8c8e",
+            "9a3e48aa.800168",
+            "c7690c7c.bdddd",
+            "da8f5bb2.8b1618",
+            "e7de3316.2c099",
+            "f33f8791.8265c8",
+            "f7580835.f0a308",
+            "ffe2a610.2de9c8",
+            "16bcfba9.0ecdd4"
         ],
-        "x": 2706.9295616149902,
-        "y": 276.5977883338928,
+        "x": 2607.9295616149902,
+        "y": 203.59778833389282,
         "wires": [
             [
                 "81972c62.08ae8"
@@ -934,8 +917,8 @@
         "links": [
             "93ec0c20.a969a"
         ],
-        "x": 4078.3565940856934,
-        "y": 1925.2728881835938,
+        "x": 4913.356540679932,
+        "y": 514.2728481292725,
         "wires": []
     },
     {
@@ -967,8 +950,8 @@
         "links": [
             "93ec0c20.a969a"
         ],
-        "x": 4078.565055847168,
-        "y": 1995.6874408721924,
+        "x": 4083.56494140625,
+        "y": 1928.6875,
         "wires": []
     },
     {
@@ -979,8 +962,8 @@
         "links": [
             "7fb2661d.9b7b08"
         ],
-        "x": 4078.2556228637695,
-        "y": 2031.306526184082,
+        "x": 4077.255615234375,
+        "y": 1987.3065185546875,
         "wires": []
     },
     {
@@ -1006,10 +989,11 @@
             "7a986293.8c8b9c",
             "1876e927.61d017",
             "de00c564.1ca1a8",
-            "fcc45357.fe864"
+            "fcc45357.fe864",
+            "471c61f6.9051d"
         ],
-        "x": 3296.66214799881,
-        "y": 127.79164218902588,
+        "x": 3298.6622433662415,
+        "y": 179.79164123535156,
         "wires": [
             [
                 "60d1ae93.b2c27"
@@ -1024,8 +1008,8 @@
         "links": [
             "7fb2661d.9b7b08"
         ],
-        "x": 4078.3746604919434,
-        "y": 1960.5445938110352,
+        "x": 4913.374607086182,
+        "y": 550.5445537567139,
         "wires": []
     },
     {
@@ -1111,8 +1095,8 @@
         "qos": "0",
         "retain": "false",
         "broker": "37b3c15d.a7496e",
-        "x": 4187.280937194824,
-        "y": 1130.3307647705078,
+        "x": 4511.2808837890625,
+        "y": 2050.3307495117188,
         "wires": []
     },
     {
@@ -1127,7 +1111,7 @@
         "y": 950.1879601478577,
         "wires": [
             [
-                "cfd9dcd9.d9c2a"
+                "ec6a80e6.618b5"
             ]
         ]
     },
@@ -1139,8 +1123,8 @@
         "func": "msg.payload = 'pausa';\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 2812.8328819274902,
-        "y": 277.35493898391724,
+        "x": 2713.8328819274902,
+        "y": 204.35493898391724,
         "wires": [
             [
                 "1f799d27.a7d3c3",
@@ -1158,18 +1142,6 @@
         "complete": "payload",
         "x": 4170.047424316406,
         "y": 861.1403207778931,
-        "wires": []
-    },
-    {
-        "id": "4f3e660a.e02418",
-        "type": "link out",
-        "z": "3f422101.3791ae",
-        "name": "Erro ModBus",
-        "links": [
-            "7fb2661d.9b7b08"
-        ],
-        "x": 4497.773464202881,
-        "y": 956.2355713844299,
         "wires": []
     },
     {
@@ -1253,9 +1225,7 @@
                 "45698b7.af43074",
                 "31fc46ca.23cf3a"
             ],
-            [
-                "9a0bb6c7.0186c8"
-            ],
+            [],
             [
                 "78946e2e.780e"
             ],
@@ -1293,22 +1263,8 @@
         "func": "global.set(\"ComandoMaquina\",0);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 4608.690200805664,
-        "y": 931.283215045929,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "a5898d53.e72bf",
-        "type": "function",
-        "z": "3f422101.3791ae",
-        "name": "ComandoMaquina0",
-        "func": "global.set(\"ComandoMaquina\",0);\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 4614.618457794189,
-        "y": 1063.6641488075256,
+        "x": 4352.976135253906,
+        "y": 949.8546161651611,
         "wires": [
             []
         ]
@@ -1321,14 +1277,15 @@
         "func": "//verifica 3.3 e libera 2.12\nvar modbus = global.get(\"ModBus\");\nvar msg2 = {};\n\n\nif (((modbus[3]) & (1 << 3))) {//M3.3 igual a 1 ligando motor\n modbus[2] |= (1<<12);\n msg.payload = modbus[2];\n msg2.payload ={ type: 'info', message: 'Acelerando motor...' };\n msg2.payload.time= new Date();\n node.status({fill:\"green\",shape:\"dot\",text:\"Acelerando...\"});\n}else if (~((modbus[3]) & (1 << 3))){ // M3.3 igual a 0 Desliga motor\n modbus[2] &= ~(1<<12);\n msg.payload = modbus[2];\n msg2.payload ={ type: 'info', message: 'Desligando motor...' };\n msg2.payload.time= new Date();\n node.status({fill:\"yellow\",shape:\"ring\",text:\"Deslingado\"});\n}else {\n node.status({fill:\"red\",shape:\"ring\",text:\"Bug\"});\n}\n \nglobal.set('ModBus', modbus);//Atualiza registrador global\nreturn [msg, msg2];",
         "outputs": "2",
         "noerr": 0,
-        "x": 3886.2567405700684,
-        "y": 1086.3499512672424,
+        "x": 4252.256687164307,
+        "y": 2006.3499360084534,
         "wires": [
             [
                 "77061f0a.3b9f"
             ],
             [
-                "6ecb0cfd.58a214"
+                "6ecb0cfd.58a214",
+                "de0b66f9.b78d88"
             ]
         ]
     },
@@ -1340,8 +1297,8 @@
         "func": "setTimeout(function() {\n node.send(msg);\n}, 100);\nreturn null;",
         "outputs": 1,
         "noerr": 0,
-        "x": 4136.856464385986,
-        "y": 1080.283217906952,
+        "x": 4460.856410980225,
+        "y": 2000.2832026481628,
         "wires": [
             [
                 "31cebb79.0c4c24"
@@ -1356,12 +1313,10 @@
         "dataType": "HoldingRegister",
         "adr": "2",
         "server": "9d9e7956.cdee38",
-        "x": 4346.523220062256,
-        "y": 1079.94992685318,
+        "x": 4670.523166656494,
+        "y": 1999.9499115943909,
         "wires": [
-            [
-                "a5898d53.e72bf"
-            ],
+            [],
             [
                 "99b3bbbe.d58ac8"
             ]
@@ -1375,8 +1330,8 @@
         "links": [
             "7fb2661d.9b7b08"
         ],
-        "x": 4503.142360687256,
-        "y": 1086.3785157203674,
+        "x": 4827.142307281494,
+        "y": 2006.3785004615784,
         "wires": []
     },
     {
@@ -1551,7 +1506,7 @@
         "id": "d8aa29e4.ad5358",
         "type": "switch",
         "z": "3f422101.3791ae",
-        "name": "i<6",
+        "name": "i<4",
         "property": "i",
         "propertyType": "msg",
         "rules": [
@@ -1646,8 +1601,8 @@
         "func": "msg.i =0;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 3387.662456512451,
-        "y": 315.6337127685547,
+        "x": 3335.662353515625,
+        "y": 278.63372802734375,
         "wires": [
             [
                 "d8aa29e4.ad5358"
@@ -1689,8 +1644,8 @@
         "z": "3f422101.3791ae",
         "name": "Liga / Deslig Motor",
         "info": "#test\n- nao\n- sei\n- onde v\n- vai \n- parar\n- isso",
-        "x": 3905.4124069213867,
-        "y": 1044.605484008789,
+        "x": 4271.412353515625,
+        "y": 1964.60546875,
         "wires": []
     },
     {
@@ -1824,7 +1779,7 @@
         "type": "debug",
         "z": "3f422101.3791ae",
         "name": "Array",
-        "active": true,
+        "active": false,
         "console": "false",
         "complete": "payload",
         "x": 1561.3315887451172,
@@ -1885,7 +1840,7 @@
         "type": "function",
         "z": "3f422101.3791ae",
         "name": "LOOP DE ESCRITA",
-        "func": "//Somente entra aqui se o array ainda for >= 0\nif (flow.get('params').length >= 0) {\n \n // Carrega todos os parametros que ainda não foram enviados\n var params = flow.get('params');\n \n // Cria um novo Array tirando o ultimo elemento\n var novo = params.slice(0, flow.get('params').length - 1);\n \n // Sobrescreve o arry params\n flow.set('params', novo);\n \n // Envia novo array com -1 elemento\n msg.payload = novo;\n return msg;\n}\n",
+        "func": "//Somente entra aqui se o array ainda for >= 0\nif (flow.get('params').length >= 0) {\n \n // Carrega todos os parametros que ainda não foram enviados\n var params = flow.get('params');\n \n // Cria um novo Array tirando o ultimo elemento\n var novo = params.slice(0, flow.get('params').length - 1);\n \n // Sobrescreve o arry params\n flow.set('params', novo);\n \n // Envia novo array com -1 elemento\n msg.payload = novo;\n node.status({fill:\"blue\",shape:\"dot\",text:novo});\n return msg;\n}\n",
         "outputs": 1,
         "noerr": 0,
         "x": 1775.618953704834,
@@ -2064,7 +2019,7 @@
         "links": [
             "f3dfdc5d.546f1"
         ],
-        "x": 1461.356990814209,
+        "x": 1460.356990814209,
         "y": 609.1830615997314,
         "wires": [
             [
@@ -2103,8 +2058,8 @@
         "z": "3f422101.3791ae",
         "name": "Grava valor dos registradores no CLP",
         "info": "A cada inicialização os valores dos registradores são atualizados a partir de MongoDB:\n\n1- AplanVelAuto M14\nVelocidade maxima no automatico de 0% a 100%\n\n2- AplanVelMan M17\nVelocidade maxima no manual de 0% a 100%\n\n3- AplanPasso M18\nPasso da ferramenta em \"mm\", de 0 a 400mm\n\n4- EncFactor M20\nFator de correção do encoder em numeros inteiros apenas.\n\n5- EncResol M21\nResolução do encoder em numeros inteiros apenas. 1 a 10000\n\n6- EncPerim M22\nPerimetro do encoder em \"mm\". De 1 a 999\n\n7- PrsCiclosUnid M23\nCiclos de Lubrificação da prensa. De 0 a 65534 unidades\n\n8- PrsCiclosMil M24\nCiclos de Lubrificação da prensa vezes 1000. De 0 a 65534 unidades\n\n9- NovoPrsCiclosUnd M25\nCiclos que faltam para proxima Lubrificação da prensa. De 0 a 65534 unidades\n\n10- NovoCiclosMil M26\nCiclos que faltam para proxima Lubrificação da prensa vezes 1000. De 0 a 65534 unidades\n\n",
-        "x": 2080.051082611084,
-        "y": 354.71663093566895,
+        "x": 2070.051025390625,
+        "y": 257.5737991333008,
         "wires": []
     },
     {
@@ -2112,7 +2067,7 @@
         "type": "function",
         "z": "3f422101.3791ae",
         "name": "Atualiza M14 na pagina",
-        "func": "var valor = msg.payload;\n\nmsg.payload = {\n AplanVelAuto: valor\n};\nnode.status({fill:\"blue\",shape:\"dot\",text:valor});\n\n \nreturn msg;",
+        "func": "var valor = msg.payload;\n\nmsg.payload = 1;\nnode.status({fill:\"blue\",shape:\"dot\",text:valor});\n\n \nreturn msg;",
         "outputs": "1",
         "noerr": 0,
         "x": 2401.606792449951,
@@ -2120,7 +2075,7 @@
         "wires": [
             [
                 "3d792536.d4f21a",
-                "362ffa7.8703d06"
+                "b25af254.f21eb"
             ]
         ]
     },
@@ -2316,7 +2271,7 @@
         "active": true,
         "console": "false",
         "complete": "payload",
-        "x": 403.6796417236328,
+        "x": 402.6796417236328,
         "y": 626.124095916748,
         "wires": []
     },
@@ -2340,8 +2295,8 @@
         "active": false,
         "console": "false",
         "complete": "payload",
-        "x": 3408.9760932922363,
-        "y": 269.4193992614746,
+        "x": 3355.97607421875,
+        "y": 241.27654266357422,
         "wires": []
     },
     {
@@ -2758,11 +2713,11 @@
         "type": "function",
         "z": "3f422101.3791ae",
         "name": "indice salvo",
-        "func": "//Carrega variavel global indice em y\nvar y = msg.id;\n\n//monta a mensagem\nmsg.query = {_id:'indice'};\nmsg.payload = {\n $set: {\"indice_salvo\": parseInt(y)}\n};\n\nreturn msg;\n",
+        "func": "//Carrega variavel global indice em y\nvar y = msg.id;\n\n//monta a mensagem\nmsg.query = {_id:'indice'};\nmsg.payload = {\n $set: {\"indice_salvo\": parseInt(y)}\n};\nnode.status({fill:\"blue\",shape:\"dot\",text: \"Indice= \" + y });\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "x": 4434.847831726074,
-        "y": 239.7370204925537,
+        "y": 222.7370204925537,
         "wires": [
             [
                 "61e20076.f1ab9"
@@ -2781,7 +2736,7 @@
         "multi": true,
         "operation": "update",
         "x": 4625.561767578125,
-        "y": 240.08713722229004,
+        "y": 223.08713722229004,
         "wires": []
     },
     {
@@ -2789,8 +2744,8 @@
         "type": "function",
         "z": "3f422101.3791ae",
         "name": "mudar 1 item apenas",
-        "func": "var a = global.get(\"erro\");\n\nif (a.message!==msg.payload.message){\n    global.set(\"erro\",msg.payload);\n    var x = msg.payload;\n    var y = global.get(\"Indice_Mongo\");\n    var z = msg.payload.message;\n    \n    if (y <= 9){\n        msg.query = {_id:y.toString()};\n        msg.payload = {\n            $set:x\n        };\n        y++;\n        global.set(\"Indice_Mongo\",y);\n    } else{\n        global.set(\"Indice_Mongo\",0);\n        y=0;\n        msg.query = {_id:y.toString()};\n        msg.payload = {\n            $set:x\n        };\n    }\n    msg.id = y;\n    node.status({fill:\"blue\",shape:\"dot\",text: z });\n    return msg;\n} else{\n    msg = null;\n    return msg;\n}",
-        "outputs": 1,
+        "func": "var msg2 ={\n payload: 1\n};\nvar a = global.get(\"erro\");\n\nif (a.message!==msg.payload.message){\n    global.set(\"erro\",msg.payload);\n    var x = msg.payload;\n    var y = global.get(\"Indice_Mongo\");\n    var z = msg.payload.message;\n    \n    if (y <= 9){\n        msg.query = {_id:y.toString()};\n        msg.payload = {\n            $set:x\n        };\n        y++;\n        global.set(\"Indice_Mongo\",y);\n    } else{\n        global.set(\"Indice_Mongo\",0);\n        y=0;\n        msg.query = {_id:y.toString()};\n        msg.payload = {\n            $set:x\n        };\n    }\n    msg.id = y;\n    if (z !== 'Maquina Não Liberada'){\n        msg2 = null;\n    }\n    node.status({fill:\"blue\",shape:\"dot\",text: z });\n    return [msg,msg2];\n} else{\n    msg = null;\n    msg2 = null;\n    return [msg,msg2];\n}",
+        "outputs": "2",
         "noerr": 0,
         "x": 4146.267597198486,
         "y": 179.3627586364746,
@@ -2799,6 +2754,9 @@
                 "6f7d434b.3e957c",
                 "9f177a94.28db98",
                 "f7b381ba.239d8"
+            ],
+            [
+                "5e23ed4b.1bc2e4"
             ]
         ]
     },
@@ -2814,7 +2772,7 @@
         "multi": true,
         "operation": "update",
         "x": 4444.823173522949,
-        "y": 291.8736171722412,
+        "y": 274.8736171722412,
         "wires": []
     },
     {
@@ -3164,8 +3122,8 @@
         "fieldTypeToHash": "msg",
         "hashField": "md5",
         "hashFieldType": "msg",
-        "x": 1448.0947647094727,
-        "y": 2529.5541229248047,
+        "x": 1434.0947647094727,
+        "y": 2511.5541229248047,
         "wires": [
             [
                 "8a66ccc.3565b3"
@@ -3180,8 +3138,8 @@
         "active": false,
         "console": "false",
         "complete": "true",
-        "x": 1781.2376518249512,
-        "y": 2529.9826946258545,
+        "x": 1767.2376518249512,
+        "y": 2511.9826946258545,
         "wires": []
     },
     {
@@ -3571,18 +3529,6 @@
         "wires": []
     },
     {
-        "id": "2a685e5f.82bf42",
-        "type": "debug",
-        "z": "3f422101.3791ae",
-        "name": "",
-        "active": false,
-        "console": "false",
-        "complete": "false",
-        "x": 1773.9532165527344,
-        "y": 2344.070590019226,
-        "wires": []
-    },
-    {
         "id": "37524563.1fbf7a",
         "type": "mqtt in",
         "z": "3f422101.3791ae",
@@ -3730,7 +3676,7 @@
         "active": false,
         "console": "false",
         "complete": "false",
-        "x": 1782.953224182129,
+        "x": 1773.953224182129,
         "y": 2446.434229850769,
         "wires": []
     },
@@ -3823,19 +3769,7 @@
         "console": "false",
         "complete": "true",
         "x": 3866.777687072754,
-        "y": 993.8890428543091,
-        "wires": []
-    },
-    {
-        "id": "216b86c9.f8560a",
-        "type": "debug",
-        "z": "3f422101.3791ae",
-        "name": "erro PLC",
-        "active": false,
-        "console": "false",
-        "complete": "true",
-        "x": 3398.1667671203613,
-        "y": 223.5005760192871,
+        "y": 1002.8890428543091,
         "wires": []
     },
     {
@@ -4075,7 +4009,7 @@
         "type": "function",
         "z": "3f422101.3791ae",
         "name": "Erro Escrita M28",
-        "func": "msg.payload = { type: 'error', message: 'Falha de escrita dos modbus do CLP. M28'};\nmsg.payload.time= new Date();\nnode.status({fill:\"red\",shape:\"dot\",text:'Falha M28'});\nreturn msg;",
+        "func": "msg.payload = { type: 'error', message: 'CLP não responde. Verifique as conexões de rede.'};\nmsg.payload.time= new Date();\nnode.status({fill:\"red\",shape:\"dot\",text:'Falha M28'});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 2381.0001792907715,
@@ -4093,7 +4027,8 @@
         "name": "erro gravando modbus",
         "links": [
             "8adc7ae0.3b6808",
-            "500fd6f7.a15278"
+            "500fd6f7.a15278",
+            "958938fd.0ed378"
         ],
         "x": 2650.777967453003,
         "y": 667.8335332870483,
@@ -4188,7 +4123,7 @@
         "console": "false",
         "complete": "false",
         "x": 4435.055511474609,
-        "y": 180.16691493988037,
+        "y": 174.16691493988037,
         "wires": []
     },
     {
@@ -4357,11 +4292,11 @@
         "type": "function",
         "z": "3f422101.3791ae",
         "name": "loop",
-        "func": "\ncontext.loop = context.loop || \"stop\";\ncontext.loops = context.loops || 0;\n\n\nswitch (msg.payload) {\n\tcase \"pausa\":\n\t\tcontext.loops = context.loops + 1;\n\t\tmsg.payload = \"stopped\";\n\t\tcontext.loop = \"stop\";\n\t\treturn [null,null];\n\tcase \"start\":\n\t\tmsg.payload = \"started\";\n\t\tcontext.loop = \"loop\";\n\t\tcontext.loops = 1;\n\t\treturn [msg,msg];\n\tdefault:\n\t\tif (context.loop == \"loop\") {\n\t\t\tcontext.loops = context.loops + 1;\n\t\t\tmsg.payload = \"loop:\" + context.loops;\n\t\t\treturn [msg,msg];\n\t\t} else {\n\t\t\treturn [null,null]; \n\t\t}\n}",
+        "func": "\ncontext.loop = context.loop || \"stop\";\ncontext.loops = context.loops || 0;\n\n\nswitch (msg.payload) {\n\tcase \"pausa\":\n\t\tcontext.loops = context.loops + 1;\n\t\tmsg.payload = \"stopped\";\n\t\tcontext.loop = \"stop\";\n\t\tnode.status({fill:\"red\",shape:\"dot\",text:'stop'});\n\t\treturn [null,null];\n\tcase \"start\":\n\t\tmsg.payload = \"started\";\n\t\tcontext.loop = \"loop\";\n\t\tcontext.loops = 1;\n\t\tnode.status({fill:\"blue\",shape:\"dot\",text:'started'});\n\t\treturn [msg,msg];\n\tdefault:\n\t\tif (context.loop == \"loop\") {\n\t\t\tcontext.loops = context.loops + 1;\n\t\t\tmsg.payload = \"loop:\" + context.loops;\n\t\t\tnode.status({fill:\"green\",shape:\"dot\",text:'loop'});\n\t\t\treturn [msg,msg];\n\t\t} else {\n\t\t    node.status({fill:\"red\",shape:\"dot\",text:'none'});\n\t\t\treturn [null,null]; \n\t\t}\n}",
         "outputs": "2",
         "noerr": 0,
-        "x": 3014.8333854675293,
-        "y": 328.50055503845215,
+        "x": 2915.8333854675293,
+        "y": 255.50055503845215,
         "wires": [
             [
                 "e9703b45.435b48"
@@ -4379,8 +4314,8 @@
         "func": "msg2 = {};\nmsg.payload = 'start';\nmsg2.payload= { type: 'warning', message: 'MAQUINA_RESET'};\nmsg2.payload.time= new Date();\nreturn [msg,msg2];",
         "outputs": "2",
         "noerr": 0,
-        "x": 2812.8333854675293,
-        "y": 380.50055503845215,
+        "x": 2713.8333854675293,
+        "y": 307.50055503845215,
         "wires": [
             [
                 "1f799d27.a7d3c3"
@@ -4398,8 +4333,8 @@
         "links": [
             "500fd6f7.a15278"
         ],
-        "x": 2978.7500705718994,
-        "y": 386.75007724761963,
+        "x": 2879.7500705718994,
+        "y": 313.75007724761963,
         "wires": []
     },
     {
@@ -4410,8 +4345,8 @@
         "func": "setTimeout(function() {\n node.send(msg);\n}, 1000);\nreturn null;",
         "outputs": 1,
         "noerr": 0,
-        "x": 3017.500072479248,
-        "y": 274.0000743865967,
+        "x": 2918.500072479248,
+        "y": 201.00007438659668,
         "wires": [
             [
                 "1f799d27.a7d3c3"
@@ -4426,8 +4361,8 @@
         "func": "setTimeout(function() {\n node.send(msg);\n}, 1000);\nreturn null;",
         "outputs": 1,
         "noerr": 0,
-        "x": 2812.5000648498535,
-        "y": 331.75007724761963,
+        "x": 2713.5000648498535,
+        "y": 258.75007724761963,
         "wires": [
             [
                 "389c2aa3.6d90c6"
@@ -4442,8 +4377,8 @@
         "func": "setTimeout(function() {\n node.send(msg);\n}, 300);\nreturn null;",
         "outputs": 1,
         "noerr": 0,
-        "x": 2635.0000648498535,
-        "y": 380.7500762939453,
+        "x": 2357.857131958008,
+        "y": 306.03576850891113,
         "wires": [
             [
                 "389c2aa3.6d90c6"
@@ -4491,7 +4426,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 718.0000267028809,
-        "y": 510.25003242492676,
+        "y": 536.2500324249268,
         "wires": [
             [
                 "5acf5954.4ed6e8"
@@ -4519,7 +4454,7 @@
         "console": "false",
         "complete": "false",
         "x": 4133.333333333333,
-        "y": 250,
+        "y": 248,
         "wires": []
     },
     {
@@ -4542,20 +4477,8 @@
         "links": [
             "7fb2661d.9b7b08"
         ],
-        "x": 4621.888746261597,
-        "y": 153.44442749023438,
-        "wires": []
-    },
-    {
-        "id": "e635efc7.6f4a3",
-        "type": "link out",
-        "z": "3f422101.3791ae",
-        "name": "Comando para ler todo ModBus",
-        "links": [
-            "93ec0c20.a969a"
-        ],
-        "x": 4621.782300949097,
-        "y": 99.98658561706543,
+        "x": 2253.0633602142334,
+        "y": 331.23807525634766,
         "wires": []
     },
     {
@@ -4566,16 +4489,265 @@
         "dataType": "HoldingRegister",
         "adr": "3",
         "server": "9d9e7956.cdee38",
-        "x": 4463.648509979248,
-        "y": 123.93412017822266,
+        "x": 2100.5373497009277,
+        "y": 313.15637135505676,
         "wires": [
             [
-                "e635efc7.6f4a3"
+                "362ffa7.8703d06"
             ],
             [
                 "fcc45357.fe864"
             ]
         ]
+    },
+    {
+        "id": "b25af254.f21eb",
+        "type": "function",
+        "z": "3f422101.3791ae",
+        "name": "Delay 200ms",
+        "func": "setTimeout(function() {\n node.send(msg);\n}, 200);\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1829.7140426635742,
+        "y": 311.9999771118164,
+        "wires": [
+            [
+                "38a9a957.98ed06"
+            ]
+        ]
+    },
+    {
+        "id": "7f237c8a.e7bb14",
+        "type": "modbustcp-no-pooling-write",
+        "z": "3f422101.3791ae",
+        "name": "Libera Maquina M3.0",
+        "dataType": "HoldingRegister",
+        "adr": "3",
+        "server": "9d9e7956.cdee38",
+        "x": 4765.9999923706055,
+        "y": 432.28572368621826,
+        "wires": [
+            [
+                "9a3e48aa.800168"
+            ],
+            [
+                "471c61f6.9051d"
+            ]
+        ]
+    },
+    {
+        "id": "471c61f6.9051d",
+        "type": "link out",
+        "z": "3f422101.3791ae",
+        "name": "Erro ModBus",
+        "links": [
+            "7fb2661d.9b7b08"
+        ],
+        "x": 4913.1428146362305,
+        "y": 463.42859172821045,
+        "wires": []
+    },
+    {
+        "id": "9a3e48aa.800168",
+        "type": "link out",
+        "z": "3f422101.3791ae",
+        "name": "Comando para ler todo ModBus",
+        "links": [
+            "93ec0c20.a969a"
+        ],
+        "x": 4913.571622848511,
+        "y": 398.8571481704712,
+        "wires": []
+    },
+    {
+        "id": "5e23ed4b.1bc2e4",
+        "type": "function",
+        "z": "3f422101.3791ae",
+        "name": "Delay 200ms",
+        "func": "setTimeout(function() {\n node.send(msg);\n}, 200);\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 4434.285919189453,
+        "y": 334.28571605682373,
+        "wires": [
+            [
+                "11c94d92.0a6d02",
+                "7f237c8a.e7bb14"
+            ]
+        ]
+    },
+    {
+        "id": "11c94d92.0a6d02",
+        "type": "function",
+        "z": "3f422101.3791ae",
+        "name": "manda 1",
+        "func": "//libera maquina tem que ser 0 depois 1\nmsg.payload = 1;\nnode.status({fill:\"blue\",shape:\"dot\",text: \"Liberando\" });\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 4612.857482910156,
+        "y": 334.714298248291,
+        "wires": [
+            [
+                "1aab616c.5edbaf"
+            ]
+        ]
+    },
+    {
+        "id": "1aab616c.5edbaf",
+        "type": "function",
+        "z": "3f422101.3791ae",
+        "name": "Delay 300",
+        "func": "setTimeout(function() {\n node.send(msg);\n}, 300);\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 4775.714134216309,
+        "y": 334.8571243286133,
+        "wires": [
+            [
+                "7f237c8a.e7bb14"
+            ]
+        ]
+    },
+    {
+        "id": "958938fd.0ed378",
+        "type": "link in",
+        "z": "3f422101.3791ae",
+        "name": "",
+        "links": [
+            "f0f4111c.32aaa"
+        ],
+        "x": 347,
+        "y": 336,
+        "wires": [
+            [
+                "7812b5cf.241fdc",
+                "c9addfa1.449f5"
+            ]
+        ]
+    },
+    {
+        "id": "ed0d9525.febfe8",
+        "type": "comment",
+        "z": "3f422101.3791ae",
+        "name": "Erro escrevendo CLP ->",
+        "info": "#Whats is saved until now!\n\nAfter one JSON.parse(msg.payload);\n\nAPLANADORA VELOCIDADE AUTOMATICA M14\nAPLANADORA VELOCIDADE MANUAL M17\nAPLANADORA PASSO M18\nRESOLUÇÃO DO ENCONDER M21",
+        "x": 213,
+        "y": 336,
+        "wires": []
+    },
+    {
+        "id": "16bcfba9.0ecdd4",
+        "type": "link out",
+        "z": "3f422101.3791ae",
+        "name": "",
+        "links": [
+            "93ec0c20.a969a"
+        ],
+        "x": 3303,
+        "y": 397,
+        "wires": []
+    },
+    {
+        "id": "e2812f13.5441a",
+        "type": "function",
+        "z": "3f422101.3791ae",
+        "name": "Delay 400ms",
+        "func": "setTimeout(function() {\n node.send(msg);\n}, 400);\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 3357,
+        "y": 441,
+        "wires": [
+            [
+                "24139567.3bd0aa"
+            ]
+        ]
+    },
+    {
+        "id": "24139567.3bd0aa",
+        "type": "link out",
+        "z": "3f422101.3791ae",
+        "name": "erro lendo CLP",
+        "links": [
+            "34e1c2b8.f30aae"
+        ],
+        "x": 3482,
+        "y": 441,
+        "wires": []
+    },
+    {
+        "id": "34e1c2b8.f30aae",
+        "type": "link in",
+        "z": "3f422101.3791ae",
+        "name": "",
+        "links": [
+            "24139567.3bd0aa"
+        ],
+        "x": 776,
+        "y": 497,
+        "wires": [
+            [
+                "5acf5954.4ed6e8"
+            ]
+        ]
+    },
+    {
+        "id": "888617a.589f5e8",
+        "type": "comment",
+        "z": "3f422101.3791ae",
+        "name": "Erro lendo o CLP ->",
+        "info": "#Whats is saved until now!\n\nAfter one JSON.parse(msg.payload);\n\nAPLANADORA VELOCIDADE AUTOMATICA M14\nAPLANADORA VELOCIDADE MANUAL M17\nAPLANADORA PASSO M18\nRESOLUÇÃO DO ENCONDER M21",
+        "x": 665,
+        "y": 497,
+        "wires": []
+    },
+    {
+        "id": "c9addfa1.449f5",
+        "type": "debug",
+        "z": "3f422101.3791ae",
+        "name": "falha lendo",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 493,
+        "y": 338,
+        "wires": []
+    },
+    {
+        "id": "45b20629.b83528",
+        "type": "debug",
+        "z": "3f422101.3791ae",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 3870,
+        "y": 1937,
+        "wires": []
+    },
+    {
+        "id": "de0b66f9.b78d88",
+        "type": "debug",
+        "z": "3f422101.3791ae",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 4454,
+        "y": 2101,
+        "wires": []
+    },
+    {
+        "id": "e822fd7f.88182",
+        "type": "debug",
+        "z": "3f422101.3791ae",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 4471,
+        "y": 1960,
+        "wires": []
     },
     {
         "id": "69df81b0.bec44",
